@@ -1,0 +1,31 @@
+   
+  
+   String titleAppBar = "Lucia te cuida";
+   String signIn = "Ingresar";
+   String createAccount = "Crear cuenta";
+   String search = "Buscar";
+   String save = "Guardar";
+   String news = "Nuevo";
+   String update = "Actualizar";
+   String delete = "Eliminar";
+   String cancel = "Cancelar";
+   String accept = "Aceptar";
+   String titleApp = "COVID -19";
+   String create = "Crear";
+   String map = "Mapa";
+   String camara = "Cámara";
+   String loading = "Cargando";
+   String zonaRiesgo = "Zona de riesgo";
+   String familiares = "Familiares";
+   String prueba = "Prueba";
+   String historial = "Historial";
+   String sospechoso = "Sospechoso";
+   String positivo = "Positivo";
+   String media = "Media";
+   String alta = "Alta";
+   String baja = "Baja";
+   String empty = "Ingrese el campo solicitado";
+   String errorForm = "Se produjo un error en el formulario.";
+   String errorLengthText = "El campo no puede ser mayor a ";
+   String errorEmail = "No es un correo valido ";
+   String saved = "Registro guardado correctamente.";
