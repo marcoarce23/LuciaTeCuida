@@ -318,6 +318,7 @@ class _AtentionModuleState extends State<AtentionModule> {
     entity.perDomingoH = '-1';
     entity.usuario = prefs.userId;
 
+print('valores: $entity');
     final dataMap = generic.add(entity, urlAddAtencion);
 
     await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);

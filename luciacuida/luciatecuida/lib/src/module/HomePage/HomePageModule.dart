@@ -277,7 +277,7 @@ class DrawerCitizen extends StatelessWidget {
                 )),
         CustomListTile(
             Icons.perm_phone_msg,
-            'Solicita una consulta',
+            'Consulta a un voluntario',
             () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -285,7 +285,7 @@ class DrawerCitizen extends StatelessWidget {
                 )),
         CustomListTile(
             Icons.hotel,
-            'Pide ayuda urgente',
+            'Pedir ayuda urgente',
             () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -293,7 +293,7 @@ class DrawerCitizen extends StatelessWidget {
                 )),
         CustomListTile(
             Icons.accessible_forward,
-            'Ayuda a un amigo(a)',
+            'Ayuda a una persona',
             () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -315,9 +315,16 @@ class DrawerCitizen extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) => CitizenMultimediaModule()),
                 )),
+         CustomListTile(
+            Icons.edit_location,
+            'Registra tu Institución',
+            () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EntityAllModule()),
+                )),
         CustomListTile(
             Icons.person_add,
-            'Inscribete como voluntario',
+            'Registrate como voluntario',
             () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => VoluntaryAllModule()),
@@ -346,13 +353,7 @@ class DrawerCitizen extends StatelessWidget {
           //       MaterialPageRoute(builder: (context) => MapAdressModule()),
           //     )
         ),
-        CustomListTile(
-            Icons.edit_location,
-            'Registra tu Institución',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => EntityAllModule()),
-                )),
+       
         CustomListTile(
             Icons.event_available,
             'Crear Eventos-Entidades',

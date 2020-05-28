@@ -379,16 +379,15 @@ class _EntityModuleState extends State<EntityModule> {
     await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
     print('resultado:$result');
 
-    if (result == "0") {
-      // scaffoldKey.currentState
-      //     .showSnackBar(messageOk("Se insertó correctamente"));
-          Navigator.of(context).push(CupertinoPageRoute(builder: (BuildContext context) => ListEntityModule()));
+    if (result != "-1" || result != "-2") {
+      prefs.idInsitucion = result;
+               Navigator.of(context).push(CupertinoPageRoute(builder: (BuildContext context) => ListEntityModule()));
     }
     if (result == "-1") {
       scaffoldKey.currentState
           .showSnackBar(messageNOk('Error, vuelta a intentarlo'));
     }
-    if (result == "-2") {
+    if (result == "2") {
       scaffoldKey.currentState
           .showSnackBar(messageNOk("Error, El TOKEN esta siendo utilizado"));
     }

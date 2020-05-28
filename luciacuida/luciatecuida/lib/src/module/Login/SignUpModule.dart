@@ -209,7 +209,7 @@ Future<void> _handleSignOut() => _googleSignIn.disconnect();
 
             final dataMap = generic.add(entity, urlAddSignIn);
             dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-            //     print('resultado:$result ');
+                 print('resultado:$result ');
 
             if (result != "-1") {
               prefs.imei = _platformImei;

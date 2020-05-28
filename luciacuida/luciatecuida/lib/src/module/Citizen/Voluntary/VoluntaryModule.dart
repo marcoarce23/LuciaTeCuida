@@ -416,7 +416,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
     if (result == "-1")
       scaffoldKey.currentState
           .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
-    if (result == "-2")
+    if (result == "2")
       scaffoldKey.currentState
           .showSnackBar(messageNOk("Error, TOKEN INVALIDO"));
 
