@@ -86,6 +86,9 @@ String urlGetListaSolicitudesAyudas =
 String urlGetHistorialListaSolicitudesAyudas =
     'http://covid19.ruta88.net/COVID/BotonPanico/srvBotonPanico.svc/HistorialListaSolicitudes';
 
+ final String primaryKeyGetDevuelveHorariosAtencionInstitucion =
+    '_DevuelveHorarioAtencionResult';
+String urlGetDevuelveHorariosAtencionInstitucion ='http://covid19.ruta88.net/COVID/Institucion/srvInstitucion.svc/DevuelveHorarioAtencion';
 
 // METODO POST
 final String urlAddBotonPanico =

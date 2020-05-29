@@ -869,11 +869,13 @@ class ProfesionalesAgrupados extends Entity {
   int cantidadProfesionales;
   String imagenFondo;
   String descripcion;
+  String horario;
 
   ProfesionalesAgrupados(
       {this.idInstitucion,
       this.profesion,
       this.cantidadProfesionales,
+      this.horario,
       this.idProfesion,
       this.descripcion,
       this.imagenFondo});
@@ -883,6 +885,7 @@ class ProfesionalesAgrupados extends Entity {
       profesion: json["TIPO_PERSONAL"],
       cantidadProfesionales: json["CANTIDAD_PROFESIONALES"],
       idProfesion: json["IDA_TIPOPERSONAL"],
+      horario: json["HORARIO"],
       descripcion: json["DESCRIPCION"],
       imagenFondo: json["URLIMAGEN"]);
 
@@ -891,6 +894,7 @@ class ProfesionalesAgrupados extends Entity {
         "TIPO_PERSONAL": profesion,
         "CANTIDAD_PROFESIONALES": cantidadProfesionales,
         "IDA_TIPOPERSONAL": idProfesion,
+        "HORARIO": horario,
         "DESCRIPCION": descripcion,
         "URLIMAGEN": imagenFondo
       };
@@ -1307,5 +1311,19 @@ class RegistrarAyuda extends Entity {
         "REG_FECHA": fecha,
         "IDA_ESTADO": idaEstado,
         "USUARIO": usuario
+      };
+}
+
+class HorarioInstitucion extends Entity {
+  String horario;
+
+  HorarioInstitucion({this.horario});
+
+  fromJson(Map<String, dynamic> json) => new HorarioInstitucion(
+        horario: json["DIA"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "DIA": horario,
       };
 }

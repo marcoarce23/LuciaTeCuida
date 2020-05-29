@@ -111,7 +111,7 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
 
   Widget cabeceraInstitucion(double screenHeigh, double screenwidth) {
     return Container(
-      height: 280,
+      height: 340,
       child: Column(
         children: <Widget>[
           Row(
@@ -139,7 +139,8 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
                       ),
                     ],
                   ),
-                  Text(widget.institutionItem.nombreInstitucion, style: kSubTitleCardStyle),
+                  Text(widget.institutionItem.nombreInstitucion,
+                      style: kSubTitleCardStyle),
                   Row(
                     children: <Widget>[
                       Icon(
@@ -149,11 +150,12 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
                       ),
                       Text(
                         "Tipo de institución",
-                        style:kTitleCardStyle,
+                        style: kTitleCardStyle,
                       ),
                     ],
                   ),
-                  Text(widget.institutionItem.tipoInstitucion , style: kSubTitleCardStyle),
+                  Text(widget.institutionItem.tipoInstitucion,
+                      style: kSubTitleCardStyle),
                   Row(
                     children: <Widget>[
                       Icon(
@@ -167,7 +169,8 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
                       ),
                     ],
                   ),
-                  Text(widget.institutionItem.ubicacion, style: kSubTitleCardStyle),
+                  Text(widget.institutionItem.ubicacion,
+                      style: kSubTitleCardStyle),
                   Row(
                     children: <Widget>[
                       Icon(
@@ -181,7 +184,10 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
                       ),
                     ],
                   ),
-                  Text(widget.institutionItem.correo, style: kSubTitleCardStyle,),
+                  Text(
+                    widget.institutionItem.correo,
+                    style: kSubTitleCardStyle,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
@@ -324,23 +330,15 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
               ),
             ],
           ),
-          futureHorarioAtencion(),
+          contenedorTitulo(
+            context,
+            40.0,
+            "HORARIOS DE ATENCION".toUpperCase(),
+            FaIcon(FontAwesomeIcons.clock, color: AppTheme.themeVino),
+          ),
+          futureCuerpoHorario(context),
         ],
       ),
-    );
-  }
-
-  Widget futureHorarioAtencion() {
-    return Column(
-      children: <Widget>[
-        contenedorTitulo(
-          context,
-          40.0,
-          "horarios de atención".toUpperCase(),
-          FaIcon(FontAwesomeIcons.hourglass, color: AppTheme.themeVino),
-        ),
-        Text("Hsorario de atencion"),
-      ],
     );
   }
 
@@ -513,15 +511,14 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
     );
   }
 
-/*
- Widget futureCuerpoHorario(BuildContext context) {
+  Widget futureCuerpoHorario(BuildContext context) {
     return FutureBuilder(
-        future: generic.ge   tAll(     
-            new ProfesionalesAgrupados(),
-            urlGetGrupoProfesionales +
+        future: generic.getAll(
+            new HorarioInstitucion(),
+            urlGetDevuelveHorariosAtencionInstitucion +
                 '/' +
                 widget.institutionItem.idInstitucion.toString(),
-            primaryKeyGrupoProfesionales),
+            primaryKeyGetDevuelveHorariosAtencionInstitucion),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
@@ -534,86 +531,21 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
         });
   }
 
-   Widget cuerpoHorario(BuildContext context, AsyncSnapshot snapshot) {
-    return SingleChildScrollView(
-      child: Container(
-        height: 150,
-        child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            physics: ClampingScrollPhysics(),
-            itemCount: snapshot.data.length,
-            itemBuilder: (context, index) {
-              Profesionale   sAgrupados listaProfesionales = snapshot.data[index];
-              return tarjetaHorario(listaProfesionales);
-            }),
-      ),
-    );
-  }
-
-
-   Widget tarjetaHorario(ProfesionalesAgrupados profesional) {
-    return SingleChildScrollView(
-      child: InkWell(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => FoundAllVoluntaryModule(
-                      profesional: profesional,
-                    )),
-          );
-        },
-        child: Container(
-          height: 150,
-          width: 150,
-          color: AppTheme.themeVino,
-          child: Card(
-            elevation: 5,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Stack(
-                children: <Widget>[
-                  ImageOpaqueNetworkCustomize(
-                      profesional.imagenFondo,
-                      Colors.white,
-                      Size(double.maxFinite, double.maxFinite),
-                      0.5,
-                      BoxFit.cover),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Expanded(
-                        child: Text(
-                          profesional.profesion,
-                          style: TextStyle(
-                            fontSize: 12.0,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ),
-                      Text(
-                          "Contamos con " +
-                              profesional.cantidadProfesionales.toString() +
-                              " profesionales",
-                          style: TextStyle(
-                            fontSize: 10.0,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                          )),
-                    ],
-                  )
-                ],
-              ),
+  Widget cuerpoHorario(BuildContext context, AsyncSnapshot snapshot) {
+    return ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        physics: ClampingScrollPhysics(),
+        itemCount: snapshot.data.length,
+        itemBuilder: (context, index) {
+          HorarioInstitucion listaHorrio = snapshot.data[index];
+          return Padding(
+            padding: const EdgeInsets.only(left: 20.0,top: 5),
+            child: Text(
+              listaHorrio.horario,
+              style: kSubTitleCardStyle,
             ),
-          ),
-        ),
-      ),
-    );
+          );
+        });
   }
-*/
 }
