@@ -53,7 +53,7 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
                   "Eventos disponibles".toUpperCase(),
                   FaIcon(FontAwesomeIcons.newspaper, color: AppTheme.themeVino),
                 ),
-                Text("Presione sobre evento para ver el detalle", style: kSubSubTitleCardStyle,),
+                Text("Presione sobre el evento para ver el detalle", style: kSubSubTitleCardStyle,),
                   listadoDeNoticias(),
                   copyRigth(),
                 ],

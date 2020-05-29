@@ -38,7 +38,7 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
             toolbarOpacity: 0.7,
             iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
             elevation: 0,
-            title: Text("VER HISTORIAL", style: kTitleAppBar),
+            title: Text("PIDE AYUDA URGENTE", style: kTitleAppBar),
             actions: <Widget>[
               /*IconButton(
                 icon: Icon(Icons.search),

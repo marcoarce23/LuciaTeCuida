@@ -145,12 +145,10 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Expanded(
-                        child: Text(
-                          profesional.profesion,
-                          style: TextStyle(
-                            fontSize: 12.0,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w900,
+                        child: Center(
+                          child: Text(
+                            profesional.profesion.toUpperCase(),
+                            style: kTitleCardStyle,
                           ),
                         ),
                       ),
@@ -158,11 +156,7 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
                           "Contamos con " +
                               profesional.cantidadProfesionales.toString() +
                               " profesionales",
-                          style: TextStyle(
-                            fontSize: 10.0,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                          )),
+                          style: kSubTitleCardStyle),
                     ],
                   )
                 ],

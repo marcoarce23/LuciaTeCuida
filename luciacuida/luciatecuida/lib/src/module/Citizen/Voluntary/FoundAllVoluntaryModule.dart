@@ -120,7 +120,7 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
                   ),
                   Text(
                     "Profesional / Voluntario",
-                    style: kSubTitleCardStyle,
+                    style: kTitleCardStyle,
                   ),
                 ],
               ),
@@ -137,7 +137,7 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
                   ),
                   Text(
                     "Institución",
-                    style: kSubTitleCardStyle,
+                    style: kTitleCardStyle,
                   ),
                 ],
               ),
@@ -154,14 +154,35 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
                   ),
                   Text(
                     "Especialidad",
-                    style: kSubTitleCardStyle,
+                    style: kTitleCardStyle,
                   ),
                 ],
               ),
               Text(
-                profesionalesDeInstitucion.tipoProfesion,
+                profesionalesDeInstitucion.tipoProfesion.toUpperCase(),
                 style: kSubTitleCardStyle,
               ),
+
+ Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.timer,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    "Horaios",
+                    style: kTitleCardStyle,
+                  ),
+                ],
+              ),
+              Text(
+                profesionalesDeInstitucion.horario,
+                style: kSubTitleCardStyle,
+              ),
+
+
+
               Opacity(
                 opacity: (parametroCovid == "0") ? 0 : 1,
                 child: Row(
@@ -176,7 +197,7 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
                       width: 5,
                     ),
                     Text(
-                      "Ayuda con consultas sobre Covid19",
+                      "Consultas sobre Covid",
                       style:
                           TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
                     )

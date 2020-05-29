@@ -69,6 +69,18 @@ class _CitizenImageDetailModuleState extends State<CitizenImageDetailModule> {
               ],
             ),
           ),
+           Container(
+            margin: EdgeInsets.only(left: 10),
+            child: Row(
+              children: <Widget>[
+                Text(
+                  "Tipo material:",
+                  style: TextStyle(fontWeight: FontWeight.w700),
+                ),
+                Text(widget.multimediaImagen.mulTipoMaterial),
+              ],
+            ),
+          ),
         ],
       ),
     );

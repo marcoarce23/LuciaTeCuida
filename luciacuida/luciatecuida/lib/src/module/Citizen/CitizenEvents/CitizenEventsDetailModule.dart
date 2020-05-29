@@ -31,12 +31,12 @@ class _CitizenEventsDetailModuleState extends State<CitizenEventsDetailModule> {
       appBar: AppBar(
 
 
-  backgroundColor: AppTheme.themeVino,
+  backgroundColor: Colors.white,
         toolbarOpacity: 0.7,
-        iconTheme: IconThemeData(color: AppTheme.themeColorBlanco, size: 12),
+        iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
         elevation: 0,
         title:
-            Text(widget.eventosItem.titulo, style: kTitleAppBar),
+            Text(widget.eventosItem.titulo.toUpperCase(), style: kTitleAppBar),
 
 
 

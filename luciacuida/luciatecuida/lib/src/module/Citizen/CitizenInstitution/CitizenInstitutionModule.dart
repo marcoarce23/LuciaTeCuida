@@ -119,7 +119,7 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
             children: <Widget>[
               ImageOvalNetwork(
                   imageNetworkUrl: widget.institutionItem.url,
-                  sizeImage: Size.fromWidth(140)),
+                  sizeImage: Size.fromWidth(100)),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -135,12 +135,11 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
                       ),
                       Text(
                         "Institución / Grupo voluntarios",
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w800),
+                        style: kTitleCardStyle,
                       ),
                     ],
                   ),
-                  Text(widget.institutionItem.nombreInstitucion),
+                  Text(widget.institutionItem.nombreInstitucion, style: kSubTitleCardStyle),
                   Row(
                     children: <Widget>[
                       Icon(
@@ -150,12 +149,11 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
                       ),
                       Text(
                         "Tipo de institución",
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w800),
+                        style:kTitleCardStyle,
                       ),
                     ],
                   ),
-                  Text(widget.institutionItem.tipoInstitucion),
+                  Text(widget.institutionItem.tipoInstitucion , style: kSubTitleCardStyle),
                   Row(
                     children: <Widget>[
                       Icon(
@@ -165,12 +163,11 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
                       ),
                       Text(
                         "Ubicación",
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w800),
+                        style: kTitleCardStyle,
                       ),
                     ],
                   ),
-                  Text(widget.institutionItem.ubicacion),
+                  Text(widget.institutionItem.ubicacion, style: kSubTitleCardStyle),
                   Row(
                     children: <Widget>[
                       Icon(
@@ -180,12 +177,11 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
                       ),
                       Text(
                         "Correo ",
-                        style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w800),
+                        style: kTitleCardStyle,
                       ),
                     ],
                   ),
-                  Text(widget.institutionItem.correo),
+                  Text(widget.institutionItem.correo, style: kSubTitleCardStyle,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
@@ -383,24 +379,18 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Expanded(
-                        child: Text(
-                          profesional.profesion,
-                          style: TextStyle(
-                            fontSize: 12.0,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w900,
+                        child: Center(
+                          child: Text(
+                            profesional.profesion.toUpperCase(),
+                            style: kTitleCardStyle,
                           ),
                         ),
                       ),
                       Text(
-                          "Contamos con " +
+                          "Contamos con: " +
                               profesional.cantidadProfesionales.toString() +
                               " profesionales",
-                          style: TextStyle(
-                            fontSize: 10.0,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w700,
-                          )),
+                          style: kSubTitleCardStyle),
                     ],
                   )
                 ],

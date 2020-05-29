@@ -90,7 +90,7 @@ class Institucion extends Entity {
         "USUARIO": usuario,
         "DES_INSTITUCION": desInsitucion,
         "DES_UBICACION": desUbicacion,
-        "ES_SUCURSAL" : esSucursal,
+        "ES_SUCURSAL": esSucursal,
       };
 }
 
@@ -216,8 +216,6 @@ class Evento extends Entity {
         usuario: json["USUARIO"],
       );
 
-
-
   Map<String, dynamic> toJson() => {
         "IDCOV_EVENTO": idcovEvento,
         "IDCOV_INSTITUCION": idcovInstitucion,
@@ -245,7 +243,7 @@ class Multimedia extends Entity {
   String detFechaFin;
   String mulEnlace;
   String usuario;
-String tipoMaterial;
+  String tipoMaterial;
 
   Multimedia(
       {this.idcovMultimedia,
@@ -260,7 +258,6 @@ String tipoMaterial;
       this.tipoMaterial,
       this.usuario});
 
-
   fromJson(Map<String, dynamic> json) => new Multimedia(
         idcovMultimedia: json["IDCOV_MULTIMEDIA"],
         idaCategoria: json["IDA_CATEGORIA"],
@@ -271,7 +268,7 @@ String tipoMaterial;
         detFechaInicio: json["MUL_FECHAINICIO"],
         detFechaFin: json["MUL_FECHAFIN"],
         mulEnlace: json["MUL_ENLACE"],
-       tipoMaterial: json["TIPO_MATERIAL"],
+        tipoMaterial: json["TIPO_MATERIAL"],
         usuario: json["USUARIO"],
       );
 
@@ -911,6 +908,7 @@ class ProfesionalesDeInstitucion extends Entity {
   String ci;
   String sexo;
   String foto;
+  String horario;
 
   ProfesionalesDeInstitucion(
       {this.idPersonal,
@@ -921,6 +919,7 @@ class ProfesionalesDeInstitucion extends Entity {
       this.correo,
       this.telefono,
       this.ayudaConCovid,
+      this.horario,
       this.ci,
       this.foto,
       this.sexo});
@@ -934,6 +933,7 @@ class ProfesionalesDeInstitucion extends Entity {
       ci: json["PER_CI"],
       foto: json["PER_FOTO"],
       idInstitucion: json["IDCOV_INSTITUCION"],
+      horario: json["HORARIO"],
       correo: json["PER_CORREO"],
       telefono: json["PER_TELEFONO"],
       sexo: json["sexo"]);
@@ -946,6 +946,7 @@ class ProfesionalesDeInstitucion extends Entity {
         "PER_AYUDACOVID": ayudaConCovid,
         "PER_CORREO": correo,
         "PER_TELEFONO": telefono,
+        "HORARIO": horario,
         "PER_FOTO": foto,
         "PER_CI": ci,
         "IDCOV_INSTITUCION": idInstitucion,
@@ -1038,11 +1039,13 @@ class ListaMultimedia extends Entity {
   String mulFechainicio;
   String mulResumen;
   String mulTitulo;
+  String mulTipoMaterial;
 
   ListaMultimedia(
       {this.categoria,
       this.idaCategoria,
       this.idcovInstitucion,
+      this.mulTipoMaterial,
       this.idcovMultimedia,
       this.insNombreinstitucion,
       this.mulEnlace,
@@ -1061,6 +1064,7 @@ class ListaMultimedia extends Entity {
       mulFechafin: json["MUL_FECHAFIN"],
       mulFechainicio: json["MUL_FECHAINICIO"],
       mulResumen: json["MUL_RESUMEN"],
+      mulTipoMaterial: json["TIPO_MATERIAL"],
       mulTitulo: json["MUL_TITULO"]);
 
   Map<String, dynamic> toJson() => {
@@ -1071,6 +1075,7 @@ class ListaMultimedia extends Entity {
         "INS_NOMBREINSTITUCION": insNombreinstitucion,
         "MUL_ENLACE": mulEnlace,
         "MUL_FECHAFIN": mulFechafin,
+        "TIPO_MATERIAL": mulTipoMaterial,
         "MUL_FECHAINICIO": mulFechainicio,
         "MUL_RESUMEN": mulResumen,
         "MUL_TITULO": mulTitulo

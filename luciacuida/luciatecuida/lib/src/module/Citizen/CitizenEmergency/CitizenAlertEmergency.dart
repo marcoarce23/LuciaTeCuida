@@ -37,12 +37,12 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
         child: Scaffold(
             appBar: AppBar(
 
- backgroundColor: AppTheme.themeVino,
+ backgroundColor: Colors.white,
         toolbarOpacity: 0.7,
-        iconTheme: IconThemeData(color: AppTheme.themeColorBlanco, size: 12),
+        iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
         elevation: 0,
         title:
-            Text("Historial de solicitudes", style: kTitleAppBar),           
+            Text("Historial de solicitudes".toUpperCase(), style: kTitleAppBar),           
               //backgroundColor: colorCuadro,
             ),
             drawer: DrawerCitizen(),
