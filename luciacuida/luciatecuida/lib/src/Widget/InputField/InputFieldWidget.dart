@@ -514,11 +514,12 @@ class _InputDropDownState extends State<InputDropDown> {
                     SizedBox(width: 15.0),
                     DropdownButton(
                       icon: widget.icon,
-                      value: widget.objectValue, //valor
+                      value: valor,
                       items: getDropDown(snapshot),
                       onChanged: (value) {
                         setState(() {
-                              widget.objectValue = value; 
+                          valor = value;
+                          widget.objectValue = value; 
                           print('valor combo ingresado widget.objectValue: ${widget.objectValue} y valueeee: $value');
                         });
                       },

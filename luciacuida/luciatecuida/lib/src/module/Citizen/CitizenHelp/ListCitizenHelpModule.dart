@@ -153,21 +153,21 @@ class _ListCitizenHelpModuleState extends State<ListCitizenHelpModule> {
                         color: AppTheme.themeVino,
                         size: 15,
                       ),
-                      Text('Persona: ${entityItem.regPersona} ',
+                      Text('${entityItem.regPersona} ',
                           style: kTitleCardStyle),
                     ],
                   )),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text('Prioridad: ${entityItem.regPrioridad}',
-                      style: kSubTitleCardStyle)
-                ],
-              ),
+              // Row(
+              //   children: <Widget>[
+              //     Icon(
+              //       Icons.place,
+              //       color: AppTheme.themeVino,
+              //       size: 15,
+              //     ),
+              //     Text('Prioridad: ${entityItem.}',
+              //         style: kSubTitleCardStyle)
+              //   ],
+              // ),
               Container(
                   child: Row(
                 children: <Widget>[

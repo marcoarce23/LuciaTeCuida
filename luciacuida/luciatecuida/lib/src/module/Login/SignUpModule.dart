@@ -43,7 +43,7 @@ class _SignUpModuleState extends State<SignUpModule> {
  GoogleSignIn _googleSignIn = GoogleSignIn(
   scopes: <String>[
     'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
+    'profile',
   ],
 );
 
@@ -176,14 +176,10 @@ print('email del botonnnn:${currentUser.email} ');
               print('fatamap1 FOR VALOR VALUE:${value[i]}');
               entity = value[i];
             }
-            print('XXXX${value[0]}'); 
-entity = value[0];
-            print('111:${entity.idPersonal} y 2222 ${entity.idUsuario}');
             prefs.imei = entity.imei;
             prefs.nombreUsuario = entity.nombrePersona;
             prefs.correoElectronico = entity.correo;
             prefs.avatarImagen = entity.avatar;
-
             prefs.nombreInstitucion = entity.nombreInstitucion;
             prefs.idInsitucion = entity.idInstitucion;
             prefs.idPersonal = entity.idPersonal;
@@ -207,7 +203,7 @@ entity = value[0];
             entity.usuario = currentUser.email;
             entity.correo = currentUser.email;
             entity.avatar = (currentUser.photoUrl == null)
-                ? 'https://definicionyque.es/wp-content/uploads/2017/11/Medicina_Preventiva.jpg'
+                ? 'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg'
                 : currentUser.photoUrl;
             entity.password = '-1';
             entity.tokenDispositivo = prefs.token;

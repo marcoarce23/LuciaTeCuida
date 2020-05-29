@@ -48,8 +48,7 @@ class _HomePageModuleState extends State<HomePageModule> {
         appBar: AppBar(
             backgroundColor: Colors.white,
             toolbarOpacity: 0.7,
-            iconTheme:
-                IconThemeData(color: AppTheme.themeVino, size: 12),
+            iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
             elevation: 0,
             title: Row(
               children: <Widget>[
@@ -123,7 +122,8 @@ class _HomePageModuleState extends State<HomePageModule> {
   Widget _bottomNavigationBar(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
-          canvasColor: Colors.white,//AppTheme.themeVino, //Color.fromRGBO(55, 57, 84, 1.0),
+          canvasColor: Colors
+              .white, //AppTheme.themeVino, //Color.fromRGBO(55, 57, 84, 1.0),
           primaryColor: AppTheme.themeVino,
           textTheme: Theme.of(context)
               .textTheme
@@ -133,11 +133,9 @@ class _HomePageModuleState extends State<HomePageModule> {
           BottomNavigationBarItem(
               icon: Icon(Icons.notification_important, size: 20.0),
               title: Text('Notificaciones')),
-        
           BottomNavigationBarItem(
               icon: Icon(Icons.video_library, size: 20.0),
               title: Text('Multimedia')),
-        
           BottomNavigationBarItem(
               icon: Icon(Icons.add_call, size: 20.0),
               title: Text('Contactenos')),
@@ -155,13 +153,14 @@ class _HomePageModuleState extends State<HomePageModule> {
             Colors.purpleAccent, Icons.hotel, 'Ayuda urgente', '2', 20.0),
         _crearBotonRedondeado(Colors.pinkAccent, Icons.accessible_forward,
             'Ayuda a una persona', '3', 16.5),
-        _crearBotonRedondeado(Colors.orange, Icons.blur_linear, 'Eventos vigentes', '4', 19.0),
+        _crearBotonRedondeado(
+            Colors.orange, Icons.blur_linear, 'Eventos vigentes', '4', 19.0),
         _crearBotonRedondeado(
             Colors.blueAccent, Icons.people, 'Voluntarios', '5', 20.0),
         _crearBotonRedondeado(
             Colors.green, Icons.business, 'Instituciones', '6', 20.0),
-        _crearBotonRedondeado(
-            Colors.deepPurple, Icons.phone_in_talk, 'Números de ayuda', '5', 17.0),
+        _crearBotonRedondeado(Colors.deepPurple, Icons.phone_in_talk,
+            'Números de ayuda', '5', 17.0),
         _crearBotonRedondeado(
             Colors.cyan, Icons.add_to_queue, 'Prueba de control', '6', 18.0),
       ],
@@ -198,7 +197,7 @@ class _HomePageModuleState extends State<HomePageModule> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                SizedBox(height:5.0),
+                SizedBox(height: 5.0),
                 CircleAvatar(
                   backgroundColor: color,
                   radius: 30.0,
@@ -216,199 +215,313 @@ class _HomePageModuleState extends State<HomePageModule> {
 }
 
 class DrawerCitizen extends StatelessWidget {
-
   final prefs = new PreferensUser();
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-        child: ListView(
-      children: <Widget>[
-        DrawerHeader(
-          decoration: boxDecoration(),
-          child: Container(
-              child: Column(
-            children: <Widget>[
-              Material(
-                  borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                  elevation: 60.0,
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: ImageOvalNetwork(
-                        imageNetworkUrl: prefs.avatarImagen,
-                        sizeImage: Size.fromWidth(70)),
-                  )),
-              Padding(
-                padding: const EdgeInsets.all(4.0),
+    if (prefs.idPersonal != '-1') {
+      return Drawer(
+          child: ListView(
+        children: <Widget>[
+          DrawerHeader(
+            decoration: boxDecoration(),
+            child: Container(
                 child: Column(
-                  children: <Widget>[
-                    Text(
-                      prefs.nombreUsuario,
-                      style:
-                          TextStyle(color: AppTheme.themePlomo, fontSize: 18.0),
-                    ),
-                    Text(
-                      prefs.correoElectronico,
-                      style:
-                          TextStyle(color: AppTheme.themePlomo, fontSize: 18.0),
-                    ),
-                  ],
+              children: <Widget>[
+                Material(
+                    borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                    elevation: 60.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: ImageOvalNetwork(
+                          imageNetworkUrl: prefs.avatarImagen,
+                          sizeImage: Size.fromWidth(70)),
+                    )),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        prefs.nombreUsuario,
+                        style: TextStyle(
+                            color: AppTheme.themePlomo, fontSize: 18.0),
+                      ),
+                      Text(
+                        prefs.correoElectronico,
+                        style: TextStyle(
+                            color: AppTheme.themePlomo, fontSize: 18.0),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          )),
-        ),
-        CustomListTile(
-            Icons.home,
-            'Inicio',
-            () => //openWeb('http://mapacovid19.ruta88.net/'),
-                //sharedImage('assets/image/twitter.jpg','twitter','twitter.jpg','jpg','imagen de apoyo JPG'),
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignInDemo()),
-                )),
-        CustomListTile(
-            Icons.notification_important,
-            'Notificaciones',
-            () =>  Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => PageViewModule(title:'TEST DE CONSULTA', selectedUrl:'https://omi.app/covid-19/welcome')),
-                )
-            
-            
-            
+              ],
+            )),
+          ),
+          CustomListTile(
+              Icons.home,
+              'Inicio',
+              () => //openWeb('http://mapacovid19.ruta88.net/'),
+                  //sharedImage('assets/image/twitter.jpg','twitter','twitter.jpg','jpg','imagen de apoyo JPG'),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignInDemo()),
+                  )),
+         
+          CustomListTile(
+              Icons.business,
+              'Conoce las instituciones',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CitizenListInstitucionModule()),
+                  )),
+          CustomListTile(
+              Icons.perm_phone_msg,
+              'Consulta a un voluntario',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => FoundVoluntaryModule()),
+                  )),
+          CustomListTile(
+              Icons.hotel,
+              'Pedir ayuda urgente',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CitizenPanicButtonModule()),
+                  )),
+          CustomListTile(
+              Icons.accessible_forward,
+              'Ayuda a una persona',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HelpFriendAllModule()),
+                  )),
+          CustomListTile(
+              Icons.event_available,
+              'Eventos vigentes',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CitizenEventsModule()),
+                  )),
+          CustomListTile(
+              Icons.play_circle_outline,
+              'Ver Multimedia',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CitizenMultimediaModule()),
+                  )),
+          CustomListTile(
+              Icons.edit_location,
+              'Registra tu Institución',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EntityAllModule()),
+                  )),
+          CustomListTile(
+              Icons.person_add,
+              'Registrate como voluntario',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => VoluntaryAllModule()),
+                  )),
+          CustomListTile(
+              Icons.bubble_chart,
+              'Acerca de Lucia Te Cuida',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => IntroScreenModule()),
+                  )),
+          CustomListTile(
+              Icons.add_comment,
+              'Atiende las solicitudes',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CitizenEmergencyModule()),
+                  )),
+          CustomListTile(
+            Icons.map,
+            'Mapa de solicitudes',
+            () => openWeb('http://mapacovid19.ruta88.net/'),
             // Navigator.push(
             //       context,
-            //       MaterialPageRoute(
-            //           builder: (context) => NotificacionesModule()),
+            //       MaterialPageRoute(builder: (context) => MapAdressModule()),
             //     )
+          ),
+          CustomListTile(
+              Icons.event_available,
+              'Crear Eventos-Entidades',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EventAllModule()),
+                  )),
+          CustomListTile(
+              Icons.event_note,
+              'Crear Eventos-Voluntarios',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => EventVoluntaryAllModule()),
+                  )),
+          CustomListTile(
+              Icons.image,
+              'Cargar Multimedia',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MultimediaAllModule()),
+                  )),
+          CustomListTile(
+              Icons.airline_seat_individual_suite,
+              'Registrar Atención médica',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ListMaterialModule()),
+                  )),
+          CustomListTile(
+              Icons.exit_to_app,
+              'Cerrar Sesión',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignInDemo()),
+                  )),
+        ],
+      ));
+    } else {
+      return Drawer(
+          child: ListView(
+        children: <Widget>[
+          DrawerHeader(
+            decoration: boxDecoration(),
+            child: Container(
+                child: Column(
+              children: <Widget>[
+                Material(
+                    borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                    elevation: 60.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: ImageOvalNetwork(
+                          imageNetworkUrl: prefs.avatarImagen,
+                          sizeImage: Size.fromWidth(70)),
+                    )),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        prefs.nombreUsuario,
+                        style: TextStyle(
+                            color: AppTheme.themePlomo, fontSize: 18.0),
+                      ),
+                      Text(
+                        prefs.correoElectronico,
+                        style: TextStyle(
+                            color: AppTheme.themePlomo, fontSize: 18.0),
+                      ),
+                    ],
+                  ),
                 ),
-        CustomListTile(
-            Icons.business,
-            'Conoce las instituciones',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => CitizenListInstitucionModule()),
-                )),
-        CustomListTile(
-            Icons.perm_phone_msg,
-            'Consulta a un voluntario',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => FoundVoluntaryModule()),
-                )),
-        CustomListTile(
-            Icons.hotel,
-            'Pedir ayuda urgente',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => CitizenPanicButtonModule()),
-                )),
-        CustomListTile(
-            Icons.accessible_forward,
-            'Ayuda a una persona',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => HelpFriendAllModule()),
-                )),
-        CustomListTile(
-            Icons.event_available,
-            'Eventos vigentes',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => CitizenEventsModule()),
-                )),
-        CustomListTile(
-            Icons.play_circle_outline,
-            'Ver Multimedia',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => CitizenMultimediaModule()),
-                )),
-         CustomListTile(
-            Icons.edit_location,
-            'Registra tu Institución',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => EntityAllModule()),
-                )),
-        CustomListTile(
-            Icons.person_add,
-            'Registrate como voluntario',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => VoluntaryAllModule()),
-                )),
-        CustomListTile(
-            Icons.bubble_chart,
-            'Acerca de Lucia Te Cuida',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => IntroScreenModule()),
-                )),
-        CustomListTile(
-            Icons.add_comment,
-            'Atiende las solicitudes',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => CitizenEmergencyModule()),
-                )),
-        CustomListTile(
-          Icons.map,
-          'Mapa de solicitudes',
-          () =>  openWeb('http://mapacovid19.ruta88.net/'),
-          // Navigator.push(
-          //       context,
-          //       MaterialPageRoute(builder: (context) => MapAdressModule()),
-          //     )
-        ),
-       
-        CustomListTile(
-            Icons.event_available,
-            'Crear Eventos-Entidades',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => EventAllModule()),
-                )),
-        CustomListTile(
-            Icons.event_note,
-            'Crear Eventos-Voluntarios',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => EventVoluntaryAllModule()),
-                )),
-        CustomListTile(
-            Icons.image,
-            'Cargar Multimedia',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => MultimediaAllModule()),
-                )),
-        CustomListTile(
-            Icons.airline_seat_individual_suite,
-            'Registrar Atención médica',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ListMaterialModule()),
-                )),
-        CustomListTile(
-          Icons.exit_to_app,
-           'Cerrar Sesión',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SignInDemo()),
-                )),
-      ],
-    ));
+              ],
+            )),
+          ),
+          CustomListTile(
+              Icons.home,
+              'Inicio',
+              () => //openWeb('http://mapacovid19.ruta88.net/'),
+                  //sharedImage('assets/image/twitter.jpg','twitter','twitter.jpg','jpg','imagen de apoyo JPG'),
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignInDemo()),
+                  )),
+         
+          CustomListTile(
+              Icons.business,
+              'Conoce las instituciones',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CitizenListInstitucionModule()),
+                  )),
+          CustomListTile(
+              Icons.perm_phone_msg,
+              'Consulta a un voluntario',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => FoundVoluntaryModule()),
+                  )),
+          CustomListTile(
+              Icons.hotel,
+              'Pedir ayuda urgente',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CitizenPanicButtonModule()),
+                  )),
+          CustomListTile(
+              Icons.accessible_forward,
+              'Ayuda a una persona',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HelpFriendAllModule()),
+                  )),
+          CustomListTile(
+              Icons.event_available,
+              'Eventos vigentes',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CitizenEventsModule()),
+                  )),
+          CustomListTile(
+              Icons.play_circle_outline,
+              'Ver Multimedia',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CitizenMultimediaModule()),
+                  )),
+          CustomListTile(
+              Icons.edit_location,
+              'Registra tu Institución',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => EntityAllModule()),
+                  )),
+          CustomListTile(
+              Icons.person_add,
+              'Registrate como voluntario',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => VoluntaryAllModule()),
+                  )),
+          CustomListTile(
+              Icons.bubble_chart,
+              'Acerca de Lucia Te Cuida',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => IntroScreenModule()),
+                  )),
+          CustomListTile(
+              Icons.exit_to_app,
+              'Cerrar Sesión',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignInDemo()),
+                  )),
+        ],
+      ));
+    }
   }
 }

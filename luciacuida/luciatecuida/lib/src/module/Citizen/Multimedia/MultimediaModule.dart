@@ -259,7 +259,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
     especialidad = InputDropDown(
         FaIcon(FontAwesomeIcons.userMd, color: AppTheme.themeVino),
         'Especialidad:', 
-        '11',
+        entity.idaCategoria.toString(),
         urlGetClasificador + '10');
 
     tipoMaterial = InputDropDown(

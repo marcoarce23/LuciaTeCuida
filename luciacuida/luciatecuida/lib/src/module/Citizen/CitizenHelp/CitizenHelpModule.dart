@@ -54,7 +54,7 @@ class _HelpFriendAllModuleState extends State<HelpFriendAllModule> {
         toolbarOpacity: 0.7,
         iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
         elevation: 0,
-        title: Text( "AYUDA A UN AMIGO(A)",  style: kTitleAppBar),
+        title: Text( "AYUDA A UN PERSONA",  style: kTitleAppBar),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),

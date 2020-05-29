@@ -32,6 +32,7 @@ class _EntityAllModuleState extends State<EntityAllModule> {
   final prefs = new PreferensUser();
   final generic = new Generic();
   int page = 0;
+  
   final List<Widget> optionPage = [
     EntityModule(),
     AtentionEntityModule(),
@@ -125,10 +126,13 @@ class _EntityModuleState extends State<EntityModule> {
   InputEmailField email;
 
   bool _save = false;
+  bool esSucursal =false;
   File foto;
   double latitud = 0.0;
   double longitud = 0.0;
   LatLng latLng = LatLng(0, 0);
+  int valorInstitucion = 3;
+  int valorDepartamento = 60;
 
   String imagen =
       'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg';
@@ -151,7 +155,7 @@ class _EntityModuleState extends State<EntityModule> {
     final Institucion entityData = ModalRoute.of(context).settings.arguments;
 
     if (entityData != null) entity = entityData;
-
+ 
     return Scaffold(
       key: scaffoldKey,
       body: Stack(
@@ -187,12 +191,12 @@ class _EntityModuleState extends State<EntityModule> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  Text('CARGAR UBICACIÓN-IMAGEN',
+                  Text('CARGAR IMAGEN - INSTITUCION',
                       style: TextStyle(
                         color: AppTheme.themeVino,
                         fontSize: 15.0,
                       )),
-                  _crearIconAppMap(),
+              //    _crearIconAppMap(),
                   _crearIconAppImagenes(),
                   _crearIconAppCamara(),
                 ],
@@ -215,16 +219,16 @@ class _EntityModuleState extends State<EntityModule> {
   }
 
   Widget _crearCampos() {
-    tipoInstitucion = InputDropDown(
-        FaIcon(FontAwesomeIcons.chevronDown, color: AppTheme.themeVino),
-        'Tipo institución:',
-        '3',
-        urlGetClasificador + '2');
-    ubicacion = InputDropDown(
-        FaIcon(FontAwesomeIcons.chevronDown, color: AppTheme.themeVino),
-        'Departamento/ciudad:',
-        '60',
-        urlGetClasificador + '53');
+    // tipoInstitucion = InputDropDown(
+    //     FaIcon(FontAwesomeIcons.chevronDown, color: AppTheme.themeVino),
+    //     'Tipo institución:',
+    //     entity.idInstitucion.toString(),
+    //     urlGetClasificador + '2');
+    // ubicacion = InputDropDown(
+    //     FaIcon(FontAwesomeIcons.chevronDown, color: AppTheme.themeVino),
+    //     'Departamento/ciudad:',
+    //     entity.ubicacion.toString(),
+    //     urlGetClasificador + '53');
     nombre = InputTextField(
         FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
         'Nombre de la institución:',
@@ -289,8 +293,9 @@ class _EntityModuleState extends State<EntityModule> {
 
     return Column(
       children: <Widget>[
-        tipoInstitucion,
-        ubicacion,
+       _crearTipoInstitucion(),
+         _crearDpto(),
+         _crearSucursal('Es sucursal'),
         token,
         nombre,
         direccion,
@@ -312,6 +317,107 @@ class _EntityModuleState extends State<EntityModule> {
       ],
     );
   }
+
+  Widget _crearSucursal(String text) {
+    return SwitchListTile(
+      value: esSucursal,
+      title: Text(text),
+      activeColor: AppTheme.themeVino,
+      onChanged: (value) => setState(() {
+        esSucursal = value;
+      }),
+    );
+  }
+
+ List<DropdownMenuItem<String>> getDropDownDpto(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> lista = new List();
+
+    for (var i = 0; i < snapshot.data.length; i++) {
+      GetClasificador item = snapshot.data[i];
+      lista.add(DropdownMenuItem(
+        child: Text(item.nombre),
+        value: item.id.toString(), 
+      ));
+    }
+    return lista;
+  }
+
+ Widget _crearDpto() {
+    print('valor combo ingresado BBBB: $valorDepartamento');
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(), urlGetClasificador + '53', primaryKeyGetClasifidor),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Especialidad'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.userMd, color: AppTheme.themeVino),
+                      value: valorDepartamento.toString(),
+                      items: getDropDownDpto(snapshot),
+                      onChanged: (value) {
+                        setState(() {
+                              valorDepartamento = int.parse(value); 
+                          print('valor combo ingresado ENTITY MEDICINA: $valorDepartamento y valueeee: $value');
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
+  }
+
+  List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> lista = new List();
+
+    for (var i = 0; i < snapshot.data.length; i++) {
+      GetClasificador item = snapshot.data[i];
+      lista.add(DropdownMenuItem(
+        child: Text(item.nombre),
+        value: item.id.toString(), 
+      ));
+    }
+    return lista;
+  }
+
+  Widget _crearTipoInstitucion() {
+    print('valor combo ingresado AAAAA: $valorInstitucion');
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(), urlGetClasificador + '2', primaryKeyGetClasifidor),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Especialidad'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.userMd, color: AppTheme.themeVino),
+                      value: valorInstitucion.toString(),
+                      items: getDropDown(snapshot),
+                      onChanged: (value) {
+                        setState(() {
+                              valorInstitucion = int.parse(value); 
+                          print('valor combo ingresado ENTITY MEDICINA: $valorInstitucion y valueeee: $value');
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
+  }
+
+
 
   _crearIconAppImagenes() {
     return IconButton(
@@ -365,6 +471,10 @@ class _EntityModuleState extends State<EntityModule> {
   }
 
   _submit() async {
+print('valor combo ingresado XXXX: $valorInstitucion');
+    print('valor combo ingresado YYYY: $valorDepartamento');
+
+
     latLng = await getLocation().then((onvalue) => latLng = onvalue);
     entity.foto = imagen;
 
@@ -378,10 +488,16 @@ class _EntityModuleState extends State<EntityModule> {
     entity.idInstitucion = 0;
     entity.insLat = latLng.latitude;
     entity.insLng = latLng.longitude;
-    entity.tipoInstitucion = int.parse(tipoInstitucion.objectValue);
+    entity.tipoInstitucion = valorInstitucion;
+    
+    if (esSucursal)
+      entity.esSucursal = 1;
+    else
+
+    entity.esSucursal  = 0;
     entity.token = token.objectValue;
     entity.nombreInstitucion = nombre.objectValue;
-    entity.ubicacion = int.parse(ubicacion.objectValue);
+    entity.ubicacion = valorDepartamento;
     entity.direccion = direccion.objectValue;
     entity.telefono = telefono.objectValue;
     entity.perInformacionComp = informacion.objectValue;
@@ -415,8 +531,13 @@ class _EntityModuleState extends State<EntityModule> {
     });
   }
 
-  _seleccionarFoto() async => _procesarImagen(ImageSource.gallery);
+
+
+
+
+  _seleccionarFoto() async =>  _procesarImagen(ImageSource.gallery);
   _tomarFoto() async => _procesarImagen(ImageSource.camera);
+
   _procesarImagen(ImageSource origen) async {
     foto = await ImagePicker.pickImage(source: origen);
 
@@ -425,6 +546,7 @@ class _EntityModuleState extends State<EntityModule> {
     }
 
     setState(() {
+     // tipoInstitucion.objectValue;
       entity.foto = imagen;
       print('cargado de la imagen ${entity.foto}');
     });

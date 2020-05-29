@@ -23,6 +23,7 @@ class Institucion extends Entity {
   String usuario;
   String desInsitucion;
   String desUbicacion;
+  int esSucursal;
 
   Institucion(
       {this.idInstitucion,
@@ -43,6 +44,7 @@ class Institucion extends Entity {
       this.perCorreoElectronico,
       this.usuario,
       this.desInsitucion,
+      this.esSucursal,
       this.desUbicacion});
 
   fromJson(Map<String, dynamic> json) => new Institucion(
@@ -65,6 +67,7 @@ class Institucion extends Entity {
         usuario: json["USUARIO"],
         desInsitucion: json["DES_INSTITUCION"],
         desUbicacion: json["DES_UBICACION"],
+        esSucursal: json["ES_SUCURSAL"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -86,7 +89,8 @@ class Institucion extends Entity {
         "INS_CORREOINSTITUCIONAL": perCorreoElectronico,
         "USUARIO": usuario,
         "DES_INSTITUCION": desInsitucion,
-        "DES_UBICACION": desUbicacion
+        "DES_UBICACION": desUbicacion,
+        "ES_SUCURSAL" : esSucursal,
       };
 }
 
