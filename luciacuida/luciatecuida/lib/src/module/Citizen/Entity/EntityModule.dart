@@ -219,16 +219,6 @@ class _EntityModuleState extends State<EntityModule> {
   }
 
   Widget _crearCampos() {
-    // tipoInstitucion = InputDropDown(
-    //     FaIcon(FontAwesomeIcons.chevronDown, color: AppTheme.themeVino),
-    //     'Tipo institución:',
-    //     entity.idInstitucion.toString(),
-    //     urlGetClasificador + '2');
-    // ubicacion = InputDropDown(
-    //     FaIcon(FontAwesomeIcons.chevronDown, color: AppTheme.themeVino),
-    //     'Departamento/ciudad:',
-    //     entity.ubicacion.toString(),
-    //     urlGetClasificador + '53');
     nombre = InputTextField(
         FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
         'Nombre de la institución:',
@@ -352,10 +342,10 @@ class _EntityModuleState extends State<EntityModule> {
                 return Row(
                   children: <Widget>[
                     SizedBox(width: 35.0),
-                    Text('Especialidad'),
+                    Text('Departamento'),
                     SizedBox(width: 15.0),
                     DropdownButton(
-                      icon: FaIcon(FontAwesomeIcons.userMd, color: AppTheme.themeVino),
+                      icon: FaIcon(FontAwesomeIcons.map, color: AppTheme.themeVino),
                       value: valorDepartamento.toString(),
                       items: getDropDownDpto(snapshot),
                       onChanged: (value) {
@@ -399,7 +389,7 @@ class _EntityModuleState extends State<EntityModule> {
                     Text('Especialidad'),
                     SizedBox(width: 15.0),
                     DropdownButton(
-                      icon: FaIcon(FontAwesomeIcons.userMd, color: AppTheme.themeVino),
+                      icon: FaIcon(FontAwesomeIcons.peopleArrows, color: AppTheme.themeVino),
                       value: valorInstitucion.toString(),
                       items: getDropDown(snapshot),
                       onChanged: (value) {
@@ -471,9 +461,6 @@ class _EntityModuleState extends State<EntityModule> {
   }
 
   _submit() async {
-print('valor combo ingresado XXXX: $valorInstitucion');
-    print('valor combo ingresado YYYY: $valorDepartamento');
-
 
     latLng = await getLocation().then((onvalue) => latLng = onvalue);
     entity.foto = imagen;
@@ -531,10 +518,6 @@ print('valor combo ingresado XXXX: $valorInstitucion');
     });
   }
 
-
-
-
-
   _seleccionarFoto() async =>  _procesarImagen(ImageSource.gallery);
   _tomarFoto() async => _procesarImagen(ImageSource.camera);
 
@@ -546,9 +529,7 @@ print('valor combo ingresado XXXX: $valorInstitucion');
     }
 
     setState(() {
-     // tipoInstitucion.objectValue;
       entity.foto = imagen;
-      print('cargado de la imagen ${entity.foto}');
     });
   }
 }

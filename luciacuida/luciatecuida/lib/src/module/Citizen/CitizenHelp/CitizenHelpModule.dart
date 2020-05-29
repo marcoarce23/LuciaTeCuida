@@ -104,6 +104,7 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
   InputDropDown tipoAyuda;
 
   bool _save = false;
+    int valorTipoAyuda = 50;
   String _opcionSeleccionadaPrioridad = '';
   var result;
   var list;
@@ -243,24 +244,68 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
         'Lugar donde se encuentra la persona a ayudar',
         true);
 
-    tipoAyuda = InputDropDown(
-        FaIcon(FontAwesomeIcons.plusCircle,
-            color: Color.fromRGBO(165, 5, 5, 0.7)),
-        'Tipo de ayuda',
-        '49',
-        urlGetClasificador + '/47');
+    // tipoAyuda = InputDropDown(
+    //     FaIcon(FontAwesomeIcons.plusCircle,
+    //         color: Color.fromRGBO(165, 5, 5, 0.7)),
+    //     'Tipo de ayuda',
+    //     '49',
+    //     urlGetClasificador + '/47');
 
     return Column(
       children: <Widget>[
         nombre,
         telefono,
         ubicacion,
-        tipoAyuda,
+       _crearTipoAyuda(),
         _crearTipoPrioridad(),
         divider(),
         _crearBoton(resource.save),
       ],
     );
+  }
+List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> lista = new List();
+
+    for (var i = 0; i < snapshot.data.length; i++) {
+      GetClasificador item = snapshot.data[i];
+      lista.add(DropdownMenuItem(
+        child: Text(item.nombre),
+        value: item.id.toString(), 
+      ));
+    }
+    return lista;
+  }
+
+  Widget _crearTipoAyuda() {
+     print('valor combo ingresado AAAAA: $valorTipoAyuda');
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(), urlGetClasificador + '47', primaryKeyGetClasifidor),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Tipo de ayuda:'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.userMd, color: AppTheme.themeVino),
+                      value: valorTipoAyuda.toString(),
+                      items: getDropDownAyuda(snapshot),
+                      onChanged: (value) {
+                        setState(() {
+                           valorTipoAyuda = int.parse(value); 
+          
+                          print('valor combo ingresado ENTITY MEDICINA: $valorTipoAyuda y valueeee: $value');
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
   }
 
   Widget _crearTipoPrioridad() {
@@ -304,6 +349,7 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
   }
 
   _submit() async {
+    
     LatLng latLng;
     latLng = await getLocation().then((onvalue) => latLng = onvalue);
 
@@ -319,7 +365,7 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
     registroAmigo.regTelefono = telefono.objectValue;
     registroAmigo.regUbicacion = ubicacion.objectValue;
     registroAmigo.regPrioridad = _opcionSeleccionadaPrioridad;
-    registroAmigo.regTipoAPoyo = int.parse(tipoAyuda.objectValue);
+    registroAmigo.regTipoAPoyo = valorTipoAyuda;
     registroAmigo.latitud = latLng.latitude;
     registroAmigo.longitud = latLng.longitude;
     registroAmigo.usuario = prefs.userId;

@@ -50,18 +50,18 @@ class _MultimediaAllModuleState extends State<MultimediaAllModule> {
 
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
+    return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         toolbarOpacity: 0.7,
         iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
         elevation: 0,
-        title: Text( "MATERIAL MULTIMEDIA",  style: kTitleAppBar),
+        title: Text("MATERIAL MULTIMEDIA", style: kTitleAppBar),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              showSearch(context: context, delegate: DataSearchVoluntary());
+              showSearch(context: context, delegate: DataSearchMultimedia());
             },
           )
         ],
@@ -84,7 +84,7 @@ class _MultimediaAllModuleState extends State<MultimediaAllModule> {
               title: Text('Publicaciones')),
         ],
         currentIndex: page,
-       unselectedItemColor: Colors.black54,
+        unselectedItemColor: Colors.black54,
         selectedItemColor: AppTheme.themeVino,
         onTap: _onItemTapped,
       ),
@@ -92,6 +92,7 @@ class _MultimediaAllModuleState extends State<MultimediaAllModule> {
     );
   }
 }
+
 class MultimediaModule extends StatefulWidget {
   static final String routeName = 'multimedia';
   MultimediaModule({Key key}) : super(key: key);
@@ -107,15 +108,22 @@ class _MultimediaModuleState extends State<MultimediaModule> {
   InputDropDown especialidad;
   InputDropDown tipoMaterial;
 
-  int valor=0;
+  int valor = 0;
+  int valorTipoMaterial = 74;
+  int valorTipoEspecialidad = 11;
+
   bool _save = false;
   String _fecha = '';
   File foto;
   var result;
-  String imagenPDF ='https://res.cloudinary.com/propia/image/upload/v1590680683/mbzeu6fr44aizrr9dl0f.jpg';
-  String imagenVideo = 'https://res.cloudinary.com/propia/image/upload/v1590680880/lmbkvadzzymfcfwqosj9.webp';
-  String imagen = 'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg';
-  String imagenDefault ='https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg';
+  String imagenPDF =
+      'https://res.cloudinary.com/propia/image/upload/v1590680683/mbzeu6fr44aizrr9dl0f.jpg';
+  String imagenVideo =
+      'https://res.cloudinary.com/propia/image/upload/v1590680880/lmbkvadzzymfcfwqosj9.webp';
+  String imagen =
+      'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg';
+  String imagenDefault =
+      'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg';
   TextEditingController _inputFieldDateInicioController =
       new TextEditingController();
   TextEditingController _inputFieldDateFinController =
@@ -134,24 +142,19 @@ class _MultimediaModuleState extends State<MultimediaModule> {
   void initState() {
     prefs.ultimaPagina = MultimediaModule.routeName;
 
-     
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
-     if(valor == 0)  imagen = imagen;
-    if(valor == 1) imagen = imagenPDF;
-    if(valor == 2) imagen = imagenVideo;
+    if (valor == 0) imagen = imagen;
+    if (valor == 1) imagen = imagenPDF;
+    if (valor == 2) imagen = imagenVideo;
 
     final Multimedia entityData = ModalRoute.of(context).settings.arguments;
-  
-    if (entityData != null) entity = entityData;
-    else{
 
-      entity.idaCategoria = 11;
-    }
+    if (entityData != null) entity = entityData;
+
     return Scaffold(
       key: scaffoldKey,
       body: Stack(
@@ -165,33 +168,46 @@ class _MultimediaModuleState extends State<MultimediaModule> {
 
   _crearIconAppImagenes() {
     return IconButton(
-      icon: FaIcon(FontAwesomeIcons.images, color:  AppTheme.themeVino,),
+      icon: FaIcon(
+        FontAwesomeIcons.images,
+        color: AppTheme.themeVino,
+      ),
       onPressed: _seleccionarFoto,
     );
   }
 
   _crearIconAppCamara() {
     return IconButton(
-      icon: FaIcon(FontAwesomeIcons.cameraRetro,  color: AppTheme.themeVino,),
+      icon: FaIcon(
+        FontAwesomeIcons.cameraRetro,
+        color: AppTheme.themeVino,
+      ),
       onPressed: _tomarFoto,
     );
   }
 
   _crearIconAppVideo() {
     return IconButton(
-      icon: FaIcon(FontAwesomeIcons.videoSlash,  color: AppTheme.themeVino,),
+      icon: FaIcon(
+        FontAwesomeIcons.videoSlash,
+        color: AppTheme.themeVino,
+      ),
       onPressed: _pickVideo,
     );
   }
+
   _crearIconAppPDF() {
     return IconButton(
-      icon: FaIcon(FontAwesomeIcons.solidFilePdf, color: AppTheme.themeVino,),
+      icon: FaIcon(
+        FontAwesomeIcons.solidFilePdf,
+        color: AppTheme.themeVino,
+      ),
       onPressed: _pickPDF,
     );
   }
-  
+
   Widget _crearForm(BuildContext context) {
-   final size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
 
     return SingleChildScrollView(
       child: Form(
@@ -222,7 +238,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
                   _crearIconAppImagenes(),
                   _crearIconAppCamara(),
                   _crearIconAppVideo(),
-                  _crearIconAppPDF() ,
+                  _crearIconAppPDF(),
                 ],
               ),
             ),
@@ -250,7 +266,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
         'Ingrese el nombre del material',
         true);
     resumen = InputTextField(
-          FaIcon(FontAwesomeIcons.clipboardList, color: AppTheme.themeVino),
+        FaIcon(FontAwesomeIcons.clipboardList, color: AppTheme.themeVino),
         'Resumen sobre material',
         entity.mulResumen,
         'Registre resumen sobre el matarial',
@@ -258,7 +274,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
 
     especialidad = InputDropDown(
         FaIcon(FontAwesomeIcons.userMd, color: AppTheme.themeVino),
-        'Especialidad:', 
+        'Especialidad:',
         entity.idaCategoria.toString(),
         urlGetClasificador + '10');
 
@@ -270,10 +286,11 @@ class _MultimediaModuleState extends State<MultimediaModule> {
 
     return Column(
       children: <Widget>[
+        //  tipoMaterial,
+        _crearMaterial(),
 
-        tipoMaterial,
-      //  especialidad,
-      _crearEspecialidad(),
+        //  especialidad,
+        _crearEspecialidad(),
         titulo,
         resumen,
         _crearFechaInicio('Fecha Inicio'),
@@ -284,38 +301,39 @@ class _MultimediaModuleState extends State<MultimediaModule> {
     );
   }
 
-List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+  List<DropdownMenuItem<String>> getDropDownMaterial(AsyncSnapshot snapshot) {
     List<DropdownMenuItem<String>> lista = new List();
 
     for (var i = 0; i < snapshot.data.length; i++) {
       GetClasificador item = snapshot.data[i];
       lista.add(DropdownMenuItem(
         child: Text(item.nombre),
-        value: item.id.toString(), 
+        value: item.id.toString(),
       ));
     }
     return lista;
   }
 
-  Widget _crearEspecialidad() {
+  Widget _crearMaterial() {
     return Center(
         child: FutureBuilder(
-            future: generic.getAll(new GetClasificador(), urlGetClasificador + '10', primaryKeyGetClasifidor),
+            future: generic.getAll(new GetClasificador(),
+                urlGetClasificador + '73', primaryKeyGetClasifidor),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return Row(
                   children: <Widget>[
                     SizedBox(width: 35.0),
-                    Text('Especialidad'),
+                    Text('Tipo de Material'),
                     SizedBox(width: 15.0),
                     DropdownButton(
-                      icon: FaIcon(FontAwesomeIcons.userMd, color: AppTheme.themeVino),
-                      value: entity.idaCategoria.toString(), //valor
+                      icon: FaIcon(FontAwesomeIcons.angleDown,
+                          color: AppTheme.themeVino),
+                      value: valorTipoMaterial.toString(), //valor
                       items: getDropDown(snapshot),
                       onChanged: (value) {
                         setState(() {
-                              entity.idaCategoria = int.parse(value); 
-                          print('valor combo ingresado ENTITY MEDICINA: ${ entity.idaCategoria } y valueeee: $value');
+                          valorTipoMaterial = int.parse(value);
                         });
                       },
                     ),
@@ -327,17 +345,57 @@ List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
             }));
   }
 
+  List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> lista = new List();
 
+    for (var i = 0; i < snapshot.data.length; i++) {
+      GetClasificador item = snapshot.data[i];
+      lista.add(DropdownMenuItem(
+        child: Text(item.nombre),
+        value: item.id.toString(),
+      ));
+    }
+    return lista;
+  }
 
+  Widget _crearEspecialidad() {
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(),
+                urlGetClasificador + '10', primaryKeyGetClasifidor),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Especialidad'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.angleDown,
+                          color: AppTheme.themeVino),
+                      value: valorTipoEspecialidad.toString(), //valor
+                      items: getDropDown(snapshot),
+                      onChanged: (value) {
+                        setState(() {
+                          valorTipoEspecialidad = int.parse(value);
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
+  }
 
   _selectDateInicio(BuildContext context) async {
     DateTime picked = await showDatePicker(
-      context: context,
-      initialDate: new DateTime.now(),
-      firstDate: new DateTime(2020, 4),
-      lastDate: new DateTime(2025, 12),
-           locale: Locale('es', 'ES')
-    );
+        context: context,
+        initialDate: new DateTime.now(),
+        firstDate: new DateTime(2020, 4),
+        lastDate: new DateTime(2025, 12),
+        locale: Locale('es', 'ES'));
 
     if (picked != null) {
       setState(() {
@@ -350,12 +408,11 @@ List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
 
   _selectDateFin(BuildContext context) async {
     DateTime picked = await showDatePicker(
-      context: context,
-      initialDate: new DateTime.now(),
-      firstDate: new DateTime(2020, 4),
-      lastDate: new DateTime(2025, 12),
-          locale: Locale('es', 'ES')
-    );
+        context: context,
+        initialDate: new DateTime.now(),
+        firstDate: new DateTime(2020, 4),
+        lastDate: new DateTime(2025, 12),
+        locale: Locale('es', 'ES'));
 
     if (picked != null) {
       setState(() {
@@ -412,8 +469,8 @@ List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
     );
   }
 
-_crearBoton(String text) {
-   return Container(
+  _crearBoton(String text) {
+    return Container(
       padding: EdgeInsets.symmetric(horizontal: 100.0),
       width: MediaQuery.of(context).size.width,
       child: RaisedButton.icon(
@@ -432,17 +489,9 @@ _crearBoton(String text) {
   }
 
   _submit() async {
-
-
-print('XXXXXXXX: ${entity.idaCategoria} prefsss ${prefs.idInsitucion}');
-print('YYYYYYYY: ${entity.idaTIpoMaterial}');
-
-print('aaaaa: ${especialidad.objectValue} prefsss ${prefs.idInsitucion}');
-print('bbbb: ${tipoMaterial.objectValue}');
-
-    if(valor == 0) entity.mulEnlace = imagen;
-    if(valor == 1) entity.mulEnlace = imagenPDF;
-    if(valor == 2) entity.mulEnlace = imagenVideo;
+    if (valor == 0) entity.mulEnlace = imagen;
+    if (valor == 1) entity.mulEnlace = imagenPDF;
+    if (valor == 2) entity.mulEnlace = imagenVideo;
 
     if (!formKey.currentState.validate()) return;
 
@@ -453,16 +502,16 @@ print('bbbb: ${tipoMaterial.objectValue}');
 
     entity.idcovMultimedia = 0;
     entity.idaCovInstitucion = int.parse(prefs.idInsitucion);
-    entity.idaTIpoMaterial = int.parse(especialidad.objectValue);
-    entity.idaCategoria = int.parse(tipoMaterial.objectValue);
+    entity.idaTIpoMaterial = valorTipoMaterial;
+    entity.idaCategoria = valorTipoEspecialidad;
     entity.mulTitulo = titulo.objectValue;
     entity.mulResumen = resumen.objectValue;
     entity.detFechaFin = _inputFieldDateFinController.text;
     entity.detFechaInicio = _inputFieldDateInicioController.text;
     entity.usuario = prefs.userId;
 
-    print('IMPRIMIR VALORES: $entity');
-   final dataMap = generic.add(entity, urlAddMultimedia);
+    print('IMPRIMIR VALORES TIP MATERIAL: $valorTipoMaterial');
+    final dataMap = generic.add(entity, urlAddMultimedia);
 
     await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
     print('resultado:$result');
@@ -483,12 +532,13 @@ print('bbbb: ${tipoMaterial.objectValue}');
 
   // _seleccionarVideo() async => _procesarVideo(VideoSource.gallery);
   _seleccionarFoto() async {
-     valor = 0;
-     _procesarImagen(ImageSource.gallery);
+    valor = 0;
+    _procesarImagen(ImageSource.gallery);
   }
+
   _tomarFoto() async {
-    valor=0;
-     _procesarImagen(ImageSource.camera);
+    valor = 0;
+    _procesarImagen(ImageSource.camera);
   }
 
   _procesarImagen(ImageSource origen) async {
@@ -498,24 +548,24 @@ print('bbbb: ${tipoMaterial.objectValue}');
     }
     setState(() {
       entity.mulEnlace = imagen;
-      print('cargadod e iagen ${entity.mulEnlace}');
     });
   }
 
   _procesarFile(String file) async {
-    valor=1;
+    valor = 1;
     if (file != null) {
       imagen = await generic.subirImagenFile(file);
     }
     setState(() {
       entity.mulEnlace = imagenPDF;
-      print('cargadodefecto PDF ${entity.mulEnlace} y enlace defecto $imagenPDF');
+      print(
+          'cargadodefecto PDF ${entity.mulEnlace} y enlace defecto $imagenPDF');
     });
   }
 
   _procesarVideo2(String file) async {
-    valor=2;
-  
+    valor = 2;
+
     if (file != null) {
       imagen = await generic.subirVideo(file);
     }
@@ -524,18 +574,6 @@ print('bbbb: ${tipoMaterial.objectValue}');
       print('cargadod e iagen ${entity.mulEnlace}');
     });
   }
-
-  // _procesarVideo(ImageSource origen) async {
-  //   foto = await ImagePicker.pickVideo(source: origen);
-
-  //   if (foto != null) {
-  //     // imagen = await generic.subirVideo(foto);
-  //   }
-  //   setState(() {
-  //     entity.mulEnlace = imagenVideo;
-  //     print('cargadod e iagen ${entity.mulEnlace}');
-  //   });
-  // }
 
   void _pickPDF() async {
     try {
@@ -550,9 +588,8 @@ print('bbbb: ${tipoMaterial.objectValue}');
       if (_pdfPath == '') {
         return;
       }
-      valor=1;
-      print("VALOR OBTENIDOOOO: $valor File path11: " + _pdfPath);
-      
+      valor = 1;
+
       _procesarFile(_pdfPath);
     } on PlatformException catch (e) {
       scaffoldKey.currentState
@@ -579,7 +616,8 @@ print('bbbb: ${tipoMaterial.objectValue}');
       //   _isLoading = true;
       // });
     } on PlatformException catch (e) {
-      print("Error while picking the file: " + e.toString());
+      scaffoldKey.currentState
+          .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
     }
   }
 }

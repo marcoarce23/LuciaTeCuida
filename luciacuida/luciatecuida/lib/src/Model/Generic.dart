@@ -30,8 +30,8 @@ class Generic {
 
       final List<Entity> list = new List();
       Map<String, dynamic> decodeData;
-  // print(_url);
-  // print(_primaryKey);
+   print(_url);
+   print(_primaryKey);
       final response = await http.get(_url);
 
       if (response.statusCode == 200) {
