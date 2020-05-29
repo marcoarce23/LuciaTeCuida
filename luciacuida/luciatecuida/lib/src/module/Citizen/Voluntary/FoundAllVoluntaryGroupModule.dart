@@ -97,7 +97,7 @@ class _FoundAllVoluntaryGroupModuleeState
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text(profesionalesDeInstitucion.nombreProfesional),
-          crearIconoProfesional(Icons.bug_report, 'Ayuda con covid'),
+          crearIconoProfesional(Icons.bug_report, 'Ayuda con consultas sobre Covid19'),
         ],
       ),
       //trailing:crearIconoProfesional(Icons.mail, 'Correo')

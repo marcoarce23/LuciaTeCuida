@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
 import 'package:luciatecuida/src/Model/Generic.dart';
@@ -46,6 +47,13 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
           body: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
+                  contenedorTitulo(
+                  context,
+                  40.0,
+                  "Eventos disponibles".toUpperCase(),
+                  FaIcon(FontAwesomeIcons.newspaper, color: AppTheme.themeVino),
+                ),
+                Text("Presione sobre evento para ver el detalle", style: kSubSubTitleCardStyle,),
                   listadoDeNoticias(),
                   copyRigth(),
                 ],
@@ -147,8 +155,10 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
         mes = "Dic";
         break;
     }
+print(eventoItem.url);
 
     return InkWell(
+      
       onTap: () {
         Navigator.push(
             context,
@@ -166,9 +176,9 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
           children: <Widget>[
             ImageOpaqueNetworkCustomize(
                 eventoItem.url,
-                AppTheme.themeColorNaranja,
+                AppTheme.themeVino,
                 Size(MediaQuery.of(context).size.width, 100),
-                0.5,
+                0.58,
                 BoxFit.cover),
             Row(
               children: <Widget>[

@@ -124,6 +124,7 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
         child: Container(
           height: 150,
           width: 150,
+          color: AppTheme.themeVino,
           child: Card(
             elevation: 5,
             shape:

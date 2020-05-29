@@ -45,8 +45,8 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
         toolbarOpacity: 0.7,
         iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
         elevation: 0,
-        title:
-            Text(widget.institutionItem.nombreInstitucion.toUpperCase(), style: kTitleAppBar),
+        title: Text(widget.institutionItem.nombreInstitucion.toUpperCase(),
+            style: kTitleAppBar),
         //backgroundColor: AppTheme.themeColorNaranja,
       ),
       body: SingleChildScrollView(
@@ -62,7 +62,8 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
                   context,
                   40.0,
                   "Grupo de voluntarios".toUpperCase(),
-                  FaIcon(FontAwesomeIcons.peopleCarry, color: AppTheme.themeVino),
+                  FaIcon(FontAwesomeIcons.peopleCarry,
+                      color: AppTheme.themeVino),
                 ),
               ),
             ),
@@ -77,7 +78,8 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
                   context,
                   40.0,
                   "Galeria de fotos".toUpperCase(),
-                  FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
+                  FaIcon(FontAwesomeIcons.photoVideo,
+                      color: AppTheme.themeVino),
                 ),
               ),
             ),
@@ -109,211 +111,240 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
 
   Widget cabeceraInstitucion(double screenHeigh, double screenwidth) {
     return Container(
-      height: 180,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      height: 280,
+      child: Column(
         children: <Widget>[
-          ImageOvalNetwork(
-              imageNetworkUrl: widget.institutionItem.url,
-              sizeImage: Size.fromWidth(140)),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              SizedBox(
-                height: 20,
-              ),
-              Row(
+              ImageOvalNetwork(
+                  imageNetworkUrl: widget.institutionItem.url,
+                  sizeImage: Size.fromWidth(140)),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Icon(
-                    Icons.business,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    "Institución / Grupo voluntarios",
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                  ),
-                ],
-              ),
-              Text(widget.institutionItem.nombreInstitucion),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.category,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    "Tipo de institución",
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                  ),
-                ],
-              ),
-              Text(widget.institutionItem.tipoInstitucion),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    "Ubicación",
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                  ),
-                ],
-              ),
-              Text(widget.institutionItem.ubicacion),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.mail,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    "Correo ",
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                  ),
-                ],
-              ),
-              Text(widget.institutionItem.correo),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Opacity(
-                    opacity:
-                        (widget.institutionItem.urlPaginaFacebook.length > 1)
-                            ? 1
-                            : 0,
-                    child: ClipOval(
-                      child: Material(
-                        color: Colors.white, // button color
-                        child: InkWell(
-                            splashColor: AppTheme
-                                .backGroundInstitutionPrimary, // inkwell color
-                            child: SizedBox(
-                                width: 30,
-                                height: 30,
-                                child: Image.asset('assets/image/facebook.jpg',
-                                    fit: BoxFit.cover)),
-                            onTap: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        PageViewModule(
-                                          title: widget.institutionItem
-                                              .nombreInstitucion,
-                                          selectedUrl: widget.institutionItem
-                                              .urlPaginaFacebook,
-                                        )))),
-                      ),
-                    ),
-                  ),
                   SizedBox(
-                    width: 5,
+                    height: 20,
                   ),
-                  Opacity(
-                    opacity:
-                        (widget.institutionItem.urlPaginaTwitter.length > 1)
-                            ? 1
-                            : 0,
-                    child: ClipOval(
-                      child: Material(
-                        color: Colors.white, // button color
-                        child: InkWell(
-                            splashColor: AppTheme
-                                .backGroundInstitutionPrimary, // inkwell color
-                            child: SizedBox(
-                                width: 30,
-                                height: 30,
-                                child: Image.asset(
-                                  'assets/image/twitter.jpg',
-                                  fit: BoxFit.cover,
-                                )),
-                            onTap: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        PageViewModule(
-                                          title: widget.institutionItem
-                                              .nombreInstitucion,
-                                          selectedUrl: widget
-                                              .institutionItem.urlPaginaTwitter,
-                                        )))),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.business,
+                        color: AppTheme.themeVino,
+                        size: 15,
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Opacity(
-                    opacity:
-                        (widget.institutionItem.urlPaginaYoutube.length > 1)
-                            ? 1
-                            : 0,
-                    child: ClipOval(
-                      child: Material(
-                        color: Colors.white, // button color
-                        child: InkWell(
-                            splashColor: AppTheme
-                                .backGroundInstitutionPrimary, // inkwell color
-                            child: SizedBox(
-                                width: 30,
-                                height: 30,
-                                child: Image.asset(
-                                  'assets/image/youtube.jpg',
-                                  fit: BoxFit.cover,
-                                )),
-                            onTap: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        PageViewModule(
-                                          title: widget.institutionItem
-                                              .nombreInstitucion,
-                                          selectedUrl: widget
-                                              .institutionItem.urlPaginaYoutube,
-                                        )))),
+                      Text(
+                        "Institución / Grupo voluntarios",
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w800),
                       ),
-                    ),
+                    ],
                   ),
-                  SizedBox(
-                    width: 5,
+                  Text(widget.institutionItem.nombreInstitucion),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.category,
+                        color: AppTheme.themeVino,
+                        size: 15,
+                      ),
+                      Text(
+                        "Tipo de institución",
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w800),
+                      ),
+                    ],
                   ),
-                  Opacity(
-                    opacity: (widget.institutionItem.urlPaginaWeb.length > 1)
-                        ? 1
-                        : 0,
-                    child: ClipOval(
-                      child: Material(
-                        color: Colors.white, // button color
-                        child: InkWell(
-                          splashColor: AppTheme
-                              .backGroundInstitutionPrimary, // inkwell color
-                          child: SizedBox(
-                              width: 30,
-                              height: 30,
-                              child: Image.asset(
-                                'assets/image/instagram.png',
-                                fit: BoxFit.cover,
-                              )),
-                          onTap: () => Navigator.of(context).push(
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      PageViewModule(
-                                        title: widget
-                                            .institutionItem.nombreInstitucion,
-                                        selectedUrl:
-                                            widget.institutionItem.urlPaginaWeb,
-                                      ))),
+                  Text(widget.institutionItem.tipoInstitucion),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.place,
+                        color: AppTheme.themeVino,
+                        size: 15,
+                      ),
+                      Text(
+                        "Ubicación",
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w800),
+                      ),
+                    ],
+                  ),
+                  Text(widget.institutionItem.ubicacion),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.mail,
+                        color: AppTheme.themeVino,
+                        size: 15,
+                      ),
+                      Text(
+                        "Correo ",
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w800),
+                      ),
+                    ],
+                  ),
+                  Text(widget.institutionItem.correo),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Opacity(
+                        opacity:
+                            (widget.institutionItem.urlPaginaFacebook.length >
+                                    1)
+                                ? 1
+                                : 0,
+                        child: ClipOval(
+                          child: Material(
+                            color: Colors.white, // button color
+                            child: InkWell(
+                                splashColor: AppTheme
+                                    .backGroundInstitutionPrimary, // inkwell color
+                                child: SizedBox(
+                                    width: 30,
+                                    height: 30,
+                                    child: Image.asset(
+                                        'assets/image/facebook.jpg',
+                                        fit: BoxFit.cover)),
+                                onTap: () => Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            PageViewModule(
+                                              title: widget.institutionItem
+                                                  .nombreInstitucion,
+                                              selectedUrl: widget
+                                                  .institutionItem
+                                                  .urlPaginaFacebook,
+                                            )))),
+                          ),
                         ),
                       ),
-                    ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Opacity(
+                        opacity:
+                            (widget.institutionItem.urlPaginaTwitter.length > 1)
+                                ? 1
+                                : 0,
+                        child: ClipOval(
+                          child: Material(
+                            color: Colors.white, // button color
+                            child: InkWell(
+                                splashColor: AppTheme
+                                    .backGroundInstitutionPrimary, // inkwell color
+                                child: SizedBox(
+                                    width: 30,
+                                    height: 30,
+                                    child: Image.asset(
+                                      'assets/image/twitter.jpg',
+                                      fit: BoxFit.cover,
+                                    )),
+                                onTap: () => Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            PageViewModule(
+                                              title: widget.institutionItem
+                                                  .nombreInstitucion,
+                                              selectedUrl: widget
+                                                  .institutionItem
+                                                  .urlPaginaTwitter,
+                                            )))),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Opacity(
+                        opacity:
+                            (widget.institutionItem.urlPaginaYoutube.length > 1)
+                                ? 1
+                                : 0,
+                        child: ClipOval(
+                          child: Material(
+                            color: Colors.white, // button color
+                            child: InkWell(
+                                splashColor: AppTheme
+                                    .backGroundInstitutionPrimary, // inkwell color
+                                child: SizedBox(
+                                    width: 30,
+                                    height: 30,
+                                    child: Image.asset(
+                                      'assets/image/youtube.jpg',
+                                      fit: BoxFit.cover,
+                                    )),
+                                onTap: () => Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            PageViewModule(
+                                              title: widget.institutionItem
+                                                  .nombreInstitucion,
+                                              selectedUrl: widget
+                                                  .institutionItem
+                                                  .urlPaginaYoutube,
+                                            )))),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Opacity(
+                        opacity:
+                            (widget.institutionItem.urlPaginaWeb.length > 1)
+                                ? 1
+                                : 0,
+                        child: ClipOval(
+                          child: Material(
+                            color: Colors.white, // button color
+                            child: InkWell(
+                              splashColor: AppTheme
+                                  .backGroundInstitutionPrimary, // inkwell color
+                              child: SizedBox(
+                                  width: 30,
+                                  height: 30,
+                                  child: Image.asset(
+                                    'assets/image/homepage.png',
+                                    fit: BoxFit.cover,
+                                  )),
+                              onTap: () => Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          PageViewModule(
+                                            title: widget.institutionItem
+                                                .nombreInstitucion,
+                                            selectedUrl: widget
+                                                .institutionItem.urlPaginaWeb,
+                                          ))),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ],
           ),
+          futureHorarioAtencion(),
         ],
       ),
+    );
+  }
+
+  Widget futureHorarioAtencion() {
+    return Column(
+      children: <Widget>[
+        contenedorTitulo(
+          context,
+          40.0,
+          "horarios de atención".toUpperCase(),
+          FaIcon(FontAwesomeIcons.hourglass, color: AppTheme.themeVino),
+        ),
+        Text("Hsorario de atencion"),
+      ],
     );
   }
 
@@ -332,6 +363,7 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
         child: Container(
           height: 150,
           width: 150,
+          color: AppTheme.themeVino,
           child: Card(
             elevation: 5,
             shape:
@@ -490,4 +522,108 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
       ),
     );
   }
+
+/*
+ Widget futureCuerpoHorario(BuildContext context) {
+    return FutureBuilder(
+        future: generic.ge   tAll(     
+            new ProfesionalesAgrupados(),
+            urlGetGrupoProfesionales +
+                '/' +
+                widget.institutionItem.idInstitucion.toString(),
+            primaryKeyGrupoProfesionales),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+              return Center(child: CircularProgressIndicator());
+              break;
+            default:
+              //mostramos los datos
+              return cuerpoHorario(context, snapshot);
+          }
+        });
+  }
+
+   Widget cuerpoHorario(BuildContext context, AsyncSnapshot snapshot) {
+    return SingleChildScrollView(
+      child: Container(
+        height: 150,
+        child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            physics: ClampingScrollPhysics(),
+            itemCount: snapshot.data.length,
+            itemBuilder: (context, index) {
+              Profesionale   sAgrupados listaProfesionales = snapshot.data[index];
+              return tarjetaHorario(listaProfesionales);
+            }),
+      ),
+    );
+  }
+
+
+   Widget tarjetaHorario(ProfesionalesAgrupados profesional) {
+    return SingleChildScrollView(
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => FoundAllVoluntaryModule(
+                      profesional: profesional,
+                    )),
+          );
+        },
+        child: Container(
+          height: 150,
+          width: 150,
+          color: AppTheme.themeVino,
+          child: Card(
+            elevation: 5,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Stack(
+                children: <Widget>[
+                  ImageOpaqueNetworkCustomize(
+                      profesional.imagenFondo,
+                      Colors.white,
+                      Size(double.maxFinite, double.maxFinite),
+                      0.5,
+                      BoxFit.cover),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          profesional.profesion,
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                      Text(
+                          "Contamos con " +
+                              profesional.cantidadProfesionales.toString() +
+                              " profesionales",
+                          style: TextStyle(
+                            fontSize: 10.0,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w700,
+                          )),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+*/
 }

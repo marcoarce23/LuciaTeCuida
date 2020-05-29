@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
 import 'package:luciatecuida/src/Model/Generic.dart';
 import 'package:luciatecuida/src/Model/PreferenceUser.dart';
@@ -73,7 +74,7 @@ class _CitizenMultimediaModuleState extends State<CitizenMultimediaModule> {
           ),
         ],
         currentIndex: page,
-       unselectedItemColor: Colors.black54,
+        unselectedItemColor: Colors.black54,
         selectedItemColor: AppTheme.themeVino,
         onTap: _onItemTapped,
       ),
@@ -95,7 +96,19 @@ class PagePicture extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // campoBuscarPorInstitucionCategoria(),
-
+              Center(
+                child: contenedorTitulo(
+                  context,
+                  40.0,
+                  "Lista de imagenes".toUpperCase(),
+                  FaIcon(FontAwesomeIcons.image, color: AppTheme.themeVino),
+                ),
+              ),
+              Center(
+                  child: Text(
+                "Presione sobre la imagen para ver el detalle",
+                style: kSubSubTitleCardStyle,
+              )),
               futureImagenes(context),
             ],
           ),
@@ -221,19 +234,27 @@ class _PageVideoState extends State<PageVideo> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-       
-                margin: EdgeInsets.symmetric(vertical: 0.0),
-                decoration: boxDecorationList(),
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              //campoBuscarPorInstitucionCategoria(),
-
-              futureVideo(context),
-            ],
-          ),
+        margin: EdgeInsets.symmetric(vertical: 0.0),
+        decoration: boxDecorationList(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            //campoBuscarPorInstitucionCategoria(),
+            Center(
+              child: contenedorTitulo(
+                context,
+                40.0,
+                "Lista de videos".toUpperCase(),
+                FaIcon(FontAwesomeIcons.video, color: AppTheme.themeVino),
+              ),
+            ),
+            Center(
+                child: Text(
+              "Presione sobre el video para ver el detalle",
+              style: kSubSubTitleCardStyle,
+            )),
+            futureVideo(context),
+          ],
         ),
       ),
     );
@@ -323,7 +344,19 @@ class PageDocuments extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               //campoBuscarPorInstitucionCategoria(),
-
+ Center(
+                child: contenedorTitulo(
+                  context,
+                  40.0,
+                  "Lista de documentos".toUpperCase(),
+                  FaIcon(FontAwesomeIcons.filePdf, color: AppTheme.themeVino),
+                ),
+              ),
+              Center(
+                  child: Text(
+                "Presione sobre el video para ver el detalle",
+                style: kSubSubTitleCardStyle,
+              )),
               futureDocumentos(context),
             ],
           ),

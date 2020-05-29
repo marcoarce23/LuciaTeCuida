@@ -50,18 +50,16 @@ class _CitizenListInstitucionModuleState
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            SizedBox(
-              height: 15,
-            ),
+          children: <Widget>[            
             Center(
               child: contenedorTitulo(
                 context,
                 40.0,
                 "Lista de instituciones".toUpperCase(),
-                FaIcon(FontAwesomeIcons.calendarAlt, color: Colors.white60),
+                FaIcon(FontAwesomeIcons.calendarAlt, color: AppTheme.themeVino),
               ),
-            ), // colcoamos las cajas de instituciones
+            ),
+            Center(child: Text("Presione sobre la institución para ver el detalle", style: kSubSubTitleCardStyle,)), // colcoamos las cajas de instituciones
             divider(),
             futureItemsInstitution(context),
             copyRigth(),
@@ -90,41 +88,38 @@ class _CitizenListInstitucionModuleState
 
   Widget listItemsInstitution(BuildContext context, AsyncSnapshot snapshot) {
     final size = MediaQuery.of(context).size;
-    return Expanded(
-      child: ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        physics: ClampingScrollPhysics(),
-        itemCount: snapshot.data.length,
-        itemBuilder: (context, index) {
-          InstitucionesItems institutionItem = snapshot.data[index];
-          return Container(
-            width: size.width * 0.97,
-                margin: EdgeInsets.symmetric(vertical: 0.0),
-            decoration: boxDecorationList(),
-            child: InkWell(
-              onTap: () {
-                if (institutionItem.miembros > 0) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CitizenInstitutionModule(
-                              institutionItem: institutionItem,
-                            )),
-                  );
-                } else {
-                  Scaffold.of(context).showSnackBar(messageHelp(
-                      "Aun no cuenta con miembros en ${institutionItem.nombreInstitucion}"));
-                }
-              },
-              child: ListTile(
-                leading: iconInstitution(institutionItem),
-                title: listInstitution(context, institutionItem),
-               ),
-            ),
-          );
-        },
-      ),
+    return ListView.builder(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      physics: ClampingScrollPhysics(),
+      itemCount: snapshot.data.length,
+      itemBuilder: (context, index) {
+        InstitucionesItems institutionItem = snapshot.data[index];
+        return Container(
+          margin:  EdgeInsets.only(top: 5, left: 10,right: 10  ),
+          decoration: boxDecorationList(),
+          child: InkWell(
+            onTap: () {
+              if (institutionItem.miembros > 0) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CitizenInstitutionModule(
+                            institutionItem: institutionItem,
+                          )),
+                );
+              } else {
+                Scaffold.of(context).showSnackBar(messageHelp(
+                    "Aun no cuenta con miembros en ${institutionItem.nombreInstitucion}"));
+              }
+            },
+            child: ListTile(
+              leading: iconInstitution(institutionItem),
+              title: listInstitution(context, institutionItem),
+             ),
+          ),
+        );
+      },
     );
   }
 
@@ -178,7 +173,7 @@ class _CitizenListInstitucionModuleState
                   child: FaIcon(
                     FontAwesomeIcons.phoneVolume,
                     color: AppTheme.themeVino,
-                    size: 15,
+                    size: 25,
                   ),
                   onTap: () {
                     callNumber(int.parse(institutionItem.telefono));
@@ -191,7 +186,7 @@ class _CitizenListInstitucionModuleState
                   child: FaIcon(
                     FontAwesomeIcons.comment,
                     color: AppTheme.themeVino,
-                    size: 15,
+                    size: 25,
                   ),
                   onTap: () {
                     sendSMS(int.parse(institutionItem.telefono));
@@ -204,7 +199,7 @@ class _CitizenListInstitucionModuleState
                   child: FaIcon(
                     FontAwesomeIcons.mailBulk,
                     color: AppTheme.themeVino,
-                    size: 15,
+                    size: 25,
                   ),
                   onTap: () {
                     sendEmailAdvanced(institutionItem.correo, "",
@@ -218,7 +213,7 @@ class _CitizenListInstitucionModuleState
                   child: FaIcon(
                     FontAwesomeIcons.whatsapp,
                     color: AppTheme.themeVino,
-                    size: 15,
+                    size: 25,
                   ),
                   onTap: () {
                     callWhatsApp(int.parse(institutionItem.telefono));
@@ -228,6 +223,9 @@ class _CitizenListInstitucionModuleState
             ),
           ],
         ),
+         SizedBox(
+                  height: 25,
+                ),
       ],
     );
   }
@@ -238,7 +236,7 @@ class _CitizenListInstitucionModuleState
     if (institutionItem.idaAyudaCovid == 0) {
       respuesta = "";
     } else {
-      respuesta = "Ayuda COVID-19 desde ${institutionItem.fechaConCovid}";
+      respuesta = "Consultas sobre Covid19 desde ${institutionItem.fechaConCovid}";
     }
 
     return Text(

@@ -164,7 +164,7 @@ class ImageOpaqueNetworkCustomize extends StatelessWidget {
         Container(
           height: sizeImage.height,
           width: sizeImage.width,
-          //color: color.withOpacity(opacity),
+          color: color.withOpacity(opacity),
         )
       ],
     );

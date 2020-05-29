@@ -39,7 +39,7 @@ class _CitizenEmergencyModuleState extends State<CitizenEmergencyModule> {
   @override
   void initState() {
     prefs.ultimaPagina = CitizenEmergencyModule.routeName;
- 
+
     super.initState();
   }
 
@@ -48,15 +48,14 @@ class _CitizenEmergencyModuleState extends State<CitizenEmergencyModule> {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              backgroundColor: AppTheme.themeVino,
-              toolbarOpacity: 0.7,
-              iconTheme:
-                  IconThemeData(color: AppTheme.themeColorBlanco, size: 12),
-              elevation: 0,
+              backgroundColor: Colors.white,
+        toolbarOpacity: 0.7,
+        iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
+        elevation: 0,
               title: Text("Solicitudes de ayuda", style: kTitleAppBar),
-
               //backgroundColor: colorCuadro,
-            ),
+            ), //backgroundColor: colorCuadro,
+
             drawer: DrawerCitizen(),
             // backgroundColor: Colors.red,
             body: optionPage[page],
@@ -119,9 +118,11 @@ class _PageMedicinaState extends State<PageMedicina> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                "SOLICITUDES PARA AYUDA CON MEDICINA",
-                style: AppTheme.themeTitulo,
+              contenedorTitulo(
+                context,
+                40.0,
+                "solicitudes ayuda con medicina".toUpperCase(),
+                FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
               Align(
                   alignment: Alignment.topRight,
@@ -287,7 +288,8 @@ class _PageMedicinaState extends State<PageMedicina> {
                             InkWell(
                               child: FaIcon(
                                 FontAwesomeIcons.phoneVolume,
-                                size: 20,
+                                size: 25,
+                                color: AppTheme.themeVino,
                               ),
                               onTap: () {
                                 callNumber(solicitudAyuda.telefono);
@@ -299,7 +301,8 @@ class _PageMedicinaState extends State<PageMedicina> {
                             InkWell(
                               child: FaIcon(
                                 FontAwesomeIcons.comment,
-                                size: 20,
+                                size: 25,
+                                color: AppTheme.themeVino,
                               ),
                               onTap: () {
                                 sendSMS(solicitudAyuda.telefono);
@@ -311,7 +314,8 @@ class _PageMedicinaState extends State<PageMedicina> {
                             InkWell(
                               child: FaIcon(
                                 FontAwesomeIcons.whatsapp,
-                                size: 20,
+                                size: 25,
+                                color: AppTheme.themeVino,
                               ),
                               onTap: () {
                                 callWhatsApp(solicitudAyuda.telefono);
@@ -327,8 +331,8 @@ class _PageMedicinaState extends State<PageMedicina> {
                         children: <Widget>[
                           FaIcon(
                             FontAwesomeIcons.checkCircle,
-                            color: Colors.black,
-                            size: 20,
+                            color: AppTheme.themeColorVerde,
+                            size: 25,
                           ),
                           Text(
                             "Atender",
@@ -400,9 +404,11 @@ class _PageCovidState extends State<PageCovid> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                "Listado de solicitudes para ayuda con COVID",
-                style: AppTheme.themeTitulo,
+              contenedorTitulo(
+                context,
+                40.0,
+                "solicitudes consultas covid".toUpperCase(),
+                FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
               Align(
                   alignment: Alignment.topRight,
@@ -616,7 +622,8 @@ class _PageCovidState extends State<PageCovid> {
                             InkWell(
                               child: FaIcon(
                                 FontAwesomeIcons.phoneVolume,
-                                size: 20,
+                                size: 25,
+                                color: AppTheme.themeVino,
                               ),
                               onTap: () {
                                 callNumber(solicitudAyuda.telefono);
@@ -628,7 +635,8 @@ class _PageCovidState extends State<PageCovid> {
                             InkWell(
                               child: FaIcon(
                                 FontAwesomeIcons.comment,
-                                size: 20,
+                                size: 25,
+                                color: AppTheme.themeVino,
                               ),
                               onTap: () {
                                 sendSMS(solicitudAyuda.telefono);
@@ -640,7 +648,8 @@ class _PageCovidState extends State<PageCovid> {
                             InkWell(
                               child: FaIcon(
                                 FontAwesomeIcons.whatsapp,
-                                size: 20,
+                                size: 25,
+                                color: AppTheme.themeVino,
                               ),
                               onTap: () {
                                 callWhatsApp(solicitudAyuda.telefono);
@@ -656,8 +665,8 @@ class _PageCovidState extends State<PageCovid> {
                         children: <Widget>[
                           FaIcon(
                             FontAwesomeIcons.checkCircle,
-                            color: Colors.black,
-                            size: 20,
+                            color: AppTheme.themeColorVerde,
+                            size: 25,
                           ),
                           Text(
                             "Atender",
@@ -704,9 +713,11 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                "Listado de solicitudes para ayuda con MEDICAMENTOS y ABASTECIMIENTO",
-                style: AppTheme.themeTitulo,
+              contenedorTitulo(
+                context,
+                40.0,
+                "solicitud de ayuda abastecimientos".toUpperCase(),
+                FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
               Align(
                   alignment: Alignment.topRight,
@@ -918,7 +929,8 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
                             InkWell(
                               child: FaIcon(
                                 FontAwesomeIcons.phoneVolume,
-                                size: 20,
+                                size: 25,
+                                color: AppTheme.themeVino,
                               ),
                               onTap: () {
                                 callNumber(solicitudAyuda.telefono);
@@ -930,7 +942,8 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
                             InkWell(
                               child: FaIcon(
                                 FontAwesomeIcons.comment,
-                                size: 20,
+                                size: 25,
+                                color: AppTheme.themeVino,
                               ),
                               onTap: () {
                                 sendSMS(solicitudAyuda.telefono);
@@ -942,7 +955,8 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
                             InkWell(
                               child: FaIcon(
                                 FontAwesomeIcons.whatsapp,
-                                size: 20,
+                                size: 25,
+                                color: AppTheme.themeVino,
                               ),
                               onTap: () {
                                 callWhatsApp(solicitudAyuda.telefono);
@@ -958,8 +972,8 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
                         children: <Widget>[
                           FaIcon(
                             FontAwesomeIcons.checkCircle,
-                            color: Colors.black,
-                            size: 20,
+                            color: AppTheme.themeColorVerde,
+                            size: 25,
                           ),
                           Text(
                             "Atender",
@@ -1006,9 +1020,11 @@ class _PageBonosState extends State<PageBonos> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                "Listado de solicitudes para ayuda con Bonos",
-                style: AppTheme.themeTitulo,
+              contenedorTitulo(
+                context,
+                40.0,
+                "solicitud de ayuda con bonos".toUpperCase(),
+                FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
               Align(
                   alignment: Alignment.topRight,
@@ -1222,7 +1238,8 @@ class _PageBonosState extends State<PageBonos> {
                             InkWell(
                               child: FaIcon(
                                 FontAwesomeIcons.phoneVolume,
-                                size: 20,
+                                size: 25,
+                                color: AppTheme.themeVino,
                               ),
                               onTap: () {
                                 callNumber(solicitudAyuda.telefono);
@@ -1234,7 +1251,8 @@ class _PageBonosState extends State<PageBonos> {
                             InkWell(
                               child: FaIcon(
                                 FontAwesomeIcons.comment,
-                                size: 20,
+                                size: 25,
+                                color: AppTheme.themeVino,
                               ),
                               onTap: () {
                                 sendSMS(solicitudAyuda.telefono);
@@ -1246,7 +1264,8 @@ class _PageBonosState extends State<PageBonos> {
                             InkWell(
                               child: FaIcon(
                                 FontAwesomeIcons.whatsapp,
-                                size: 20,
+                                size: 25,
+                                color: AppTheme.themeVino,
                               ),
                               onTap: () {
                                 callWhatsApp(solicitudAyuda.telefono);
@@ -1262,8 +1281,8 @@ class _PageBonosState extends State<PageBonos> {
                         children: <Widget>[
                           FaIcon(
                             FontAwesomeIcons.checkCircle,
-                            color: Colors.black,
-                            size: 20,
+                          color: AppTheme.themeColorVerde,
+                            size: 25,
                           ),
                           Text(
                             "Atender",
@@ -1312,9 +1331,11 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text(
-                "Listado de solicitudes de ayuda a personas",
-                style: AppTheme.themeTitulo,
+              contenedorTitulo(
+                context,
+                40.0,
+                "solicutd ayuda a personas".toUpperCase(),
+                FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
               Align(
                   alignment: Alignment.topRight,
@@ -1526,7 +1547,8 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
                             InkWell(
                               child: FaIcon(
                                 FontAwesomeIcons.phoneVolume,
-                                size: 20,
+                                size: 25,
+                                color: AppTheme.themeVino,
                               ),
                               onTap: () {
                                 callNumber(solicitudAyuda.telefono);
@@ -1538,7 +1560,8 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
                             InkWell(
                               child: FaIcon(
                                 FontAwesomeIcons.comment,
-                                size: 20,
+                                size: 25,
+                                color: AppTheme.themeVino,
                               ),
                               onTap: () {
                                 sendSMS(solicitudAyuda.telefono);
@@ -1550,7 +1573,8 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
                             InkWell(
                               child: FaIcon(
                                 FontAwesomeIcons.whatsapp,
-                                size: 20,
+                                size: 25,
+                                color: AppTheme.themeVino,
                               ),
                               onTap: () {
                                 callWhatsApp(solicitudAyuda.telefono);

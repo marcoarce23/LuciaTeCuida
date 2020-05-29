@@ -45,10 +45,7 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
       body: SingleChildScrollView(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            height: 20,
-          ),
+        children: <Widget>[         
           Row(
             children: <Widget>[
               SizedBox(
@@ -95,7 +92,15 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
   Widget informacionProfesional(BuildContext context,
       ProfesionalesDeInstitucion profesionalesDeInstitucion) {
     String parametroCovid = profesionalesDeInstitucion.ayudaConCovid;
-    return Column(
+    return 
+    
+    Container(
+          margin:  EdgeInsets.only(top: 5, left: 10,right: 10  ),
+          decoration: boxDecorationList(),
+          child:
+    
+    
+    Column(
       children: <Widget>[
         ListTile(
           leading: ImageOvalNetwork(
@@ -171,7 +176,7 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
                       width: 5,
                     ),
                     Text(
-                      "Ayuda con pacientes COVID",
+                      "Ayuda con consultas sobre Covid19",
                       style:
                           TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
                     )
@@ -184,7 +189,7 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
                     child: FaIcon(
                       FontAwesomeIcons.phoneVolume,
                       color: AppTheme.themeVino,
-                      size: 15,
+                      size: 25,
                     ),
                     onTap: () {
                       callNumber(
@@ -198,7 +203,7 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
                     child: FaIcon(
                       FontAwesomeIcons.comment,
                       color: AppTheme.themeVino,
-                      size: 15,
+                      size: 25,
                     ),
                     onTap: () {
                       sendSMS(int.parse(profesionalesDeInstitucion.telefono));
@@ -211,7 +216,7 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
                     child: FaIcon(
                       FontAwesomeIcons.mailBulk,
                       color: AppTheme.themeVino,
-                      size: 15,
+                      size: 25,
                     ),
                     onTap: () {
                       sendEmailAdvanced(
@@ -227,7 +232,7 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
                     child: FaIcon(
                       FontAwesomeIcons.whatsapp,
                       color: AppTheme.themeVino,
-                      size: 15,
+                      size: 25,
                     ),
                     onTap: () {
                       callWhatsApp(
@@ -240,9 +245,10 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
           ),
           //trailing:crearIconoProfesional(Icons.mail, 'Correo')
         ),
-        divider()
+        
       ],
-    );
+      
+    ));
   }
 
   Column crearIconoProfesional(icon, title) {

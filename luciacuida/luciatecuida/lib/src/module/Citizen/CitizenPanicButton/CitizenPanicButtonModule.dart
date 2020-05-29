@@ -36,12 +36,11 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             toolbarOpacity: 0.7,
-            iconTheme:
-                IconThemeData(color: AppTheme.themeVino, size: 12),
+            iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
             elevation: 0,
             title: Text("SOLICITA UNA AYUDA", style: kTitleAppBar),
             actions: <Widget>[
-              IconButton(
+              /*IconButton(
                 icon: Icon(Icons.search),
                 onPressed: () {
                   Navigator.push(
@@ -53,7 +52,7 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
 
                   ;
                 },
-              )
+              )*/
             ],
             //backgroundColor: AppTheme.themeColorNaranja,
           ),
@@ -64,7 +63,27 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-               
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    margin: EdgeInsets.only(right: 15),
+                    child: FlatButton(
+                      color: AppTheme.themeVino,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  CitizenAlertEmergency(prefs.userId, "-1")),
+                        );
+                      },
+                      child: Text(
+                        "Mi Historial",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
                 ButtonPanic(
                   titulo: "CONSULTA COVID",
                   tipoBoton: "65",
@@ -145,7 +164,6 @@ class _ButtonPanic extends State<ButtonPanic> {
 
     return Stack(
       children: <Widget>[
-        
         Container(
             decoration: BoxDecoration(
               border: Border.all(
