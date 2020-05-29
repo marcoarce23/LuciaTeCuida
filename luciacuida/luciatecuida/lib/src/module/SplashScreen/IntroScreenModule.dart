@@ -116,15 +116,16 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                             Center(
                               child: Image(
                                 image: AssetImage(
-                                  'assets/buu.PNG',
+                                  'assets/image/onboarding0.png',
                                 ),
                                 height: 220.0,
                                 width: 220.0,
                               ),
                             ),
                             Text(
+                              
                               'Lucia Te Cuida, es una APP social para tod@s.',
-                              style: kTitleStyle,
+                              style: kTitleStyleBlack, textAlign:TextAlign.center,
                             ),
                             SizedBox(height: 15.0),
                             Expanded(
@@ -139,7 +140,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                       SizedBox(width: 11.0),
                                       Text(
                                         'Para todas las personas que requieren \nde una ayuda médica gratuita.',
-                                        style: kSubtitleStyle,
+                                        style: kSubtitleStyleBlack,
                                       ),
                                     ],
                                   ),
@@ -151,7 +152,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                       SizedBox(width: 11.0),
                                       Text(
                                         'Personas que requieren de apoyo espiritual,\nde motivacional y emocional.',
-                                        style: kSubtitleStyle,
+                                        style: kSubtitleStyleBlack,
                                       ),
                                     ],
                                   ),
@@ -163,7 +164,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                       SizedBox(width: 10.0),
                                       Text(
                                         'Es una aplicación tan humana que pre_\ntende dar una esperanza a las personas.',
-                                        style: kSubtitleStyle,
+                                        style: kSubtitleStyleBlack,
                                       ),
                                     ],
                                   ),
@@ -189,8 +190,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                             ),
                             SizedBox(height: 10.0),
                             Text(
-                              'QUIENES SOMOS?.',
-                              style: kTitleStyle,
+                              'QUIENES FORMAN PARTE?.',
+                              style: kTitleStyleBlack, textAlign:TextAlign.center,
                             ),
                             SizedBox(height: 13.0),
                             Expanded(
@@ -203,7 +204,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                       SizedBox(width: 10.0),
                                       Text(
                                         'Grupo de voluntarios comprometidos\n y dedicados a brindarte un apoyo.',
-                                        style: kSubtitleStyle,
+                                        style: kSubtitleStyleBlack,
                                       ),
                                     ],
                                   ),
@@ -215,7 +216,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                       SizedBox(width: 13.0),
                                       Text(
                                         'Personas que nos preocupa tu salud,\n nos preocupa tu bienestar.',
-                                        style: kSubtitleStyle,
+                                        style: kSubtitleStyleBlack,
                                       ),
                                     ],
                                   ),
@@ -227,7 +228,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                       SizedBox(width: 10.0),
                                       Text(
                                         'Grupo de ciudadanos bolivianos que \n convecidos con nuestro trabajo\npodemos hacer a diferencia en tu vida.',
-                                        style: kSubtitleStyle,
+                                        style: kSubtitleStyleBlack,
                                       ),
                                     ],
                                   ),
@@ -245,7 +246,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                             Center(
                               child: Image(
                                 image: AssetImage(
-                                  'assets/image/onboarding2.png',
+                                  'assets/image/onboarding1.png',
                                 ),
                                 height: 200.0,
                                 width: 200.0,
@@ -255,8 +256,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                             Column(
                               children: <Widget>[
                                 Text(
-                                  'SOLO TE PEDIMOS.',
-                                  style: kTitleStyle,
+                                  'SOLO TE RECOMENDAMOS.',
+                                  style: kTitleStyleBlack, textAlign:TextAlign.center,
                                 ),
                               ],
                             ),
@@ -267,11 +268,11 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                   Row(
                                     children: <Widget>[
                                       FaIcon(FontAwesomeIcons.firstAid,
-                                          color: AppTheme.white, size: 30.0),
+                                          color: AppTheme.themeVino, size: 30.0),
                                       SizedBox(width: 10.0),
                                       Text(
                                         'Hacer buen uso de la aplicación, el tiempo \ntuyo y el nuestro es valioso.',
-                                        style: kSubtitleStyle,
+                                        style: kSubtitleStyleBlack,
                                       ),
                                     ],
                                   ),
@@ -279,11 +280,11 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                   Row(
                                     children: <Widget>[
                                       FaIcon(FontAwesomeIcons.listUl,
-                                          color: AppTheme.white, size: 30.0),
+                                          color: AppTheme.themeVino, size: 30.0),
                                       SizedBox(width: 10.0),
                                       Text(
                                         'Brindar información real y veridica a las \npersonas con las que tengas un contacto \na traves de la aplicación LuciaTeCuida.',
-                                        style: kSubtitleStyle,
+                                        style: kSubtitleStyleBlack,
                                       ),
                                     ],
                                   ),
@@ -291,11 +292,11 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                   Row(
                                     children: <Widget>[
                                       FaIcon(FontAwesomeIcons.users,
-                                          color: AppTheme.white, size: 30.0),
+                                          color: AppTheme.themeVino, size: 30.0),
                                       SizedBox(width: 10.0),
                                       Text(
                                         'Difunde el uso de la aplicación con tus \namig@s, familiares y personas para que \npodamos llegar a mas personas.',
-                                        style: kSubtitleStyle,
+                                        style: kSubtitleStyleBlack,
                                       ),
                                     ],
                                   ),

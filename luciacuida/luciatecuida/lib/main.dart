@@ -14,6 +14,7 @@ import 'package:luciatecuida/src/module/Citizen/CitizenPanicButton/CitizenPanicB
 import 'package:luciatecuida/src/module/Citizen/CitizenPanicButton/ListCitizenPanic.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/AtentionEntityodule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/EntityModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Entity/EventEntityModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/ListEntityModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/ListMultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/MultimediaModule.dart';
@@ -76,7 +77,7 @@ class _MyAppState extends State<MyApp> {
         .copyWith(statusBarColor: Colors.transparent));
 
     return MaterialApp(
-      title: 'resource.titleApp',
+      title: 'LUCIA TE CUIDA',
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -119,6 +120,7 @@ home: new SplashScreenModule(),//FilePickerDemo(),
         'entidad': (BuildContext context) => new EntityModule(),
         'listaEntidad': (BuildContext context) => new ListEntityModule(),
         'eventEntity': (BuildContext context) => new ListEntityModule(),
+        'eventoEntidad': (BuildContext context) => new EventEntityModule(),
 
 
 'helpCitizen': (BuildContext context) => new  CitizenHelpModule(),

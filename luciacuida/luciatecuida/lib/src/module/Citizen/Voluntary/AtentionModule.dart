@@ -264,6 +264,11 @@ class _AtentionModuleState extends State<AtentionModule> {
   }
 
   _submit() async {
+     print('valor del prefsss. ${prefs.userId}');
+    if (prefs.userId == '-1')
+      scaffoldKey.currentState.showSnackBar(messageNOk(
+          "Para registrar una Atención debe registrar su Institución"));
+    else {
     if (!formKey.currentState.validate()) return;
 
     formKey.currentState.save();
@@ -318,6 +323,7 @@ class _AtentionModuleState extends State<AtentionModule> {
     entity.perDomingoH = '-1';
     entity.usuario = prefs.userId;
 
+print('valores: $entity');
     final dataMap = generic.add(entity, urlAddAtencion);
 
     await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
@@ -332,5 +338,6 @@ class _AtentionModuleState extends State<AtentionModule> {
     setState(() {
       _save = false;
     });
+  }
   }
 }

@@ -44,7 +44,7 @@ dependencies:
   esys_flutter_share: ^1.0.2
   share: ^0.6.4
   flutter_webview_plugin: ^0.3.11
-  webview_flutter: ^0.3.18
+  webview_flutter:
   flutter_pdfview: ^1.0.0+10
   pdf_previewer: ^0.1.0
   connectivity: ^0.4.8+2

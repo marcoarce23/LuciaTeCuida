@@ -15,13 +15,14 @@ import 'package:luciatecuida/src/module/Citizen/CitizenMultimedia/CitizenMultime
 import 'package:luciatecuida/src/module/Citizen/CitizenPanicButton/CitizenPanicButtonModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/EntityModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/EventEntityModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Multimedia/ListDetailModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/MultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/EventModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/FoundVoluntaryModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/VoluntaryModule.dart';
-import 'package:luciatecuida/src/module/Login/SignUpModule.dart';
 import 'package:luciatecuida/src/module/SplashScreen/IntroScreenModule.dart';
 import 'package:luciatecuida/src/module/Login/SiginDemo.dart';
+import 'package:luciatecuida/src/module/UtilModule/PageViewModule.dart';
 
 class HomePageModule extends StatefulWidget {
   static final String routeName = 'home';
@@ -73,35 +74,35 @@ class _HomePageModuleState extends State<HomePageModule> {
                       child: Column(
                         children: <Widget>[
                           SizedBox(
-                            height: 10.0,
+                            height: 15.0,
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                'Bienvenidos a la aplicación',
-                                style: kTitleHomeCursiveStyle,
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                'de todos.',
-                                style: kTitleHomeCursiveStyle,
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                'Lucia Te Cuida',
-                                style: kTitleHomeCursiveStyle,
-                              ),
-                            ],
-                          ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: <Widget>[
+                          //     Text(
+                          //       'Bienvenidos a la aplicación',
+                          //       style: kTitleHomeCursiveStyle,
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: <Widget>[
+                          //     Text(
+                          //       'de todos.',
+                          //       style: kTitleHomeCursiveStyle,
+                          //     ),
+                          //   ],
+                          // ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: <Widget>[
+                          //     Text(
+                          //       'Lucia Te Cuida',
+                          //       style: kTitleHomeCursiveStyle,
+                          //     ),
+                          //   ],
+                          // ),
                         ],
                       ),
                     ),
@@ -130,14 +131,16 @@ class _HomePageModuleState extends State<HomePageModule> {
       child: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today, size: 20.0),
+              icon: Icon(Icons.notification_important, size: 20.0),
               title: Text('Notificaciones')),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.add_call, size: 20.0),
-              title: Text('Atenciones')),
+        
           BottomNavigationBarItem(
               icon: Icon(Icons.video_library, size: 20.0),
               title: Text('Multimedia')),
+        
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add_call, size: 20.0),
+              title: Text('Contactenos')),
         ],
       ),
     );
@@ -147,22 +150,26 @@ class _HomePageModuleState extends State<HomePageModule> {
     return Wrap(
       children: <Widget>[
         _crearBotonRedondeado(
-            Colors.blue, Icons.add_comment, 'Pedir ayuda', '1'),
+            Colors.blue, Icons.add_comment, 'Consultar voluntario', '1', 17.0),
         _crearBotonRedondeado(
-            Colors.purpleAccent, Icons.hotel, 'Urgencias', '2'),
+            Colors.purpleAccent, Icons.hotel, 'Ayuda urgente', '2', 20.0),
         _crearBotonRedondeado(Colors.pinkAccent, Icons.accessible_forward,
-            'Ayuda a un amig@', '3'),
-        _crearBotonRedondeado(Colors.orange, Icons.blur_linear, 'Eventos', '4'),
+            'Ayuda a una persona', '3', 16.5),
+        _crearBotonRedondeado(Colors.orange, Icons.blur_linear, 'Eventos vigentes', '4', 19.0),
         _crearBotonRedondeado(
-            Colors.blueAccent, Icons.people, 'Voluntarios', '5'),
+            Colors.blueAccent, Icons.people, 'Voluntarios', '5', 20.0),
         _crearBotonRedondeado(
-            Colors.green, Icons.business, 'Instituciones', '6'),
+            Colors.green, Icons.business, 'Instituciones', '6', 20.0),
+        _crearBotonRedondeado(
+            Colors.deepPurple, Icons.phone_in_talk, 'Números de ayuda', '5', 17.0),
+        _crearBotonRedondeado(
+            Colors.cyan, Icons.add_to_queue, 'Prueba de control', '6', 18.0),
       ],
     );
   }
 
   Widget _crearBotonRedondeado(
-      Color color, IconData icono, String texto, String valor) {
+      Color color, IconData icono, String texto, String valor, double size) {
     return InkWell(
       onTap: () => Navigator.push(
         context,
@@ -173,8 +180,8 @@ class _HomePageModuleState extends State<HomePageModule> {
           filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
           child: Container(
             height: 100.0,
-            width: 150,
-            margin: EdgeInsets.all(10.0),
+            width: 160,
+            margin: EdgeInsets.all(9.0),
             decoration: BoxDecoration(
                 gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -191,14 +198,14 @@ class _HomePageModuleState extends State<HomePageModule> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                SizedBox(height: 5.0),
+                SizedBox(height:5.0),
                 CircleAvatar(
                   backgroundColor: color,
-                  radius: 35.0,
-                  child: Icon(icono, color: Colors.white, size: 30.0),
+                  radius: 30.0,
+                  child: Icon(icono, color: Colors.white, size: 42.0),
                 ),
                 Text(texto,
-                    style: TextStyle(color: AppTheme.white, fontSize: 15.0)),
+                    style: TextStyle(color: AppTheme.white, fontSize: size)),
               ],
             ),
           ),
@@ -262,11 +269,20 @@ class DrawerCitizen extends StatelessWidget {
         CustomListTile(
             Icons.notification_important,
             'Notificaciones',
-            () => Navigator.push(
+            () =>  Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => NotificacionesModule()),
-                )),
+                      builder: (context) => PageViewModule(title:'TEST DE CONSULTA', selectedUrl:'https://omi.app/covid-19/welcome')),
+                )
+            
+            
+            
+            // Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //           builder: (context) => NotificacionesModule()),
+            //     )
+                ),
         CustomListTile(
             Icons.business,
             'Conoce las instituciones',
@@ -277,7 +293,7 @@ class DrawerCitizen extends StatelessWidget {
                 )),
         CustomListTile(
             Icons.perm_phone_msg,
-            'Solicita una consulta',
+            'Consulta a un voluntario',
             () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -285,7 +301,7 @@ class DrawerCitizen extends StatelessWidget {
                 )),
         CustomListTile(
             Icons.hotel,
-            'Pide ayuda urgente',
+            'Pedir ayuda urgente',
             () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -293,7 +309,7 @@ class DrawerCitizen extends StatelessWidget {
                 )),
         CustomListTile(
             Icons.accessible_forward,
-            'Ayuda a un amigo(a)',
+            'Ayuda a una persona',
             () => Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -315,9 +331,16 @@ class DrawerCitizen extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) => CitizenMultimediaModule()),
                 )),
+         CustomListTile(
+            Icons.edit_location,
+            'Registra tu Institución',
+            () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EntityAllModule()),
+                )),
         CustomListTile(
             Icons.person_add,
-            'Inscribete como voluntario',
+            'Registrate como voluntario',
             () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => VoluntaryAllModule()),
@@ -340,19 +363,13 @@ class DrawerCitizen extends StatelessWidget {
         CustomListTile(
           Icons.map,
           'Mapa de solicitudes',
-          () => openWeb('http://mapacovid19.ruta88.net/'),
+          () =>  openWeb('http://mapacovid19.ruta88.net/'),
           // Navigator.push(
           //       context,
           //       MaterialPageRoute(builder: (context) => MapAdressModule()),
           //     )
         ),
-        CustomListTile(
-            Icons.edit_location,
-            'Registra tu Institución',
-            () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => EntityAllModule()),
-                )),
+       
         CustomListTile(
             Icons.event_available,
             'Crear Eventos-Entidades',
@@ -382,7 +399,7 @@ class DrawerCitizen extends StatelessWidget {
             () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => AtentionCitizenAllModule()),
+                      builder: (context) => ListMaterialModule()),
                 )),
         CustomListTile(
           Icons.exit_to_app,

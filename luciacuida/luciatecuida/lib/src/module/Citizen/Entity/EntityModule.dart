@@ -59,7 +59,7 @@ class _EntityAllModuleState extends State<EntityAllModule> {
         toolbarOpacity: 0.7,
         iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
         elevation: 0,
-        title: Text( "INSTITUCIONES - GRUPOS",  style: kTitleAppBar),
+        title: Text("INSTITUCIONES - GRUPOS", style: kTitleAppBar),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
@@ -93,7 +93,7 @@ class _EntityAllModuleState extends State<EntityAllModule> {
               title: Text('Listado')),
         ],
         currentIndex: page,
-unselectedItemColor: Colors.black54,
+        unselectedItemColor: Colors.black54,
         selectedItemColor: AppTheme.themeVino,
         onTap: _onItemTapped,
       ),
@@ -114,7 +114,7 @@ class _EntityModuleState extends State<EntityModule> {
   InputDropDown tipoInstitucion;
   InputDropDown ubicacion;
   InputTextField nombre;
-  InputNumberField token;
+  InputPhoneField token;
   InputMultilineField direccion;
   InputPhoneField telefono;
   InputMultilineField informacion;
@@ -131,7 +131,7 @@ class _EntityModuleState extends State<EntityModule> {
   LatLng latLng = LatLng(0, 0);
 
   String imagen =
-      'https://definicionyque.es/wp-content/uploads/2017/11/Medicina_Preventiva.jpg';
+      'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg';
   var result;
 
   final formKey = GlobalKey<FormState>();
@@ -173,32 +173,34 @@ class _EntityModuleState extends State<EntityModule> {
           children: <Widget>[
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-               
-              ],
+              children: <Widget>[],
             ),
             SafeArea(
               child: Container(
                 height: 125.0,
               ),
             ),
-           
-           Container(
-             width: size.width * 0.96,
+            Container(
+              width: size.width * 0.96,
               margin: EdgeInsets.symmetric(vertical: 0.0),
               decoration: contenedorCarretes(),
-             child: Row(
-               mainAxisAlignment: MainAxisAlignment.end,
-               children: <Widget>[
-                 Text('CARGAR UBICACIÓN-IMAGEN',   style: TextStyle( color: AppTheme.themeVino, fontSize: 15.0,) ),
-                 _crearIconAppMap(),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Text('CARGAR UBICACIÓN-IMAGEN',
+                      style: TextStyle(
+                        color: AppTheme.themeVino,
+                        fontSize: 15.0,
+                      )),
+                  _crearIconAppMap(),
                   _crearIconAppImagenes(),
-                      _crearIconAppCamara(),
-                      
-               ],
-             ),
-           ),
-          SizedBox( height: 5.0,),
+                  _crearIconAppCamara(),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 5.0,
+            ),
             Container(
               width: size.width * 0.92,
               margin: EdgeInsets.symmetric(vertical: 0.0),
@@ -227,53 +229,63 @@ class _EntityModuleState extends State<EntityModule> {
         FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
         'Nombre de la institución:',
         entity.nombreInstitucion,
-        'Ingrese el nombre', true);
-    token = InputNumberField(
+        'Ingrese el nombre',
+        true);
+    token = InputPhoneField(
         FaIcon(FontAwesomeIcons.creditCard, color: AppTheme.themeVino),
         'Ingrese el número de token:',
         entity.token,
-        'Ej:0142', true);
+        'Ej: 214213 - solo números',
+        true);
     direccion = InputMultilineField(
         FaIcon(FontAwesomeIcons.dotCircle, color: AppTheme.themeVino),
         'Dirección/ubicacion:',
         entity.direccion,
-        'Ingrese su dirección/ubicación', true);
+        'Ingrese su dirección/ubicación',
+        true);
     telefono = InputPhoneField(
         FaIcon(FontAwesomeIcons.mobileAlt, color: AppTheme.themeVino),
         'Telefono de referencia',
         entity.telefono,
-        'Ingrese el número de referencia', true);
+        'Ingrese el número de referencia',
+        true);
     informacion = InputMultilineField(
         FaIcon(FontAwesomeIcons.listAlt, color: AppTheme.themeVino),
         'Información complementaria:',
         entity.perInformacionComp,
-        'Informacióm complementaria', false);
+        'Informacióm complementaria',
+        false);
     facebook = InputTextField(
         FaIcon(FontAwesomeIcons.facebook, color: AppTheme.themeVino),
         'Cuenta Facebook:',
         entity.perFacebbok,
-        'Ingrese la cuenta Facebook', false);
+        'Ingrese la cuenta Facebook',
+        false);
     twitter = InputTextField(
         FaIcon(FontAwesomeIcons.twitter, color: AppTheme.themeVino),
         'Cuenta Twitter:',
         entity.perTwitter,
-        'Ingrese la cuenta Twitter', false);
+        'Ingrese la cuenta Twitter',
+        false);
     paginaWeb = InputUrlField(
         FaIcon(FontAwesomeIcons.edge, color: AppTheme.themeVino),
         'Pagina Web/block:',
         entity.perPaginaWeb,
-        'Página/block oficial',false);
+        'Página/block oficial',
+        false);
     youtube = InputTextField(
         FaIcon(FontAwesomeIcons.youtube, color: AppTheme.themeVino),
         'Cuenta YouTube:',
         entity.perYouTube,
-        'Ingrese la cuenta YouTube', false);
+        'Ingrese la cuenta YouTube',
+        false);
     email = InputEmailField(
         FaIcon(FontAwesomeIcons.mailBulk, color: AppTheme.themeVino),
         'Correo Electronico:',
         entity.perCorreoElectronico,
         'Ingrese el correo electrónico',
-        'Ingrese su correo electronico', false);
+        'Ingrese su correo electronico',
+        false);
 
     return Column(
       children: <Widget>[
@@ -284,14 +296,13 @@ class _EntityModuleState extends State<EntityModule> {
         direccion,
         telefono,
         informacion,
-  
-       contenedorSubTitulo(
-                context,
-                40.0,
-                'REDES-SOCIALES',
-                FaIcon(FontAwesomeIcons.chromecast, color: Colors.white60),
-              ),
-            SizedBox(height:5.0),
+        contenedorSubTitulo(
+          context,
+          40.0,
+          'REDES-SOCIALES',
+          FaIcon(FontAwesomeIcons.chromecast, color: Colors.white60),
+        ),
+        SizedBox(height: 5.0),
         facebook,
         twitter,
         paginaWeb,
@@ -302,19 +313,22 @@ class _EntityModuleState extends State<EntityModule> {
     );
   }
 
-
-
-
   _crearIconAppImagenes() {
     return IconButton(
-      icon: Icon(Icons.photo_size_select_actual, color: AppTheme.themeVino,),
+      icon: Icon(
+        Icons.photo_size_select_actual,
+        color: AppTheme.themeVino,
+      ),
       onPressed: _seleccionarFoto,
     );
   }
 
   _crearIconAppMap() {
     return IconButton(
-        icon: Icon(Icons.map, color: AppTheme.themeVino,),
+        icon: Icon(
+          Icons.map,
+          color: AppTheme.themeVino,
+        ),
         onPressed: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => MapAdressModule()),
@@ -323,7 +337,10 @@ class _EntityModuleState extends State<EntityModule> {
 
   _crearIconAppCamara() {
     return IconButton(
-      icon: Icon(Icons.camera_alt, color: AppTheme.themeVino,),
+      icon: Icon(
+        Icons.camera_alt,
+        color: AppTheme.themeVino,
+      ),
       onPressed: _tomarFoto,
     );
   }
@@ -379,16 +396,16 @@ class _EntityModuleState extends State<EntityModule> {
     await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
     print('resultado:$result');
 
-    if (result == "0") {
-      // scaffoldKey.currentState
-      //     .showSnackBar(messageOk("Se insertó correctamente"));
-          Navigator.of(context).push(CupertinoPageRoute(builder: (BuildContext context) => ListEntityModule()));
+    if (result != "-1" || result != "-2") {
+      prefs.idInsitucion = result;
+      Navigator.of(context).push(CupertinoPageRoute(
+          builder: (BuildContext context) => ListEntityModule()));
     }
     if (result == "-1") {
       scaffoldKey.currentState
           .showSnackBar(messageNOk('Error, vuelta a intentarlo'));
     }
-    if (result == "-2") {
+    if (result == "2") {
       scaffoldKey.currentState
           .showSnackBar(messageNOk("Error, El TOKEN esta siendo utilizado"));
     }
@@ -405,8 +422,11 @@ class _EntityModuleState extends State<EntityModule> {
 
     if (foto != null) {
       imagen = await generic.subirImagen(foto);
-      entity.foto = imagen;
-      print('cargadod e iagen ${entity.foto}');
     }
+
+    setState(() {
+      entity.foto = imagen;
+      print('cargado de la imagen ${entity.foto}');
+    });
   }
 }

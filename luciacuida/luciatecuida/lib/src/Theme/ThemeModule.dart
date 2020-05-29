@@ -45,6 +45,19 @@ final kSubSubTitleCardStyle = TextStyle(
   height: 1.5,
 );
 
+final kTitleStyleBlack = TextStyle(
+  color: Colors.black54,
+  fontFamily: 'CM Sans Serif',
+  fontSize: 23.0,
+  height: 1.0,
+);
+
+final kSubtitleStyleBlack = TextStyle(
+  color: Colors.black54,
+  fontSize: 15.0,
+  height: 1.2,
+);
+
 final kTitleStyle = TextStyle(
   color: Colors.black54,
   fontFamily: 'CM Sans Serif',
@@ -105,6 +118,7 @@ final kTitleCursive4Style = TextStyle(
 );
 
 Widget crearFondo(BuildContext context, String imagen) {
+  print('EL AVATAR CARGADO $imagen');
     final size = MediaQuery.of(context).size;
 
     final fondoModaro = Container(

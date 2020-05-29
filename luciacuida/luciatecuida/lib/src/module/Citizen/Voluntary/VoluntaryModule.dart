@@ -127,7 +127,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
   bool esCovid = false;
   File foto;
   String imagen =
-      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80';
+      'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg';
 
   var result;
   final formKey = GlobalKey<FormState>();
@@ -416,7 +416,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
     if (result == "-1")
       scaffoldKey.currentState
           .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
-    if (result == "-2")
+    if (result == "2")
       scaffoldKey.currentState
           .showSnackBar(messageNOk("Error, TOKEN INVALIDO"));
 

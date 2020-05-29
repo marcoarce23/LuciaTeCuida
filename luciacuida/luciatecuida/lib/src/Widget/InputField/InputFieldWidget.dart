@@ -305,9 +305,9 @@ class _InputNumberFieldState extends State<InputNumberField> {
       child: TextFormField(
         initialValue: widget.objectValue,
         enableInteractiveSelection: true,
-        enableSuggestions: true,
-        autocorrect: true,
-        autovalidate: false,
+       // enableSuggestions: true,
+       // autocorrect: true,
+     //   autovalidate: false,
         maxLength: 6,
         toolbarOptions: ToolbarOptions(copy: true, cut:true, paste: true, selectAll: true),
         keyboardType: TextInputType.number,
@@ -414,7 +414,7 @@ class _InputSexoState extends State<InputSexo> {
         ListTile(
           title: Text('Femenino'),
           leading: Radio(
-            value: 1,
+            value: _selectedRadio,
             activeColor: Colors.orangeAccent,
             groupValue: _selectedRadio,
             onChanged: (value) {
@@ -465,7 +465,7 @@ class InputDropDown extends StatefulWidget {
   String objectValue;
   final String text;
   final FaIcon icon;
-  final String values;
+  String values;
 
   InputDropDown(this.icon, this.text, this.objectValue, this.values);
 
@@ -475,7 +475,7 @@ class InputDropDown extends StatefulWidget {
 
 class _InputDropDownState extends State<InputDropDown> {
   final generic = new Generic();
-  String valor= '';
+  String valor;
 
 @override
   void initState() {
@@ -514,12 +514,12 @@ class _InputDropDownState extends State<InputDropDown> {
                     SizedBox(width: 15.0),
                     DropdownButton(
                       icon: widget.icon,
-                      value: valor,
+                      value: widget.objectValue, //valor
                       items: getDropDown(snapshot),
                       onChanged: (value) {
                         setState(() {
-                          valor = value;
-                          print('valor combo: $valor');
+                              widget.objectValue = value; 
+                          print('valor combo ingresado widget.objectValue: ${widget.objectValue} y valueeee: $value');
                         });
                       },
                     ),
