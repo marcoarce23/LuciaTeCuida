@@ -9,14 +9,12 @@ import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/Widget/InputField/InputFieldWidget.dart';
 import 'package:luciatecuida/src/Widget/Message/Message.dart';
-import 'package:luciatecuida/src/module/Login/AgreeLoginModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 import 'package:luciatecuida/src/module/SplashScreen/IntroScreenModule.dart';
 import 'package:page_transition/page_transition.dart';
 import 'dart:async';
 import 'package:imei_plugin/imei_plugin.dart';
-import "package:http/http.dart" as http;
-import 'dart:convert' show json;
+
 
 class SignUpModule extends StatefulWidget {
   static final String routeName = 'login';
@@ -47,9 +45,7 @@ class _SignUpModuleState extends State<SignUpModule> {
     ],
   );
 
-  GoogleSignInAccount _currentUser;
   GoogleSignInAccount currentUser;
-  String _contactText;
   get respuesta => null;
 
   @override

@@ -146,25 +146,25 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
                 ),
               ],
             )),
-            Container(
-              width: MediaQuery.of(context).size.width - 80,
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.mail_outline,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  RichText(
-                    overflow: TextOverflow.clip,
-                    text: TextSpan(
-                      text: 'Correo: ${entityItem.regUbicacion}',
-                      style: TextStyle(fontSize: 14, color: Colors.black),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Container(
+            //   width: MediaQuery.of(context).size.width - 80,
+            //   child: Row(
+            //     children: <Widget>[
+            //       Icon(
+            //         Icons.mail_outline,
+            //         color: AppTheme.themeVino,
+            //         size: 15,
+            //       ),
+            //       RichText(
+            //         overflow: TextOverflow.clip,
+            //         text: TextSpan(
+            //           text: 'Correo: ${entityItem.regUbicacion}',
+            //           style: TextStyle(fontSize: 14, color: Colors.black),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
           //  Text('Puedes contactactarte por aca',
           //             style: TextStyle(fontSize: 15, color: Colors.black87),
           //           ),

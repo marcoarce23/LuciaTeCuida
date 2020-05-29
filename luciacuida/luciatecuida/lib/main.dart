@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:luciatecuida/src/Model/PreferenceUser.dart';
+import 'package:luciatecuida/src/Provider/NotificacionesModule.dart';
 import 'package:luciatecuida/src/Provider/PushNotificationProvider.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenEmergency/CitizenEmergencyModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenEvents/CitizenEventsModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenHelp/CitizenHelpModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenHelp/ListCitizenHelpModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenInstitution/CitizenListInstitucionModule.dart';
+import 'package:luciatecuida/src/module/Citizen/CitizenMultimedia/CitizenImageDetailModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenMultimedia/CitizenMultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenPanicButton/CitizenPanicButtonModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenPanicButton/ListCitizenPanic.dart';
@@ -24,14 +26,10 @@ import 'package:luciatecuida/src/module/Citizen/Voluntary/FoundVoluntaryModule.d
 import 'package:luciatecuida/src/module/Citizen/Voluntary/ListEventModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/ListVoluntary.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/VoluntaryModule.dart';
-import 'package:luciatecuida/src/module/Contactos/ContactAppModule.dart';
-import 'package:luciatecuida/src/module/Contactos/ContatGeneralModule.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Login/AgreeLoginModule.dart';
 import 'package:luciatecuida/src/module/Login/ForgetPasswordModule.dart';
-
 import 'package:luciatecuida/src/module/Login/SignUpModule.dart';
-
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:luciatecuida/src/module/Map/MapAdressModule.dart';
 import 'package:luciatecuida/src/module/SplashScreen/IntroScreenModule.dart';
@@ -62,13 +60,14 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    
     final pushProvider = new PushNotificationProvider();
     pushProvider.initNotifications();
     pushProvider.mensajes.listen((data) {
-        // Navigator.pushNamed(context, 'mensaje');
-        // print('Argumento del Push');
-        // print(data);
-        // navigatorKey.currentState.pushNamed('mensaje', arguments: data );
+         print('Argumento del Push');
+         print(data);
+      navigatorKey.currentState.pushNamed('notificaciones', arguments: data );
+  
       }
     );
   }
@@ -99,11 +98,12 @@ class _MyAppState extends State<MyApp> {
       ],
 
 
-     // initialRoute: prefs.ultimaPagina,
+      initialRoute: prefs.ultimaPagina,
     //  home: new FilePickerDemo(),//MapAdressModule(),
-        home: new ContactGeneralModule(),//FilePickerDemo(),
+     //   home: new HomePageModule(),//FilePickerDemo(),
 
         routes: <String, WidgetBuilder>{
+        'notificaciones': (BuildContext context) => new NotificacionesModule(),
         'login': (BuildContext context) => new SignUpModule(),
         'forget': (BuildContext context) => new ForgetPassword(),
         'agree': (BuildContext context) => new AgreeLoginModule(),

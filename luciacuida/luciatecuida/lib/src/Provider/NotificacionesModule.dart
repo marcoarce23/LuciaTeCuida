@@ -7,15 +7,15 @@ class NotificacionesModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-  //  final arg = ModalRoute.of(context).settings.arguments;
+    final arg = ModalRoute.of(context).settings.arguments;
 
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('NOTIFICACIONES'),
+        title: Text('NOTIFICACIONES - LUCIA TE CUIDA'),
       ),
       body: Center(
-        child: Text('Notificaicones'),//arg),
+        child: Text(arg),//arg),
       ),
     );
   }

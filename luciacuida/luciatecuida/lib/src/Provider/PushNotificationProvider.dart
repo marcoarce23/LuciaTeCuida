@@ -32,9 +32,9 @@ class PushNotificationProvider {
 
         String argumento = 'no-data';
         if ( Platform.isAndroid  ) {  
-          argumento = info['data']['comida'] ?? 'no-data';
+          argumento = info['data']['ayuda'] ?? 'no-data';
         } else {
-          argumento = info['comida'] ?? 'no-data-ios';
+          argumento = info['ayuda'] ?? 'no-data-ios';
         }
 
         _mensajesStreamController.sink.add(argumento);
@@ -44,6 +44,16 @@ class PushNotificationProvider {
 
         print('======= On Launch ========');
         print( info );
+
+        String argumento = 'no-data';
+
+        if ( Platform.isAndroid  ) {  
+          argumento = info['data']['ayuda'] ?? 'no-data';
+        } else {
+          argumento = info['ayuda'] ?? 'no-data-ios';
+        }
+       _mensajesStreamController.sink.add(argumento);
+
       },
 
       onResume: ( info ) {
@@ -53,9 +63,9 @@ class PushNotificationProvider {
         String argumento = 'no-data';
 
         if ( Platform.isAndroid  ) {  
-          argumento = info['data']['comida'] ?? 'no-data';
+          argumento = info['data']['ayuda'] ?? 'no-data';
         } else {
-          argumento = info['comida'] ?? 'no-data-ios';
+          argumento = info['ayuda'] ?? 'no-data-ios';
         }
        _mensajesStreamController.sink.add(argumento);
 

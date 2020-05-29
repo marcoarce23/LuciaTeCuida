@@ -591,17 +591,15 @@ class DataSearchHelp extends SearchDelegate {
                             .contains(query.toLowerCase())) {
                           return InkWell(
                             child: ListTile(
-                              title: Text(list.perTelefono),
-                              subtitle: Text(list.perCorreo),
+                              title: Text(list.perNombrepersonal),
+                              subtitle: Text(list.perNombrepersonal),
                             ),
                             onTap: () {
                             Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          ListVoluntaryModule(
-                                           // multimediaImagen: list,
-                                          )),
+                                          ListVoluntaryModule(  )),
                                 );
                              
                             },
