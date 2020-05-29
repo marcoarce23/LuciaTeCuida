@@ -165,15 +165,20 @@ Future<void> _handleSignOut() => _googleSignIn.disconnect();
       await _googleSignIn.signIn();
       _googleSignIn.signIn().then((value) {
         //Timer(const Duration(milliseconds: 400), );
-
+print('email del botonnnn:${currentUser.email} ');
         final dataMap1 = generic.getAll(
             entity, getLogin + '${currentUser.email}', primaryKeyGetLogin);
 
         dataMap1.then((value) {
+          print('fatamap1 resultn:$value y tamaño ${value.length} y datamap1 : $dataMap1');
           if (value.length > 0) {
             for (int i = 0; i < value.length; i++) {
+              print('fatamap1 FOR VALOR VALUE:${value[i]}');
               entity = value[i];
             }
+            print('XXXX${value[0]}'); 
+entity = value[0];
+            print('111:${entity.idPersonal} y 2222 ${entity.idUsuario}');
             prefs.imei = entity.imei;
             prefs.nombreUsuario = entity.nombrePersona;
             prefs.correoElectronico = entity.correo;
@@ -193,6 +198,8 @@ Future<void> _handleSignOut() => _googleSignIn.disconnect();
                   child: IntroScreenModule(),
                 ));
           } else {
+
+            print('entro al elseeeee y currenteID ${currentUser.id}');
             entity.idUsuario = currentUser.id;
             entity.idInstitucion = '-1';
             entity.nombrePersona = currentUser.displayName;
@@ -209,7 +216,7 @@ Future<void> _handleSignOut() => _googleSignIn.disconnect();
 
             final dataMap = generic.add(entity, urlAddSignIn);
             dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-                 print('resultado:$result ');
+                 print('resultado de logueo del elseee:$result ');
 
             if (result != "-1") {
               prefs.imei = _platformImei;
@@ -217,6 +224,8 @@ Future<void> _handleSignOut() => _googleSignIn.disconnect();
               prefs.correoElectronico = currentUser.email;
               prefs.avatarImagen = currentUser.photoUrl;
               prefs.userId = result;
+
+ print('prefsusuario cuando existe:${prefs.userId} ');
 
               Navigator.push(
                   context,

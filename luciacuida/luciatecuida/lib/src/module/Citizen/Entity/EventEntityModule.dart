@@ -18,7 +18,7 @@ import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 
 class EventAllModule extends StatefulWidget {
-  static final String routeName = 'voluntario';
+  static final String routeName = 'eventoEntidad';
   const EventAllModule({Key key}) : super(key: key);
 
   @override

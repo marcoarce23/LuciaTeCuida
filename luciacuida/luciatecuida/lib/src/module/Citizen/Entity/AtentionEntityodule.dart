@@ -141,8 +141,8 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
         key: formKey,
         child: Column(
           children: <Widget>[
-            informacionProfesional(context),
-            SizedBox(height: 5.0),
+            //    informacionProfesional(context),
+            SizedBox(height: 7.0),
             contenedorTitulo(
               context,
               40.0,
@@ -236,43 +236,64 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
     domingo = InputCheckBox('Domingo', selectDomingo);
 
     lunesH = InputTextField(
-        FaIcon(FontAwesomeIcons.clock, color: AppTheme.themeVino,),
+        FaIcon(
+          FontAwesomeIcons.clock,
+          color: AppTheme.themeVino,
+        ),
         'Atención',
         '',
         'Ej: 08:00  a 13:30',
         false);
     martesH = InputTextField(
-        FaIcon(FontAwesomeIcons.clock, color: AppTheme.themeVino,),
+        FaIcon(
+          FontAwesomeIcons.clock,
+          color: AppTheme.themeVino,
+        ),
         'Atención',
         '',
         'Ej: 08:00  a 13:30',
         false);
     miercolesH = InputTextField(
-        FaIcon(FontAwesomeIcons.clock, color: AppTheme.themeVino,),
+        FaIcon(
+          FontAwesomeIcons.clock,
+          color: AppTheme.themeVino,
+        ),
         'Atención',
         '',
         'Ej: 08:00  a 13:30',
         false);
     juevesH = InputTextField(
-        FaIcon(FontAwesomeIcons.clock, color: AppTheme.themeVino,),
+        FaIcon(
+          FontAwesomeIcons.clock,
+          color: AppTheme.themeVino,
+        ),
         'Atención',
         '',
         'Ej: 08:00  a 13:30',
         false);
     viernesH = InputTextField(
-        FaIcon(FontAwesomeIcons.clock, color: AppTheme.themeVino,),
+        FaIcon(
+          FontAwesomeIcons.clock,
+          color: AppTheme.themeVino,
+        ),
         'Atención',
         '',
         'Ej: 08:00  a 13:30',
         false);
     sabadoH = InputTextField(
-        FaIcon(FontAwesomeIcons.clock, color: AppTheme.themeVino,),
+        FaIcon(
+          FontAwesomeIcons.clock,
+          color: AppTheme.themeVino,
+        ),
         'Atención',
         '',
         'Ej: 08:00  a 13:30',
         false);
     domingoH = InputTextField(
-        FaIcon(FontAwesomeIcons.clock, color: AppTheme.themeVino,),
+        FaIcon(
+          FontAwesomeIcons.clock,
+          color: AppTheme.themeVino,
+        ),
         'Atención',
         '',
         'Ej: 08:00  a 13:30',
@@ -376,73 +397,79 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
   }
 
   _submit() async {
-    if (!formKey.currentState.validate()) return;
+    print('valor del prefsss. ${prefs.userId}');
+    if (prefs.userId == '-1')
+      scaffoldKey.currentState.showSnackBar(messageNOk(
+          "Para registrar una Atención debe registrar su Institución"));
+    else {
+      if (!formKey.currentState.validate()) return;
 
-    formKey.currentState.save();
-    setState(() {
-      _save = true;
-    });
+      formKey.currentState.save();
+      setState(() {
+        _save = true;
+      });
 
-    if (lunes.objectValue == true) {
-      intLunes = 1;
-      selectLunes = true;
-    }
-    if (martes.objectValue == true) {
-      intMartes = 1;
-      selectMartes = true;
-    }
-    if (miercoles.objectValue == true) {
-      intMiercoles = 1;
-      selectMiercoles = true;
-    }
-    if (jueves.objectValue == true) {
-      intJueves = 1;
-      selectJueves = true;
-    }
-    if (viernes.objectValue == true) {
-      intViernes = 1;
-      selectViernes = true;
-    }
-    if (sabado.objectValue == true) {
-      intSabado = 1;
-      selectSabado = true;
-    }
-    if (domingo.objectValue == true) {
-      intDomingo = 1;
-      selectDomingo = true;
-    }
+      if (lunes.objectValue == true) {
+        intLunes = 1;
+        selectLunes = true;
+      }
+      if (martes.objectValue == true) {
+        intMartes = 1;
+        selectMartes = true;
+      }
+      if (miercoles.objectValue == true) {
+        intMiercoles = 1;
+        selectMiercoles = true;
+      }
+      if (jueves.objectValue == true) {
+        intJueves = 1;
+        selectJueves = true;
+      }
+      if (viernes.objectValue == true) {
+        intViernes = 1;
+        selectViernes = true;
+      }
+      if (sabado.objectValue == true) {
+        intSabado = 1;
+        selectSabado = true;
+      }
+      if (domingo.objectValue == true) {
+        intDomingo = 1;
+        selectDomingo = true;
+      }
 
-    entity.idInstitucion = int.parse(prefs.idInsitucion);
-    entity.idInstitucionPersonal = -1;
-    entity.perLunes = intLunes;
-    entity.perMartes = intMartes;
-    entity.perMiercoles = intMiercoles;
-    entity.perJueves = intJueves;
-    entity.perViernes = intViernes;
-    entity.perSabado = intSabado;
-    entity.perDomingo = intDomingo;
-    entity.perLunesH = lunesH.objectValue;
-    entity.perMartesH = martesH.objectValue;
-    entity.perMiercolesH = miercolesH.objectValue;
-    entity.perJuevesH = juevesH.objectValue;
-    entity.perViernesH = viernesH.objectValue;
-    entity.perSabadoH = sabadoH.objectValue;
-    entity.perDomingoH = domingoH.objectValue;
-    entity.usuario = prefs.correoElectronico;
+      entity.idInstitucion = int.parse(prefs.idInsitucion);
+      entity.idInstitucionPersonal = -1;
+      entity.perLunes = intLunes;
+      entity.perMartes = intMartes;
+      entity.perMiercoles = intMiercoles;
+      entity.perJueves = intJueves;
+      entity.perViernes = intViernes;
+      entity.perSabado = intSabado;
+      entity.perDomingo = intDomingo;
+      entity.perLunesH = lunesH.objectValue;
+      entity.perMartesH = martesH.objectValue;
+      entity.perMiercolesH = miercolesH.objectValue;
+      entity.perJuevesH = juevesH.objectValue;
+      entity.perViernesH = viernesH.objectValue;
+      entity.perSabadoH = sabadoH.objectValue;
+      entity.perDomingoH = domingoH.objectValue;
+      entity.usuario = prefs.userId;
 
-    final dataMap = generic.add(entity, urlAddAtencionInstitucion);
+      final dataMap = generic.add(entity, urlAddAtencionInstitucion);
 
-    await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+      await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
 
-    if (result == "0")
-      scaffoldKey.currentState
-          .showSnackBar(messageOk("Se insertó correctamente"));
-    else
-      scaffoldKey.currentState
-          .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
+      if (result == "0")
+        scaffoldKey.currentState
+            .showSnackBar(messageOk("Se insertó correctamente"));
+      else
+        scaffoldKey.currentState
+            .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
 
-    setState(() {
-      _save = false;
-    });
+      setState(() {
+        _save = false;
+      });
+    }
   }
 }

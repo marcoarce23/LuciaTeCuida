@@ -103,7 +103,7 @@ class PreferensUser
     }
 
     get avatarImagen {
-      return _prefs.getString('avatarImagen') ?? 'https://definicionyque.es/wp-content/uploads/2017/11/Medicina_Preventiva.jpg';
+      return _prefs.getString('avatarImagen') ?? 'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg';
     }
 
     set avatarImagen( String value ) {

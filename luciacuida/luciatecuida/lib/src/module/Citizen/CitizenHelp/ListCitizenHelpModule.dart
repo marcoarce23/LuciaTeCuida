@@ -232,7 +232,7 @@ class _ListCitizenHelpModuleState extends State<ListCitizenHelpModule> {
         child: Column(
       children: <Widget>[
         ImageOvalNetwork(
-            imageNetworkUrl: prefs.avatarImagen, sizeImage: Size.fromWidth(40)),
+            imageNetworkUrl: 'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg', sizeImage: Size.fromWidth(40)),
         SizedBox(
           height: 1.5,
         ),

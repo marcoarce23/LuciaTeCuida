@@ -264,6 +264,11 @@ class _AtentionModuleState extends State<AtentionModule> {
   }
 
   _submit() async {
+     print('valor del prefsss. ${prefs.userId}');
+    if (prefs.userId == '-1')
+      scaffoldKey.currentState.showSnackBar(messageNOk(
+          "Para registrar una Atención debe registrar su Institución"));
+    else {
     if (!formKey.currentState.validate()) return;
 
     formKey.currentState.save();
@@ -333,5 +338,6 @@ print('valores: $entity');
     setState(() {
       _save = false;
     });
+  }
   }
 }
