@@ -4,6 +4,7 @@ import 'package:luciatecuida/src/Model/Generic.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenInstitution/CitizenInstitutionModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenMultimedia/CitizenImageDetailModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/FoundAllVoluntaryModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Voluntary/ListVoluntary.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 import 'package:luciatecuida/src/module/UtilModule/PageViewModule.dart';
 
@@ -137,8 +138,8 @@ class DataSearchMultimedia extends SearchDelegate {
       return Container();
     } else {
       return FutureBuilder(
-          future: Generic().getAll(new ListaMultimedia(),
-              urlGetListaMultimedia + '/74', primaryKeyListaMultimedia),
+          future: Generic().getAll(
+            new Multimedia(), urlGetMultimedia + '74', primaryKeyGetMultimedia),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
@@ -569,8 +570,8 @@ class DataSearchHelp extends SearchDelegate {
       return Container();
     } else {
       return FutureBuilder(
-          future: Generic().getAll(new ListaMultimedia(),
-              urlGetListaMultimedia + '/74', primaryKeyListaMultimedia),
+          future: Generic().getAll(
+            new Voluntary(), urlGetVoluntario, primaryKeyGetVoluntario),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
@@ -584,47 +585,25 @@ class DataSearchHelp extends SearchDelegate {
                       physics: ClampingScrollPhysics(),
                       itemCount: snapshot.data.length,
                       itemBuilder: (context, index) {
-                        ListaMultimedia listaMultimedia = snapshot.data[index];
-                        if (listaMultimedia.mulTitulo
+                        Voluntary list = snapshot.data[index];
+                        if (list.perNombrepersonal
                             .toLowerCase()
                             .contains(query.toLowerCase())) {
                           return InkWell(
                             child: ListTile(
-                              title: Text(listaMultimedia.mulTitulo),
-                              subtitle: Text(listaMultimedia.categoria),
+                              title: Text(list.perTelefono),
+                              subtitle: Text(list.perCorreo),
                             ),
                             onTap: () {
-                              if (listaMultimedia.idaCategoria == 74) {
-                                Navigator.push(
+                            Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          CitizenImageDetailModule(
-                                            multimediaImagen: listaMultimedia,
+                                          ListVoluntaryModule(
+                                           // multimediaImagen: list,
                                           )),
                                 );
-                                //imagenes
-                              }
-                              if (listaMultimedia.idaCategoria == 75) {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        PageViewModule(
-                                          title: listaMultimedia.mulTitulo,
-                                          selectedUrl:
-                                              listaMultimedia.mulEnlace,
-                                        )));
-                                //videos
-                              }
-                              if (listaMultimedia.idaCategoria == 76) {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        PageViewModule(
-                                          title: listaMultimedia.mulTitulo,
-                                          selectedUrl:
-                                              listaMultimedia.mulEnlace,
-                                        )));
-                                //pdf
-                              }
+                             
                             },
                           );
                         }

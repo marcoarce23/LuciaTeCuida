@@ -123,6 +123,8 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
   InputSexo sexo;
   InputNumberField token;
 
+  int _group = 1;
+  int _selectedRadio = 1;
   bool _save = false;
   bool esCovid = false;
   File foto;
@@ -130,6 +132,8 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
       'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg';
 
   var result;
+  int valorExpedido = 60;
+  int valorTipoEspecialidad = 11;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final generic = new Generic();
@@ -160,19 +164,26 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
     );
   }
 
-   _crearIconAppImagenes() {
+  _crearIconAppImagenes() {
     return IconButton(
-      icon: Icon(Icons.photo_size_select_actual, color: AppTheme.themeVino,),
+      icon: Icon(
+        Icons.photo_size_select_actual,
+        color: AppTheme.themeVino,
+      ),
       onPressed: _seleccionarFoto,
     );
   }
 
   _crearIconAppCamara() {
     return IconButton(
-      icon: Icon(Icons.camera_alt, color: AppTheme.themeVino,),
+      icon: Icon(
+        Icons.camera_alt,
+        color: AppTheme.themeVino,
+      ),
       onPressed: _tomarFoto,
     );
   }
+
   Widget _crearForm(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
@@ -225,22 +236,22 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
 
   Widget _crearCampos() {
     token = InputNumberField(
-        FaIcon(FontAwesomeIcons.creditCard, color: AppTheme.themeVino),
+        FaIcon(FontAwesomeIcons.barcode, color: AppTheme.themeVino),
         'Ingrese el token entregado:',
         '000000',
         'Ej: 023431',
         true);
 
-    tipoEspecialidad = InputDropDown(
-        FaIcon(FontAwesomeIcons.userMd, color: AppTheme.themeVino),
-        'Especialidad:',
-        '11',
-        urlGetClasificador + '10');
-    expedido = InputDropDown(
-        FaIcon(FontAwesomeIcons.sortDown, color: AppTheme.themeVino),
-        'Expedido:',
-        '60',
-        urlGetClasificador + '53');
+    // tipoEspecialidad = InputDropDown(
+    //     FaIcon(FontAwesomeIcons.userMd, color: AppTheme.themeVino),
+    //     'Especialidad:',
+    //     '11',
+    //     urlGetClasificador + '10');
+    // expedido = InputDropDown(
+    //     FaIcon(FontAwesomeIcons.sortDown, color: AppTheme.themeVino),
+    //     'Expedido:',
+    //     '60',
+    //     urlGetClasificador + '53');
     nombre = InputTextField(
         FaIcon(FontAwesomeIcons.userFriends, color: AppTheme.themeVino),
         'Nombre completo voluntario:',
@@ -290,7 +301,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
         entity.perPaginaWeb,
         'Ingrese su página web/bloc',
         false);
-    sexo = InputSexo();
+    //sexo = InputSexo();
 
     return FadeInLeft(
       duration: Duration(milliseconds: 250),
@@ -299,8 +310,8 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
           SizedBox(height: 10),
           // tipoEntidad,
           token,
-          tipoEspecialidad,
-          _crearEsCovid('Ayuda Covid'),
+          _crearEspecialidad(),
+          _crearEsCovid('Voluntario COVID-19'),
           nombre,
           telefono,
           Row(
@@ -309,10 +320,43 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
               Expanded(
                 child: ci,
               ),
-              expedido,
+              _crearExpedido(),
             ],
           ),
-          sexo,
+          //    _crearSexo(),
+
+          Row(
+            children: <Widget>[
+              SizedBox(width: 23.0),
+              FaIcon(FontAwesomeIcons.male, color: AppTheme.themeVino),
+              SizedBox(width: 15.0),
+              Text('Masculino'),
+              Radio(
+                value: 0,
+                groupValue: _group,
+                onChanged: (T) {
+                  print(T);
+_selectedRadio = T;
+                  setState(() {
+                    _group = T;
+                  });
+                },
+              ),
+              Text('Femenino'),
+              Radio(
+                value: 1,
+                groupValue: _group,
+                onChanged: (T) {
+                  print(T);
+_selectedRadio = T;
+                  setState(() {
+                    _group = T;
+                  });
+                },
+              ),
+            ],
+          ),
+
           complmementario,
 
           Row(
@@ -337,10 +381,86 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
     );
   }
 
+  Widget _crearExpedido() {
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(),
+                urlGetClasificador + '53', primaryKeyGetClasifidor),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Exp.'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.angleDown,
+                          color: AppTheme.themeVino),
+                      value: valorExpedido.toString(), //valor
+                      items: getDropDown(snapshot),
+                      onChanged: (value) {
+                        setState(() {
+                          valorExpedido = int.parse(value);
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
+  }
+
+  List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> lista = new List();
+
+    for (var i = 0; i < snapshot.data.length; i++) {
+      GetClasificador item = snapshot.data[i];
+      lista.add(DropdownMenuItem(
+        child: Text(item.nombre),
+        value: item.id.toString(),
+      ));
+    }
+    return lista;
+  }
+
+  Widget _crearEspecialidad() {
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(),
+                urlGetClasificador + '10', primaryKeyGetClasifidor),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Especialidad'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.angleDown,
+                          color: AppTheme.themeVino),
+                      value: valorTipoEspecialidad.toString(), //valor
+                      items: getDropDown(snapshot),
+                      onChanged: (value) {
+                        setState(() {
+                          valorTipoEspecialidad = int.parse(value);
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
+  }
+
   Widget _crearEsCovid(String text) {
     return SwitchListTile(
       value: esCovid,
       title: Text(text),
+      subtitle: Text('Habilitar opción si será voluntario.'),
       activeColor: AppTheme.themeVino,
       onChanged: (value) => setState(() {
         esCovid = value;
@@ -382,7 +502,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
     entity.idcovPersonal = 0;
     entity.idcovInstitucion = int.parse(token.objectValue);
     entity.idcovLogin = int.parse(prefs.userId);
-    entity.idaTipopersonal = int.parse(tipoEspecialidad.objectValue);
+    entity.idaTipopersonal = valorTipoEspecialidad;
     entity.perNombrepersonal = nombre.objectValue;
     entity.perApellido = '.';
     entity.perCorreo = email.objectValue;
@@ -392,8 +512,8 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
     else
       entity.perAyudacovid = 0;
     entity.perCI = ci.objectValue;
-    entity.idaExtension = int.parse(expedido.objectValue);
-    entity.idaSexo = 0;
+    entity.idaExtension = valorExpedido;
+    entity.idaSexo = _selectedRadio;
     entity.perInformacionComplementaria = complmementario.objectValue;
     entity.perFacebbok = facebook.objectValue;
     entity.perTwitter = twitter.objectValue;
@@ -427,7 +547,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
     //Navigator.of(context).push(CupertinoPageRoute(builder: (BuildContext context) => SliderShowModule()));
   }
 
-    _seleccionarFoto() async => _procesarImagen(ImageSource.gallery);
+  _seleccionarFoto() async => _procesarImagen(ImageSource.gallery);
   _tomarFoto() async => _procesarImagen(ImageSource.camera);
 
   _procesarImagen(ImageSource origen) async {
@@ -443,4 +563,3 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
     });
   }
 }
-

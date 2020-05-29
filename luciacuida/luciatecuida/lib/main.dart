@@ -24,6 +24,8 @@ import 'package:luciatecuida/src/module/Citizen/Voluntary/FoundVoluntaryModule.d
 import 'package:luciatecuida/src/module/Citizen/Voluntary/ListEventModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/ListVoluntary.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/VoluntaryModule.dart';
+import 'package:luciatecuida/src/module/Contactos/ContactAppModule.dart';
+import 'package:luciatecuida/src/module/Contactos/ContatGeneralModule.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Login/AgreeLoginModule.dart';
 import 'package:luciatecuida/src/module/Login/ForgetPasswordModule.dart';
@@ -99,8 +101,7 @@ class _MyAppState extends State<MyApp> {
 
      // initialRoute: prefs.ultimaPagina,
     //  home: new FilePickerDemo(),//MapAdressModule(),
-//home: new SignInDemo(),
-home: new SplashScreenModule(),//FilePickerDemo(),
+        home: new ContactGeneralModule(),//FilePickerDemo(),
 
         routes: <String, WidgetBuilder>{
         'login': (BuildContext context) => new SignUpModule(),

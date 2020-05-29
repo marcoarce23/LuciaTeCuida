@@ -40,13 +40,12 @@ class _SignUpModuleState extends State<SignUpModule> {
   var result;
   var result1;
 
- GoogleSignIn _googleSignIn = GoogleSignIn(
-  scopes: <String>[
-    'email',
-    'profile',
-  ],
-);
-
+  GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: <String>[
+      'email',
+      'profile',
+    ],
+  );
 
   GoogleSignInAccount _currentUser;
   GoogleSignInAccount currentUser;
@@ -72,7 +71,7 @@ class _SignUpModuleState extends State<SignUpModule> {
     _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
       setState(() {
         currentUser = account;
-       });
+      });
     });
     _googleSignIn.signInSilently();
   }
@@ -158,22 +157,18 @@ class _SignUpModuleState extends State<SignUpModule> {
     });
   }
 
-Future<void> _handleSignOut() => _googleSignIn.disconnect();
+  Future<void> _handleSignOut() => _googleSignIn.disconnect();
 
   Future<void> handleSignIn() async {
     try {
       await _googleSignIn.signIn();
       _googleSignIn.signIn().then((value) {
-        //Timer(const Duration(milliseconds: 400), );
-print('email del botonnnn:${currentUser.email} ');
         final dataMap1 = generic.getAll(
             entity, getLogin + '${currentUser.email}', primaryKeyGetLogin);
 
         dataMap1.then((value) {
-          print('fatamap1 resultn:$value y tamaño ${value.length} y datamap1 : $dataMap1');
           if (value.length > 0) {
             for (int i = 0; i < value.length; i++) {
-              print('fatamap1 FOR VALOR VALUE:${value[i]}');
               entity = value[i];
             }
             prefs.imei = entity.imei;
@@ -194,8 +189,6 @@ print('email del botonnnn:${currentUser.email} ');
                   child: IntroScreenModule(),
                 ));
           } else {
-
-            print('entro al elseeeee y currenteID ${currentUser.id}');
             entity.idUsuario = currentUser.id;
             entity.idInstitucion = '-1';
             entity.nombrePersona = currentUser.displayName;
@@ -212,7 +205,6 @@ print('email del botonnnn:${currentUser.email} ');
 
             final dataMap = generic.add(entity, urlAddSignIn);
             dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-                 print('resultado de logueo del elseee:$result ');
 
             if (result != "-1") {
               prefs.imei = _platformImei;
@@ -221,15 +213,13 @@ print('email del botonnnn:${currentUser.email} ');
               prefs.avatarImagen = currentUser.photoUrl;
               prefs.userId = result;
 
- print('prefsusuario cuando existe:${prefs.userId} ');
-
               Navigator.push(
                   context,
                   PageTransition(
                     curve: Curves.bounceOut,
                     type: PageTransitionType.rotate,
                     alignment: Alignment.topCenter,
-                    child: IntroScreenModule(),//AgreeLoginModule(),
+                    child: IntroScreenModule(), //AgreeLoginModule(),
                   ));
             } else {
               scaffoldKey.currentState.showSnackBar(
@@ -244,12 +234,11 @@ print('email del botonnnn:${currentUser.email} ');
     }
   }
 
-
   Widget build(BuildContext context) {
     return Scaffold(
         key: scaffoldKey,
         body: SafeArea(
-                  child: Stack(
+          child: Stack(
             children: <Widget>[
               //   crearFondo(context),
               Container(
@@ -275,8 +264,8 @@ print('email del botonnnn:${currentUser.email} ');
                         child: Column(
                           children: <Widget>[
                             SizedBox(height: 20.0),
-                            Text('Estamos contigo. Bienvenido',
-                                style: kTitleSigIn),
+                             Text('Bienvenido',
+                                 style: kTitleSigIn),
                             Text('Lucia Te Cuida.', style: kSubTitleSigIn),
                             Image(
                                 image: AssetImage("assets/buu.PNG"),
@@ -304,21 +293,25 @@ print('email del botonnnn:${currentUser.email} ');
             _dividerOr(),
             _gmailButton(),
             _botonInvitado('Entrar como invitado'),
-           // _gmailButtonCerrar(),
-            SizedBox(height:10.0),
-             Row(
-               mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(width:4.0),
-              FaIcon(FontAwesomeIcons.clipboardList, color: AppTheme.themeVino, size: 40.0,),
-              SizedBox(width:5.0),
-              Text(
-                ' Importante. Si deseas ingresar con otra\n cuenta Gmail, seleccionar la opcion "Cerrar\nSesión Google" y vuelva a ingresar.',
-                style: kTitleCursive3Style,
-              ),
-            ],
-          ),
-         
+            // _gmailButtonCerrar(),
+            SizedBox(height: 10.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                SizedBox(width: 4.0),
+                FaIcon(
+                  FontAwesomeIcons.clipboardList,
+                  color: AppTheme.themeVino,
+                  size: 40.0,
+                ),
+                SizedBox(width: 5.0),
+                Text(
+                  ' Importante. Si deseas ingresar con otra\n cuenta Gmail, seleccionar la opcion "Cerrar\nSesión Google" y vuelva a ingresar.',
+                  style: kTitleCursive3Style,
+                ),
+              ],
+            ),
+
             copyRigth(),
           ],
         ),
@@ -355,7 +348,6 @@ print('email del botonnnn:${currentUser.email} ');
               ),
             ],
           ),
-         
         ],
       ),
     );
@@ -364,7 +356,7 @@ print('email del botonnnn:${currentUser.email} ');
   Widget _gmailButton() {
     return OutlineButton(
       splashColor: Colors.black,
-      onPressed: handleSignIn,// _handleSignIn,
+      onPressed: handleSignIn, // _handleSignIn,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
       highlightElevation: 0,
       borderSide: BorderSide(color: Colors.black),
@@ -391,9 +383,8 @@ print('email del botonnnn:${currentUser.email} ');
     );
   }
 
-Widget _botonInvitado (String text)
-{
-     return Container(
+  Widget _botonInvitado(String text) {
+    return Container(
       padding: EdgeInsets.symmetric(horizontal: 70.0),
       width: MediaQuery.of(context).size.width,
       child: RaisedButton.icon(
@@ -406,28 +397,27 @@ Widget _botonInvitado (String text)
           style: kSubtitleStyle,
         ),
         icon: FaIcon(FontAwesomeIcons.peopleArrows, color: Colors.white),
-        onPressed: (){
+        onPressed: () {
           prefs.imei = entity.imei;
-            prefs.nombreUsuario = 'Invitado';
-            prefs.correoElectronico = 'Invitado';
-            prefs.nombreInstitucion = 'Invitado';
-            prefs.idInsitucion = '0';
-            prefs.idPersonal = '0';
-            prefs.userId = '0';
+          prefs.nombreUsuario = 'Invitado';
+          prefs.correoElectronico = 'Invitado';
+          prefs.nombreInstitucion = 'Invitado';
+          prefs.idInsitucion = '0';
+          prefs.idPersonal = '0';
+          prefs.userId = '0';
 
-            Navigator.push(
-                context,
-                PageTransition(
-                  curve: Curves.bounceOut,
-                  type: PageTransitionType.rotate,
-                  alignment: Alignment.topCenter,
-                  child: IntroScreenModule(),
-                ));
+          Navigator.push(
+              context,
+              PageTransition(
+                curve: Curves.bounceOut,
+                type: PageTransitionType.rotate,
+                alignment: Alignment.topCenter,
+                child: IntroScreenModule(),
+              ));
         },
       ),
     );
   }
-
 
   Widget _gmailButtonCerrar() {
     return OutlineButton(

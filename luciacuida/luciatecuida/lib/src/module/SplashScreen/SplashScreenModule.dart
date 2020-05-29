@@ -11,7 +11,7 @@ class SplashScreenModuleState extends State<SplashScreenModule> {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-      seconds: 7,
+      seconds: 3,
       navigateAfterSeconds: new SignUpModule(),
      
       photoSize: 210,

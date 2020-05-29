@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/PreferenceUser.dart';
-import 'package:luciatecuida/src/Provider/NotificacionesModule.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/DrawerWidget/DrawerWiguet.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenEmergency/CitizenEmergencyModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenEvents/CitizenEventsModule.dart';
-import 'package:luciatecuida/src/module/Citizen/CitizenHelp/CitizenAtentionRegisterModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenHelp/CitizenHelpModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenInstitution/CitizenListInstitucionModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenMultimedia/CitizenMultimediaModule.dart';
@@ -22,7 +20,6 @@ import 'package:luciatecuida/src/module/Citizen/Voluntary/FoundVoluntaryModule.d
 import 'package:luciatecuida/src/module/Citizen/Voluntary/VoluntaryModule.dart';
 import 'package:luciatecuida/src/module/SplashScreen/IntroScreenModule.dart';
 import 'package:luciatecuida/src/module/Login/SiginDemo.dart';
-import 'package:luciatecuida/src/module/UtilModule/PageViewModule.dart';
 
 class HomePageModule extends StatefulWidget {
   static final String routeName = 'home';

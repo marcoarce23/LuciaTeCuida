@@ -395,7 +395,7 @@ Widget fondoApp() {
 Divider divider() {
   return Divider(
     thickness: 1.5,
-    color: Color.fromRGBO(165, 5, 5, 1.0),
+    color: AppTheme.themeVino,
     endIndent: 20.0,
     indent: 20.0,
   );

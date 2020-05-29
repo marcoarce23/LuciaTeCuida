@@ -392,6 +392,8 @@ class InputSexo extends StatefulWidget {
 
 class _InputSexoState extends State<InputSexo> {
   int _selectedRadio = 0;
+  bool _selectedM = true;
+  bool _selectedF = false;
   @override
   Widget build(BuildContext context) {
     return getWidget();
@@ -403,22 +405,24 @@ class _InputSexoState extends State<InputSexo> {
         ListTile(
           title: Text('Masculino'),
           leading: Radio(
-            value: 0,
+            value: _selectedM,
             activeColor: AppTheme.themeVino,
             groupValue: _selectedRadio,
             onChanged: (value) {
-              setSelectedRadio(value);
+              print(value);
+              setSelectedRadio(value, false);
             },
           ),
         ),
         ListTile(
           title: Text('Femenino'),
           leading: Radio(
-            value: _selectedRadio,
-            activeColor: Colors.orangeAccent,
+            value: _selectedF,
+            activeColor: AppTheme.themeVino,
             groupValue: _selectedRadio,
             onChanged: (value) {
-              setSelectedRadio(value);
+              print(value);
+              setSelectedRadio(false, value);
             },
           ),
         ),
@@ -426,9 +430,11 @@ class _InputSexoState extends State<InputSexo> {
     );
   }
 
-  setSelectedRadio(int value) {
+  setSelectedRadio(bool masculino, femenino) {
+    print('masculino $masculino femenino $femenino');
     setState(() {
-      _selectedRadio = value;
+      _selectedM = masculino;
+      _selectedF = femenino;
     });
   }
 }
