@@ -233,49 +233,51 @@ class _SignUpModuleState extends State<SignUpModule> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: scaffoldKey,
-        body: SafeArea(
-          child: Stack(
-            children: <Widget>[
-              //   crearFondo(context),
-              Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomRight,
-                    stops: [0.1, 0.4, 0.6, 0.9],
-                    colors: [
-                      Color.fromRGBO(254, 253, 253, 1.0),
-                      Color.fromRGBO(254, 253, 251, 1.0),
-                      Color.fromRGBO(235, 217, 211, 1.0),
-                      Color.fromRGBO(253, 252, 252, 1.0),
-                    ],
+        body: SingleChildScrollView(
+                  child: SafeArea(
+            child: Stack(
+              children: <Widget>[
+                //   crearFondo(context),
+                Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomRight,
+                      stops: [0.1, 0.4, 0.6, 0.9],
+                      colors: [
+                        Color.fromRGBO(254, 253, 253, 1.0),
+                        Color.fromRGBO(254, 253, 251, 1.0),
+                        Color.fromRGBO(235, 217, 211, 1.0),
+                        Color.fromRGBO(253, 252, 252, 1.0),
+                      ],
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 25.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      Container(
-                        child: Column(
-                          children: <Widget>[
-                            SizedBox(height: 20.0),
-                             Text('Bienvenido',
-                                 style: kTitleSigIn),
-                            Text('Lucia Te Cuida.', style: kSubTitleSigIn),
-                            Image(
-                                image: AssetImage("assets/buu.PNG"),
-                                height: 230.0),
-                          ],
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 25.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: <Widget>[
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              SizedBox(height: 20.0),
+                               Text('Bienvenido',
+                                   style: kTitleSigIn),
+                              Text('Lucia Te Cuida.', style: kSubTitleSigIn),
+                              Image(
+                                  image: AssetImage("assets/buu.PNG"),
+                                  height: 230.0),
+                            ],
+                          ),
                         ),
-                      ),
-                      //   SizedBox(height: 20.0),
-                      _crearForm(context),
-                    ],
+                        //   SizedBox(height: 20.0),
+                        _crearForm(context),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ));
   }

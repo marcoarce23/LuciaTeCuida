@@ -59,9 +59,9 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
               stops: [0.1, 0.4, 0.7, 0.9],
               colors: [
                 Color.fromRGBO(237, 237, 236, 1.0),
-      Color.fromRGBO(252, 252, 252, 1.0),
-       Color.fromRGBO(251, 251, 251, 1.0),
-                  Color.fromRGBO(239, 240, 239, 1.0),
+                Color.fromRGBO(252, 252, 252, 1.0),
+                Color.fromRGBO(251, 251, 251, 1.0),
+                Color.fromRGBO(239, 240, 239, 1.0),
                 //     Color.fromRGBO(245, 173, 53, 1.0),
                 //     Color.fromRGBO(236, 220, 109, 1.0),
                 //     Color.fromRGBO(70, 191, 167 , 1.0),
@@ -98,7 +98,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                   ),
                 ),
                 Container(
-                  height: 500.0,
+                  height: 440.0,
                   child: PageView(
                     physics: ClampingScrollPhysics(),
                     controller: _pageController,
@@ -123,9 +123,9 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                               ),
                             ),
                             Text(
-                              
                               'Lucia Te Cuida, es una APP social para tod@s.',
-                              style: kTitleStyleBlack, textAlign:TextAlign.center,
+                              style: kTitleStyleBlack,
+                              textAlign: TextAlign.center,
                             ),
                             SizedBox(height: 15.0),
                             Expanded(
@@ -148,7 +148,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                   Row(
                                     children: <Widget>[
                                       FaIcon(FontAwesomeIcons.handHoldingHeart,
-                                          color: AppTheme.themeVino, size: 35.0),
+                                          color: AppTheme.themeVino,
+                                          size: 35.0),
                                       SizedBox(width: 11.0),
                                       Text(
                                         'Personas que requieren de apoyo espiritual,\nde motivacional y emocional.',
@@ -160,7 +161,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                   Row(
                                     children: <Widget>[
                                       FaIcon(FontAwesomeIcons.handHoldingWater,
-                                          color: AppTheme.themeVino, size: 35.0),
+                                          color: AppTheme.themeVino,
+                                          size: 35.0),
                                       SizedBox(width: 10.0),
                                       Text(
                                         'Es una aplicación tan humana que pre_\ntende dar una esperanza a las personas.',
@@ -191,7 +193,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                             SizedBox(height: 10.0),
                             Text(
                               'QUIENES FORMAN PARTE?.',
-                              style: kTitleStyleBlack, textAlign:TextAlign.center,
+                              style: kTitleStyleBlack,
+                              textAlign: TextAlign.center,
                             ),
                             SizedBox(height: 13.0),
                             Expanded(
@@ -200,7 +203,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                   Row(
                                     children: <Widget>[
                                       FaIcon(FontAwesomeIcons.peopleCarry,
-                                          color: AppTheme.themeVino, size: 35.0),
+                                          color: AppTheme.themeVino,
+                                          size: 35.0),
                                       SizedBox(width: 10.0),
                                       Text(
                                         'Grupo de voluntarios comprometidos\n y dedicados a brindarte un apoyo.',
@@ -212,7 +216,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                   Row(
                                     children: <Widget>[
                                       FaIcon(FontAwesomeIcons.peopleArrows,
-                                          color: AppTheme.themeVino, size: 35.0),
+                                          color: AppTheme.themeVino,
+                                          size: 35.0),
                                       SizedBox(width: 13.0),
                                       Text(
                                         'Personas que nos preocupa tu salud,\n nos preocupa tu bienestar.',
@@ -224,7 +229,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                   Row(
                                     children: <Widget>[
                                       FaIcon(FontAwesomeIcons.diagnoses,
-                                          color: AppTheme.themeVino, size: 35.0),
+                                          color: AppTheme.themeVino,
+                                          size: 35.0),
                                       SizedBox(width: 10.0),
                                       Text(
                                         'Grupo de ciudadanos bolivianos que \n convecidos con nuestro trabajo\npodemos hacer a diferencia en tu vida.',
@@ -257,7 +263,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                               children: <Widget>[
                                 Text(
                                   'SOLO TE RECOMENDAMOS.',
-                                  style: kTitleStyleBlack, textAlign:TextAlign.center,
+                                  style: kTitleStyleBlack,
+                                  textAlign: TextAlign.center,
                                 ),
                               ],
                             ),
@@ -268,7 +275,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                   Row(
                                     children: <Widget>[
                                       FaIcon(FontAwesomeIcons.firstAid,
-                                          color: AppTheme.themeVino, size: 30.0),
+                                          color: AppTheme.themeVino,
+                                          size: 30.0),
                                       SizedBox(width: 10.0),
                                       Text(
                                         'Hacer buen uso de la aplicación, el tiempo \ntuyo y el nuestro es valioso.',
@@ -280,7 +288,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                   Row(
                                     children: <Widget>[
                                       FaIcon(FontAwesomeIcons.listUl,
-                                          color: AppTheme.themeVino, size: 30.0),
+                                          color: AppTheme.themeVino,
+                                          size: 30.0),
                                       SizedBox(width: 10.0),
                                       Text(
                                         'Brindar información real y veridica a las \npersonas con las que tengas un contacto \na traves de la aplicación LuciaTeCuida.',
@@ -292,7 +301,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                   Row(
                                     children: <Widget>[
                                       FaIcon(FontAwesomeIcons.users,
-                                          color: AppTheme.themeVino, size: 30.0),
+                                          color: AppTheme.themeVino,
+                                          size: 30.0),
                                       SizedBox(width: 10.0),
                                       Text(
                                         'Difunde el uso de la aplicación con tus \namig@s, familiares y personas para que \npodamos llegar a mas personas.',
