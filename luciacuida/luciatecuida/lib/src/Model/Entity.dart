@@ -3,6 +3,108 @@ abstract class Entity {
   Map<String, dynamic> toJson();
 }
 
+
+class Emergencia extends Entity {
+  int idEmergencia;
+  String foto;
+  String nombre;
+  String descripcion;
+  String abreviacion;
+  int telefono;
+  int callCenter;
+  String grupo;
+  String correo;
+  String pagina;
+  String departamento;
+
+
+  Emergencia(
+      {this.idEmergencia,
+      this.foto,
+      this.nombre,
+       this.descripcion,
+      this.abreviacion,
+      this.telefono,
+      this.callCenter,
+      this.grupo,
+      this.correo,
+      this.pagina,
+      this.departamento
+     });
+
+  fromJson(Map<String, dynamic> json) => new Emergencia(
+        idEmergencia: json["IDEME_CONTACTO"],
+        foto: json["EME_FOTO"],
+        nombre: json["EME_NOMBRE"],
+        descripcion: json["EME_DESCRIPCION"],
+        abreviacion: json["EME_ABREVIACION"],
+        telefono: json["EME_TELEFONO"],
+        callCenter: json["EME_CALL"],
+        grupo: json["EME_GRUPO"],
+        correo: json["EME_CORREO"],
+        pagina: json["EME_PAGINA"],
+         departamento: json["EME_DEPARTAMENTO"],
+      
+      );
+
+  Map<String, dynamic> toJson() => {
+        "IDEME_CONTACTO": idEmergencia,
+        "EME_FOTO": foto,
+        "EME_NOMBRE": nombre,
+        "EME_DESCRIPCION": telefono,
+        "EME_ABREVIACION": grupo,
+        "EME_TELEFONO": correo,
+         "EME_CALL": nombre,
+        "EME_GRUPO": telefono,
+        "EME_CORREO": grupo,
+        "EME_PAGINA": correo,
+       
+      };
+}
+
+class Contactos extends Entity {
+  int idContacto;
+  String foto;
+  String nombre;
+  int telefono;
+  String grupo;
+  String correo;
+  String departamento;
+
+  Contactos(
+      {this.idContacto,
+      this.foto,
+       this.nombre,
+
+      this.telefono,
+      this.grupo,
+      this.correo,
+      this.departamento
+     });
+
+  fromJson(Map<String, dynamic> json) => new Contactos(
+        idContacto: json["IDCOV_CONTACTO"],
+        foto: json["CON_FOTO"],
+        nombre: json["CON_NOMBRE"],
+        telefono: json["CON_TELEFONO"],
+        grupo: json["CON_GRUPO"],
+        correo: json["CON_CORREO"],
+        departamento: json["CON_DEPARTAMENTO"],
+      
+      );
+
+  Map<String, dynamic> toJson() => {
+        "IDCOV_CONTACTO": idContacto,
+        "CON_FOTO": foto,
+        "CON_NOMBRE": nombre,
+        "CON_TELEFONO": telefono,
+        "CON_GRUPO": grupo,
+        "CON_CORREO": correo,
+        "CON_DEPARTAMENTO": departamento
+       
+      };
+}
+
 class Institucion extends Entity {
   int idInstitucion;
   String foto;

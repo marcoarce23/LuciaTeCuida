@@ -64,7 +64,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
   Widget futureItemsEntity(BuildContext context) {
     return FutureBuilder(
         future: generic.getAll(
-            new RegistroAmigo(), urlGetDevuelveAyuda, primaryKeyGetAyudaAmigo),
+            new Emergencia(), getEmergency, primaryKeyGetEmergency),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
@@ -86,7 +86,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
         physics: ClampingScrollPhysics(),
         itemCount: snapshot.data.length,
         itemBuilder: (context, index) {
-          RegistroAmigo entityItem = snapshot.data[index];
+          Emergencia entityItem = snapshot.data[index];
 
           return Column(
             children: <Widget>[
@@ -112,7 +112,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
     );
   }
 
-  Widget listEntity(BuildContext context, RegistroAmigo entityItem) {
+  Widget listEntity(BuildContext context, Emergencia entityItem) {
     return Row(
       children: <Widget>[
         Column(
@@ -128,7 +128,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
-                    Text('${entityItem.regPersona} ', style: kTitleCardStyle),
+                    Text('${entityItem.nombre} ', style: kTitleCardStyle),
                   ],
                 )),
 
@@ -141,7 +141,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
                   size: 15,
                 ),
                 Text(
-                  'Telefono: ${entityItem.regTelefono}',
+                  'Telefono: ${entityItem.telefono}',
                   style: kSubTitleCardStyle,
                 ),
               ],
@@ -179,7 +179,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
                       size: 25,
                     ),
                     onTap: () {
-                      callNumber(int.parse(entityItem.regTelefono));
+                      callNumber(entityItem.telefono);
                     },
                   ),
                   SizedBox(width: 20.0),
@@ -190,7 +190,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
                       size: 25,
                     ),
                     onTap: () {
-                      sendSMS(int.parse(entityItem.regTelefono));
+                      sendSMS(entityItem.telefono);
                     },
                   ),
                  
@@ -202,7 +202,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
                       size: 25,
                     ),
                     onTap: () {
-                      callWhatsApp(int.parse(entityItem.regTelefono));
+                      callWhatsApp(entityItem.telefono);
                     },
                   ), SizedBox(width: 20.0),
                   InkWell(
@@ -214,7 +214,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
                     onTap: () {
                       Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PageViewModule(title:'Pagina emergencia', selectedUrl: 'https://www.boliviasegura.gob.bo/',)),
+                    MaterialPageRoute(builder: (context) => PageViewModule(title:'Pagina emergencia', selectedUrl: entityItem.correo,)),
                   );
                     },
                   ),
@@ -226,7 +226,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
     );
   }
 
-  Container iconEntity(RegistroAmigo entityItem) {
+  Container iconEntity(Emergencia entityItem) {
     return Container(
         child: Column(
       children: <Widget>[

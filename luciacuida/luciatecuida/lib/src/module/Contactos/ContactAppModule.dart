@@ -63,7 +63,7 @@ class _ContactAppModuleState extends State<ContactAppModule> {
   Widget futureItemsEntity(BuildContext context) {
     return FutureBuilder(
         future: generic.getAll(
-            new RegistroAmigo(), urlGetDevuelveAyuda, primaryKeyGetAyudaAmigo),
+            new Contactos(), getContactos, primaryKeyGetContacto),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
@@ -85,7 +85,7 @@ class _ContactAppModuleState extends State<ContactAppModule> {
         physics: ClampingScrollPhysics(),
         itemCount: snapshot.data.length,
         itemBuilder: (context, index) {
-          RegistroAmigo entityItem = snapshot.data[index];
+          Contactos entityItem = snapshot.data[index];
 
           return Column(
             children: <Widget>[
@@ -111,7 +111,7 @@ class _ContactAppModuleState extends State<ContactAppModule> {
     );
   }
 
-  Widget listEntity(BuildContext context, RegistroAmigo entityItem) {
+  Widget listEntity(BuildContext context, Contactos entityItem) {
     return Row(
       children: <Widget>[
         Column(
@@ -127,7 +127,7 @@ class _ContactAppModuleState extends State<ContactAppModule> {
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
-                    Text('${entityItem.regPersona} ', style: kTitleCardStyle),
+                    Text('${entityItem.nombre} ', style: kTitleCardStyle),
                   ],
                 )),
 
@@ -140,7 +140,7 @@ class _ContactAppModuleState extends State<ContactAppModule> {
                   size: 15,
                 ),
                 Text(
-                  'Telefono: ${entityItem.regTelefono}',
+                  'Telefono: ${entityItem.telefono}',
                   style: kSubTitleCardStyle,
                 ),
               ],
@@ -157,7 +157,7 @@ class _ContactAppModuleState extends State<ContactAppModule> {
                   RichText(
                     overflow: TextOverflow.clip,
                     text: TextSpan(
-                      text: 'Correo: ${entityItem.regUbicacion}',
+                      text: 'Correo: ${entityItem.correo}',
                       style: TextStyle(fontSize: 14, color: Colors.black),
                     ),
                   ),
@@ -178,7 +178,7 @@ class _ContactAppModuleState extends State<ContactAppModule> {
                       size: 25,
                     ),
                     onTap: () {
-                      callNumber(int.parse(entityItem.regTelefono));
+                      callNumber(entityItem.telefono);
                     },
                   ),
                   SizedBox(width: 20.0),
@@ -189,7 +189,7 @@ class _ContactAppModuleState extends State<ContactAppModule> {
                       size: 25,
                     ),
                     onTap: () {
-                      sendSMS(int.parse(entityItem.regTelefono));
+                      sendSMS(entityItem.telefono);
                     },
                   ),
                   SizedBox(width: 20.0),
@@ -201,9 +201,9 @@ class _ContactAppModuleState extends State<ContactAppModule> {
                     ),
                     onTap: () {
                       sendEmailAdvanced(
-                          entityItem.regPersona,
-                          "Colaboración ${entityItem.regTelefono}",
-                          "Estimad@:  ${entityItem.regPersona}, favor su colaboración en: ");
+                          entityItem.correo,
+                          "Colaboración ${entityItem.telefono}",
+                          "Estimad@:  ${entityItem.telefono}, favor su colaboración en: ");
                     },
                   ),
                   SizedBox(width: 20.0),
@@ -214,7 +214,7 @@ class _ContactAppModuleState extends State<ContactAppModule> {
                       size: 25,
                     ),
                     onTap: () {
-                      callWhatsApp(int.parse(entityItem.regTelefono));
+                      callWhatsApp(entityItem.telefono);
                     },
                   )
                 ],
@@ -225,7 +225,7 @@ class _ContactAppModuleState extends State<ContactAppModule> {
     );
   }
 
-  Container iconEntity(RegistroAmigo entityItem) {
+  Container iconEntity(Contactos entityItem) {
     return Container(
         child: Column(
       children: <Widget>[
