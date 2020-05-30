@@ -102,8 +102,23 @@ class _HomePageModuleState extends State<HomePageModule> {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      height: 15.0,
+                   
+       
+             Row(
+                      children: <Widget>[
+                        
+                            Text('Comparte la aplicación.'),
+                            SizedBox(width:10.0),
+                        FaIcon(
+                  FontAwesomeIcons.shareAltSquare,
+                  color: AppTheme.themeVino,
+                  size: 18,
+                ),
+               
+                          ],
+                        ),
+                         SizedBox(
+                      height: 10.0,
                     ),
                     _botonesRedondeados()
                   ],
@@ -256,12 +271,14 @@ class DrawerCitizen extends StatelessWidget {
           CustomListTile(
               Icons.home,
               'Inicio',
-              () => //openWeb('http://mapacovid19.ruta88.net/'),
+              () => sharedText('Comaprte la aplicación LuciaTeCUida','Compartiendo la app http://bit.ly/mrPlayStore app','text/html')),
+              //callWhatsAppAdvanced('Queremos compartir la ��������������������������������� http://bit.ly/mrPlayStore app')),
+              //openWeb('http://mapacovid19.ruta88.net/'),
                   //sharedImage('assets/image/twitter.jpg','twitter','twitter.jpg','jpg','imagen de apoyo JPG'),
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignInDemo()),
-                  )),
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => SignInDemo()),
+                  // )),
          
           CustomListTile(
               Icons.business,

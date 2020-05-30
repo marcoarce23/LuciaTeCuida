@@ -5,6 +5,7 @@ import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vector_math/vector_math_64.dart' as math;
 import 'package:path_provider/path_provider.dart';
@@ -13,8 +14,7 @@ import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
-final String userName=null;
-
+final String userName = null;
 
 int daysInMonth(int month) {
   var now = DateTime.now();
@@ -27,36 +27,42 @@ int daysInMonth(int month) {
 }
 
 Future<LatLng> getLocation() async {
-  
-   final Location location = Location();
-    LocationData location1;
-     LocationData locationResult ;
-    try{
-      locationResult = await location.getLocation();
-    }on PlatformException catch(e)
-    {
-       if(e.code == 'PERMISSION DENIED')
-        print('Permission denied');
-      else if (e.code == 'PERMISSION DENIED_NEVER_ASK')
+  final Location location = Location();
+  LocationData location1;
+  LocationData locationResult;
+  try {
+    locationResult = await location.getLocation();
+  } on PlatformException catch (e) {
+    if (e.code == 'PERMISSION DENIED')
+      print('Permission denied');
+    else if (e.code == 'PERMISSION DENIED_NEVER_ASK')
       print('Permission denied enable ask');
-    }
-        location1 = locationResult;
-        print('Es mica casa de utillll: ${location1.latitude} -- ${location1.longitude}');
-        return  LatLng(location1.latitude, location1.longitude);
- }
+  }
+  location1 = locationResult;
+  return LatLng(location1.latitude, location1.longitude);
+}
 
- callWhatsApp(int number) async 
-    {
-     await FlutterOpenWhatsapp.sendSingleMessage("591"+number.toString(), "*Lucia te cuida* :Un saludo cordial, le pido su colaboración...");
-    }
+callWhatsApp(int number) async {
+  await FlutterOpenWhatsapp.sendSingleMessage("591" + number.toString(),
+      "*Lucia te cuida* :Un saludo cordial, le pido su colaboración...");
+}
 
-sharedImage(String imagePath, String nameImage, String nameAttachExtension, String extensionImage, String detail) async 
-    {
-        final ByteData bytes = await rootBundle.load(imagePath);
-        Share.file(nameImage, nameAttachExtension, 
-                        bytes.buffer.asUint8List(), 
-                        'image/$extensionImage', text: detail);
-    }
+callWhatsAppAdvanced(String message) async {
+  await FlutterOpenWhatsapp.sendSingleMessage(
+      '', message);
+}
+
+sharedImage(String imagePath, String nameImage, String nameAttachExtension,
+    String extensionImage, String detail) async {
+  final ByteData bytes = await rootBundle.load(imagePath);
+  Share.file(nameImage, nameAttachExtension, bytes.buffer.asUint8List(),
+      'image/$extensionImage',
+      text: detail);  
+}
+
+sharedText(String title, String text, String mimeType) async {
+  Share.text(title, text, mimeType);  
+}
 
 openWeb(String url) async {
   String message = 'Error al abrir la página';
@@ -85,7 +91,7 @@ sendEmail(String email, String subject) async {
 }
 
 sendEmailAdvanced(String email, String subject, String body) async {
-  String message = 'No s epudo enviar el correo';
+  String message = 'Problemas al enviar el correo, vuelva a intentarlo.';
   var url = 'mailto:$email?subject= $subject&body=$body';
   if (await canLaunch(url)) {
     await launch(url);
@@ -94,7 +100,7 @@ sendEmailAdvanced(String email, String subject, String body) async {
 }
 
 sendSMS(int number) async {
-  String message = 'No s epudo enviar el mensaje';
+  String message = 'Problemas al enviar el correo, vuelva a intentarlo.';
   var url = 'sms:${number.toString()}';
   if (await canLaunch(url)) {
     await launch(url);

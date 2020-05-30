@@ -98,9 +98,9 @@ class _MyAppState extends State<MyApp> {
       ],
 
 
-      initialRoute: prefs.ultimaPagina,
+    //  initialRoute: prefs.ultimaPagina,
     //  home: new FilePickerDemo(),//MapAdressModule(),
-     //   home: new HomePageModule(),//FilePickerDemo(),
+        home: new HomePageModule(),//FilePickerDemo(),
 
         routes: <String, WidgetBuilder>{
         'notificaciones': (BuildContext context) => new NotificacionesModule(),
