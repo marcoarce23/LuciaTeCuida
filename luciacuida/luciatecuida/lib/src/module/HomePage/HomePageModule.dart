@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,8 +18,10 @@ import 'package:luciatecuida/src/module/Citizen/Entity/EventEntityModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/ListDetailModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/MultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/EventModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Voluntary/FoundAllVoluntaryGroupModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/FoundVoluntaryModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/VoluntaryModule.dart';
+import 'package:luciatecuida/src/module/Contactos/ContatGeneralModule.dart';
 import 'package:luciatecuida/src/module/SplashScreen/IntroScreenModule.dart';
 import 'package:luciatecuida/src/module/Login/SiginDemo.dart';
 
@@ -42,93 +46,73 @@ class _HomePageModuleState extends State<HomePageModule> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            backgroundColor: Colors.white,
-            toolbarOpacity: 0.7,
-            iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
-            elevation: 0,
-            title: Row(
-              children: <Widget>[
-                Text("PANTALLA PRINCIPAL.", style: kTitleAppBar),
-                SizedBox(width: 10.0),
-                FaIcon(
-                  FontAwesomeIcons.keybase,
-                  color: AppTheme.themeVino,
-                  size: 18,
-                ),
-              ],
-            )),
-        body: Stack(
-          children: <Widget>[
-            fondoApp(),
-            SingleChildScrollView(
-              child: Center(
-                child: Column(
-                  children: <Widget>[
-                    // _titulos(),
-                    Container(
-                      child: Column(
-                        children: <Widget>[
-                          SizedBox(
-                            height: 15.0,
-                          ),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.center,
-                          //   children: <Widget>[
-                          //     Text(
-                          //       'Bienvenidos a la aplicación',
-                          //       style: kTitleHomeCursiveStyle,
-                          //     ),
-                          //   ],
-                          // ),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.center,
-                          //   children: <Widget>[
-                          //     Text(
-                          //       'de todos.',
-                          //       style: kTitleHomeCursiveStyle,
-                          //     ),
-                          //   ],
-                          // ),
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.center,
-                          //   children: <Widget>[
-                          //     Text(
-                          //       'Lucia Te Cuida',
-                          //       style: kTitleHomeCursiveStyle,
-                          //     ),
-                          //   ],
-                          // ),
-                        ],
-                      ),
-                    ),
-                   
-       
-             Row(
-                      children: <Widget>[
-                        
-                            Text('Comparte la aplicación.'),
-                            SizedBox(width:10.0),
-                        FaIcon(
-                  FontAwesomeIcons.shareAltSquare,
-                  color: AppTheme.themeVino,
-                  size: 18,
-                ),
-               
-                          ],
-                        ),
-                         SizedBox(
-                      height: 10.0,
-                    ),
-                    _botonesRedondeados()
-                  ],
-                ),
+      appBar: AppBar(
+          backgroundColor: Colors.white,
+          toolbarOpacity: 0.7,
+          iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
+          elevation: 0,
+          title: Row(
+            children: <Widget>[
+              Text("PANTALLA PRINCIPAL.", style: kTitleAppBar),
+              SizedBox(width: 10.0),
+              FaIcon(
+                FontAwesomeIcons.keybase,
+                color: AppTheme.themeVino,
+                size: 18,
               ),
-            )
-          ],
-        ),
-        drawer: DrawerCitizen(),
-        bottomNavigationBar: _bottomNavigationBar(context));
+            ],
+          )),
+      body: Stack(
+        children: <Widget>[
+          fondoApp(),
+          SingleChildScrollView(
+            child: Center(
+              child: Column(
+                children: <Widget>[
+                  // _titulos(),
+                  Container(
+                    child: Column(
+                      children: <Widget>[
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   children: <Widget>[
+                        //     Text(
+                        //       'Bienvenidos a la aplicación',
+                        //       style: kTitleHomeCursiveStyle,
+                        //     ),
+                        //   ],
+                        // ),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   children: <Widget>[
+                        //     Text(
+                        //       'de todos.',
+                        //       style: kTitleHomeCursiveStyle,
+                        //     ),
+                        //   ],
+                        // ),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   children: <Widget>[
+                        //     Text(
+                        //       'Lucia Te Cuida',
+                        //       style: kTitleHomeCursiveStyle,
+                        //     ),
+                        //   ],
+                        // ),
+                      ],
+                    ),
+                  ),                               
+                  _botonesRedondeados()
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+      drawer: DrawerCitizen(),
+    );
+    // bottomNavigationBar: _bottomNavigationBar(context));
   }
 
   Widget _bottomNavigationBar(BuildContext context) {
@@ -159,33 +143,91 @@ class _HomePageModuleState extends State<HomePageModule> {
   Widget _botonesRedondeados() {
     return Wrap(
       children: <Widget>[
-        _crearBotonRedondeado(
-            Colors.blue, Icons.add_comment, 'Consultar voluntario', '1', 17.0),
-        _crearBotonRedondeado(
-            Colors.purpleAccent, Icons.hotel, 'Ayuda urgente', '2', 20.0),
+
+ InkWell(
+      onTap: () {  
+        sharedText(
+                  'Comaprte la aplicación LuciaTeCUida',
+                  'Compartiendo la app http://bit.ly/mrPlayStore app',
+                  'text/html');     
+      },
+      child: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+          child: Container(
+            height: 100  ,
+            width: MediaQuery.of(context).size.width  ,
+            margin: EdgeInsets.all(9.0),
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomRight,
+              stops: [0.1, 0.4, 0.7, 0.9],
+              colors: [
+                Color.fromRGBO(168, 18, 8, 0.6),
+                Color.fromRGBO(176, 30, 20, 1.0),
+                Color.fromRGBO(168, 18, 8, 0.6),
+                Color.fromRGBO(164, 18, 9, 1.0),
+              ],
+            )),
+            //  borderRadius: BorderRadius.circular(20.0)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                SizedBox(height: 5.0),
+                CircleAvatar(
+                  backgroundColor: Colors.cyan,
+                  radius: 30.0,
+                  child: Icon(Icons.share, color: Colors.white, size: 42.0),
+                ),
+                Text("Comparte la aplicación",
+                    style: TextStyle(color: AppTheme.white, fontSize: 16)),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ),
+
+        _crearBotonRedondeado(Colors.blue, Icons.add_comment,
+            'Consultar voluntario', '1', 17.0, FoundVoluntaryModule(), 0, ""),
+        _crearBotonRedondeado(Colors.purpleAccent, Icons.hotel, 'Ayuda urgente',
+            '2', 20.0, CitizenPanicButtonModule(), 0, ""),
         _crearBotonRedondeado(Colors.pinkAccent, Icons.accessible_forward,
-            'Ayuda a una persona', '3', 16.5),
-        _crearBotonRedondeado(
-            Colors.orange, Icons.blur_linear, 'Eventos vigentes', '4', 19.0),
-        _crearBotonRedondeado(
-            Colors.blueAccent, Icons.people, 'Voluntarios', '5', 20.0),
-        _crearBotonRedondeado(
-            Colors.green, Icons.business, 'Instituciones', '6', 20.0),
+            'Ayuda a una persona', '3', 16.5, HelpFriendAllModule(), 0, ""),
+        _crearBotonRedondeado(Colors.orange, Icons.blur_linear,
+            'Eventos vigentes', '4', 19.0, CitizenEventsModule(), 0, ""),
+        //_crearBotonRedondeado(Colors.blueAccent, Icons.people, 'Voluntarios', '5', 20.0,CitizenListInstitucionModule()),
+        _crearBotonRedondeado(Colors.green, Icons.business, 'Instituciones',
+            '6', 20.0, CitizenListInstitucionModule(), 0, ""),
         _crearBotonRedondeado(Colors.deepPurple, Icons.phone_in_talk,
-            'Números de ayuda', '5', 17.0),
+            'Números de ayuda', '5', 17.0, ContactGeneralModule(), 0, ""),
         _crearBotonRedondeado(
-            Colors.cyan, Icons.add_to_queue, 'Prueba de control', '6', 18.0),
+            Colors.cyan,
+            Icons.add_to_queue,
+            'Prueba de control',
+            '6',
+            18.0,
+            HomePageModule(),
+            1,
+            "https://omi.app/covid-19/welcome"),
       ],
     );
   }
 
-  Widget _crearBotonRedondeado(
-      Color color, IconData icono, String texto, String valor, double size) {
+  Widget _crearBotonRedondeado(Color color, IconData icono, String texto,
+      String valor, double size, Widget widget, int acceso, String link) {
     return InkWell(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => CitizenListInstitucionModule()),
-      ),
+      onTap: () {
+        if (acceso == 1) {
+          openWeb(link);
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => widget),
+          );
+        }
+      },
       child: ClipRect(
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
@@ -268,18 +310,15 @@ class DrawerCitizen extends StatelessWidget {
               ],
             )),
           ),
-          CustomListTile(
-              Icons.home,
-              'Inicio',
-              () => sharedText('Comaprte la aplicación LuciaTeCUida','Compartiendo la app http://bit.ly/mrPlayStore app','text/html')),
-              //callWhatsAppAdvanced('Queremos compartir la ��������������������������������� http://bit.ly/mrPlayStore app')),
-              //openWeb('http://mapacovid19.ruta88.net/'),
-                  //sharedImage('assets/image/twitter.jpg','twitter','twitter.jpg','jpg','imagen de apoyo JPG'),
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => SignInDemo()),
-                  // )),
          
+          //callWhatsAppAdvanced('Queremos compartir la ��������������������������������� http://bit.ly/mrPlayStore app')),
+          //openWeb('http://mapacovid19.ruta88.net/'),
+          //sharedImage('assets/image/twitter.jpg','twitter','twitter.jpg','jpg','imagen de apoyo JPG'),
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(builder: (context) => SignInDemo()),
+          // )),
+
           CustomListTile(
               Icons.business,
               'Conoce las instituciones',
@@ -455,7 +494,6 @@ class DrawerCitizen extends StatelessWidget {
                     context,
                     MaterialPageRoute(builder: (context) => SignInDemo()),
                   )),
-         
           CustomListTile(
               Icons.business,
               'Conoce las instituciones',
