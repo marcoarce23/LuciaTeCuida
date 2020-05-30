@@ -9,6 +9,7 @@ import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/Widget/Message/Message.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenEmergency/CitizenAlertEmergency.dart';
+import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 
 class CitizenPanicButtonModule extends StatefulWidget {
@@ -39,25 +40,10 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
             iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
             elevation: 0,
             title: Text("PIDE AYUDA URGENTE", style: kTitleAppBar),
-            actions: <Widget>[
-              /*IconButton(
-                icon: Icon(Icons.search),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            CitizenAlertEmergency(prefs.userId, "-1")),
-                  );
-
-                  ;
-                },
-              )*/
-            ],
+            actions: <Widget>[],
             //backgroundColor: AppTheme.themeColorNaranja,
           ),
-
-// drawer: DrawerCitizen(),
+          drawer: DrawerCitizen(),
 //         bottomNavigationBar: _bottomNavigationBar(context)),
 
           body: SingleChildScrollView(

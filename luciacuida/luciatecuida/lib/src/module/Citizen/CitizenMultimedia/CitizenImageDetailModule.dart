@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
 import 'package:luciatecuida/src/Model/PreferenceUser.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
+import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 
 class CitizenImageDetailModule extends StatefulWidget {
   final ListaMultimedia multimediaImagen;
@@ -28,7 +29,7 @@ class _CitizenImageDetailModuleState extends State<CitizenImageDetailModule> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      backgroundColor: Colors.white,
+        backgroundColor: Colors.white,
         toolbarOpacity: 0.7,
         iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
         elevation: 0,
@@ -50,10 +51,22 @@ class _CitizenImageDetailModuleState extends State<CitizenImageDetailModule> {
             child: Row(
               children: <Widget>[
                 Text(
-                  "Titulo:",
+                  "Titulo:".toUpperCase(),
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 Text(widget.multimediaImagen.mulTitulo),
+              ],
+            ),
+          ),
+            Container(
+            margin: EdgeInsets.only(left: 10),
+            child: Row(
+              children: <Widget>[
+                Text(
+                  "Tipo material:".toUpperCase(),
+                  style: TextStyle(fontWeight: FontWeight.w700),
+                ),
+                Text(widget.multimediaImagen.mulTipoMaterial),
               ],
             ),
           ),
@@ -62,27 +75,17 @@ class _CitizenImageDetailModuleState extends State<CitizenImageDetailModule> {
             child: Row(
               children: <Widget>[
                 Text(
-                  "Descripción:",
+                  "Descripción:".toUpperCase(),
                   style: TextStyle(fontWeight: FontWeight.w700),
                 ),
                 Text(widget.multimediaImagen.mulResumen),
               ],
             ),
           ),
-           Container(
-            margin: EdgeInsets.only(left: 10),
-            child: Row(
-              children: <Widget>[
-                Text(
-                  "Tipo material:",
-                  style: TextStyle(fontWeight: FontWeight.w700),
-                ),
-                Text(widget.multimediaImagen.mulTipoMaterial),
-              ],
-            ),
-          ),
+        
         ],
       ),
+      drawer: DrawerCitizen(),
     );
   }
 }

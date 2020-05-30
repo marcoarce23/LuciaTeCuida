@@ -3,6 +3,7 @@ import 'package:luciatecuida/src/Model/Entity.dart';
 import 'package:luciatecuida/src/Model/PreferenceUser.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
+import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 
 class CitizenEventsDetailModule extends StatefulWidget {
   final EventosItem eventosItem;
@@ -29,20 +30,13 @@ class _CitizenEventsDetailModuleState extends State<CitizenEventsDetailModule> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
-
-  backgroundColor: Colors.white,
+        backgroundColor: Colors.white,
         toolbarOpacity: 0.7,
         iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
         elevation: 0,
         title:
             Text(widget.eventosItem.titulo.toUpperCase(), style: kTitleAppBar),
 
-
-
-
-        
-       
         //backgroundColor: Colors.black,
       ),
       resizeToAvoidBottomInset: false,
@@ -192,6 +186,7 @@ class _CitizenEventsDetailModuleState extends State<CitizenEventsDetailModule> {
           ),
         ),
       ),
+       drawer: DrawerCitizen(),
     );
   }
 }

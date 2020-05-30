@@ -8,6 +8,7 @@ import 'package:luciatecuida/src/Util/SearchDelegate/DataSearch.dart';
 import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/Widget/Message/Message.dart';
+import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'CitizenInstitutionModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 
@@ -66,6 +67,7 @@ class _CitizenListInstitucionModuleState
           ],
         ),
       ),
+       drawer: DrawerCitizen(),
     );
   }
 
