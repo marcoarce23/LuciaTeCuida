@@ -8,6 +8,7 @@ import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenMultimedia/CitizenImageDetailModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/FoundAllVoluntaryModule.dart';
+import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 import 'package:luciatecuida/src/module/UtilModule/PageViewModule.dart';
 
@@ -89,6 +90,7 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
           //cuerpoProfesionales()
         ]),
       ),
+       drawer: DrawerCitizen(),
     );
   }
 

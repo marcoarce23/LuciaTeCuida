@@ -6,6 +6,7 @@ import 'package:luciatecuida/src/Model/PreferenceUser.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
+import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 
 class FoundAllVoluntaryModule extends StatefulWidget {
@@ -86,6 +87,7 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
           copyRigth(),
         ],
       )),
+       drawer: DrawerCitizen(),
     );
   }
 
