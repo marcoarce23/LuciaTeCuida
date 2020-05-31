@@ -5,6 +5,8 @@ import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vector_math/vector_math_64.dart' as math;
@@ -13,6 +15,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
+
 
 final String userName = null;
 
@@ -116,6 +120,24 @@ loadPDF(String path) async {
   file.writeAsBytesSync(response.bodyBytes, flush: true);
   return file.path;
 }
+
+FloatingActionButton generaFloatbuttonHome(BuildContext context)
+{
+return FloatingActionButton(
+        onPressed: () {
+           Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => HomePageModule(),
+          ));
+        },
+        child: FaIcon(FontAwesomeIcons.home),
+        backgroundColor: AppTheme.themeVino,             
+      );
+}
+
+
+
+
 
 class ImageOpaqueAssets extends StatelessWidget {
   final String imageAssetUrl;
