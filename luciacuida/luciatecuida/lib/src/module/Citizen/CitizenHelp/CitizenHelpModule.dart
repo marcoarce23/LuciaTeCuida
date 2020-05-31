@@ -225,20 +225,20 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
   Widget _crearCampos(BuildContext context) {
     nombre = InputTextField(
         FaIcon(FontAwesomeIcons.accessibleIcon,
-            color: Color.fromRGBO(165, 5, 5, 0.7)),
+            color: AppTheme.themeVino),
         'Persona a ayudar',
         registroAmigo.regPersona,
         'Ingrese el nombre de la persona',
         true);
     telefono = InputPhoneField(
         FaIcon(FontAwesomeIcons.phoneVolume,
-            color: Color.fromRGBO(165, 5, 5, 0.7)),
+            color: AppTheme.themeVino),
         'Telefono de referencia',
         registroAmigo.regTelefono,
         'Registre un numero telefónico de referencia',
         true);
     ubicacion = InputMultilineField(
-        FaIcon(FontAwesomeIcons.home, color: Color.fromRGBO(165, 5, 5, 0.7)),
+        FaIcon(FontAwesomeIcons.home, color: AppTheme.themeVino),
         'Donde la encuentro',
         registroAmigo.regUbicacion,
         'Lugar donde se encuentra la persona a ayudar',
@@ -246,7 +246,7 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
 
     // tipoAyuda = InputDropDown(
     //     FaIcon(FontAwesomeIcons.plusCircle,
-    //         color: Color.fromRGBO(165, 5, 5, 0.7)),
+    //         color: AppTheme.themeVino),
     //     'Tipo de ayuda',
     //     '49',
     //     urlGetClasificador + '/47');
@@ -317,7 +317,7 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
         DropdownButton(
           value: _opcionSeleccionadaPrioridad,
           icon: FaIcon(FontAwesomeIcons.longArrowAltDown,
-              color: Color.fromRGBO(165, 5, 5, 0.7)),
+              color: AppTheme.themeVino),
           items: getOpcionesPrioridad(),
           onChanged: (opt) {
             setState(() {
@@ -336,7 +336,7 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
       child: RaisedButton.icon(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        color: Color.fromRGBO(165, 5, 5, 0.7),
+        color: AppTheme.themeVino,
         textColor: Colors.white,
         label: Text(
           text,

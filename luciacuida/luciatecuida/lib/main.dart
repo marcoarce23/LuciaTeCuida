@@ -10,7 +10,6 @@ import 'package:luciatecuida/src/module/Citizen/CitizenEvents/CitizenEventsModul
 import 'package:luciatecuida/src/module/Citizen/CitizenHelp/CitizenHelpModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenHelp/ListCitizenHelpModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenInstitution/CitizenListInstitucionModule.dart';
-import 'package:luciatecuida/src/module/Citizen/CitizenMultimedia/CitizenImageDetailModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenMultimedia/CitizenMultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenPanicButton/CitizenPanicButtonModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenPanicButton/ListCitizenPanic.dart';
@@ -100,7 +99,7 @@ class _MyAppState extends State<MyApp> {
 
     //  initialRoute: prefs.ultimaPagina,
     //  home: new FilePickerDemo(),//MapAdressModule(),
-        home: new HomePageModule(),//FilePickerDemo(),
+        home: new SplashScreenModule(),//FilePickerDemo(),
 
         routes: <String, WidgetBuilder>{
         'notificaciones': (BuildContext context) => new NotificacionesModule(),

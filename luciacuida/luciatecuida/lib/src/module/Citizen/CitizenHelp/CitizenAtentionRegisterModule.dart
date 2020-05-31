@@ -64,7 +64,7 @@ class _AtentionCitizenAllModuleState extends State<AtentionCitizenAllModule> {
       ),
       drawer: DrawerCitizen(),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Color.fromRGBO(165, 5, 5, 0.7),
+        backgroundColor: AppTheme.themeVino,
         items: [
           BottomNavigationBarItem(
               icon: FaIcon(
@@ -439,7 +439,7 @@ class _CitizenAtentionRegisterModuleState
       child: RaisedButton.icon(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        color: Color.fromRGBO(165, 5, 5, 0.7),
+        color: AppTheme.themeVino,
         textColor: Colors.white,
         label: Text(
           text,

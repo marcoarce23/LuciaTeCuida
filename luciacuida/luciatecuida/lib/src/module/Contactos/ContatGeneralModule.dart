@@ -78,7 +78,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
 
   Widget listItemsEntity(BuildContext context, AsyncSnapshot snapshot) {
     final size = MediaQuery.of(context).size;
-
+   print('tamanio: ${snapshot.hasData}');
     return Expanded(
       child: ListView.builder(
         shrinkWrap: true,
@@ -113,6 +113,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
   }
 
   Widget listEntity(BuildContext context, Emergencia entityItem) {
+     print('tamanio: ${entityItem.correo}');
     return Row(
       children: <Widget>[
         Column(

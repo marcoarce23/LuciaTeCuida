@@ -356,7 +356,7 @@ class _EventEntityModuleState extends State<EventEntityModule> {
       child: RaisedButton.icon(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        color: Color.fromRGBO(165, 5, 5, 0.7),
+        color: AppTheme.themeVino,
         textColor: Colors.white,
         label: Text(
           text,

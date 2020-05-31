@@ -24,6 +24,7 @@ import 'package:luciatecuida/src/module/Citizen/Voluntary/VoluntaryModule.dart';
 import 'package:luciatecuida/src/module/Contactos/ContatGeneralModule.dart';
 import 'package:luciatecuida/src/module/SplashScreen/IntroScreenModule.dart';
 import 'package:luciatecuida/src/module/Login/SiginDemo.dart';
+import 'package:luciatecuida/src/module/UtilModule/PageViewModule.dart';
 
 class HomePageModule extends StatefulWidget {
   static final String routeName = 'home';
@@ -147,8 +148,8 @@ class _HomePageModuleState extends State<HomePageModule> {
  InkWell(
       onTap: () {  
         sharedText(
-                  'Comaprte la aplicación LuciaTeCUida',
-                  'Compartiendo la app http://bit.ly/mrPlayStore app',
+                  'Comparte la aplicación LuciaTeCuida',
+                  'Comparte la app http://bit.ly/mrPlayStore',
                   'text/html');     
       },
       child: ClipRect(
@@ -198,7 +199,7 @@ class _HomePageModuleState extends State<HomePageModule> {
         _crearBotonRedondeado(Colors.orange, Icons.blur_linear,
             'Eventos vigentes', '4', 19.0, CitizenEventsModule(), 0, ""),
         //_crearBotonRedondeado(Colors.blueAccent, Icons.people, 'Voluntarios', '5', 20.0,CitizenListInstitucionModule()),
-        _crearBotonRedondeado(Colors.green, Icons.business, 'Instituciones',
+        _crearBotonRedondeado(Colors.green, Icons.business, 'Organizaciones',
             '6', 20.0, CitizenListInstitucionModule(), 0, ""),
         _crearBotonRedondeado(Colors.deepPurple, Icons.phone_in_talk,
             'Números de ayuda', '5', 17.0, ContactGeneralModule(), 0, ""),
@@ -220,7 +221,13 @@ class _HomePageModuleState extends State<HomePageModule> {
     return InkWell(
       onTap: () {
         if (acceso == 1) {
-          openWeb(link);
+          
+         Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PageViewModule(title: 'TEST DE PRUEBA', selectedUrl: link))
+         );
+                   
         } else {
           Navigator.push(
             context,
@@ -318,6 +325,15 @@ class DrawerCitizen extends StatelessWidget {
           //   context,
           //   MaterialPageRoute(builder: (context) => SignInDemo()),
           // )),
+
+          CustomListTile(
+              Icons.business,
+              'Inicio',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PageViewModule(title: 'TEST DE PRUEBA', selectedUrl: 'https://omi.app/covid-19/welcome')),
+                  )),
 
           CustomListTile(
               Icons.business,

@@ -241,14 +241,14 @@ class _SignUpModuleState extends State<SignUpModule> {
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomRight,
-                      stops: [0.1, 0.4, 0.6, 0.9],
-                      colors: [
-                        Color.fromRGBO(254, 253, 253, 1.0),
-                        Color.fromRGBO(254, 253, 251, 1.0),
-                        Color.fromRGBO(235, 217, 211, 1.0),
-                        Color.fromRGBO(253, 252, 252, 1.0),
+                      // begin: Alignment.topCenter,
+                      // end: Alignment.bottomRight,
+                      // stops: [0.1, 0.4, 0.6, 0.9],
+                      colors: [ Colors.white,Colors.white,Colors.white,Colors.white,
+                        // Color.fromRGBO(254, 253, 253, 1.0),
+                        // Color.fromRGBO(254, 253, 251, 1.0),
+                        // Color.fromRGBO(235, 217, 211, 1.0),
+                        // Color.fromRGBO(253, 252, 252, 1.0),
                       ],
                     ),
                   ),
@@ -262,8 +262,8 @@ class _SignUpModuleState extends State<SignUpModule> {
                             children: <Widget>[
                               SizedBox(height: 20.0),
                                Text('Bienvenido',
-                                   style: kTitleSigIn),
-                              Text('Lucia Te Cuida.', style: kSubTitleSigIn),
+                                   style: kSigTitleStyle),
+                              Text('Lucia Te Cuida.', style: kSigTitleStyle),
                               Image(
                                   image: AssetImage("assets/buu.PNG"),
                                   height: 230.0),
@@ -292,7 +292,7 @@ class _SignUpModuleState extends State<SignUpModule> {
             _gmailButton(),
             _botonInvitado('Entrar como invitado'),
             // _gmailButtonCerrar(),
-            SizedBox(height: 10.0),
+            SizedBox(height: 15.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
@@ -305,7 +305,7 @@ class _SignUpModuleState extends State<SignUpModule> {
                 SizedBox(width: 5.0),
                 Text(
                   ' Importante. Si deseas ingresar con otra\n cuenta Gmail, seleccionar la opcion "Cerrar\nSesión Google" y vuelva a ingresar.',
-                  style: kTitleCursive3Style,
+                  style: kSigssTitleStyle,
                 ),
               ],
             ),
@@ -334,7 +334,7 @@ class _SignUpModuleState extends State<SignUpModule> {
               ),
               Text(
                 'Si cuentas con correo GMAIL',
-                style: kTitleCursive3Style,
+                style: kSigsTitleStyle,
               ),
               Expanded(
                 child: Padding(
@@ -388,7 +388,7 @@ class _SignUpModuleState extends State<SignUpModule> {
       child: RaisedButton.icon(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        color: Color.fromRGBO(165, 5, 5, 0.7),
+        color: AppTheme.themeVino,
         textColor: Colors.white,
         label: Text(
           text,

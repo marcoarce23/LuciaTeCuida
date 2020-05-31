@@ -58,11 +58,32 @@ final kSubtitleStyleBlack = TextStyle(
   height: 1.2,
 );
 
+final kSigTitleStyle = TextStyle(
+  color: Colors.black87,
+  fontFamily: 'CM Sans Serif',
+  fontSize: 26.0,
+  height: 1.0,
+);
+
+final kSigsTitleStyle = TextStyle(
+  color: Colors.black87,
+  fontFamily: 'CM Sans Serif',
+  fontSize: 15.0,
+  height: 1.0,
+);
+
+final kSigssTitleStyle = TextStyle(
+  color: Colors.black87,
+  fontFamily: 'CM Sans Serif',
+  fontSize: 15.0,
+  height: 1.5,
+);
+
 final kTitleStyle = TextStyle(
   color: Colors.black54,
   fontFamily: 'CM Sans Serif',
   fontSize: 23.0,
-  height: 1.0,
+  height: 1.5,
 );
 
 final kSubtitleStyle = TextStyle(
@@ -126,19 +147,19 @@ Widget crearFondo(BuildContext context, String imagen) {
       width: double.infinity,
       decoration: BoxDecoration(
       gradient: LinearGradient(
-    begin: Alignment.topCenter,
-    end: Alignment.bottomRight,
-    stops: [0.3, 0.2, 0.4, 0.9],
-    colors: [
-      // Color.fromRGBO(142, 12, 3, 0.8),
+   // begin: Alignment.topCenter,
+   // end: Alignment.bottomRight,
+   // stops: [1.0, 1.0, 1.0, 1.0],
+    colors: [ Color.fromRGBO(174, 214, 241, 1.0),Color.fromRGBO(174, 214, 241, 1.0),Color.fromRGBO(174, 214, 241, 1.0),Color.fromRGBO(174, 214, 241, 1.0),
+      // Color.fromRGBO(248, 249, 249, 1.0),
       // Color.fromRGBO(232, 78, 68, 1.0),
       // Color.fromRGBO(168, 18, 8, 0.6),
       // Color.fromRGBO(196, 66, 58, 1.0),
- Color.fromRGBO(168, 18, 8, 0.4),   
-                    Color.fromRGBO(168, 18, 8, 0.5),
-                Color.fromRGBO(252, 252, 252, 0.6),
+//  Color.fromRGBO(168, 18, 8, 0.4),   
+//                     Color.fromRGBO(168, 18, 8, 0.5),
+//                 Color.fromRGBO(252, 252, 252, 0.6),
                   
-                Color.fromRGBO(252, 252, 252, 0.4),
+//                 Color.fromRGBO(252, 252, 252, 0.4),
     ],
   )),
     );
@@ -154,8 +175,8 @@ Widget crearFondo(BuildContext context, String imagen) {
                 child: RadialProgress(
                   width: 4,
                   goalCompleted: 0.90,
-                  progressColor: Colors.white,
-                  progressBackgroundColor: Color.fromRGBO(165, 5, 5, 0.7),
+                  progressColor: AppTheme.themeVino,
+                  progressBackgroundColor: Colors.white,
                   child: Container(
                       child: ImageOvalNetwork(
                           imageNetworkUrl: imagen,
@@ -230,9 +251,9 @@ boxDecorationFondo() {
     stops: [0.6, 0.4, 0.7],
     colors: [
      
-      Colors.white,
-      Color.fromRGBO(252, 252, 252, 1.0),
-       Color.fromRGBO(251, 251, 251, 1.0),
+      Colors.white,Colors.white,Colors.white,
+      // Color.fromRGBO(252, 252, 252, 1.0),
+      //  Color.fromRGBO(251, 251, 251, 1.0),
       
      ]),
                  
@@ -307,7 +328,7 @@ Container contenedorTitulo(
     width: size.width * 0.94,
     height: height,
     decoration: BoxDecoration(
-       // color: Color.fromRGBO(165, 5, 5, 0.8),
+       // color: AppTheme.themeVino,
         gradient:LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomRight,
@@ -349,7 +370,7 @@ Container contenedorSubTitulo(
     width: size.width * 0.92,
     height: height,
     decoration: BoxDecoration(
-        color: Color.fromRGBO(165, 5, 5, 0.8),
+        color: AppTheme.themeVino,
     //     gradient:LinearGradient(
     // begin: Alignment.topCenter,
     // end: Alignment.bottomRight,
@@ -429,7 +450,7 @@ class AppTheme {
   static const Color themeColorVerde =
       Color.fromRGBO(100, 179, 116, 1); //64B374
   static const Color themeColorBlanco = Colors.white;
-  static const Color themeVino = Color.fromRGBO(165, 5, 5, 0.7);
+  static const Color themeVino = Color.fromRGBO(41, 128, 185,1.0);//84, 153, 199,1.0);
   static const Color themeAmarillo = Color.fromRGBO(9, 65, 108, 1.0);
 static const Color themePlomo = Color.fromRGBO(248, 248, 248, 1.0);
 

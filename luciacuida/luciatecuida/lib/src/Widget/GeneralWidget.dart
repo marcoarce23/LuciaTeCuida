@@ -14,7 +14,7 @@ Widget copyRigth() {
           Text('Lucia te cuida@2020. ', style: kTitleCursive4Style),
           FaIcon(
             FontAwesomeIcons.keybase,
-            color: Color.fromRGBO(165, 5, 5 , 0.7),
+            color: AppTheme.themeVino,
             size: 18,
           ),
         ],

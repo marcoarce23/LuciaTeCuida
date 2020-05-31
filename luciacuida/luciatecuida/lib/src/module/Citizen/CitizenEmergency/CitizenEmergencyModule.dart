@@ -60,7 +60,7 @@ class _CitizenEmergencyModuleState extends State<CitizenEmergencyModule> {
             // backgroundColor: Colors.red,
             body: optionPage[page],
             bottomNavigationBar: BottomNavigationBar(
-              backgroundColor: Color.fromRGBO(165, 5, 5, 0.7),
+              backgroundColor: AppTheme.themeVino,
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   icon: Icon(

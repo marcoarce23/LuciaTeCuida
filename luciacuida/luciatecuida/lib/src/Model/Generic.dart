@@ -37,7 +37,7 @@ class Generic {
       if (response.statusCode == 200) {
           Map dataMap = json.decode(response.body);
           List<dynamic> listDynamic = dataMap[_primaryKey];
-  // print(listDynamic);
+   print(listDynamic);
           for (int i = 0; i < listDynamic.length; i++) {
             decodeData = listDynamic[i];
             list.add(objeto.fromJson(decodeData));

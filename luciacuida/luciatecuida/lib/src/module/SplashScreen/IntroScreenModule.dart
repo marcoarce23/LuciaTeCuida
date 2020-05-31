@@ -54,14 +54,14 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomRight,
-              stops: [0.1, 0.4, 0.7, 0.9],
-              colors: [
-                Color.fromRGBO(237, 237, 236, 1.0),
-                Color.fromRGBO(252, 252, 252, 1.0),
-                Color.fromRGBO(251, 251, 251, 1.0),
-                Color.fromRGBO(239, 240, 239, 1.0),
+              // begin: Alignment.topCenter,
+              // end: Alignment.bottomRight,
+              // stops: [0.1, 0.4, 0.7, 0.9],
+              colors: [ Colors.white,Colors.white,Colors.white,Colors.white,
+                // Color.fromRGBO(237, 237, 236, 1.0),
+                // Color.fromRGBO(252, 252, 252, 1.0),
+                // Color.fromRGBO(251, 251, 251, 1.0),
+                // Color.fromRGBO(239, 240, 239, 1.0),
                 //     Color.fromRGBO(245, 173, 53, 1.0),
                 //     Color.fromRGBO(236, 220, 109, 1.0),
                 //     Color.fromRGBO(70, 191, 167 , 1.0),
