@@ -220,10 +220,10 @@ boxDecoration() {
       // Color.fromRGBO(232, 78, 68, 1.0),
       // Color.fromRGBO(168, 18, 8, 0.6),
       // Color.fromRGBO(196, 66, 58, 1.0),
-      Color.fromRGBO(168, 18, 8, 0.6),
-                Color.fromRGBO(176, 30, 20, 1.0),
-                Color.fromRGBO(168, 18, 8, 0.6),
-                Color.fromRGBO(164, 18, 9, 1.0),
+      Color.fromRGBO(84, 153, 199, 0.6),
+                Color.fromRGBO(84, 153, 199, 1.0),
+                Color.fromRGBO(84, 153, 199, 0.6),
+                Color.fromRGBO(84, 153, 199, 1.0),
     ],
   ));
 }
