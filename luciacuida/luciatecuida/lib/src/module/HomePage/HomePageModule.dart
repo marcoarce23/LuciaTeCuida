@@ -103,7 +103,8 @@ class _HomePageModuleState extends State<HomePageModule> {
                         // ),
                       ],
                     ),
-                  ),                               
+                  ),
+                  SizedBox(height:20.0),
                   _botonesRedondeados()
                 ],
               ),
@@ -112,8 +113,8 @@ class _HomePageModuleState extends State<HomePageModule> {
         ],
       ),
       drawer: DrawerCitizen(),
+      bottomNavigationBar: _bottomNavigationBar(context),
     );
-    // bottomNavigationBar: _bottomNavigationBar(context));
   }
 
   Widget _bottomNavigationBar(BuildContext context) {
@@ -132,88 +133,53 @@ class _HomePageModuleState extends State<HomePageModule> {
               title: Text('Notificaciones')),
           BottomNavigationBarItem(
               icon: Icon(Icons.video_library, size: 20.0),
-              title: Text('Multimedia')),
+              title: Text('Eventos')),
           BottomNavigationBarItem(
               icon: Icon(Icons.add_call, size: 20.0),
-              title: Text('Contactenos')),
+              title: Text('Multimedia')),
         ],
       ),
     );
   }
 
   Widget _botonesRedondeados() {
-    return Wrap(
-      children: <Widget>[
-
- InkWell(
-      onTap: () {  
-        sharedText(
-                  'Comparte la aplicación LuciaTeCuida',
-                  'Comparte la app http://bit.ly/mrPlayStore',
-                  'text/html');     
-      },
-      child: ClipRect(
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-          child: Container(
-            height: 100  ,
-            width: MediaQuery.of(context).size.width  ,
-            margin: EdgeInsets.all(9.0),
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomRight,
-              stops: [0.1, 0.4, 0.7, 0.9],
-              colors: [//AppTheme.themeVino, AppTheme.themeVino, AppTheme.themeVino, AppTheme.themeVino, 
-                Color.fromRGBO(84, 153, 199, 0.6),
-                Color.fromRGBO(84, 153, 199, 1.0),
-                Color.fromRGBO(84, 153, 199, 0.6),
-                Color.fromRGBO(84, 153, 199, 1.0),
-              ],
-            )),
-            //  borderRadius: BorderRadius.circular(20.0)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                SizedBox(height: 5.0),
-                CircleAvatar(
-                  backgroundColor: Colors.cyan,
-                  radius: 30.0,
-                  child: Icon(Icons.share, color: Colors.white, size: 42.0),
-                ),
-                Text("Comparte la aplicación",
-                    style: TextStyle(color: AppTheme.white, fontSize: 16)),
-              ],
-            ),
-          ),
-        ),
-      ),
-    ),
-
-        _crearBotonRedondeado(Colors.blue, Icons.add_comment,
-            'Consultar voluntario', '1', 17.0, FoundVoluntaryModule(), 0, ""),
-        _crearBotonRedondeado(Colors.purpleAccent, Icons.hotel, 'Ayuda urgente',
-            '2', 20.0, CitizenPanicButtonModule(), 0, ""),
-        _crearBotonRedondeado(Colors.pinkAccent, Icons.accessible_forward,
-            'Ayuda a una persona', '3', 16.5, HelpFriendAllModule(), 0, ""),
-        _crearBotonRedondeado(Colors.orange, Icons.blur_linear,
-            'Eventos vigentes', '4', 19.0, CitizenEventsModule(), 0, ""),
-        //_crearBotonRedondeado(Colors.blueAccent, Icons.people, 'Voluntarios', '5', 20.0,CitizenListInstitucionModule()),
-        _crearBotonRedondeado(Colors.green, Icons.business, 'Organizaciones',
-            '6', 20.0, CitizenListInstitucionModule(), 0, ""),
-        _crearBotonRedondeado(Colors.deepPurple, Icons.phone_in_talk,
-            'Números de ayuda', '5', 17.0, ContactGeneralModule(), 0, ""),
-        _crearBotonRedondeado(
-            Colors.cyan,
-            Icons.add_to_queue,
-            'Prueba de control',
-            '6',
-            18.0,
-            HomePageModule(),
-            1,
-            "https://omi.app/covid-19/welcome"),
-      ],
-    );
+    return Wrap(children: <Widget>[
+      
+     
+      _crearBotonRedondeado(Colors.purpleAccent, Icons.hotel, 'Ayuda Urgente',
+          '2', 14.0, CitizenPanicButtonModule(), 0, ""),
+       _crearBotonRedondeado(Colors.blue, Icons.add_comment,
+          'Consulta a voluntarios', '1', 14.0, FoundVoluntaryModule(), 0, ""),
+      _crearBotonRedondeado(Colors.pinkAccent, Icons.accessible_forward,
+          'Ayuda a una persona', '3', 14.0, HelpFriendAllModule(), 0, ""),
+      _crearBotonRedondeado(Colors.deepPurple, Icons.phone_in_talk,
+          'Números de urgencia', '5', 14.0, ContactGeneralModule(), 0, ""),
+       _crearBotonRedondeado(
+          Colors.cyan,
+          Icons.add_to_queue,
+          'Prueba de control',
+          '6',
+          14.0,
+          HomePageModule(),
+          1,
+          "https://omi.app/covid-19/welcome"),
+            _crearBotonRedondeado(
+          Colors.cyan,
+          Icons.add_to_queue,
+          'Violencia IntraFamiliar',
+          '6',
+          14.0,
+          HomePageModule(),
+          1,
+          "https://omi.app/covid-19/welcome"),
+      _crearBotonRedondeado(Colors.orange, Icons.blur_linear,
+          'Eventos vigentes', '4', 14.0, CitizenEventsModule(), 0, ""),
+      //_crearBotonRedondeado(Colors.blueAccent, Icons.people, 'Voluntarios', '5', 20.0,CitizenListInstitucionModule()),
+      _crearBotonRedondeado(Colors.green, Icons.business, 'Organizaciones', '6',
+          14.0, CitizenListInstitucionModule(), 0, ""),
+      
+     
+    ]);
   }
 
   Widget _crearBotonRedondeado(Color color, IconData icono, String texto,
@@ -221,13 +187,11 @@ class _HomePageModuleState extends State<HomePageModule> {
     return InkWell(
       onTap: () {
         if (acceso == 1) {
-          
-         Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PageViewModule(title: 'TEST DE PRUEBA', selectedUrl: link))
-         );
-                   
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PageViewModule(
+                      title: 'TEST DE PRUEBA', selectedUrl: link)));
         } else {
           Navigator.push(
             context,
@@ -247,11 +211,13 @@ class _HomePageModuleState extends State<HomePageModule> {
               begin: Alignment.topCenter,
               end: Alignment.bottomRight,
               stops: [0.1, 0.4, 0.7, 0.9],
-              colors: [ //AppTheme.themeVino, AppTheme.themeVino, AppTheme.themeVino, AppTheme.themeVino, 
-                Color.fromRGBO(84, 153, 199, 0.6),
-                Color.fromRGBO(84, 153, 199, 1.0),
-                Color.fromRGBO(84, 153, 199, 0.6),
-                Color.fromRGBO(84, 153, 199, 1.0),
+              colors: [
+                AppTheme.themeVino, AppTheme.themeVino, AppTheme.themeVino,
+                AppTheme.themeVino,
+                // Color.fromRGBO(84, 153, 199, 0.6),
+                // Color.fromRGBO(84, 153, 199, 1.0),
+                // Color.fromRGBO(84, 153, 199, 0.6),
+                // Color.fromRGBO(84, 153, 199, 1.0),
               ],
             )),
             //  borderRadius: BorderRadius.circular(20.0)),
@@ -317,7 +283,7 @@ class DrawerCitizen extends StatelessWidget {
               ],
             )),
           ),
-         
+
           //callWhatsAppAdvanced('Queremos compartir la ��������������������������������� http://bit.ly/mrPlayStore app')),
           //openWeb('http://mapacovid19.ruta88.net/'),
           //sharedImage('assets/image/twitter.jpg','twitter','twitter.jpg','jpg','imagen de apoyo JPG'),
@@ -326,39 +292,39 @@ class DrawerCitizen extends StatelessWidget {
           //   MaterialPageRoute(builder: (context) => SignInDemo()),
           // )),
 
-          CustomListTile(
-              Icons.business,
-              'Inicio',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PageViewModule(title: 'TEST DE PRUEBA', selectedUrl: 'https://omi.app/covid-19/welcome')),
-                  )),
+          // CustomListTile(
+          //     Icons.business,
+          //     'Inicio',
+          //     () => Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) => PageViewModule(title: 'TEST DE PRUEBA', selectedUrl: 'https://omi.app/covid-19/welcome')),
+          //         )),
 
-          CustomListTile(
-              Icons.business,
-              'Conoce las instituciones',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CitizenListInstitucionModule()),
-                  )),
-          CustomListTile(
-              Icons.perm_phone_msg,
-              'Consulta a un voluntario',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => FoundVoluntaryModule()),
-                  )),
-          CustomListTile(
-              Icons.hotel,
-              'Pedir ayuda urgente',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CitizenPanicButtonModule()),
-                  )),
+          // CustomListTile(
+          //     Icons.business,
+          //     'Conoce las instituciones',
+          //     () => Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) => CitizenListInstitucionModule()),
+          //         )),
+          // CustomListTile(
+          //     Icons.perm_phone_msg,
+          //     'Consulta a un voluntario',
+          //     () => Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) => FoundVoluntaryModule()),
+          //         )),
+          // CustomListTile(
+          //     Icons.hotel,
+          //     'Pedir ayuda urgente',
+          //     () => Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) => CitizenPanicButtonModule()),
+          //         )),
           CustomListTile(
               Icons.accessible_forward,
               'Ayuda a una persona',
@@ -367,45 +333,30 @@ class DrawerCitizen extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => HelpFriendAllModule()),
                   )),
-          CustomListTile(
-              Icons.event_available,
-              'Eventos vigentes',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CitizenEventsModule()),
-                  )),
-          CustomListTile(
-              Icons.play_circle_outline,
-              'Ver Multimedia',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CitizenMultimediaModule()),
-                  )),
-          CustomListTile(
-              Icons.edit_location,
-              'Registra tu Institución',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => EntityAllModule()),
-                  )),
-          CustomListTile(
-              Icons.person_add,
-              'Registrate como voluntario',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => VoluntaryAllModule()),
-                  )),
-          CustomListTile(
-              Icons.bubble_chart,
-              'Acerca de Lucia Te Cuida',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => IntroScreenModule()),
-                  )),
+          // CustomListTile(
+          //     Icons.event_available,
+          //     'Eventos vigentes',
+          //     () => Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) => CitizenEventsModule()),
+          //         )),
+          // CustomListTile(
+          //     Icons.play_circle_outline,
+          //     'Ver Multimedia',
+          //     () => Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) => CitizenMultimediaModule()),
+          //         )),
+          // CustomListTile(
+          //     Icons.edit_location,
+          //     'Registra tu Institución',
+          //     () => Navigator.push(
+          //           context,
+          //           MaterialPageRoute(builder: (context) => EntityAllModule()),
+          //         )),
+
           CustomListTile(
               Icons.add_comment,
               'Atiende las solicitudes',
@@ -414,15 +365,15 @@ class DrawerCitizen extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => CitizenEmergencyModule()),
                   )),
-          CustomListTile(
-            Icons.map,
-            'Mapa de solicitudes',
-            () => openWeb('http://mapacovid19.ruta88.net/'),
-            // Navigator.push(
-            //       context,
-            //       MaterialPageRoute(builder: (context) => MapAdressModule()),
-            //     )
-          ),
+          // CustomListTile(
+          //   Icons.map,
+          //   'Mapa de solicitudes',
+          //   () => openWeb('http://mapacovid19.ruta88.net/'),
+          //   // Navigator.push(
+          //   //       context,
+          //   //       MaterialPageRoute(builder: (context) => MapAdressModule()),
+          //   //     )
+          // ),
           CustomListTile(
               Icons.event_available,
               'Crear Eventos-Entidades',
@@ -453,6 +404,27 @@ class DrawerCitizen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => ListMaterialModule()),
+                  )),
+          CustomListTile(
+              Icons.person_add,
+              'Registrate como voluntario',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => VoluntaryAllModule()),
+                  )),
+          CustomListTile(
+              Icons.share,
+              'Comparte la aplicación',
+              () => sharedText('Comparte la aplicación LuciaTeCuida',
+                  'Comparte la app http://bit.ly/mrPlayStore', 'text/html')),
+          CustomListTile(
+              Icons.bubble_chart,
+              'Acerca de Lucia Te Cuida',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => IntroScreenModule()),
                   )),
           CustomListTile(
               Icons.exit_to_app,
@@ -501,39 +473,7 @@ class DrawerCitizen extends StatelessWidget {
               ],
             )),
           ),
-          CustomListTile(
-              Icons.home,
-              'Inicio',
-              () => //openWeb('http://mapacovid19.ruta88.net/'),
-                  //sharedImage('assets/image/twitter.jpg','twitter','twitter.jpg','jpg','imagen de apoyo JPG'),
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignInDemo()),
-                  )),
-          CustomListTile(
-              Icons.business,
-              'Conoce las instituciones',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CitizenListInstitucionModule()),
-                  )),
-          CustomListTile(
-              Icons.perm_phone_msg,
-              'Consulta a un voluntario',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => FoundVoluntaryModule()),
-                  )),
-          CustomListTile(
-              Icons.hotel,
-              'Pedir ayuda urgente',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CitizenPanicButtonModule()),
-                  )),
+
           CustomListTile(
               Icons.accessible_forward,
               'Ayuda a una persona',
@@ -542,22 +482,22 @@ class DrawerCitizen extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => HelpFriendAllModule()),
                   )),
-          CustomListTile(
-              Icons.event_available,
-              'Eventos vigentes',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CitizenEventsModule()),
-                  )),
-          CustomListTile(
-              Icons.play_circle_outline,
-              'Ver Multimedia',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CitizenMultimediaModule()),
-                  )),
+          // CustomListTile(
+          //     Icons.event_available,
+          //     'Eventos vigentes',
+          //     () => Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) => CitizenEventsModule()),
+          //         )),
+          // CustomListTile(
+          //     Icons.play_circle_outline,
+          //     'Ver Multimedia',
+          //     () => Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) => CitizenMultimediaModule()),
+          //         )),
           CustomListTile(
               Icons.edit_location,
               'Registra tu Institución',
@@ -566,13 +506,10 @@ class DrawerCitizen extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => EntityAllModule()),
                   )),
           CustomListTile(
-              Icons.person_add,
-              'Registrate como voluntario',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => VoluntaryAllModule()),
-                  )),
+              Icons.share,
+              'Comparte la aplicación',
+              () => sharedText('Comparte la aplicación LuciaTeCuida',
+                  'Comparte la app http://bit.ly/mrPlayStore', 'text/html')),
           CustomListTile(
               Icons.bubble_chart,
               'Acerca de Lucia Te Cuida',

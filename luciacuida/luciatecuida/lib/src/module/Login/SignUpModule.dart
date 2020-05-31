@@ -263,7 +263,7 @@ class _SignUpModuleState extends State<SignUpModule> {
                               SizedBox(height: 20.0),
                                Text('Bienvenido',
                                    style: kSigTitleStyle),
-                              Text('Lucia Te Cuida.', style: kSigTitleStyle),
+                              Text('a la aplicación', style: kSigTitleStyle),
                               Image(
                                   image: AssetImage("assets/buu.PNG"),
                                   height: 230.0),

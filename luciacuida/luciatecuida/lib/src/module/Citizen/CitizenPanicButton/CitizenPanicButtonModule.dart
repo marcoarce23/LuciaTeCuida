@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
@@ -24,6 +25,9 @@ class CitizenPanicButtonModule extends StatefulWidget {
 
 class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
   final prefs = new PreferensUser();
+  int _group = 1;
+  int _selectedRadio = 1;
+
   @override
   void initState() {
     prefs.ultimaPagina = CitizenPanicButtonModule.routeName;
@@ -70,22 +74,84 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
                     ),
                   ),
                 ),
+                Row(
+                  children: <Widget>[
+                    SizedBox(width: 23.0),
+                    //   FaIcon(FontAwesomeIcons.male, color: AppTheme.themeVino),
+                    SizedBox(width: 15.0),
+                    Text('Consulta Covid'),
+                    Radio(
+                      value: 65,
+                      groupValue: _group,
+                      onChanged: (T) {
+                        print(T);
+                        _selectedRadio = T;
+                        setState(() {
+                          _group = T;
+                        });
+                      },
+                    ),
+                    Text('Consulta Médica'),
+                    Radio(
+                      value: 64,
+                      groupValue: _group,
+                      onChanged: (T) {
+                        print(T);
+                        _selectedRadio = T;
+                        setState(() {
+                          _group = T;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    SizedBox(width: 23.0),
+                    // FaIcon(FontAwesomeIcons.male, color: AppTheme.themeVino),
+                    SizedBox(width: 15.0),
+                    Text('Compra medicmentos-alimentos'),
+                    Radio(
+                      value: 66,
+                      groupValue: _group,
+                      onChanged: (T) {
+                        print(T);
+                        _selectedRadio = T;
+                        setState(() {
+                          _group = T;
+                        });
+                      },
+                    ),
+                    Text('Bonos-Otros servicios'),
+                    Radio(
+                      value: 77,
+                      groupValue: _group,
+                      onChanged: (T) {
+                        print(T);
+                        _selectedRadio = T;
+                        setState(() {
+                          _group = T;
+                        });
+                      },
+                    ),
+                  ],
+                ),
                 ButtonPanic(
                   titulo: "CONSULTA COVID",
-                  tipoBoton: "65",
+                  tipoBoton: _selectedRadio.toString(),
                 ),
-                ButtonPanic(
-                  titulo: "CONSULTA MÉDICA",
-                  tipoBoton: "64",
-                ),
-                ButtonPanic(
-                  titulo: "COMPRA MEDICAMENTOS-INSUMOS",
-                  tipoBoton: "66",
-                ),
-                ButtonPanic(
-                  titulo: "BONOS Y OTROS SERVICIOS",
-                  tipoBoton: "77",
-                ),
+                // ButtonPanic(
+                //   titulo: "CONSULTA MÉDICA",
+                //   tipoBoton: "64",
+                // ),
+                // ButtonPanic(
+                //   titulo: "COMPRA MEDICAMENTOS-INSUMOS",
+                //   tipoBoton: "66",
+                // ),
+                // ButtonPanic(
+                //   titulo: "BONOS Y OTROS SERVICIOS",
+                //   tipoBoton: "77",
+                // ),
                 copyRigth(),
               ],
             ),
@@ -240,7 +306,14 @@ class _ButtonPanic extends State<ButtonPanic> {
                         ),
                         TextFormField(
                           style: TextStyle(color: Colors.black, fontSize: 13),
+                          textCapitalization: TextCapitalization.sentences,
+                          enableSuggestions: true,
+                          maxLength: 100,
+                          autocorrect: true,
+                          autovalidate: false,
+                          keyboardType: TextInputType.text,
                           decoration: InputDecoration(
+                            focusColor: Colors.blue,
                             labelStyle:
                                 TextStyle(fontSize: 14, color: Colors.black),
                             labelText: "Ingrese Detalle/Inquietud",
@@ -255,6 +328,9 @@ class _ButtonPanic extends State<ButtonPanic> {
                         ),
                         TextFormField(
                           keyboardType: TextInputType.phone,
+                          textCapitalization: TextCapitalization.sentences,
+                          enableSuggestions: true,
+                          maxLength: 15,
                           style: TextStyle(color: Colors.black, fontSize: 13),
                           decoration: InputDecoration(
                             labelStyle:

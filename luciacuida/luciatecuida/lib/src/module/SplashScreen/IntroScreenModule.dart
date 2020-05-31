@@ -238,6 +238,20 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                       ),
                                     ],
                                   ),
+
+                                   SizedBox(height: 13.0),
+                                  Row(
+                                    children: <Widget>[
+                                      FaIcon(FontAwesomeIcons.diagnoses,
+                                          color: AppTheme.themeVino,
+                                          size: 35.0),
+                                      SizedBox(width: 10.0),
+                                      Text(
+                                        'COnisderar que el traajo de la gente es de voluntariado en funcion........',
+                                        style: kSubtitleStyleBlack,
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ),
@@ -306,6 +320,18 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                       SizedBox(width: 10.0),
                                       Text(
                                         'Difunde el uso de la aplicación con tus \namig@s, familiares y personas para que \npodamos llegar a mas personas.',
+                                        style: kSubtitleStyleBlack,
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      FaIcon(FontAwesomeIcons.diagnoses,
+                                          color: AppTheme.themeVino,
+                                          size: 35.0),
+                                      SizedBox(width: 10.0),
+                                      Text(
+                                        'COnisderar que el traajo de la gente es de voluntariado en funcion........',
                                         style: kSubtitleStyleBlack,
                                       ),
                                     ],

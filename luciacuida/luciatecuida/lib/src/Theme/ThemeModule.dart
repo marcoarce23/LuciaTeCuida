@@ -139,7 +139,6 @@ final kTitleCursive4Style = TextStyle(
 );
 
 Widget crearFondo(BuildContext context, String imagen) {
-  print('EL AVATAR CARGADO $imagen');
     final size = MediaQuery.of(context).size;
 
     final fondoModaro = Container(
@@ -215,15 +214,12 @@ boxDecoration() {
     begin: Alignment.topCenter,
     end: Alignment.bottomRight,
     stops: [0.1, 0.4, 0.7, 0.9],
-    colors: [
+    colors: [ AppTheme.themeVino,AppTheme.themeVino,AppTheme.themeVino,AppTheme.themeVino,
       // Color.fromRGBO(142, 12, 3, 0.8),
       // Color.fromRGBO(232, 78, 68, 1.0),
       // Color.fromRGBO(168, 18, 8, 0.6),
       // Color.fromRGBO(196, 66, 58, 1.0),
-      Color.fromRGBO(84, 153, 199, 0.6),
-                Color.fromRGBO(84, 153, 199, 1.0),
-                Color.fromRGBO(84, 153, 199, 0.6),
-                Color.fromRGBO(84, 153, 199, 1.0),
+
     ],
   ));
 }
