@@ -70,7 +70,7 @@ class _CitizenEmergencyModuleState extends State<CitizenEmergencyModule> {
                     size: 24,
                   ),
                   title: Text(
-                    'Medicina',
+                    'Consulta médica',
                     style: TextStyle(fontSize: 12),
                   ),
                 ),
@@ -85,7 +85,7 @@ class _CitizenEmergencyModuleState extends State<CitizenEmergencyModule> {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.transfer_within_a_station, size: 24),
-                  title: Text('bonos', style: TextStyle(fontSize: 12)),
+                  title: Text('Bonos', style: TextStyle(fontSize: 12)),
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.face, size: 24),
@@ -123,7 +123,7 @@ class _PageMedicinaState extends State<PageMedicina> {
               contenedorTitulo(
                 context,
                 40.0,
-                "solicitudes ayuda con medicina".toUpperCase(),
+                "Medicina".toUpperCase(),
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
               Align(
@@ -140,15 +140,9 @@ class _PageMedicinaState extends State<PageMedicina> {
                             disabledTextColor: Colors.black,
                             splashColor: Colors.white,
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => PageViewModule(
-                                          title: 'MAPA DE AYUDA',
-                                          selectedUrl:
-                                              'http://mapacovid19.ruta88.net/')));
+                              openWeb('http://mapacovid19.ruta88.net/');
                             },
-                            child: Text("Mapa"),
+                            child: Text("Mapa de solicitudes"),
                           ),
                           SizedBox(
                             width: 20,
@@ -434,28 +428,47 @@ class _PageCovidState extends State<PageCovid> {
               contenedorTitulo(
                 context,
                 40.0,
-                "solicitudes consultas covid".toUpperCase(),
+                "Consulta Covid".toUpperCase(),
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
               Align(
                   alignment: Alignment.topRight,
                   child: Padding(
                       padding: EdgeInsets.only(right: 20),
-                      child: FlatButton(
-                        color: AppTheme.themeVino,
-                        textColor: Colors.white,
-                        disabledColor: Colors.grey,
-                        disabledTextColor: Colors.black,
-                        splashColor: Colors.greenAccent,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CitizenAlertEmergency(
-                                    "-1", prefs.idPersonal)),
-                          );
-                        },
-                        child: Text("Mis atenciones"),
+                      child: Row(
+                        mainAxisAlignment:  MainAxisAlignment.end,
+                        children: <Widget>[
+                             FlatButton(
+                            color: AppTheme.themeVino,
+                            textColor: Colors.white,
+                            disabledColor: Colors.grey,
+                            disabledTextColor: Colors.black,
+                            splashColor: Colors.white,
+                            onPressed: () {
+                              openWeb('http://mapacovid19.ruta88.net/');
+                            },
+                            child: Text("Mapa de solicitudes"),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          FlatButton(
+                            color: AppTheme.themeVino,
+                            textColor: Colors.white,
+                            disabledColor: Colors.grey,
+                            disabledTextColor: Colors.black,
+                            splashColor: Colors.greenAccent,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CitizenAlertEmergency(
+                                        "-1", prefs.idPersonal)),
+                              );
+                            },
+                            child: Text("Mis atenciones"),
+                          ),
+                        ],
                       ))),
               futureCovid(context),
             ],
@@ -743,28 +756,47 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
               contenedorTitulo(
                 context,
                 40.0,
-                "solicitud de ayuda abastecimientos".toUpperCase(),
+                "Medicamentos y abastecimientos".toUpperCase(),
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
               Align(
                   alignment: Alignment.topRight,
                   child: Padding(
                       padding: EdgeInsets.only(right: 20),
-                      child: FlatButton(
-                        color: AppTheme.themeVino,
-                        textColor: Colors.white,
-                        disabledColor: Colors.grey,
-                        disabledTextColor: Colors.black,
-                        splashColor: Colors.greenAccent,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CitizenAlertEmergency(
-                                    "-1", prefs.idPersonal)),
-                          );
-                        },
-                        child: Text("Mis atenciones"),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                           FlatButton(
+                            color: AppTheme.themeVino,
+                            textColor: Colors.white,
+                            disabledColor: Colors.grey,
+                            disabledTextColor: Colors.black,
+                            splashColor: Colors.white,
+                            onPressed: () {
+                              openWeb('http://mapacovid19.ruta88.net/');
+                            },
+                            child: Text("Mapa de solicitudes"),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          FlatButton(
+                            color: AppTheme.themeVino,
+                            textColor: Colors.white,
+                            disabledColor: Colors.grey,
+                            disabledTextColor: Colors.black,
+                            splashColor: Colors.greenAccent,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CitizenAlertEmergency(
+                                        "-1", prefs.idPersonal)),
+                              );
+                            },
+                            child: Text("Mis atenciones"),
+                          ),
+                        ],
                       ))),
               future(context),
             ],
@@ -1050,28 +1082,47 @@ class _PageBonosState extends State<PageBonos> {
               contenedorTitulo(
                 context,
                 40.0,
-                "solicitud de ayuda con bonos".toUpperCase(),
+                "Bonos y otros servicios".toUpperCase(),
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
               Align(
                   alignment: Alignment.topRight,
                   child: Padding(
                       padding: EdgeInsets.only(right: 20),
-                      child: FlatButton(
-                        color: AppTheme.themeVino,
-                        textColor: Colors.white,
-                        disabledColor: Colors.grey,
-                        disabledTextColor: Colors.black,
-                        splashColor: Colors.greenAccent,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CitizenAlertEmergency(
-                                    "-1", prefs.idPersonal)),
-                          );
-                        },
-                        child: Text("Mis atenciones"),
+                      child: Row(
+                        mainAxisAlignment:  MainAxisAlignment.end,
+                        children: <Widget>[
+                           FlatButton(
+                            color: AppTheme.themeVino,
+                            textColor: Colors.white,
+                            disabledColor: Colors.grey,
+                            disabledTextColor: Colors.black,
+                            splashColor: Colors.white,
+                            onPressed: () {
+                              openWeb('http://mapacovid19.ruta88.net/');
+                            },
+                            child: Text("Mapa de solicitudes"),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          FlatButton(
+                            color: AppTheme.themeVino,
+                            textColor: Colors.white,
+                            disabledColor: Colors.grey,
+                            disabledTextColor: Colors.black,
+                            splashColor: Colors.greenAccent,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CitizenAlertEmergency(
+                                        "-1", prefs.idPersonal)),
+                              );
+                            },
+                            child: Text("Mis atenciones"),
+                          ),
+                        ],
                       ))),
               futureBonos(context),
             ],
@@ -1361,28 +1412,47 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
               contenedorTitulo(
                 context,
                 40.0,
-                "solicutd ayuda a personas".toUpperCase(),
+                "Ayuda a un amig@".toUpperCase(),
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
               Align(
                   alignment: Alignment.topRight,
                   child: Padding(
                       padding: EdgeInsets.only(right: 20),
-                      child: FlatButton(
-                        color: AppTheme.themeVino,
-                        textColor: Colors.white,
-                        disabledColor: Colors.grey,
-                        disabledTextColor: Colors.black,
-                        splashColor: Colors.greenAccent,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CitizenAlertEmergency(
-                                    "-1", prefs.idPersonal)),
-                          );
-                        },
-                        child: Text("Mis atenciones"),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                           FlatButton(
+                            color: AppTheme.themeVino,
+                            textColor: Colors.white,
+                            disabledColor: Colors.grey,
+                            disabledTextColor: Colors.black,
+                            splashColor: Colors.white,
+                            onPressed: () {
+                              openWeb('http://mapacovid19.ruta88.net/');
+                            },
+                            child: Text("Mapa de solicitudes"),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          FlatButton(
+                            color: AppTheme.themeVino,
+                            textColor: Colors.white,
+                            disabledColor: Colors.grey,
+                            disabledTextColor: Colors.black,
+                            splashColor: Colors.greenAccent,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CitizenAlertEmergency(
+                                        "-1", prefs.idPersonal)),
+                              );
+                            },
+                            child: Text("Mis atenciones"),
+                          ),
+                        ],
                       ))),
               futureSolicitudesAmigo(context),
             ],
