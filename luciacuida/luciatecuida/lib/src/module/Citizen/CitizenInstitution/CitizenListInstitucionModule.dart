@@ -68,6 +68,7 @@ class _CitizenListInstitucionModuleState
         ),
       ),
        drawer: DrawerCitizen(),
+       floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 
