@@ -11,6 +11,7 @@ import 'package:luciatecuida/src/module/Citizen/CitizenEmergency/CitizenAlertEme
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
+import 'package:luciatecuida/src/module/UtilModule/PageViewModule.dart';
 
 class CitizenEmergencyModule extends StatefulWidget {
   static final String routeName = 'CiudadanoEmergencia';
@@ -49,10 +50,11 @@ class _CitizenEmergencyModuleState extends State<CitizenEmergencyModule> {
         child: Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.white,
-        toolbarOpacity: 0.7,
-        iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
-        elevation: 0,
-              title: Text("Solicitudes de ayuda", style: kTitleAppBar),
+              toolbarOpacity: 0.7,
+              iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
+              elevation: 0,
+              title: Text("Solicitudes de ayuda".toUpperCase(),
+                  style: kTitleAppBar),
               //backgroundColor: colorCuadro,
             ), //backgroundColor: colorCuadro,
 
@@ -128,21 +130,46 @@ class _PageMedicinaState extends State<PageMedicina> {
                   alignment: Alignment.topRight,
                   child: Padding(
                       padding: EdgeInsets.only(right: 20),
-                      child: FlatButton(
-                        color: AppTheme.themeVino,
-                        textColor: Colors.white,
-                        disabledColor: Colors.grey,
-                        disabledTextColor: Colors.black,
-                        splashColor: Colors.greenAccent,
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => CitizenAlertEmergency(
-                                    "-1", prefs.idPersonal)),
-                          );
-                        },
-                        child: Text("Mis atenciones"),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          FlatButton(
+                            color: AppTheme.themeVino,
+                            textColor: Colors.white,
+                            disabledColor: Colors.grey,
+                            disabledTextColor: Colors.black,
+                            splashColor: Colors.white,
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => PageViewModule(
+                                          title: 'MAPA DE AYUDA',
+                                          selectedUrl:
+                                              'http://mapacovid19.ruta88.net/')));
+                            },
+                            child: Text("Mapa"),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          FlatButton(
+                            color: AppTheme.themeVino,
+                            textColor: Colors.white,
+                            disabledColor: Colors.grey,
+                            disabledTextColor: Colors.black,
+                            splashColor: Colors.greenAccent,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CitizenAlertEmergency(
+                                        "-1", prefs.idPersonal)),
+                              );
+                            },
+                            child: Text("Mis atenciones"),
+                          ),
+                        ],
                       ))),
               futureMedicamentoss(context),
             ],
@@ -1281,7 +1308,7 @@ class _PageBonosState extends State<PageBonos> {
                         children: <Widget>[
                           FaIcon(
                             FontAwesomeIcons.checkCircle,
-                          color: AppTheme.themeColorVerde,
+                            color: AppTheme.themeColorVerde,
                             size: 25,
                           ),
                           Text(

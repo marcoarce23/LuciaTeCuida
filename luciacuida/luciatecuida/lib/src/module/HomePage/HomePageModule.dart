@@ -104,7 +104,7 @@ class _HomePageModuleState extends State<HomePageModule> {
                       ],
                     ),
                   ),
-                  SizedBox(height:20.0),
+                  SizedBox(height: 20.0),
                   _botonesRedondeados()
                 ],
               ),
@@ -144,17 +144,15 @@ class _HomePageModuleState extends State<HomePageModule> {
 
   Widget _botonesRedondeados() {
     return Wrap(children: <Widget>[
-      
-     
       _crearBotonRedondeado(Colors.purpleAccent, Icons.hotel, 'Ayuda Urgente',
           '2', 14.0, CitizenPanicButtonModule(), 0, ""),
-       _crearBotonRedondeado(Colors.blue, Icons.add_comment,
+      _crearBotonRedondeado(Colors.blue, Icons.add_comment,
           'Consulta a voluntarios', '1', 14.0, FoundVoluntaryModule(), 0, ""),
       _crearBotonRedondeado(Colors.pinkAccent, Icons.accessible_forward,
           'Ayuda a una persona', '3', 14.0, HelpFriendAllModule(), 0, ""),
       _crearBotonRedondeado(Colors.deepPurple, Icons.phone_in_talk,
           'Números de urgencia', '5', 14.0, ContactGeneralModule(), 0, ""),
-       _crearBotonRedondeado(
+      _crearBotonRedondeado(
           Colors.cyan,
           Icons.add_to_queue,
           'Prueba de control',
@@ -163,7 +161,7 @@ class _HomePageModuleState extends State<HomePageModule> {
           HomePageModule(),
           1,
           "https://omi.app/covid-19/welcome"),
-            _crearBotonRedondeado(
+      _crearBotonRedondeado(
           Colors.cyan,
           Icons.add_to_queue,
           'Violencia IntraFamiliar',
@@ -177,8 +175,6 @@ class _HomePageModuleState extends State<HomePageModule> {
       //_crearBotonRedondeado(Colors.blueAccent, Icons.people, 'Voluntarios', '5', 20.0,CitizenListInstitucionModule()),
       _crearBotonRedondeado(Colors.green, Icons.business, 'Organizaciones', '6',
           14.0, CitizenListInstitucionModule(), 0, ""),
-      
-     
     ]);
   }
 
@@ -426,13 +422,13 @@ class DrawerCitizen extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => IntroScreenModule()),
                   )),
-          CustomListTile(
-              Icons.exit_to_app,
-              'Cerrar Sesión',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignInDemo()),
-                  )),
+          CustomListTile(Icons.exit_to_app, 'Cerrar Sesión', () {
+          
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SignInDemo()),
+            );
+          }),
         ],
       ));
     } else {

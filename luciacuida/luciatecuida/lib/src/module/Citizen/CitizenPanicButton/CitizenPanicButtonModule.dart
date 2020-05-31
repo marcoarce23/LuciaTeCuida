@@ -25,8 +25,6 @@ class CitizenPanicButtonModule extends StatefulWidget {
 
 class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
   final prefs = new PreferensUser();
-  int _group = 1;
-  int _selectedRadio = 1;
 
   @override
   void initState() {
@@ -53,7 +51,12 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Align(
+              
+
+                ButtonPanic(
+                  titulo: "CONSULTA",
+                ),
+                  Align(
                   alignment: Alignment.topRight,
                   child: Container(
                     margin: EdgeInsets.only(right: 15),
@@ -73,72 +76,6 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
                       ),
                     ),
                   ),
-                ),
-                Row(
-                  children: <Widget>[
-                    SizedBox(width: 23.0),
-                    //   FaIcon(FontAwesomeIcons.male, color: AppTheme.themeVino),
-                    SizedBox(width: 15.0),
-                    Text('Consulta Covid'),
-                    Radio(
-                      value: 65,
-                      groupValue: _group,
-                      onChanged: (T) {
-                        print(T);
-                        _selectedRadio = T;
-                        setState(() {
-                          _group = T;
-                        });
-                      },
-                    ),
-                    Text('Consulta Médica'),
-                    Radio(
-                      value: 64,
-                      groupValue: _group,
-                      onChanged: (T) {
-                        print(T);
-                        _selectedRadio = T;
-                        setState(() {
-                          _group = T;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    SizedBox(width: 23.0),
-                    // FaIcon(FontAwesomeIcons.male, color: AppTheme.themeVino),
-                    SizedBox(width: 15.0),
-                    Text('Compra medicmentos-alimentos'),
-                    Radio(
-                      value: 66,
-                      groupValue: _group,
-                      onChanged: (T) {
-                        print(T);
-                        _selectedRadio = T;
-                        setState(() {
-                          _group = T;
-                        });
-                      },
-                    ),
-                    Text('Bonos-Otros servicios'),
-                    Radio(
-                      value: 77,
-                      groupValue: _group,
-                      onChanged: (T) {
-                        print(T);
-                        _selectedRadio = T;
-                        setState(() {
-                          _group = T;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                ButtonPanic(
-                  titulo: "CONSULTA COVID",
-                  tipoBoton: _selectedRadio.toString(),
                 ),
                 // ButtonPanic(
                 //   titulo: "CONSULTA MÉDICA",
@@ -162,12 +99,10 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
 
 class ButtonPanic extends StatefulWidget {
   final String titulo;
-  final String tipoBoton;
 
   const ButtonPanic({
     Key key,
     this.titulo,
-    this.tipoBoton,
   }) : super(key: key);
 
   @override
@@ -177,6 +112,9 @@ class ButtonPanic extends StatefulWidget {
 class _ButtonPanic extends State<ButtonPanic> {
   BotonPanico botonPanico = new BotonPanico();
   final generic = new Generic();
+
+    int _group = 1;
+    int _selectedRadio = 1;
 
   bool checkMuyAlto = false;
   bool checkAlto = false;
@@ -198,7 +136,6 @@ class _ButtonPanic extends State<ButtonPanic> {
   }
 
   Widget buttonPanic() {
-    botonPanico.idaCatalogo = int.parse(widget.tipoBoton);
     //botonPanico.botFecha=DateTime.now();
 
     String fechaNotificacion = "-/-/- --:--";
@@ -240,12 +177,75 @@ class _ButtonPanic extends State<ButtonPanic> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Text(widget.titulo, style: textStyle),
+                            Text(" Selecciona el tipo de consulta y/o ayuda:", style: textStyle),
+                          ],
+                        ),                        
+                        Row(
+                          children: <Widget>[
+                            Text('Consulta Covid',
+                                style: TextStyle(fontSize: 12)),
+                            Radio(
+                              value: 65,
+                              groupValue: _group,
+                              onChanged: (T) {
+                                print(T);
+                                _selectedRadio = T;
+                                setState(() {
+                                  _group = T;
+                                });
+                              },
+                            ),
+                                 Text('Medicmentos-alimentos',
+                                style: TextStyle(fontSize: 12)),
+                            Radio(
+                              value: 66,
+                              groupValue: _group,
+                              onChanged: (T) {
+                                print(T);
+                                _selectedRadio = T;
+                                setState(() {
+                                  _group = T;
+                                });
+                              },
+                            ),
                           ],
                         ),
+                        Row(
+                          children: <Widget>[
+                             Text('Consulta Médica',
+                                style: TextStyle(fontSize: 12)),
+                            Radio(
+                              
+                              value: 64,
+                              groupValue: _group,
+                              onChanged: (T) {
+                                print(T);
+                                _selectedRadio = T;
+                                setState(() {
+                                  _group = T;
+                                });
+                              },
+                            ),
+                      
+                            Text('Bonos-Otros servicios',
+                                style: TextStyle(fontSize: 12)),
+                            Radio(
+                              value: 77,
+                              groupValue: _group,
+                              onChanged: (T) {
+                                print(T);
+                                _selectedRadio = T;
+                                setState(() {
+                                  _group = T;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                        divider(),
                         Align(
                           alignment: Alignment.topLeft,
-                          child: Text(" Selecione su Prioridad:",
+                          child: Text("Selecciona la prioridad:",
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w700)),
                         ),
@@ -350,6 +350,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                           child: FlatButton(
                             color: AppTheme.themeVino,
                             onPressed: () {
+                              botonPanico.idaCatalogo = _selectedRadio;
                               _submit();
                               setState(() {
                                 fechaNotificacion =

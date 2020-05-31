@@ -17,7 +17,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 
-
 final String userName = null;
 
 int daysInMonth(int month) {
@@ -52,8 +51,7 @@ callWhatsApp(int number) async {
 }
 
 callWhatsAppAdvanced(String message) async {
-  await FlutterOpenWhatsapp.sendSingleMessage(
-      '', message);
+  await FlutterOpenWhatsapp.sendSingleMessage('', message);
 }
 
 sharedImage(String imagePath, String nameImage, String nameAttachExtension,
@@ -61,11 +59,11 @@ sharedImage(String imagePath, String nameImage, String nameAttachExtension,
   final ByteData bytes = await rootBundle.load(imagePath);
   Share.file(nameImage, nameAttachExtension, bytes.buffer.asUint8List(),
       'image/$extensionImage',
-      text: detail);  
+      text: detail);
 }
 
 sharedText(String title, String text, String mimeType) async {
-  Share.text(title, text, mimeType);  
+  Share.text(title, text, mimeType);
 }
 
 openWeb(String url) async {
@@ -121,23 +119,19 @@ loadPDF(String path) async {
   return file.path;
 }
 
-FloatingActionButton generaFloatbuttonHome(BuildContext context)
-{
-return FloatingActionButton(
-        onPressed: () {
-           Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => HomePageModule(),
+FloatingActionButton generaFloatbuttonHome(BuildContext context) {
+  return FloatingActionButton(
+    onPressed: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePageModule(),
           ));
-        },
-        child: FaIcon(FontAwesomeIcons.home),
-        backgroundColor: AppTheme.themeVino,             
-      );
+    },
+    child: FaIcon(FontAwesomeIcons.home),
+    backgroundColor: AppTheme.themeVino,
+  );
 }
-
-
-
-
 
 class ImageOpaqueAssets extends StatelessWidget {
   final String imageAssetUrl;
