@@ -10,6 +10,7 @@ import 'package:luciatecuida/src/Model/PreferenceUser.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/Util/Resource.dart' as resource;
 import 'package:luciatecuida/src/Util/SearchDelegate/DataSearch.dart';
+import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/Widget/InputField/InputFieldWidget.dart';
 import 'package:luciatecuida/src/Widget/Message/Message.dart';
@@ -147,6 +148,7 @@ class _EventEntityModuleState extends State<EventEntityModule> {
           _crearForm(context),
         ],
       ),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 

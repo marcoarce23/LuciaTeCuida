@@ -30,14 +30,14 @@ class Generic {
 
       final List<Entity> list = new List();
       Map<String, dynamic> decodeData;
-   print(_url);
-   print(_primaryKey);
+      print(_url);
+      print(_primaryKey);
       final response = await http.get(_url);
 
       if (response.statusCode == 200) {
           Map dataMap = json.decode(response.body);
           List<dynamic> listDynamic = dataMap[_primaryKey];
-   print(listDynamic);
+           print(listDynamic);
           for (int i = 0; i < listDynamic.length; i++) {
             decodeData = listDynamic[i];
             list.add(objeto.fromJson(decodeData));
@@ -83,6 +83,29 @@ Future<Map<String, dynamic>> add(Entity objeto, String urlService) async {
 
     return dataMap;
   }
+
+Future<Map<String, dynamic>> sebnFCM(String token, String body, String data ) async
+ {
+     String sJSON='{"to": "$token","notification": {"title": "Lucia Te Cuida", "body": "$body"}, "data":{"data": "$data"}}';
+      String _body = sJSON;
+      print('body: $_body');
+      final url = 'https://fcm.googleapis.com/fcm/send';
+      print('url: $url');
+      final response = await http.post(url, headers: {"Authorization": "key=AAAAxotDu0w:APA91bGSP8HuiwfdXoSb7cN0-U6WTW4eU_-Qj_c9Hd0msRD7becPLVV5rI0Ihj12KWeKYCc7pUuBTPr-R4Uq2oHgumcrj2ADS3_-rzKwTsT_567-1QFJ1NJjLmhNAa3Qt3Z3XG1rv3ol",
+                                                      "Content-Type": "application/json"}, 
+                                                      body: _body);
+        if (response.statusCode == 200) 
+        {
+print('MI REPSNSE: $response');
+        } 
+       else 
+       {
+         print('Error: Status 400');
+       }
+      print('ENvio FCM ------: ${response.headers} ---- ${response.body} ----  ${response.statusCode} ---- ${response.request}');
+      return dataMap(response);
+  }
+
 
  Future<String> subirImagen( File imagen ) async {
 

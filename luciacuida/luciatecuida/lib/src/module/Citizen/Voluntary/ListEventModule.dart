@@ -51,6 +51,7 @@ class _ListEventModuleState extends State<ListEventModule> {
           copyRigth(),
         ],
       ),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 

@@ -20,3 +20,10 @@ class NotificacionesModule extends StatelessWidget {
     );
   }
 }
+
+    // final snackbar = SnackBar(
+      //   content: Text(argumento),
+      //   action: SnackBarAction(label: 'Vamos', onPressed: ()=>null,)
+
+      //   );
+      // Scaffold.of(context).showSnackBar(snackbar);

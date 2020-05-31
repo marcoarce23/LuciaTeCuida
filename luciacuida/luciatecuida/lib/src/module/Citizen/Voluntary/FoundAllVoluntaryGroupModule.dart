@@ -84,6 +84,7 @@ class _FoundAllVoluntaryGroupModuleeState
           futureCuerpoProfesionales(context),
         ],
       )),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 

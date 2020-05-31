@@ -53,6 +53,7 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
           copyRigth(),
         ],
       ),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 

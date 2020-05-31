@@ -68,6 +68,7 @@ class _AtentionModuleState extends State<AtentionModule> {
       body: Stack(
         children: <Widget>[ fondoApp(),_crearForm(context),],
       ),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 

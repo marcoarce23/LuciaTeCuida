@@ -164,6 +164,7 @@ class _EntityModuleState extends State<EntityModule> {
           _crearForm(context),
         ],
       ),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 

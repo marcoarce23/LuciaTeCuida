@@ -140,6 +140,7 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
           _crearForm(),
         ],
       ),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 
@@ -244,13 +245,6 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
         'Lugar donde se encuentra la persona a ayudar',
         true);
 
-    // tipoAyuda = InputDropDown(
-    //     FaIcon(FontAwesomeIcons.plusCircle,
-    //         color: AppTheme.themeVino),
-    //     'Tipo de ayuda',
-    //     '49',
-    //     urlGetClasificador + '/47');
-
     return Column(
       children: <Widget>[
         nombre,
@@ -277,7 +271,7 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
   }
 
   Widget _crearTipoAyuda() {
-     print('valor combo ingresado AAAAA: $valorTipoAyuda');
+
     return Center(
         child: FutureBuilder(
             future: generic.getAll(new GetClasificador(), urlGetClasificador + '47', primaryKeyGetClasifidor),
@@ -373,11 +367,19 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
     final dataMap = generic.add(registroAmigo, urlAddVoluntary);
 
     await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-    print('resultado:$result');
+
 
     if (result == "0") {
       scaffoldKey.currentState
           .showSnackBar(messageOk("Se registro correctamente."));
+      
+      final dataMapFCM = generic.sebnFCM('csncD1ZQTk0:APA91bHot3RPRzwIA96vLvfnnF42r0OxvI5jnt0UarTtgmOvQwvnJDAHGC_hdqpfFoh6NV0JocykeJyRiI3io8dILsP9tP0mB7h9yeJHPti-e2P7XzCkVrRr4CfhUKE2EAIZioroXFbm',
+                                         'ayuda', 'Se registro aydua aun amigo');
+      await dataMapFCM.then((respuesta1) 
+      {
+        final valorrrrrr = respuesta1["success"];
+        print('ENTOR AL datamaMapCFM $valorrrrrr');
+      });
      // Navigator.of(context).push(CupertinoPageRoute(
       //    builder: (BuildContext context) => ListCitizenHelpModule()));
     } else

@@ -150,10 +150,6 @@ Widget crearFondo(BuildContext context, String imagen) {
    // end: Alignment.bottomRight,
    // stops: [1.0, 1.0, 1.0, 1.0],
     colors: [ Color.fromRGBO(174, 214, 241, 1.0),Color.fromRGBO(174, 214, 241, 1.0),Color.fromRGBO(174, 214, 241, 1.0),Color.fromRGBO(174, 214, 241, 1.0),
-      // Color.fromRGBO(248, 249, 249, 1.0),
-      // Color.fromRGBO(232, 78, 68, 1.0),
-      // Color.fromRGBO(168, 18, 8, 0.6),
-      // Color.fromRGBO(196, 66, 58, 1.0),
 //  Color.fromRGBO(168, 18, 8, 0.4),   
 //                     Color.fromRGBO(168, 18, 8, 0.5),
 //                 Color.fromRGBO(252, 252, 252, 0.6),
@@ -215,11 +211,6 @@ boxDecoration() {
     end: Alignment.bottomRight,
     stops: [0.1, 0.4, 0.7, 0.9],
     colors: [ AppTheme.themeVino,AppTheme.themeVino,AppTheme.themeVino,AppTheme.themeVino,
-      // Color.fromRGBO(142, 12, 3, 0.8),
-      // Color.fromRGBO(232, 78, 68, 1.0),
-      // Color.fromRGBO(168, 18, 8, 0.6),
-      // Color.fromRGBO(196, 66, 58, 1.0),
-
     ],
   ));
 }

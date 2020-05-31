@@ -80,6 +80,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
           copyRigth(),
         ],
       ),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 

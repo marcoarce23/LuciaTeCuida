@@ -11,22 +11,23 @@ class PushNotificationProvider {
   Stream<String> get mensajes => _mensajesStreamController.stream;
   final prefs = new PreferensUser();
 
-  initNotifications() 
-  {
-    _firebaseMessaging.requestNotificationPermissions(
-      const IosNotificationSettings(
-        sound: true,
-        alert:true,
-        badge: true,
-      )
-    );
+  initNotifications() {
+    _firebaseMessaging
+        .requestNotificationPermissions(const IosNotificationSettings(
+      sound: true,
+      alert: true,
+      badge: true,
+    ));
     _firebaseMessaging.getToken().then((token) {
       print('===== FCM Token =====');
       prefs.token = token;
       print('tokennnn: ${prefs.token}');
     });
 
-    _firebaseMessaging.configure(onMessage: (info) {
+    _firebaseMessaging.configure(
+     
+      onMessage: (info) 
+      {
       print('======= On Message ========');
       print(info);
 
@@ -38,13 +39,10 @@ class PushNotificationProvider {
       }
 
       _mensajesStreamController.sink.add(argumento);
-      // final snackbar = SnackBar(
-      //   content: Text(argumento),
-      //   action: SnackBarAction(label: 'Vamos', onPressed: ()=>null,)
-
-      //   );
-      // Scaffold.of(context).showSnackBar(snackbar);
-    }, onLaunch: (info) {
+    }, 
+    
+    onLaunch: (info) 
+    {
       print('======= On Launch ========');
       print(info);
 
@@ -52,26 +50,23 @@ class PushNotificationProvider {
 
       if (Platform.isAndroid) {
         argumento = info['data']['ayuda'] ?? 'no-data';
-      } else {
-        argumento = info['ayuda'] ?? 'no-data-ios';
-      }
+      } else {  argumento = info['ayuda'] ?? 'no-data-ios'; }
       _mensajesStreamController.sink.add(argumento);
-    }, onResume: (info) {
-      print('======= On Resume ========');
-      print(info);
+    }, 
+    
+    onResume: (info)
+     {
+        print('======= On Resume ========');
+        print(info);
+        String argumento = 'no-data';
 
-      String argumento = 'no-data';
+        if (Platform.isAndroid) { argumento = info['data']['ayuda'] ?? 'no-data'; } 
+        else { argumento = info['ayuda'] ?? 'no-data-ios'; }
 
-      if (Platform.isAndroid) {
-        argumento = info['data']['ayuda'] ?? 'no-data';
-      } else {
-        argumento = info['ayuda'] ?? 'no-data-ios';
-      }
-      _mensajesStreamController.sink.add(argumento);
+        _mensajesStreamController.sink.add(argumento);
     }
-
-    );
-  }
+  );
+}
 
   dispose() {
     _mensajesStreamController?.close();

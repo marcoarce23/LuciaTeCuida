@@ -88,6 +88,7 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
         ],
       )),
        drawer: DrawerCitizen(),
+       floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 

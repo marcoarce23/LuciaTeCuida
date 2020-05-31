@@ -77,6 +77,7 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
           _crearForm(context),
         ],
       ),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 

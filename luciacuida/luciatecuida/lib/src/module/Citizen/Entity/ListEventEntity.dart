@@ -53,6 +53,7 @@ class _ListEventEntityState extends State<ListEventEntity> {
           copyRigth(),
         ],
       ),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 

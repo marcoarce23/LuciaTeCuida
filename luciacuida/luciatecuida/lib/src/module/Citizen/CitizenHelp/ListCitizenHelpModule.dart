@@ -54,6 +54,7 @@ class _ListCitizenHelpModuleState extends State<ListCitizenHelpModule> {
           ],
         ),
       ),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 

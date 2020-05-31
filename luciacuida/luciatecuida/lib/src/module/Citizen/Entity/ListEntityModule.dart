@@ -52,6 +52,7 @@ class _ListEntityModuleState extends State<ListEntityModule> {
           copyRigth(),
         ],
       ),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 
