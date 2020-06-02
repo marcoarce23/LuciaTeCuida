@@ -365,14 +365,12 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
     registroAmigo.usuario = prefs.userId;
 
     final dataMap = generic.add(registroAmigo, urlAddVoluntary);
-
     await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-
 
     if (result == "0") {
       scaffoldKey.currentState
           .showSnackBar(messageOk("Se registro correctamente."));
-      
+  // FOR      
       final dataMapFCM = generic.sebnFCM('csncD1ZQTk0:APA91bHot3RPRzwIA96vLvfnnF42r0OxvI5jnt0UarTtgmOvQwvnJDAHGC_hdqpfFoh6NV0JocykeJyRiI3io8dILsP9tP0mB7h9yeJHPti-e2P7XzCkVrRr4CfhUKE2EAIZioroXFbm',
                                          'ayuda', 'Se registro aydua aun amigo');
       await dataMapFCM.then((respuesta1) 
@@ -380,8 +378,6 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
         final valorrrrrr = respuesta1["success"];
         print('ENTOR AL datamaMapCFM $valorrrrrr');
       });
-     // Navigator.of(context).push(CupertinoPageRoute(
-      //    builder: (BuildContext context) => ListCitizenHelpModule()));
     } else
       scaffoldKey.currentState
           .showSnackBar(messageNOk("Error, vuelta a intentarlo"));

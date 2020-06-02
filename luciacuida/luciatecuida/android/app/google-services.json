@@ -8,17 +8,33 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:852739996492:android:8d1548d7e2d1209b46ade9",
+        "mobilesdk_app_id": "1:852739996492:android:ffa9db5791990d3646ade9",
         "android_client_info": {
-          "package_name": "com.example.luciatecuida"
+          "package_name": "bo.luciaTeCuida.luciaTeCuida"
         }
       },
       "oauth_client": [
         {
-          "client_id": "852739996492-ucpjobans56c268fua18rqoht3qdbhim.apps.googleusercontent.com",
+          "client_id": "852739996492-7eplld51u203e63flb7mud8lmjvbjs95.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.luciatecuida",
+            "package_name": "bo.luciaTeCuida.luciaTeCuida",
+            "certificate_hash": "1d4dfd9d569cea6996cfa989312e3111c7662c3a"
+          }
+        },
+        {
+          "client_id": "852739996492-j6f2dtffbduln4v6ivfnaltjhph41oo8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bo.luciaTeCuida.luciaTeCuida",
+            "certificate_hash": "77074b839fa411f10175949670c471498fa8908b"
+          }
+        },
+        {
+          "client_id": "852739996492-2snrfsfsc2f0lb98n159iti8rapsdmc8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bo.luciaTeCuida.luciaTeCuida",
             "certificate_hash": "12c2c8a8fbf187f061344c929af498d39b287073"
           }
         },
