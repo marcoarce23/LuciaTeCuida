@@ -1421,14 +1421,14 @@ class HorarioInstitucion extends Entity {
       };
 }
 
-class token extends Entity {
+class Token extends Entity {
   String llaveToken;
   String correo;
   String detalle;
 
-  token({this.correo, this.detalle, this.llaveToken});
+  Token({this.correo, this.detalle, this.llaveToken});
 
-  fromJson(Map<String, dynamic> json) => new token(
+  fromJson(Map<String, dynamic> json) => new Token(
         llaveToken: json["TOKEN"],
         correo: json["LOG_CORREO"],
         detalle: json["DETALLE"],

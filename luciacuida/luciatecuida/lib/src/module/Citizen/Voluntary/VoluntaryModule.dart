@@ -31,6 +31,7 @@ class _VoluntaryAllModuleState extends State<VoluntaryAllModule> {
   final prefs = new PreferensUser();
   final generic = new Generic();
   int page = 0;
+ 
   final List<Widget> optionPage = [
     VoluntaryModule(),
     AtentionModule(),
@@ -140,6 +141,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
   final generic = new Generic();
   final prefs = new PreferensUser();
   Voluntary entity = new Voluntary();
+ Token entityToken;
 
   @override
   void initState() {
@@ -527,14 +529,46 @@ _selectedRadio = T;
     await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
     print('resultado:$result mas el dia de la semana $now');
 
-    if (result != "-1") {
-      final list = result.split('|');
-      prefs.idInsitucion = list[0];
-      prefs.idPersonal = list[1];
-      print('institucion:${prefs.idInsitucion} idPErsonal ${prefs.idPersonal}');
-      scaffoldKey.currentState
-          .showSnackBar(messageOk("Se inserto correctamente"));
-    }
+    if (result != "-1" || result != '-2') 
+    {
+        final list = result.split('|');
+        prefs.idInsitucion = list[0];
+        prefs.idPersonal = list[1];
+
+        print('institucion:${prefs.idInsitucion} idPErsonal ${prefs.idPersonal}');
+        scaffoldKey.currentState.showSnackBar(messageOk("Se inserto correctamente"));
+
+        final dataMapToken = generic.getAll(new Token(), urlGetToken+'2/${prefs.idInsitucion}', primaryKeyGetToken);
+
+        dataMapToken.then((value) 
+        {
+             if (value.length > 0) 
+             {
+                for (int i = 0; i < value.length; i++) 
+                     entityToken = value[i];
+              }
+            
+            print('el valor del token: ${entityToken.llaveToken} Nuevo voluntario: ${nombre.objectValue}.Bienvenido al Grupo: ${prefs.nombreInstitucion} Fecha: ${DateTime.now()}');
+             generic.sebnFCM(entityToken.llaveToken, 'ayuda', 'Nuevo voluntario - ${nombre.objectValue}- Bienvenido al Grupo ${prefs.nombreInstitucion} Fecha - ${DateTime.now()}');
+        });
+
+
+       // FOR      
+      // final dataMapFCM = generic.sebnFCM('csncD1ZQTk0:APA91bHot3RPRzwIA96vLvfnnF42r0OxvI5jnt0UarTtgmOvQwvnJDAHGC_hdqpfFoh6NV0JocykeJyRiI3io8dILsP9tP0mB7h9yeJHPti-e2P7XzCkVrRr4CfhUKE2EAIZioroXFbm',
+      //                                    'ayuda', 'Se registro aydua aun amigo');
+      // await dataMapFCM.then((respuestaFCM) 
+      // {
+      //   final valorFCM= respuestaFCM["success"];
+      //   print('ENTOR AL datamaMapCFM $valorFCM');
+
+      //   if(valorFCM == '1')
+      //   {
+      //     for (int i = 0; i < respuestaFCM.length; i++) {
+      //         entity = respuestaFCM[i];
+      //       }
+      //   }
+      // });    
+
     if (result == "-1")
       scaffoldKey.currentState
           .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
@@ -547,6 +581,7 @@ _selectedRadio = T;
     });
 
     //Navigator.of(context).push(CupertinoPageRoute(builder: (BuildContext context) => SliderShowModule()));
+  }
   }
 
   _seleccionarFoto() async => _procesarImagen(ImageSource.gallery);

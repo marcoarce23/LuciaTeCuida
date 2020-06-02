@@ -29,6 +29,9 @@ final String primaryKeyGetContacto       = '_DevuelveContactoResult';
 final String getEmergency                 = 'http://covid19.ruta88.net/COVID/Login/srvLogin.svc/DevuelveEmergencia';
 final String primaryKeyGetEmergency       = '_DevuelveEmergencyResult';
 
+final String urlGetToken                 = 'http://covid19.ruta88.net/COVID/Login/srvLogin.svc/DevuelveTokens/';
+final String primaryKeyGetToken       = '_DevuelveTokenResult';
+
 // METODO POST
 final String urlAddVoluntary   =    'http://covid19.ruta88.net/COVID/AyudaAmigo/srvAyudaAmigo.svc/AyudaAmigo';
 final String urlAddSignIn      =    'http://covid19.ruta88.net/COVID/Login/srvLogin.svc/login_signin1';
