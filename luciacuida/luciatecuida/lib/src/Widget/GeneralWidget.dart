@@ -6,12 +6,12 @@ Widget copyRigth() {
   return Column(
     mainAxisAlignment: MainAxisAlignment.start,
     children: <Widget>[
-      SizedBox(height: 10.0),
+      SizedBox(height: 5.0),
      divider(),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text('Lucia te cuida@2020. ', style: kTitleCursive4Style),
+          Text('EstamosContigo@2020. ', style: kTitleCursive4Style),
           FaIcon(
             FontAwesomeIcons.keybase,
             color: AppTheme.themeVino,

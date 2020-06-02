@@ -179,11 +179,13 @@ class _HomePageModuleState extends State<HomePageModule> {
           HomePageModule(),
           1,
           "https://omi.app/covid-19/welcome"),
-      _crearBotonRedondeado(Colors.orange, Icons.blur_linear,
-          'Eventos vigentes', '4', 14.0, CitizenEventsModule(), 0, ""),
+      // _crearBotonRedondeado(Colors.orange, Icons.blur_linear,
+      //     'Eventos vigentes', '4', 14.0, CitizenEventsModule(), 0, ""),
+          _crearBotonRedondeadoImage(Colors.amberAccent, 'assets/eventos.png', 'Eventos vigentes', '4',      
+          10.0, CitizenListInstitucionModule(), 0, ""),
       //_crearBotonRedondeado(Colors.blueAccent, Icons.people, 'Voluntarios', '5', 20.0,CitizenListInstitucionModule()),
-      _crearBotonRedondeado(Colors.green, Icons.business, 'Organizaciones', '6',
-          14.0, CitizenListInstitucionModule(), 0, ""),
+      _crearBotonRedondeadoImage(Colors.green, 'assets/instituciones.png', 'Organizaciones', '6',      
+          10.0, CitizenListInstitucionModule(), 0, ""),
     ]);
   }
 
@@ -234,6 +236,7 @@ class _HomePageModuleState extends State<HomePageModule> {
                   backgroundColor: color,
                   radius: 30.0,
                   child: Icon(icono, color: Colors.white, size: 42.0),
+                  //Icon(icono, color: Colors.white, size: 42.0),
                 ),
                 Text(texto,
                     style: TextStyle(color: AppTheme.white, fontSize: size)),
@@ -244,7 +247,71 @@ class _HomePageModuleState extends State<HomePageModule> {
       ),
     );
   }
+
+   Widget _crearBotonRedondeadoImage(Color color, String image, String texto,
+      String valor, double size, Widget widget, int acceso, String link) {
+    return InkWell(
+      onTap: () {
+        if (acceso == 1) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PageViewModule(
+                      title: 'TEST DE PRUEBA', selectedUrl: link)));
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => widget),
+          );
+        }
+      },
+      child: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+          child: Container(
+            height: 100.0,
+            width: 160,
+            margin: EdgeInsets.all(9.0),
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomRight,
+              stops: [0.1, 0.4, 0.7, 0.9],
+              colors: [
+                AppTheme.themeVino, AppTheme.themeVino, AppTheme.themeVino,
+                AppTheme.themeVino,
+                // Color.fromRGBO(84, 153, 199, 0.6),
+                // Color.fromRGBO(84, 153, 199, 1.0),
+                // Color.fromRGBO(84, 153, 199, 0.6),
+                // Color.fromRGBO(84, 153, 199, 1.0),
+              ],
+            )),
+            //  borderRadius: BorderRadius.circular(20.0)),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                SizedBox(height: 5.0),
+                CircleAvatar(
+                  backgroundColor: color,
+                  radius: 30.0,
+                  child: Image.asset(image, width: 40.0, height: 40.0),
+                  //Icon(icono, color: Colors.white, size: 42.0),
+                ),
+                Text(texto,
+                    style: TextStyle(color: AppTheme.white, fontSize: size)),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
 }
+
+
+
+
 
 class DrawerCitizen extends StatelessWidget {
   final prefs = new PreferensUser();
@@ -386,7 +453,7 @@ class DrawerCitizen extends StatelessWidget {
                     context,
                     MaterialPageRoute(builder: (context) => EntityAllModule()),
                   )),
-                  
+
           CustomListTile(
               Icons.event_available,
               'Crear Eventos-Entidades',

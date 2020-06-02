@@ -9,12 +9,12 @@ import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/Widget/InputField/InputFieldWidget.dart';
 import 'package:luciatecuida/src/Widget/Message/Message.dart';
+import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 import 'package:luciatecuida/src/module/SplashScreen/IntroScreenModule.dart';
 import 'package:page_transition/page_transition.dart';
 import 'dart:async';
 import 'package:imei_plugin/imei_plugin.dart';
-
 
 class SignUpModule extends StatefulWidget {
   static final String routeName = 'login';
@@ -37,7 +37,6 @@ class _SignUpModuleState extends State<SignUpModule> {
   String result2;
   var result;
   var result1;
- 
 
   GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: <String>[
@@ -55,16 +54,6 @@ class _SignUpModuleState extends State<SignUpModule> {
     prefs.ultimaPagina = SignUpModule.routeName;
     initPlatformState();
 
-    // _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
-    //   setState(() {
-    //     _currentUser = account;
-    //   });
-    //   if (_currentUser != null) {
-    //     _handleGetContact();
-    //   }
-    // });
-    // _googleSignIn.signInSilently();
-
     _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
       setState(() {
         currentUser = account;
@@ -72,63 +61,6 @@ class _SignUpModuleState extends State<SignUpModule> {
     });
     _googleSignIn.signInSilently();
   }
-
-//  Future<void> _handleGetContact() async {
-//     setState(() {
-//       _contactText = "Loading contact info...";
-//     });
-//     final http.Response response = await http.get(
-//       'https://people.googleapis.com/v1/people/me/connections'
-//       '?requestMask.includeField=person.names',
-//       headers: await _currentUser.authHeaders,
-//     );
-//     if (response.statusCode != 200) {
-//       setState(() {
-//         _contactText = "People API gave a ${response.statusCode} "
-//             "response. Check logs for details.";
-//       });
-//       print('People API ${response.statusCode} response: ${response.body}');
-//       return;
-//     }
-//     final Map<String, dynamic> data = json.decode(response.body);
-//     final String namedContact = _pickFirstNamedContact(data);
-//     setState(() {
-//       if (namedContact != null) {
-//         _contactText = "I see you know $namedContact!";
-//       } else {
-//         _contactText = "No contacts to display.";
-//       }
-//     });
-//   }
-
-//  String _pickFirstNamedContact(Map<String, dynamic> data) {
-//     final List<dynamic> connections = data['connections'];
-//     final Map<String, dynamic> contact = connections?.firstWhere(
-//       (dynamic contact) => contact['names'] != null,
-//       orElse: () => null,
-//     );
-//     if (contact != null) {
-//       final Map<String, dynamic> name = contact['names'].firstWhere(
-//         (dynamic name) => name['displayName'] != null,
-//         orElse: () => null,
-//       );
-//       if (name != null) {
-//         return name['displayName'];
-//       }
-//     }
-//     return null;
-//   }
-
-//   Future<void> _handleSignIn() async {
-//     try {
-//       await _googleSignIn.signIn();
-
-//       _googleSignIn.signIn();
-//     } catch (error) {
-//       scaffoldKey.currentState
-//           .showSnackBar(messageNOk('Se produjo un error: ${error.toString()}'));
-//     }
-//   }
 
   Future<void> initPlatformState() async {
     String platformImei = 'Failed to get platform version.';
@@ -160,8 +92,7 @@ class _SignUpModuleState extends State<SignUpModule> {
     try {
       await _googleSignIn.signIn();
       _googleSignIn.signIn().then((value) {
-       
-            final dataMap1 = generic.getAll(
+        final dataMap1 = generic.getAll(
             entity, getLogin + '${currentUser.email}', primaryKeyGetLogin);
 
         dataMap1.then((value) {
@@ -178,18 +109,15 @@ class _SignUpModuleState extends State<SignUpModule> {
             prefs.idPersonal = entity.idPersonal;
             prefs.userId = entity.idUsuario;
 
-
-
             Navigator.push(
                 context,
                 PageTransition(
                   curve: Curves.bounceOut,
                   type: PageTransitionType.rotate,
                   alignment: Alignment.topCenter,
-                  child: IntroScreenModule(),
+                  child: HomePageModule(),
                 ));
-          } 
-          else {
+          } else {
             entity.idUsuario = currentUser.id;
             entity.idInstitucion = '-1';
             entity.nombrePersona = currentUser.displayName;
@@ -222,14 +150,12 @@ class _SignUpModuleState extends State<SignUpModule> {
                     alignment: Alignment.topCenter,
                     child: IntroScreenModule(), //AgreeLoginModule(),
                   ));
-            } 
-            else {
+            } else {
               scaffoldKey.currentState.showSnackBar(
                   messageNOk("Se produjo un error, vuelta a intentarlo"));
             }
           }
-        }
-        );
+        });
       });
     } catch (error) {
       scaffoldKey.currentState
@@ -241,7 +167,7 @@ class _SignUpModuleState extends State<SignUpModule> {
     return Scaffold(
         key: scaffoldKey,
         body: SingleChildScrollView(
-                  child: SafeArea(
+          child: SafeArea(
             child: Stack(
               children: <Widget>[
                 //   crearFondo(context),
@@ -251,7 +177,8 @@ class _SignUpModuleState extends State<SignUpModule> {
                       // begin: Alignment.topCenter,
                       // end: Alignment.bottomRight,
                       // stops: [0.1, 0.4, 0.6, 0.9],
-                      colors: [ Colors.white,Colors.white,Colors.white,Colors.white,
+                      colors: [
+                        Colors.white, Colors.white, Colors.white, Colors.white,
                         // Color.fromRGBO(254, 253, 253, 1.0),
                         // Color.fromRGBO(254, 253, 251, 1.0),
                         // Color.fromRGBO(235, 217, 211, 1.0),
@@ -268,11 +195,10 @@ class _SignUpModuleState extends State<SignUpModule> {
                           child: Column(
                             children: <Widget>[
                               SizedBox(height: 20.0),
-                               Text('Bienvenido',
-                                   style: kSigTitleStyle),
+                              Text('Bienvenido', style: kSigTitleStyle),
                               Text('a la aplicación', style: kSigTitleStyle),
                               Image(
-                                  image: AssetImage("assets/buu.PNG"),
+                                  image: AssetImage("assets/icon.png"),
                                   height: 230.0),
                             ],
                           ),
@@ -298,25 +224,26 @@ class _SignUpModuleState extends State<SignUpModule> {
             _dividerOr(),
             _gmailButton(),
             _botonInvitado('Entrar como invitado'),
-            // _gmailButtonCerrar(),
-            SizedBox(height: 15.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+            SizedBox(height: 10.0),
+            Wrap(
+              //  mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                SizedBox(width: 4.0),
-                FaIcon(
-                  FontAwesomeIcons.clipboardList,
-                  color: AppTheme.themeVino,
-                  size: 40.0,
-                ),
-                SizedBox(width: 5.0),
-                Text(
-                  ' Importante. Si deseas ingresar con otra\n cuenta Gmail, seleccionar la opcion "Cerrar\nSesión Google" y vuelva a ingresar.',
-                  style: kSigssTitleStyle,
+                Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(13.0),
+                      child: Text(
+                        'Importante. Si cuentas con mas de dos cuentas de correo Gmail, definir y seleccionar la cuenta con la que vas a usar en la aplicación.',
+                        style: kSigssTitleStyle,
+                        textAlign: TextAlign.justify,
+                        softWrap: true,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
-
+            _leerAcuerdo(),
             copyRigth(),
           ],
         ),
@@ -329,6 +256,7 @@ class _SignUpModuleState extends State<SignUpModule> {
       //   margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
         children: <Widget>[
+          
           Row(
             children: <Widget>[
               Expanded(
@@ -424,33 +352,42 @@ class _SignUpModuleState extends State<SignUpModule> {
     );
   }
 
-  Widget _gmailButtonCerrar() {
-    return OutlineButton(
-      splashColor: Colors.black,
-      onPressed: _handleSignOut,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-      highlightElevation: 0,
-      borderSide: BorderSide(color: Colors.black),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Image(image: AssetImage("assets/google_logo.png"), height: 20.0),
-            Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Text(
-                '    Cerrar sesión Google   ',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                ),
+  _leerAcuerdo() {
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Wrap(
+      
+       // mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          FlatButton(
+            child: Text('Política de privacidad|'),
+            onPressed: () => Navigator.push(
+              context,
+              PageTransition(
+                curve: Curves.bounceOut,
+                type: PageTransitionType.rotate,
+                alignment: Alignment.topCenter,
+                child: IntroScreenModule(),
               ),
-            )
-          ],
-        ),
+
+            ),
+          ),
+          FlatButton(
+            child: Text('Términos de diferencia'),
+            onPressed: () => Navigator.push(
+              context,
+              PageTransition(
+                curve: Curves.bounceOut,
+                type: PageTransitionType.rotate,
+                alignment: Alignment.topCenter,
+                child: IntroScreenModule(),
+              ),
+
+            ),
+          ),
+        ],
       ),
     );
   }
+
 }
