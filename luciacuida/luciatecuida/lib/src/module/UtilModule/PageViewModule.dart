@@ -27,6 +27,7 @@ class _PageViewModuleState extends State<PageViewModule> {
           title: Text('${widget.title}'.toUpperCase()),
         ),
         body: WebView(
+          debuggingEnabled: false,
           initialUrl: widget.selectedUrl,
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController webViewController) {

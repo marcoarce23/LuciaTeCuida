@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:852739996492:android:8d1548d7e2d1209b46ade9",
         "android_client_info": {
-          "package_name": "com.example.luciatecuida"
+          "package_name": "bo.luciaTeCuida.luciaTeCuida"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "852739996492-ucpjobans56c268fua18rqoht3qdbhim.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.luciatecuida",
+            "package_name": "bo.luciaTeCuida.luciaTeCuida",
             "certificate_hash": "12c2c8a8fbf187f061344c929af498d39b287073"
           }
         },
