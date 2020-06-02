@@ -3,7 +3,6 @@ abstract class Entity {
   Map<String, dynamic> toJson();
 }
 
-
 class Emergencia extends Entity {
   int idEmergencia;
   String foto;
@@ -17,20 +16,18 @@ class Emergencia extends Entity {
   String pagina;
   String departamento;
 
-
   Emergencia(
       {this.idEmergencia,
       this.foto,
       this.nombre,
-       this.descripcion,
+      this.descripcion,
       this.abreviacion,
       this.telefono,
       this.callCenter,
       this.grupo,
       this.correo,
       this.pagina,
-      this.departamento
-     });
+      this.departamento});
 
   fromJson(Map<String, dynamic> json) => new Emergencia(
         idEmergencia: json["IDEME_CONTACTO"],
@@ -43,8 +40,7 @@ class Emergencia extends Entity {
         grupo: json["EME_GRUPO"],
         correo: json["EME_CORREO"],
         pagina: json["EME_PAGINA"],
-         departamento: json["EME_DEPARTAMENTO"],
-      
+        departamento: json["EME_DEPARTAMENTO"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -54,11 +50,10 @@ class Emergencia extends Entity {
         "EME_DESCRIPCION": telefono,
         "EME_ABREVIACION": grupo,
         "EME_TELEFONO": correo,
-         "EME_CALL": nombre,
+        "EME_CALL": nombre,
         "EME_GRUPO": telefono,
         "EME_CORREO": grupo,
         "EME_PAGINA": correo,
-       
       };
 }
 
@@ -74,13 +69,11 @@ class Contactos extends Entity {
   Contactos(
       {this.idContacto,
       this.foto,
-       this.nombre,
-
+      this.nombre,
       this.telefono,
       this.grupo,
       this.correo,
-      this.departamento
-     });
+      this.departamento});
 
   fromJson(Map<String, dynamic> json) => new Contactos(
         idContacto: json["IDCOV_CONTACTO"],
@@ -90,7 +83,6 @@ class Contactos extends Entity {
         grupo: json["CON_GRUPO"],
         correo: json["CON_CORREO"],
         departamento: json["CON_DEPARTAMENTO"],
-      
       );
 
   Map<String, dynamic> toJson() => {
@@ -101,7 +93,6 @@ class Contactos extends Entity {
         "CON_GRUPO": grupo,
         "CON_CORREO": correo,
         "CON_DEPARTAMENTO": departamento
-       
       };
 }
 
@@ -1427,5 +1418,25 @@ class HorarioInstitucion extends Entity {
 
   Map<String, dynamic> toJson() => {
         "DIA": horario,
+      };
+}
+
+class token extends Entity {
+  String llaveToken;
+  String correo;
+  String detalle;
+
+  token({this.correo, this.detalle, this.llaveToken});
+
+  fromJson(Map<String, dynamic> json) => new token(
+        llaveToken: json["TOKEN"],
+        correo: json["LOG_CORREO"],
+        detalle: json["DETALLE"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "TOKEN": llaveToken,
+        "LOG_CORREO": correo,
+        "DETALLE": detalle,
       };
 }
