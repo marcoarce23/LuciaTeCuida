@@ -1440,3 +1440,23 @@ class Token extends Entity {
         "DETALLE": detalle,
       };
 }
+
+class TokenImei extends Entity {
+  String imei;
+  String correo1;
+  String token;
+
+  TokenImei({this.correo1, this.imei, this.token});
+
+  fromJson(Map<String, dynamic> json) => new TokenImei(
+        token: json["TOKEN"],
+        correo1: json["CORREO"],
+        imei: json["IMEI"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "TOKEN": token,
+        "CORREO": correo1,
+        "IMEI": imei,
+      };
+}

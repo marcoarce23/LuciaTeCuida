@@ -527,7 +527,6 @@ _selectedRadio = T;
     final dataMap = generic.add(entity, urlAddPersonal);
 
     await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-    print('resultado:$result mas el dia de la semana $now');
 
     if (result != "-1" || result != '-2') 
     {
@@ -535,7 +534,6 @@ _selectedRadio = T;
         prefs.idInsitucion = list[0];
         prefs.idPersonal = list[1];
 
-        print('institucion:${prefs.idInsitucion} idPErsonal ${prefs.idPersonal}');
         scaffoldKey.currentState.showSnackBar(messageOk("Se inserto correctamente"));
 
         final dataMapToken = generic.getAll(new Token(), urlGetToken+'2/${prefs.idInsitucion}', primaryKeyGetToken);
@@ -550,7 +548,7 @@ _selectedRadio = T;
               }
             
             print('el valor del token: ${entityToken.llaveToken} Nuevo voluntario: ${nombre.objectValue}.Bienvenido al Grupo: ${prefs.nombreInstitucion} Fecha: ${DateTime.now()}');
-             generic.sebnFCM(entityToken.llaveToken, 'ayuda', 'Nuevo voluntario - ${nombre.objectValue}- Bienvenido al Grupo ${prefs.nombreInstitucion} Fecha - ${DateTime.now()}');
+             generic.sebnFCM(entityToken.llaveToken, 'Voluntario', 'Nuevo voluntario - ${nombre.objectValue}- Bienvenido al Grupo ${prefs.nombreInstitucion} Fecha - ${DateTime.now()}');
         });
 
 

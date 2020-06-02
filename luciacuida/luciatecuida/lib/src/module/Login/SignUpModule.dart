@@ -37,6 +37,7 @@ class _SignUpModuleState extends State<SignUpModule> {
   String result2;
   var result;
   var result1;
+ 
 
   GoogleSignIn _googleSignIn = GoogleSignIn(
     scopes: <String>[
@@ -159,7 +160,8 @@ class _SignUpModuleState extends State<SignUpModule> {
     try {
       await _googleSignIn.signIn();
       _googleSignIn.signIn().then((value) {
-        final dataMap1 = generic.getAll(
+       
+            final dataMap1 = generic.getAll(
             entity, getLogin + '${currentUser.email}', primaryKeyGetLogin);
 
         dataMap1.then((value) {
@@ -167,7 +169,7 @@ class _SignUpModuleState extends State<SignUpModule> {
             for (int i = 0; i < value.length; i++) {
               entity = value[i];
             }
-            prefs.imei = entity.imei;
+            prefs.imei = _platformImei;
             prefs.nombreUsuario = entity.nombrePersona;
             prefs.correoElectronico = entity.correo;
             prefs.avatarImagen = entity.avatar;
@@ -175,6 +177,8 @@ class _SignUpModuleState extends State<SignUpModule> {
             prefs.idInsitucion = entity.idInstitucion;
             prefs.idPersonal = entity.idPersonal;
             prefs.userId = entity.idUsuario;
+
+
 
             Navigator.push(
                 context,
@@ -184,7 +188,8 @@ class _SignUpModuleState extends State<SignUpModule> {
                   alignment: Alignment.topCenter,
                   child: IntroScreenModule(),
                 ));
-          } else {
+          } 
+          else {
             entity.idUsuario = currentUser.id;
             entity.idInstitucion = '-1';
             entity.nombrePersona = currentUser.displayName;
@@ -217,12 +222,14 @@ class _SignUpModuleState extends State<SignUpModule> {
                     alignment: Alignment.topCenter,
                     child: IntroScreenModule(), //AgreeLoginModule(),
                   ));
-            } else {
+            } 
+            else {
               scaffoldKey.currentState.showSnackBar(
                   messageNOk("Se produjo un error, vuelta a intentarlo"));
             }
           }
-        });
+        }
+        );
       });
     } catch (error) {
       scaffoldKey.currentState

@@ -123,7 +123,7 @@ class _ListEntityModuleState extends State<ListEntityModule> {
       ),
       onDismissed: (value) {
         setState(() {
-          final dataMap = generic.add(new RegistroAmigo(),
+          final dataMap = generic.delete(
               '$urlDeleteInstitucion${item.toString()}/${prefs.userId}');
 
           dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);

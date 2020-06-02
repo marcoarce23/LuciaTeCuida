@@ -169,12 +169,8 @@ _selectedRadio = T;
       ),
       onDismissed: (value) {
         setState(() {
-          //   items.
-          //    print('El registro:$urlDeleteAyudaAmigo${item.toString()}/marcoarce23');
-          generic.add(new Multimedia(),
-              '$urlDeleteVoluntario${item.toString()}/marcoarce23');
-          final dataMap = generic.add(
-              entityItem, '$urlDeleteVoluntario${item.toString()}/marcoarce23');
+        
+          final dataMap = generic.delete('$urlDeleteMultimedia${item.toString()}/${prefs.userId}');
 
           dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
           print('resultado:$result');

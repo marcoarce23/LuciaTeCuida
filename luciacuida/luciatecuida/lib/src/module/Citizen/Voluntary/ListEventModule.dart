@@ -109,7 +109,7 @@ class _ListEventModuleState extends State<ListEventModule> {
   }
 
   Widget listEntity(BuildContext context, Evento entityItem) {
-    final item = entityItem.idcovPersonal;
+    final item = entityItem.idcovEvento;
 
     return Dismissible(
       key: Key(item.toString()), //UniqueKey(),
@@ -123,8 +123,8 @@ class _ListEventModuleState extends State<ListEventModule> {
       ),
       onDismissed: (value) {
         setState(() {
-          final dataMap = generic.add(entityItem,
-              '$urlDeleteVoluntario${item.toString()}/${prefs.idPersonal}');
+          final dataMap = generic.delete(
+              '$urlDeleteEvento${item.toString()}/${prefs.userId}');
 
           dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
           print('resultado:$result');

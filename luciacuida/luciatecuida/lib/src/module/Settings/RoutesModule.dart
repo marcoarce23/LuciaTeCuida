@@ -41,13 +41,14 @@ final String urlAddMultimedia  =    'http://covid19.ruta88.net/COVID/Multimedia/
 final String urlAddEvento      =    'http://covid19.ruta88.net/COVID/Evento/srvEvento.svc/Evento';
 final String urlAddAtencion    =    'http://covid19.ruta88.net/COVID/Atencion/srvAtencion.svc/Atencion';
 final String urlAddAtencionInstitucion    =    'http://covid19.ruta88.net/COVID/Atencion/srvAtencion.svc/AtencionInstitucion';
+final String urlAddTokenImei = 'http://covid19.ruta88.net/COVID/Login/srvLogin.svc/RegistrarDispositivo';
 
 // METODO DELETE
 final String urlDeleteAyudaAmigo  =  'http://covid19.ruta88.net/COVID/AyudaAmigo/srvAyudaAmigo.svc/EliminarAyudaAmigo/';
 final String urlDeleteVoluntario  =  'http://covid19.ruta88.net/COVID/Personal/srvPersonal.svc/EliminarPersonal/';
-final String urlDeleteInstitucion =  'http://covid19.ruta88.net/COVID/Institucion/srvInstitucion.svc/DevuelveInstitucion/EliminarInstitucion';
-final String urlDeleteEvento ='';
-final String urlDeleteMultimedia = '';
+final String urlDeleteInstitucion =  'http://covid19.ruta88.net/COVID/Institucion/srvInstitucion.svc/EliminarInstitucion/';
+final String urlDeleteEvento ='http://covid19.ruta88.net/COVID/Evento/srvEvento.svc/EliminarEvento/';
+final String urlDeleteMultimedia = 'http://covid19.ruta88.net/COVID/Multimedia/srvMultimedia.svc/EliminarMultimedia/';
 //////          CHRISS           //////
 
 // METODOS GET

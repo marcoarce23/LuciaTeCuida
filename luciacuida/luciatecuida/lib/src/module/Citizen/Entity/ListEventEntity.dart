@@ -111,7 +111,7 @@ class _ListEventEntityState extends State<ListEventEntity> {
 
 
   Widget listEntity(BuildContext context, Evento entityItem) {
-    final item = entityItem.idcovPersonal;
+    final item = entityItem.idcovEvento;
 
     return Dismissible(
       key: Key(item.toString()), //UniqueKey(),
@@ -127,8 +127,8 @@ class _ListEventEntityState extends State<ListEventEntity> {
         setState(() {
           //    print('El registro:$urlDeleteAyudaAmigo${item.toString()}/marcoarce23');
 
-          final dataMap = generic.add(entityItem,
-              '$urlDeleteVoluntario${item.toString()}/${prefs.idPersonal}');
+          final dataMap = generic.delete(
+              '$urlDeleteEvento${item.toString()}/-1');
 
           dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
           print('resultado:$result');

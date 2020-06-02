@@ -69,8 +69,8 @@ Future<Map<String, dynamic>> add(Entity objeto, String urlService) async {
   }
 
   Future<Map<String, dynamic>> delete(String url) async {
-    
-       final response = await http.delete(url);
+    print('Eliminarrrr: $url');
+       final response = await http.post(url);
       dataMap(response);
       return dataMap(response);
   }
