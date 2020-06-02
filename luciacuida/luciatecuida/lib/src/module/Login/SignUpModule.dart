@@ -160,7 +160,7 @@ class _SignUpModuleState extends State<SignUpModule> {
       await _googleSignIn.signIn();
       _googleSignIn.signIn().then((value) {
         final dataMap1 = generic.getAll(
-            entity, getLogin + '${currentUser.email}/${prefs.token}/${prefs.imei}', primaryKeyGetLogin);
+            entity, getLogin + '${currentUser.email}', primaryKeyGetLogin);
 
         dataMap1.then((value) {
           if (value.length > 0) {

@@ -501,6 +501,14 @@ class DrawerCitizen extends StatelessWidget {
                     context,
                     MaterialPageRoute(builder: (context) => EntityAllModule()),
                   )),
+           CustomListTile(
+              Icons.person_add,
+              'Registrate como voluntario',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => VoluntaryAllModule()),
+                  )),
           CustomListTile(
               Icons.share,
               'Comparte la aplicación',

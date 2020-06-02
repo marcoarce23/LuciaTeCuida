@@ -19,7 +19,7 @@ class PreferensUser
 
 
     get imei {
-        return _prefs.getInt('imei') ?? '-1';
+        return _prefs.getString('imei') ?? '-1';
       }
 
       set imei( String value ) {
