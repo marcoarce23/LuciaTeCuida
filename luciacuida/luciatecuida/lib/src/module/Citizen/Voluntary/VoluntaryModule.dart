@@ -260,7 +260,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
         FaIcon(FontAwesomeIcons.userFriends, color: AppTheme.themeVino),
         'Nombre completo voluntario:',
         entity.perNombrepersonal,
-        'Ingrese nombre compelto',
+        'Ingrese nombre completo',
         true);
     ci = InputTextField(
         FaIcon(FontAwesomeIcons.idCard, color: AppTheme.themeVino),
