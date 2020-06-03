@@ -186,7 +186,17 @@ Widget crearFondo(BuildContext context, String imagen) {
   }
   
 cabeceraInformativa() {
-  return RichText(
+  return 
+  
+  Flexible( flex: 1,  child: Column(
+    children: <Widget>[
+      Text( 'Voluntario(a): ${prefs.nombreUsuario}' ,  style: kTitleCardStyle ,softWrap: true,    ),
+      Text(  'Institución: ${prefs.nombreInstitucion}' , style:  kTitleCardStyle,softWrap: true,    ),
+    ],
+  ));
+  
+  
+  /*RichText(
     text: TextSpan(
       text: 'Voluntario(a): ${prefs.nombreUsuario}',
       style: kTitleCardStyle,
@@ -202,6 +212,8 @@ cabeceraInformativa() {
       ],
     ),
   );
+*/
+
 }
 
 boxDecoration() {

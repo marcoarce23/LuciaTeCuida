@@ -119,7 +119,8 @@ loadPDF(String path) async {
   return file.path;
 }
 
-FloatingActionButton generaFloatbuttonHome(BuildContext context) {
+Widget generaFloatbuttonHome(BuildContext context) {
+/*
   return FloatingActionButton(
     onPressed: () {
       Navigator.push(
@@ -131,6 +132,9 @@ FloatingActionButton generaFloatbuttonHome(BuildContext context) {
     child: FaIcon(FontAwesomeIcons.home),
     backgroundColor: AppTheme.themeVino,
   );
+*/
+
+return Container();
 }
 
 class ImageOpaqueAssets extends StatelessWidget {
