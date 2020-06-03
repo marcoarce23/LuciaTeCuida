@@ -332,10 +332,11 @@ class _MultimediaModuleState extends State<MultimediaModule> {
                       icon: FaIcon(FontAwesomeIcons.angleDown,
                           color: AppTheme.themeVino),
                       value: valorTipoMaterial.toString(), //valor
-                      items: getDropDown(snapshot),
+                      items: getDropDownMaterial(snapshot),
                       onChanged: (value) {
                         setState(() {
                           valorTipoMaterial = int.parse(value);
+                          print('valorTipoMaterial $valorTipoMaterial');
                         });
                       },
                     ),
@@ -348,16 +349,16 @@ class _MultimediaModuleState extends State<MultimediaModule> {
   }
 
   List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
-    List<DropdownMenuItem<String>> lista = new List();
+    List<DropdownMenuItem<String>> listaE = new List();
 
     for (var i = 0; i < snapshot.data.length; i++) {
       GetClasificador item = snapshot.data[i];
-      lista.add(DropdownMenuItem(
+      listaE.add(DropdownMenuItem(
         child: Text(item.nombre),
         value: item.id.toString(),
       ));
     }
-    return lista;
+    return listaE;
   }
 
   Widget _crearEspecialidad() {
@@ -380,6 +381,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
                       onChanged: (value) {
                         setState(() {
                           valorTipoEspecialidad = int.parse(value);
+                          print('valorTipoEspecialidad $valorTipoEspecialidad');
                         });
                       },
                     ),
@@ -504,8 +506,8 @@ class _MultimediaModuleState extends State<MultimediaModule> {
 
     entity.idcovMultimedia = 0;
     entity.idaCovInstitucion = int.parse(prefs.idInsitucion);
-    entity.idaTIpoMaterial = valorTipoMaterial;
-    entity.idaCategoria = valorTipoEspecialidad;
+    entity.idaTIpoMaterial = valorTipoEspecialidad;
+    entity.idaCategoria = valorTipoMaterial;
     entity.mulTitulo = titulo.objectValue;
     entity.mulResumen = resumen.objectValue;
     entity.detFechaFin = _inputFieldDateFinController.text;
@@ -521,6 +523,13 @@ class _MultimediaModuleState extends State<MultimediaModule> {
     if (result == "0") {
       scaffoldKey.currentState
           .showSnackBar(messageOk("Se insertó correctamente"));
+     
+      enviarNotificaciones(urlGetToken+'2/${prefs.idInsitucion}', 
+                            'multimedia',
+                             'Nuevo Material', 
+                             titulo.objectValue, 
+                             'Fecha del evento',
+                             _inputFieldDateInicioController.text); 
     } else
       scaffoldKey.currentState
           .showSnackBar(messageNOk("Error, vuelta a intentarlo"));

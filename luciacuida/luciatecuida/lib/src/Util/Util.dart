@@ -6,7 +6,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:luciatecuida/src/Model/Entity.dart';
+import 'package:luciatecuida/src/Model/Generic.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
+import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vector_math/vector_math_64.dart' as math;
@@ -18,6 +21,26 @@ import 'package:location/location.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 
 final String userName = null;
+
+
+ enviarNotificaciones(String urlGetToken, String clave, String titulo, String valorTitulo, String subTitulo, String subTituloValor) 
+ {
+   Token entityToken;
+ final dataMapToken = new Generic().getAll(new Token(), urlGetToken, primaryKeyGetToken);
+
+        dataMapToken.then((value) 
+        {
+             if (value.length > 0) 
+             {
+                for (int i = 0; i < value.length; i++) 
+                     entityToken = value[i];
+                     print('entrooo las veces de: ');
+              }
+            
+            print('el valor del token: ${entityToken.llaveToken} --- calve $clave --- $titulo - $valorTitulo- $subTitulo $subTituloValor Fecha - ${DateTime.now()}');
+             new Generic().sebnFCM(entityToken.llaveToken, clave, '$titulo - $valorTitulo - $subTitulo $subTituloValor - Fecha - ${DateTime.now()}');
+        });
+ }
 
 int daysInMonth(int month) {
   var now = DateTime.now();

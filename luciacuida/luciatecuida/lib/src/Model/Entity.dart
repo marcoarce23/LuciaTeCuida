@@ -160,7 +160,7 @@ class Institucion extends Entity {
         usuario: json["USUARIO"],
         desInsitucion: json["DES_INSTITUCION"],
         desUbicacion: json["DES_UBICACION"],
-        esSucursal: json["ES_SUCURSAL"],
+        esSucursal: json["IDA_ESTADOCOVD"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -183,7 +183,7 @@ class Institucion extends Entity {
         "USUARIO": usuario,
         "DES_INSTITUCION": desInsitucion,
         "DES_UBICACION": desUbicacion,
-        "ES_SUCURSAL": esSucursal,
+        "IDA_ESTADOCOVD": esSucursal,
       };
 }
 

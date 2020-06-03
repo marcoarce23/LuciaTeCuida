@@ -400,6 +400,13 @@ class _EventEntityModuleState extends State<EventEntityModule> {
     if (result == "0") {
       scaffoldKey.currentState
           .showSnackBar(messageOk("Se inserto correctamente"));
+      
+      enviarNotificaciones(urlGetToken+'2/${prefs.idInsitucion}', 
+                            'eventos',
+                             'Evento Organizacional', 
+                             titulo.objectValue, 
+                             'Se lleva realizará',
+                            _inputFieldDateController.text+' - '+ _inputFieldTimeController.text); 
     } else
       scaffoldKey.currentState
           .showSnackBar(messageNOk("Error, vuelta a intentarlo"));

@@ -10,7 +10,8 @@ final String primaryKeyGetAyudaAmigo  = '_DevuelveAyudasResult';
 String urlGetDevuelveAyuda            =    'http://covid19.ruta88.net/COVID/AyudaAmigo/srvAyudaAmigo.svc/DevuelveAyudas';
 
 final String primaryKeyGetInsitucion = '_DevuelveInstitucionesResult';
-String urlGetInstitucion             =    'http://covid19.ruta88.net/COVID/Institucion/srvInstitucion.svc/DevuelveInstitucion';
+String urlGetInstitucion            =    'http://covid19.ruta88.net/COVID/Institucion/srvInstitucion.svc/DevuelveInstitucion/';
+
 
 final String primaryKeyGetVoluntario = '_DevuelvePersonalResult';
 String urlGetVoluntario              =    'http://covid19.ruta88.net/COVID/Personal/srvPersonal.svc/DevuelvePersonal';

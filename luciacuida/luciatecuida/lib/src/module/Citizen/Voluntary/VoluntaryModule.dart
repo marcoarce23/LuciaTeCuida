@@ -141,7 +141,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
   final generic = new Generic();
   final prefs = new PreferensUser();
   Voluntary entity = new Voluntary();
- Token entityToken;
+ 
 
   @override
   void initState() {
@@ -190,7 +190,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
 
   Widget _crearForm(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
+    
     return SingleChildScrollView(
       child: Form(
         key: formKey,
@@ -536,37 +536,14 @@ _selectedRadio = T;
 
         scaffoldKey.currentState.showSnackBar(messageOk("Se inserto correctamente"));
 
-        final dataMapToken = generic.getAll(new Token(), urlGetToken+'2/${prefs.idInsitucion}', primaryKeyGetToken);
+        enviarNotificaciones(urlGetToken+'2/${prefs.idInsitucion}', 
+                            'Voluntario',
+                             'Nuevo voluntario', 
+                             nombre.objectValue, 
+                             'Bienvenido al Grupo',
+                            prefs.nombreInstitucion); 
 
-        dataMapToken.then((value) 
-        {
-             if (value.length > 0) 
-             {
-                for (int i = 0; i < value.length; i++) 
-                     entityToken = value[i];
-                     print('entrooo las veces de: ');
-              }
-            
-            print('el valor del token: ${entityToken.llaveToken} Nuevo voluntario: ${nombre.objectValue}.Bienvenido al Grupo: ${prefs.nombreInstitucion} Fecha: ${DateTime.now()}');
-             generic.sebnFCM(entityToken.llaveToken, 'Voluntario', 'Nuevo voluntario - ${nombre.objectValue}- Bienvenido al Grupo ${prefs.nombreInstitucion} Fecha - ${DateTime.now()}');
-        });
-
-
-       // FOR      
-      // final dataMapFCM = generic.sebnFCM('csncD1ZQTk0:APA91bHot3RPRzwIA96vLvfnnF42r0OxvI5jnt0UarTtgmOvQwvnJDAHGC_hdqpfFoh6NV0JocykeJyRiI3io8dILsP9tP0mB7h9yeJHPti-e2P7XzCkVrRr4CfhUKE2EAIZioroXFbm',
-      //                                    'ayuda', 'Se registro aydua aun amigo');
-      // await dataMapFCM.then((respuestaFCM) 
-      // {
-      //   final valorFCM= respuestaFCM["success"];
-      //   print('ENTOR AL datamaMapCFM $valorFCM');
-
-      //   if(valorFCM == '1')
-      //   {
-      //     for (int i = 0; i < respuestaFCM.length; i++) {
-      //         entity = respuestaFCM[i];
-      //       }
-      //   }
-      // });    
+       
 
     if (result == "-1")
       scaffoldKey.currentState

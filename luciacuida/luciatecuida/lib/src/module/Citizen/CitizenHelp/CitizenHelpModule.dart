@@ -370,14 +370,12 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
     if (result == "0") {
       scaffoldKey.currentState
           .showSnackBar(messageOk("Se registro correctamente."));
-  // FOR      
-      final dataMapFCM = generic.sebnFCM('csncD1ZQTk0:APA91bHot3RPRzwIA96vLvfnnF42r0OxvI5jnt0UarTtgmOvQwvnJDAHGC_hdqpfFoh6NV0JocykeJyRiI3io8dILsP9tP0mB7h9yeJHPti-e2P7XzCkVrRr4CfhUKE2EAIZioroXFbm',
-                                         'ayuda', 'Se registro aydua aun amigo');
-      await dataMapFCM.then((respuesta1) 
-      {
-        final valorrrrrr = respuesta1["success"];
-        print('ENTOR AL datamaMapCFM $valorrrrrr');
-      });
+      enviarNotificaciones(urlGetToken+'2/${prefs.idInsitucion}', 
+                            'ayudaPersona',
+                             'Ayuda a un amigo', 
+                             nombre.objectValue, 
+                             'Teléfono de contacto',
+                            telefono.objectValue); 
     } else
       scaffoldKey.currentState
           .showSnackBar(messageNOk("Error, vuelta a intentarlo"));

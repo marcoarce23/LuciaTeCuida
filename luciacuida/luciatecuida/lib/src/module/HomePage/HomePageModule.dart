@@ -45,15 +45,13 @@ class _HomePageModuleState extends State<HomePageModule> {
  
   @override
   void initState() {
-    
-
-    super.initState();
+  super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     prefs.ultimaPagina = HomePageModule.routeName;
-    generic.add( new TokenImei (correo1: prefs.correoElectronico, imei: prefs.imei, token:prefs.token), urlAddTokenImei);
+  //  generic.add( new TokenImei (correo1: prefs.correoElectronico, imei: prefs.imei, token:prefs.token), urlAddTokenImei);
 
     return Scaffold(
       appBar: AppBar(

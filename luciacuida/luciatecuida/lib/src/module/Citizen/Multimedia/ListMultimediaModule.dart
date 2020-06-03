@@ -19,11 +19,12 @@ class ListMultimediaModule extends StatefulWidget {
 }
 
 class _ListMultimediaModuleState extends State<ListMultimediaModule> {
- final generic = new Generic();
+  final generic = new Generic();
   final prefs = new PreferensUser();
   var result;
   int _group = 1;
   int _selectedRadio = 74;
+  
   @override
   void initState() {
     prefs.ultimaPagina = ListMultimediaModule.routeName;
@@ -49,11 +50,10 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
               FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
             ),
           ),
-
-           Row(
+          Row(
             children: <Widget>[
               SizedBox(width: 10.0),
-            //  FaIcon(FontAwesomeIcons.male, color: AppTheme.themeVino),
+              //  FaIcon(FontAwesomeIcons.male, color: AppTheme.themeVino),
               SizedBox(width: 5.0),
               Text('Imágenes'),
               Radio(
@@ -61,7 +61,7 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
                 groupValue: _group,
                 onChanged: (T) {
                   print(T);
-_selectedRadio = T;
+                  _selectedRadio = T;
                   setState(() {
                     _group = T;
                   });
@@ -73,19 +73,19 @@ _selectedRadio = T;
                 groupValue: _group,
                 onChanged: (T) {
                   print(T);
-_selectedRadio = T;
+                  _selectedRadio = T;
                   setState(() {
                     _group = T;
                   });
                 },
               ),
-                 Text('Documentos'),
+              Text('Documentos'),
               Radio(
                 value: 76,
                 groupValue: _group,
                 onChanged: (T) {
                   print(T);
-_selectedRadio = T;
+                  _selectedRadio = T;
                   setState(() {
                     _group = T;
                   });
@@ -93,7 +93,6 @@ _selectedRadio = T;
               ),
             ],
           ),
-
           divider(),
           futureItemsEntity(context),
           copyRigth(),
@@ -106,7 +105,9 @@ _selectedRadio = T;
   Widget futureItemsEntity(BuildContext context) {
     return FutureBuilder(
         future: generic.getAll(
-            new Multimedia(), urlGetMultimedia + _selectedRadio.toString(), primaryKeyGetMultimedia),
+            new Multimedia(),
+            urlGetMultimedia + _selectedRadio.toString(),
+            primaryKeyGetMultimedia),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
@@ -142,18 +143,18 @@ _selectedRadio = T;
                     ListTile(
                       leading: iconEntity(entityItem),
                       title: listEntity(context, entityItem),
-     
                     ),
                   ],
                 ),
               ),
-           //   divider(),
+              //   divider(),
             ],
           );
         },
       ),
     );
   }
+
   Widget listEntity(BuildContext context, Multimedia entityItem) {
     final item = entityItem.idcovMultimedia;
 
@@ -169,8 +170,8 @@ _selectedRadio = T;
       ),
       onDismissed: (value) {
         setState(() {
-        
-          final dataMap = generic.delete('$urlDeleteMultimedia${item.toString()}/${prefs.userId}');
+          final dataMap = generic
+              .delete('$urlDeleteMultimedia${item.toString()}/${prefs.userId}');
 
           dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
           print('resultado:$result');
@@ -203,40 +204,38 @@ _selectedRadio = T;
                           style: kSubTitleCardStyle),
                     ],
                   )),
-        Container(
+              Container(
                   width: MediaQuery.of(context).size.width - 130,
-             child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text('Resumen: ${entityItem.mulResumen}',
-                      style:kSubTitleCardStyle)
-                ],
-              )),
-                 Container(
-                    width: MediaQuery.of(context).size.width - 90,
                   child: Row(
-                children: <Widget>[
-                  // Icon(
-                  //   Icons.place,
-                  //   color: AppTheme.themeVino,
-                  //   size: 15,
-                  // ),
-  
-                  Text(
-                'inicio: ${entityItem.detFechaInicio} - Conclusión: ${entityItem.detFechaFin}',
-                style: kSubTitleCardStyle),
-                ],
-              )),
+                    children: <Widget>[
+                      Icon(
+                        Icons.place,
+                        color: AppTheme.themeVino,
+                        size: 15,
+                      ),
+                      Text('Resumen: ${entityItem.mulResumen}',
+                          style: kSubTitleCardStyle)
+                    ],
+                  )),
+              Container(
+                  width: MediaQuery.of(context).size.width - 90,
+                  child: Row(
+                    children: <Widget>[
+                      // Icon(
+                      //   Icons.place,
+                      //   color: AppTheme.themeVino,
+                      //   size: 15,
+                      // ),
+
+                      Text(
+                          'inicio: ${entityItem.detFechaInicio} - Conclusión: ${entityItem.detFechaFin}',
+                          style: kSubTitleCardStyle),
+                    ],
+                  )),
             ],
           ),
         ],
       ),
-
-      
     );
   }
 
@@ -247,7 +246,7 @@ _selectedRadio = T;
         ImageOvalNetwork(
             imageNetworkUrl: entityItem.mulEnlace,
             sizeImage: Size.fromWidth(40)),
-            SizedBox(height:3.0),
+        SizedBox(height: 3.0),
         Text(
           '${entityItem.tipoMaterial}',
           style: TextStyle(
@@ -256,6 +255,4 @@ _selectedRadio = T;
       ],
     ));
   }
-
-
 }

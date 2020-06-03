@@ -21,7 +21,49 @@ inputDecoration(String hint, String text, Icon icon, bool valida){
 );
 }
 
+Widget getWidget2(String objectValue,
+  final String text,
+  final FaIcon icon,
+  final String hint,
+  final bool valida) {
+print('objectValueXXXXXXXXXXXXXXX   $objectValue');  
 
+return Padding(
+      padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
+      child: TextFormField(
+        initialValue: objectValue,
+        enableInteractiveSelection: true,
+        enableSuggestions: true,
+        keyboardType: TextInputType.multiline,
+        maxLines: 5,
+        minLines: 3,
+        autocorrect: true,
+        autovalidate: false,
+        maxLength: 140,
+        toolbarOptions: ToolbarOptions(copy: true, cut:true, paste: true, selectAll: true),
+       
+        decoration: InputDecoration(
+          focusColor: Colors.orange,
+          hintText: hint,
+          labelText: text,
+          icon: icon,
+     //     contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
+//
+        ),
+        onChanged: (value) {
+         
+                      
+                      objectValue = value;
+                },
+                  validator: (value) => validator.validateTextfieldEmpty(value, valida),
+                  onSaved: (value) => objectValue = value,
+                ),
+              );
+  }
+            
+          
+         
+  
 class InputTextField extends StatefulWidget {
   String objectValue;
   final String text;
@@ -202,6 +244,7 @@ class _InputPhoneFieldState extends State<InputPhoneField> {
   }
 
   Widget getWidget() {
+    print('valor del token: ${widget.objectValue}');
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
       child: TextFormField(
@@ -349,6 +392,7 @@ class _InputMultilineFieldState extends State<InputMultilineField> {
   }
 
   Widget getWidget() {
+    print('widget multiglied ${widget.objectValue}');
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
       child: TextFormField(
@@ -373,6 +417,7 @@ class _InputMultilineFieldState extends State<InputMultilineField> {
         ),
         onChanged: (value) {
           setState(() {
+
             widget.objectValue = value;
           });
         },

@@ -395,9 +395,17 @@ class _EventModuleState extends State<EventModule> {
     await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
     print('resultado:$result');
 
-    if (result == "0")
+    if (result == "0"){
       scaffoldKey.currentState
           .showSnackBar(messageOk("Se inserto correctamente"));
+
+    enviarNotificaciones(urlGetToken+'2/${prefs.idInsitucion}', 
+                            'eventos',
+                             'Evento voluntario', 
+                             titulo.objectValue, 
+                             'Se lleva realizará',
+                            _inputFieldDateController.text+' - '+ _inputFieldTimeController.text); 
+    }
     else
       scaffoldKey.currentState
           .showSnackBar(messageNOk("Error, vuelta a intentarlo"));

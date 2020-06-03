@@ -30,14 +30,14 @@ class Generic {
 
       final List<Entity> list = new List();
       Map<String, dynamic> decodeData;
-      print(_url);
-      print(_primaryKey);
+      // print(_url);
+      // print(_primaryKey);
       final response = await http.get(_url);
 
       if (response.statusCode == 200) {
           Map dataMap = json.decode(response.body);
           List<dynamic> listDynamic = dataMap[_primaryKey];
-           print(listDynamic);
+     //      print(listDynamic);
           for (int i = 0; i < listDynamic.length; i++) {
             decodeData = listDynamic[i];
             list.add(objeto.fromJson(decodeData));

@@ -19,6 +19,7 @@ import 'package:luciatecuida/src/module/Citizen/Entity/ListEntityModule.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Map/MapAdressModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
+import 'package:luciatecuida/src/Util/Validator.dart' as validator;
 
 class EntityAllModule extends StatefulWidget {
   static final String routeName = 'entidad';
@@ -32,7 +33,7 @@ class _EntityAllModuleState extends State<EntityAllModule> {
   final prefs = new PreferensUser();
   final generic = new Generic();
   int page = 0;
-  
+
   final List<Widget> optionPage = [
     EntityModule(),
     AtentionEntityModule(),
@@ -126,7 +127,7 @@ class _EntityModuleState extends State<EntityModule> {
   InputEmailField email;
 
   bool _save = false;
-  bool esSucursal =false;
+  bool esSucursal = false;
   File foto;
   double latitud = 0.0;
   double longitud = 0.0;
@@ -143,19 +144,63 @@ class _EntityModuleState extends State<EntityModule> {
   final generic = new Generic();
   final prefs = new PreferensUser();
   Institucion entity = new Institucion();
+  Institucion entityData = new Institucion();
+
+  String sToken;
 
   @override
   void initState() {
     prefs.ultimaPagina = EntityModule.routeName;
+    //_cargarEntity();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final Institucion entityData = ModalRoute.of(context).settings.arguments;
+     if (prefs.idInsitucion != '0') {
+       Institucion entityData= new Institucion();
+      generic.getAll(new Institucion(), urlGetInstitucion + prefs.idInsitucion, primaryKeyGetInsitucion)
+          .then((value) {
+        print('llego al fXXXX ${value.length}');
+        if (value.length > 0)
+               entityData  = value[0];
 
-    if (entityData != null) entity = entityData;
- 
+       
+            print('desInsitucion ${entityData.desInsitucion}');
+            print('desUbicacion ${entityData.desUbicacion}');
+            print('direccion ${entityData.direccion}');
+          print('esSucursal ${entityData.esSucursal}');
+          print('foto ${entityData.foto}');
+            print('idInstitucion ${entityData.idInstitucion}');
+            print('insLat ${entityData.insLat}');
+            print('token ${entityData.token}');
+          print('insLng ${entityData.insLng}');
+          print('nombreInstitucion ${entityData.nombreInstitucion}');
+            print('perCorreoElectronico ${entityData.perCorreoElectronico}');
+            print('perFacebbok ${entityData.perFacebbok}');
+          print('perYouTube ${entityData.perYouTube}');
+          sToken = entityData.token;
+print('sToken $sToken');
+          valorInstitucion = entityData.tipoInstitucion;
+          valorDepartamento = entityData.ubicacion;
+          imagen = entityData.foto;
+        //   telefono.objectValue = 'ddddddd';
+          // if(entityData.esSucursal == 0)
+          // {
+          //    esSucursal =true;
+          // }
+          
+          // else {esSucursal =false;}
+      }
+    );
+//  setState(() {
+//               entity.ubicacion = entityD.ubicacion;
+//               entity.telefono = entityD.telefono;
+//               esSucursal =true;
+//             });
+        
+    }
+
     return Scaffold(
       key: scaffoldKey,
       body: Stack(
@@ -197,7 +242,7 @@ class _EntityModuleState extends State<EntityModule> {
                         color: AppTheme.themeVino,
                         fontSize: 15.0,
                       )),
-              //    _crearIconAppMap(),
+                  //    _crearIconAppMap(),
                   _crearIconAppImagenes(),
                   _crearIconAppCamara(),
                 ],
@@ -220,78 +265,80 @@ class _EntityModuleState extends State<EntityModule> {
   }
 
   Widget _crearCampos() {
-    nombre = InputTextField(
-        FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
-        'Nombre de la institución:',
-        entity.nombreInstitucion,
-        'Ingrese el nombre',
-        true);
-    token = InputPhoneField(
-        FaIcon(FontAwesomeIcons.creditCard, color: AppTheme.themeVino),
-        'Ingrese el número de token:',
-        entity.token,
-        'Ej: 214213 - solo números',
-        true);
-    direccion = InputMultilineField(
-        FaIcon(FontAwesomeIcons.dotCircle, color: AppTheme.themeVino),
-        'Dirección/ubicacion:',
-        entity.direccion,
-        'Ingrese su dirección/ubicación',
-        true);
-    telefono = InputPhoneField(
-        FaIcon(FontAwesomeIcons.mobileAlt, color: AppTheme.themeVino),
-        'Telefono de referencia',
-        entity.telefono,
-        'Ingrese el número de referencia',
-        true);
-    informacion = InputMultilineField(
-        FaIcon(FontAwesomeIcons.listAlt, color: AppTheme.themeVino),
-        'Información complementaria:',
-        entity.perInformacionComp,
-        'Informacióm complementaria',
-        false);
-    facebook = InputTextField(
-        FaIcon(FontAwesomeIcons.facebook, color: AppTheme.themeVino),
-        'Cuenta Facebook:',
-        entity.perFacebbok,
-        'Ingrese la cuenta Facebook',
-        false);
-    twitter = InputTextField(
-        FaIcon(FontAwesomeIcons.twitter, color: AppTheme.themeVino),
-        'Cuenta Twitter:',
-        entity.perTwitter,
-        'Ingrese la cuenta Twitter',
-        false);
-    paginaWeb = InputUrlField(
-        FaIcon(FontAwesomeIcons.edge, color: AppTheme.themeVino),
-        'Pagina Web/block:',
-        entity.perPaginaWeb,
-        'Página/block oficial',
-        false);
-    youtube = InputTextField(
-        FaIcon(FontAwesomeIcons.youtube, color: AppTheme.themeVino),
-        'Cuenta YouTube:',
-        entity.perYouTube,
-        'Ingrese la cuenta YouTube',
-        false);
-    email = InputEmailField(
-        FaIcon(FontAwesomeIcons.mailBulk, color: AppTheme.themeVino),
-        'Correo Electronico:',
-        entity.perCorreoElectronico,
-        'Ingrese el correo electrónico',
-        'Ingrese su correo electronico',
-        false);
+  //   nombre = InputTextField(
+  //       FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
+  //       'Nombre de la institución:',
+  //       entity.nombreInstitucion,
+  //       'Ingrese el nombre',
+  //       true);
+  //   token = InputPhoneField(
+  //       FaIcon(FontAwesomeIcons.creditCard, color: AppTheme.themeVino),
+  //       'Ingrese el número de token:',
+  //       sToken,
+  //       'Ej: 214213 - solo números',
+  //       true);
+  //  //  // getWidget2(sToken, 'Dirección/ubicacion:', FaIcon(FontAwesomeIcons.dotCircle, color: AppTheme.themeVino), 'Ingrese su dirección/ubicación', true );
+  //   direccion = InputMultilineField(
+  //       FaIcon(FontAwesomeIcons.dotCircle, color: AppTheme.themeVino),
+  //       'Dirección/ubicacion:',
+  //       entity.direccion,
+  //       'Ingrese su dirección/ubicación',
+  //       true);
+  //   telefono = InputPhoneField(
+  //       FaIcon(FontAwesomeIcons.mobileAlt, color: AppTheme.themeVino),
+  //       'Telefono de referencia',
+  //       entity.telefono,
+  //       'Ingrese el número de referencia',
+  //       true);
+  //   informacion = InputMultilineField(
+  //       FaIcon(FontAwesomeIcons.listAlt, color: AppTheme.themeVino),
+  //       'Información complementaria:',
+  //       entity.perInformacionComp,
+  //       'Informacióm complementaria',
+  //       false);
+  //   facebook = InputTextField(
+  //       FaIcon(FontAwesomeIcons.facebook, color: AppTheme.themeVino),
+  //       'Cuenta Facebook:',
+  //       entity.perFacebbok,
+  //       'Ingrese la cuenta Facebook',
+  //       false);
+  //   twitter = InputTextField(
+  //       FaIcon(FontAwesomeIcons.twitter, color: AppTheme.themeVino),
+  //       'Cuenta Twitter:',
+  //       entity.perTwitter,
+  //       'Ingrese la cuenta Twitter',
+  //       false);
+  //   paginaWeb = InputUrlField(
+  //       FaIcon(FontAwesomeIcons.edge, color: AppTheme.themeVino),
+  //       'Pagina Web/block:',
+  //       entity.perPaginaWeb,
+  //       'Página/block oficial',
+  //       false);
+  //   youtube = InputTextField(
+  //       FaIcon(FontAwesomeIcons.youtube, color: AppTheme.themeVino),
+  //       'Cuenta YouTube:',
+  //       entity.perYouTube,
+  //       'Ingrese la cuenta YouTube',
+  //       false);
+  //   email = InputEmailField(
+  //       FaIcon(FontAwesomeIcons.mailBulk, color: AppTheme.themeVino),
+  //       'Correo Electronico:',
+  //       entity.perCorreoElectronico,
+  //       'Ingrese el correo electrónico',
+  //       'Ingrese su correo electronico',
+  //       false);
 
     return Column(
       children: <Widget>[
-       _crearTipoInstitucion(),
-         _crearDpto(),
-         _crearSucursal('Es sucursal'),
-        token,
-        nombre,
-        direccion,
-        telefono,
-        informacion,
+        _crearTipoInstitucion(),
+        _crearDpto(),
+        _crearSucursal('Es sucursal'),
+        _crearToken(),
+     //   token,
+        // nombre,
+        // direccion,
+        // telefono,
+        // informacion,
         contenedorSubTitulo(
           context,
           40.0,
@@ -299,15 +346,47 @@ class _EntityModuleState extends State<EntityModule> {
           FaIcon(FontAwesomeIcons.chromecast, color: Colors.white60),
         ),
         SizedBox(height: 5.0),
-        facebook,
-        twitter,
-        paginaWeb,
-        youtube,
-        email,
+        // facebook,
+        // twitter,
+        // paginaWeb,
+        // youtube,
+        // email,
         _crearBoton(resource.save),
       ],
     );
   }
+
+ Widget _crearToken() {
+   print('sToken $sToken');
+    print('sToken en WIDGETTTTT ${entityData.token}');
+      return Padding(
+      padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
+      child: TextFormField(
+        initialValue: entityData.token,
+        enableInteractiveSelection: true,
+        enableSuggestions: true,
+        autocorrect: true,
+        autovalidate: false,
+        maxLength: 10,
+        toolbarOptions: ToolbarOptions(copy: true, cut:true, paste: true, selectAll: true),
+        keyboardType: TextInputType.phone,
+        decoration: InputDecoration(
+          focusColor: Colors.blue,
+          hintText: 'widget.hint',
+          labelText: 'widget.text',
+          icon:FaIcon(FontAwesomeIcons.creditCard, color: AppTheme.themeVino),
+        ),
+        onChanged: (value) {
+          setState(() {
+            sToken = value;
+          });
+        },
+        validator: (value) => validator.validateTextfieldEmpty(value, true),
+        onSaved: (value) => sToken= value,
+      ),
+    );
+  }
+
 
   Widget _crearSucursal(String text) {
     return SwitchListTile(
@@ -320,24 +399,25 @@ class _EntityModuleState extends State<EntityModule> {
     );
   }
 
- List<DropdownMenuItem<String>> getDropDownDpto(AsyncSnapshot snapshot) {
+  List<DropdownMenuItem<String>> getDropDownDpto(AsyncSnapshot snapshot) {
     List<DropdownMenuItem<String>> lista = new List();
 
     for (var i = 0; i < snapshot.data.length; i++) {
       GetClasificador item = snapshot.data[i];
       lista.add(DropdownMenuItem(
         child: Text(item.nombre),
-        value: item.id.toString(), 
+        value: item.id.toString(),
       ));
     }
     return lista;
   }
 
- Widget _crearDpto() {
-    print('valor combo ingresado BBBB: $valorDepartamento');
+  Widget _crearDpto() {
+   
     return Center(
         child: FutureBuilder(
-            future: generic.getAll(new GetClasificador(), urlGetClasificador + '53', primaryKeyGetClasifidor),
+            future: generic.getAll(new GetClasificador(),
+                urlGetClasificador + '53', primaryKeyGetClasifidor),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return Row(
@@ -346,13 +426,15 @@ class _EntityModuleState extends State<EntityModule> {
                     Text('Departamento'),
                     SizedBox(width: 15.0),
                     DropdownButton(
-                      icon: FaIcon(FontAwesomeIcons.map, color: AppTheme.themeVino),
+                      icon: FaIcon(FontAwesomeIcons.map,
+                          color: AppTheme.themeVino),
                       value: valorDepartamento.toString(),
                       items: getDropDownDpto(snapshot),
                       onChanged: (value) {
                         setState(() {
-                              valorDepartamento = int.parse(value); 
-                          print('valor combo ingresado ENTITY MEDICINA: $valorDepartamento y valueeee: $value');
+                          valorDepartamento = int.parse(value);
+                          print(
+                              'valor combo ingresado ENTITY MEDICINA: $valorDepartamento y valueeee: $value');
                         });
                       },
                     ),
@@ -371,17 +453,18 @@ class _EntityModuleState extends State<EntityModule> {
       GetClasificador item = snapshot.data[i];
       lista.add(DropdownMenuItem(
         child: Text(item.nombre),
-        value: item.id.toString(), 
+        value: item.id.toString(),
       ));
     }
     return lista;
   }
 
   Widget _crearTipoInstitucion() {
-    print('valor combo ingresado AAAAA: $valorInstitucion');
+   
     return Center(
         child: FutureBuilder(
-            future: generic.getAll(new GetClasificador(), urlGetClasificador + '2', primaryKeyGetClasifidor),
+            future: generic.getAll(new GetClasificador(),
+                urlGetClasificador + '2', primaryKeyGetClasifidor),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return Row(
@@ -390,13 +473,15 @@ class _EntityModuleState extends State<EntityModule> {
                     Text('Especialidad'),
                     SizedBox(width: 15.0),
                     DropdownButton(
-                      icon: FaIcon(FontAwesomeIcons.peopleArrows, color: AppTheme.themeVino),
+                      icon: FaIcon(FontAwesomeIcons.peopleArrows,
+                          color: AppTheme.themeVino),
                       value: valorInstitucion.toString(),
                       items: getDropDown(snapshot),
                       onChanged: (value) {
                         setState(() {
-                              valorInstitucion = int.parse(value); 
-                          print('valor combo ingresado ENTITY MEDICINA: $valorInstitucion y valueeee: $value');
+                          valorInstitucion = int.parse(value);
+                          print(
+                              'valor combo ingresado ENTITY MEDICINA: $valorInstitucion y valueeee: $value');
                         });
                       },
                     ),
@@ -409,6 +494,34 @@ class _EntityModuleState extends State<EntityModule> {
   }
 
 
+
+  //          entity.idInstitucion = entityD.idInstitucion;
+  //  entity.nombreInstitucion = entityD.nombreInstitucion ;
+  //   });
+
+  //  print('valor entitty nombreee ${entityData.nombreInstitucion}');
+  // entity.idInstitucion = entityData.idInstitucion;
+  //  entity.nombreInstitucion = entityData.nombreInstitucion ;
+  // entity.insLat = entity.insLat;
+  // entity.insLng = entity.insLng;
+  // entity.token = entity.token;
+  // valorInstitucion = entityData.tipoInstitucion;
+  // valorDepartamento = entityData.ubicacion;
+  /*     if(entityData.esSucursal == 0) esSucursal  = false;
+      else esSucursal  = true;
+      
+      entity.token = entityData.token;
+      entity.nombreInstitucion = entityData.nombreInstitucion ;
+     
+      entity.direccion = entityData.direccion;
+      entity.telefono = entityData.telefono;
+      entity.perInformacionComp = entityData.perInformacionComp;
+      entity.perFacebbok = entityData.perFacebbok;
+      entity.perTwitter = entityData.perTwitter;
+      entity.perPaginaWeb = entityData.perPaginaWeb;
+      entity.perYouTube = entityData.perYouTube;
+      entity.perCorreoElectronico = entityData.perCorreoElectronico ;
+      entity.usuario = entityData.usuario; */
 
   _crearIconAppImagenes() {
     return IconButton(
@@ -462,7 +575,6 @@ class _EntityModuleState extends State<EntityModule> {
   }
 
   _submit() async {
-
     latLng = await getLocation().then((onvalue) => latLng = onvalue);
     entity.foto = imagen;
 
@@ -477,12 +589,11 @@ class _EntityModuleState extends State<EntityModule> {
     entity.insLat = latLng.latitude;
     entity.insLng = latLng.longitude;
     entity.tipoInstitucion = valorInstitucion;
-    
+
     if (esSucursal)
       entity.esSucursal = 1;
     else
-
-    entity.esSucursal  = 0;
+      entity.esSucursal = 0;
     entity.token = token.objectValue;
     entity.nombreInstitucion = nombre.objectValue;
     entity.ubicacion = valorDepartamento;
@@ -502,8 +613,17 @@ class _EntityModuleState extends State<EntityModule> {
 
     if (result != "-1" || result != "-2") {
       prefs.idInsitucion = result;
+
       Navigator.of(context).push(CupertinoPageRoute(
           builder: (BuildContext context) => ListEntityModule()));
+
+      enviarNotificaciones(
+          urlGetToken + '2/${prefs.idInsitucion}',
+          'organizacion',
+          'Nueva organización',
+          nombre.objectValue,
+          'Bienvenido a la aplicación',
+          'Estamos Contigo');
     }
     if (result == "-1") {
       scaffoldKey.currentState
@@ -519,7 +639,7 @@ class _EntityModuleState extends State<EntityModule> {
     });
   }
 
-  _seleccionarFoto() async =>  _procesarImagen(ImageSource.gallery);
+  _seleccionarFoto() async => _procesarImagen(ImageSource.gallery);
   _tomarFoto() async => _procesarImagen(ImageSource.camera);
 
   _procesarImagen(ImageSource origen) async {

@@ -12,6 +12,7 @@ import 'package:luciatecuida/src/Widget/Message/Message.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 import 'package:luciatecuida/src/module/SplashScreen/IntroScreenModule.dart';
+import 'package:luciatecuida/src/module/UtilModule/PageViewModule.dart';
 import 'package:page_transition/page_transition.dart';
 import 'dart:async';
 import 'package:imei_plugin/imei_plugin.dart';
@@ -189,7 +190,7 @@ class _SignUpModuleState extends State<SignUpModule> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 25.0),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                //      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
                         Container(
                           child: Column(
@@ -353,41 +354,27 @@ class _SignUpModuleState extends State<SignUpModule> {
   }
 
   _leerAcuerdo() {
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: Wrap(
-      
-       // mainAxisAlignment: MainAxisAlignment.center,
+    return Align(
+      alignment: Alignment.topCenter,
+          child: Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           FlatButton(
-            child: Text('Política de privacidad|'),
+            child: Text('Ver Política de Privacidad'),
             onPressed: () => Navigator.push(
               context,
               PageTransition(
                 curve: Curves.bounceOut,
                 type: PageTransitionType.rotate,
                 alignment: Alignment.topCenter,
-                child: IntroScreenModule(),
+                child: PageViewModule(title: 'Políticas de Privacidad', selectedUrl: 'http://ruta88.net/privacidad.html'),
               ),
-
             ),
           ),
-          FlatButton(
-            child: Text('Términos de diferencia'),
-            onPressed: () => Navigator.push(
-              context,
-              PageTransition(
-                curve: Curves.bounceOut,
-                type: PageTransitionType.rotate,
-                alignment: Alignment.topCenter,
-                child: IntroScreenModule(),
-              ),
-
-            ),
-          ),
+        
         ],
       ),
     );
   }
-
 }
