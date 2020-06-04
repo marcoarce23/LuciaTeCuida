@@ -181,7 +181,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                       size: 15,
                     ),
                     Expanded(
-                                          child: Text(
+                      child: Text(
                         '${entityItem.perNombrepersonal} ',
                         style: kTitleCardStyle,
                         softWrap: true,
@@ -212,7 +212,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                     size: 15,
                   ),
                   Expanded(
-                                      child: Text(
+                    child: Text(
                       'Telef.: ${entityItem.perTelefono}',
                       style: kSubTitleCardStyle,
                       softWrap: true,
@@ -227,7 +227,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                       size: 15,
                     ),
                     Expanded(
-                                          child: Text(
+                      child: Text(
                         'Correo: ${entityItem.perCorreo}',
                         style: kSubTitleCardStyle,
                         softWrap: true,

@@ -38,7 +38,7 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         toolbarOpacity: 0.7,
-        iconTheme: IconThemeData(color:AppTheme.themeVino, size: 12),
+        iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
         elevation: 0,
         title: Text(widget.profesional.profesion.toUpperCase(),
             style: kTitleAppBar), //backgroundColor: AppTheme.themeColorNaranja,
@@ -46,7 +46,7 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
       body: SingleChildScrollView(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[         
+        children: <Widget>[
           Row(
             children: <Widget>[
               SizedBox(
@@ -87,192 +87,184 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
           copyRigth(),
         ],
       )),
-       drawer: DrawerCitizen(),
-       floatingActionButton: generaFloatbuttonHome(context),
+      drawer: DrawerCitizen(),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 
   Widget informacionProfesional(BuildContext context,
       ProfesionalesDeInstitucion profesionalesDeInstitucion) {
     String parametroCovid = profesionalesDeInstitucion.ayudaConCovid;
-    return 
-    
-    Container(
-          margin:  EdgeInsets.only(top: 5, left: 10,right: 10  ),
-          decoration: boxDecorationList(),
-          child:
-    
-    
-    Column(
+    return Column(
       children: <Widget>[
-        ListTile(
-          leading: ImageOvalNetwork(
-              imageNetworkUrl: profesionalesDeInstitucion.foto,
-              sizeImage: Size.fromWidth(60)),
+        Container(
+          decoration: boxDecorationList(),
+          margin: EdgeInsets.only(top: 5, left: 10, right: 10),
+          child: ListTile(
+            leading: ImageOvalNetwork(
+                imageNetworkUrl: profesionalesDeInstitucion.foto,
+                sizeImage: Size.fromWidth(60)),
 
-          subtitle: Column(
-            //mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.person,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    "Profesional / Voluntario",
-                    style: kTitleCardStyle,
-                  ),
-                ],
-              ),
-              Text(
-                profesionalesDeInstitucion.nombreProfesional,
-                style: kSubTitleCardStyle,
-              ),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.business,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    "Institución",
-                    style: kTitleCardStyle,
-                  ),
-                ],
-              ),
-              Text(
-                profesionalesDeInstitucion.nombreInstitucion,
-                style: kSubTitleCardStyle,
-              ),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.category,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    "Especialidad",
-                    style: kTitleCardStyle,
-                  ),
-                ],
-              ),
-              Text(
-                profesionalesDeInstitucion.tipoProfesion.toUpperCase(),
-                style: kSubTitleCardStyle,
-              ),
-
- Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.timer,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    "Horaios",
-                    style: kTitleCardStyle,
-                  ),
-                ],
-              ),
-              Text(
-                profesionalesDeInstitucion.horario,
-                style: kSubTitleCardStyle,
-              ),
-
-
-
-              Opacity(
-                opacity: (parametroCovid == "0") ? 0 : 1,
-                child: Row(
+            subtitle: Column(
+              //mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Row(
                   children: <Widget>[
-                    Image.asset(
-                      "assets/image/COVID-19.png",
-                      width: 20,
-                      height: 20,
-                      fit: BoxFit.fill,
-                    ),
-                    SizedBox(
-                      width: 5,
+                    Icon(
+                      Icons.person,
+                      color: AppTheme.themeVino,
+                      size: 15,
                     ),
                     Text(
-                      "Consultas sobre Covid",
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
+                      "Profesional / Voluntario",
+                      style: kTitleCardStyle,
+                    ),
+                  ],
+                ),
+                Text(
+                  profesionalesDeInstitucion.nombreProfesional,
+                  style: kSubTitleCardStyle,
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.business,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Text(
+                      "Institución",
+                      style: kTitleCardStyle,
+                    ),
+                  ],
+                ),
+                Text(
+                  profesionalesDeInstitucion.nombreInstitucion,
+                  style: kSubTitleCardStyle,
+                  softWrap: true,
+                  overflow: TextOverflow.clip,
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.category,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Text(
+                      "Especialidad",
+                      style: kTitleCardStyle,
+                    ),
+                  ],
+                ),
+                Text(
+                  profesionalesDeInstitucion.tipoProfesion.toUpperCase(),
+                  style: kSubTitleCardStyle,
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.timer,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Text(
+                      "Horaios",
+                      style: kTitleCardStyle,
+                    ),
+                  ],
+                ),
+                Text(
+                  profesionalesDeInstitucion.horario,
+                  style: kSubTitleCardStyle,
+                ),
+                Opacity(
+                  opacity: (parametroCovid == "0") ? 0 : 1,
+                  child: Row(
+                    children: <Widget>[
+                      Image.asset(
+                        "assets/image/COVID-19.png",
+                        width: 20,
+                        height: 20,
+                        fit: BoxFit.fill,
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "Consultas sobre Covid",
+                        style: TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.w700),
+                      )
+                    ],
+                  ),
+                ),
+                Wrap(
+                  children: <Widget>[
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.phoneVolume,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        callNumber(
+                            int.parse(profesionalesDeInstitucion.telefono));
+                      },
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.comment,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        sendSMS(int.parse(profesionalesDeInstitucion.telefono));
+                      },
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.mailBulk,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        sendEmailAdvanced(
+                            profesionalesDeInstitucion.correo,
+                            "Colaboración ${profesionalesDeInstitucion.tipoProfesion}",
+                            "Estimad@:  ${profesionalesDeInstitucion.nombreProfesional}, favor su colaboración en: ");
+                      },
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.whatsapp,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        callWhatsApp(
+                            int.parse(profesionalesDeInstitucion.telefono));
+                      },
                     )
                   ],
                 ),
-              ),
-              Wrap(
-                children: <Widget>[
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.phoneVolume,
-                      color: AppTheme.themeVino,
-                      size: 25,
-                    ),
-                    onTap: () {
-                      callNumber(
-                          int.parse(profesionalesDeInstitucion.telefono));
-                    },
-                  ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.comment,
-                      color: AppTheme.themeVino,
-                      size: 25,
-                    ),
-                    onTap: () {
-                      sendSMS(int.parse(profesionalesDeInstitucion.telefono));
-                    },
-                  ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.mailBulk,
-                      color: AppTheme.themeVino,
-                      size: 25,
-                    ),
-                    onTap: () {
-                      sendEmailAdvanced(
-                          profesionalesDeInstitucion.correo,
-                          "Colaboración ${profesionalesDeInstitucion.tipoProfesion}",
-                          "Estimad@:  ${profesionalesDeInstitucion.nombreProfesional}, favor su colaboración en: ");
-                    },
-                  ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.whatsapp,
-                      color: AppTheme.themeVino,
-                      size: 25,
-                    ),
-                    onTap: () {
-                      callWhatsApp(
-                          int.parse(profesionalesDeInstitucion.telefono));
-                    },
-                  )
-                ],
-              ),
-            ],
+              ],
+            ),
+            //trailing:crearIconoProfesional(Icons.mail, 'Correo')
           ),
-          //trailing:crearIconoProfesional(Icons.mail, 'Correo')
         ),
-        
       ],
-      
-    ));
+    );
   }
 
   Column crearIconoProfesional(icon, title) {

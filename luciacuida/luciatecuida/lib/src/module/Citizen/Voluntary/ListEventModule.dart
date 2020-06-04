@@ -123,8 +123,8 @@ class _ListEventModuleState extends State<ListEventModule> {
       ),
       onDismissed: (value) {
         setState(() {
-          final dataMap = generic.delete(
-              '$urlDeleteEvento${item.toString()}/${prefs.userId}');
+          final dataMap = generic
+              .delete('$urlDeleteEvento${item.toString()}/${prefs.userId}');
 
           dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
           print('resultado:$result');
@@ -140,61 +140,81 @@ class _ListEventModuleState extends State<ListEventModule> {
 
       child: Row(
         children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                  width: MediaQuery.of(context).size.width - 160,
-                  child: Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.gamepad,
-                        color: AppTheme.themeVino,
-                        size: 15,
+          Flexible(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.gamepad,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Evento: ${entityItem.eveTitulo} ',
+                        style: kSubTitleCardStyle,
+                        softWrap: true,
+                        overflow: TextOverflow.clip,
                       ),
-                      Text('Evento: ${entityItem.eveTitulo} ',
-                          style: kTitleCardStyle),
-                    ],
-                  )),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text('Objetivo: ${entityItem.eveObjetivo}',
-                      style: kSubTitleCardStyle)
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.map,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Lugar: ${entityItem.eveUbicacion}',
-                    style: kSubTitleCardStyle,
-                  ),
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.store_mall_directory,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Fecha: ${entityItem.eveFecha} - Hora: ${entityItem.eveHora}',
-                    style: kSubTitleCardStyle,
-                  )
-                ],
-              ),
-            ],
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Objetivo: ${entityItem.eveObjetivo}',
+                        style: kSubTitleCardStyle,
+                        softWrap: true,
+                        overflow: TextOverflow.clip,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.map,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Lugar: ${entityItem.eveUbicacion}',
+                        style: kSubTitleCardStyle,
+                        softWrap: true,
+                        overflow: TextOverflow.clip,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.store_mall_directory,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Fecha: ${entityItem.eveFecha} - Hora: ${entityItem.eveHora}',
+                        style: kSubTitleCardStyle,
+                        softWrap: true,
+                        overflow: TextOverflow.clip,
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

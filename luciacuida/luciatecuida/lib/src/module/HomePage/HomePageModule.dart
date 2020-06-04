@@ -41,17 +41,17 @@ class HomePageModule extends StatefulWidget {
 class _HomePageModuleState extends State<HomePageModule> {
   final prefs = new PreferensUser();
 
- final generic = new Generic();
- 
+  final generic = new Generic();
+
   @override
   void initState() {
-  super.initState();
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     prefs.ultimaPagina = HomePageModule.routeName;
-  //  generic.add( new TokenImei (correo1: prefs.correoElectronico, imei: prefs.imei, token:prefs.token), urlAddTokenImei);
+    //  generic.add( new TokenImei (correo1: prefs.correoElectronico, imei: prefs.imei, token:prefs.token), urlAddTokenImei);
 
     return Scaffold(
       appBar: AppBar(
@@ -179,11 +179,11 @@ class _HomePageModuleState extends State<HomePageModule> {
           "https://omi.app/covid-19/welcome"),
       // _crearBotonRedondeado(Colors.orange, Icons.blur_linear,
       //     'Eventos vigentes', '4', 14.0, CitizenEventsModule(), 0, ""),
-          _crearBotonRedondeadoImage(Colors.amberAccent, 'assets/eventos.png', 'Eventos vigentes', '4',      
-          10.0, CitizenListInstitucionModule(), 0, ""),
+      _crearBotonRedondeadoImage(Colors.amberAccent, 'assets/eventos.png',
+          'Eventos vigentes', '4', 10.0, CitizenListInstitucionModule(), 0, ""),
       //_crearBotonRedondeado(Colors.blueAccent, Icons.people, 'Voluntarios', '5', 20.0,CitizenListInstitucionModule()),
-      _crearBotonRedondeadoImage(Colors.green, 'assets/instituciones.png', 'Organizaciones', '6',      
-          10.0, CitizenListInstitucionModule(), 0, ""),
+      _crearBotonRedondeadoImage(Colors.green, 'assets/instituciones.png',
+          'Organizaciones', '6', 10.0, CitizenListInstitucionModule(), 0, ""),
     ]);
   }
 
@@ -246,7 +246,7 @@ class _HomePageModuleState extends State<HomePageModule> {
     );
   }
 
-   Widget _crearBotonRedondeadoImage(Color color, String image, String texto,
+  Widget _crearBotonRedondeadoImage(Color color, String image, String texto,
       String valor, double size, Widget widget, int acceso, String link) {
     return InkWell(
       onTap: () {
@@ -304,12 +304,7 @@ class _HomePageModuleState extends State<HomePageModule> {
       ),
     );
   }
-
 }
-
-
-
-
 
 class DrawerCitizen extends StatelessWidget {
   final prefs = new PreferensUser();
@@ -333,19 +328,26 @@ class DrawerCitizen extends StatelessWidget {
                           imageNetworkUrl: prefs.avatarImagen,
                           sizeImage: Size.fromWidth(70)),
                     )),
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Column(
+                Flexible(
+                                    child: Column(
                     children: <Widget>[
-                      Text(
-                        prefs.nombreUsuario,
-                        style: TextStyle(
-                            color: AppTheme.themePlomo, fontSize: 18.0),
+                      Expanded(
+                                              child: Text(
+                          prefs.nombreUsuario,
+                          style: TextStyle(
+                              color: AppTheme.themePlomo, fontSize: 18.0),
+                          softWrap: true,
+                          overflow: TextOverflow.clip,
+                        ),
                       ),
-                      Text(
-                        prefs.correoElectronico,
-                        style: TextStyle(
-                            color: AppTheme.themePlomo, fontSize: 18.0),
+                      Expanded(
+                                              child: Text(
+                          prefs.correoElectronico,
+                          style: TextStyle(
+                              color: AppTheme.themePlomo, fontSize: 16.0),
+                               softWrap: true,
+                          overflow: TextOverflow.clip,
+                        ),
                       ),
                     ],
                   ),
@@ -505,7 +507,6 @@ class DrawerCitizen extends StatelessWidget {
                         builder: (context) => IntroScreenModule()),
                   )),
           CustomListTile(Icons.exit_to_app, 'Cerrar Sesión', () {
-          
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => SignInDemo()),
@@ -583,7 +584,7 @@ class DrawerCitizen extends StatelessWidget {
                     context,
                     MaterialPageRoute(builder: (context) => EntityAllModule()),
                   )),
-           CustomListTile(
+          CustomListTile(
               Icons.person_add,
               'Registrate como voluntario',
               () => Navigator.push(

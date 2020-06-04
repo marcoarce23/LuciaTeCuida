@@ -48,27 +48,33 @@ class _CitizenListInstitucionModuleState
           )
         ],
       ),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[            
-            Center(
-              child: contenedorTitulo(
-                context,
-                40.0,
-                "Lista de instituciones".toUpperCase(),
-                FaIcon(FontAwesomeIcons.calendarAlt, color: AppTheme.themeVino),
+      body:SingleChildScrollView (
+              child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Center(
+                child: contenedorTitulo(
+                  context,
+                  40.0,
+                  "Lista de instituciones".toUpperCase(),
+                  FaIcon(FontAwesomeIcons.calendarAlt, color: AppTheme.themeVino),
+                ),
               ),
-            ),
-            Center(child: Text("Presione sobre la institución para ver el detalle", style: kSubSubTitleCardStyle,)), // colcoamos las cajas de instituciones
-            divider(),
-            futureItemsInstitution(context),
-            copyRigth(),
-          ],
+              Center(
+                  child: Text(
+                "Presione sobre la institución para ver el detalle",
+                style: kSubSubTitleCardStyle,
+              )), // colcoamos las cajas de instituciones
+              divider(),
+              futureItemsInstitution(context),
+              copyRigth(),
+            ],
+          ),
         ),
       ),
-       drawer: DrawerCitizen(),
-       floatingActionButton: generaFloatbuttonHome(context),
+      drawer: DrawerCitizen(),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 
@@ -99,7 +105,7 @@ class _CitizenListInstitucionModuleState
       itemBuilder: (context, index) {
         InstitucionesItems institutionItem = snapshot.data[index];
         return Container(
-          margin:  EdgeInsets.only(top: 5, left: 10,right: 10  ),
+          margin: EdgeInsets.only(top: 5, left: 10, right: 10),
           decoration: boxDecorationList(),
           child: InkWell(
             onTap: () {
@@ -119,7 +125,7 @@ class _CitizenListInstitucionModuleState
             child: ListTile(
               leading: iconInstitution(institutionItem),
               title: listInstitution(context, institutionItem),
-             ),
+            ),
           ),
         );
       },
@@ -130,107 +136,126 @@ class _CitizenListInstitucionModuleState
       BuildContext context, InstitucionesItems institutionItem) {
     return Row(
       children: <Widget>[
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Icon(
-                  Icons.gamepad,
-                  color: AppTheme.themeVino,
-                  size: 15,
-                ),
-                Text("Nombre: ", style: kTitleCardStyle),
-                Text(
-                  institutionItem.nombreInstitucion,
-                  style: kSubTitleCardStyle,
-                ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Icon(
-                  Icons.store_mall_directory,
-                  color: AppTheme.themeVino,
-                  size: 15,
-                ),
-                 Text("Ubicación: ", style: kTitleCardStyle),
-                Text(institutionItem.ubicacion, style: kSubTitleCardStyle),
-              ],
-            ),
-            Row(
-              children: <Widget>[
-                Icon(
-                  Icons.people,
-                  color: AppTheme.themeVino,
-                  size: 15,
-                ),
-                Text("Miembros: ", style: kTitleCardStyle),
-                Text(" ${institutionItem.miembros} miembros",
-                    style: kSubTitleCardStyle),
-              ],
-            ),
-            tieneCovid(institutionItem),
-            Wrap(
-              children: <Widget>[
-                InkWell(
-                  child: FaIcon(
-                    FontAwesomeIcons.phoneVolume,
+        Flexible(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.gamepad,
                     color: AppTheme.themeVino,
-                    size: 25,
+                    size: 15,
                   ),
-                  onTap: () {
-                    callNumber(int.parse(institutionItem.telefono));
-                  },
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                InkWell(
-                  child: FaIcon(
-                    FontAwesomeIcons.comment,
+                  Text("Nombre: ", style: kTitleCardStyle),
+                  Expanded(
+                    child: Text(
+                      institutionItem.nombreInstitucion,
+                      style: kSubTitleCardStyle,
+                      softWrap: true,
+                      overflow: TextOverflow.clip,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.store_mall_directory,
                     color: AppTheme.themeVino,
-                    size: 25,
+                    size: 15,
                   ),
-                  onTap: () {
-                    sendSMS(int.parse(institutionItem.telefono));
-                  },
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                InkWell(
-                  child: FaIcon(
-                    FontAwesomeIcons.mailBulk,
+                  Text("Ubicación: ", style: kTitleCardStyle),
+                  Expanded(
+                    child: Text(
+                      institutionItem.ubicacion,
+                      style: kSubTitleCardStyle,
+                      softWrap: true,
+                      overflow: TextOverflow.clip,
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.people,
                     color: AppTheme.themeVino,
-                    size: 25,
+                    size: 15,
                   ),
-                  onTap: () {
-                    sendEmailAdvanced(institutionItem.correo, "",
-                        "Estimad@:  ${institutionItem.nombreInstitucion}, favor su colaboración en: ");
-                  },
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                InkWell(
-                  child: FaIcon(
-                    FontAwesomeIcons.whatsapp,
-                    color: AppTheme.themeVino,
-                    size: 25,
+                  Text("Miembros: ", style: kTitleCardStyle),
+                  Expanded(
+                    child: Text(
+                      " ${institutionItem.miembros} miembros",
+                      style: kSubTitleCardStyle,
+                      softWrap: true,
+                      overflow: TextOverflow.clip,
+                    ),
                   ),
-                  onTap: () {
-                    callWhatsApp(int.parse(institutionItem.telefono));
-                  },
-                )
-              ],
-            ),
-          ],
+                ],
+              ),
+              tieneCovid(institutionItem),
+              Wrap(
+                children: <Widget>[
+                  InkWell(
+                    child: FaIcon(
+                      FontAwesomeIcons.phoneVolume,
+                      color: AppTheme.themeVino,
+                      size: 25,
+                    ),
+                    onTap: () {
+                      callNumber(int.parse(institutionItem.telefono));
+                    },
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  InkWell(
+                    child: FaIcon(
+                      FontAwesomeIcons.comment,
+                      color: AppTheme.themeVino,
+                      size: 25,
+                    ),
+                    onTap: () {
+                      sendSMS(int.parse(institutionItem.telefono));
+                    },
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  InkWell(
+                    child: FaIcon(
+                      FontAwesomeIcons.mailBulk,
+                      color: AppTheme.themeVino,
+                      size: 25,
+                    ),
+                    onTap: () {
+                      sendEmailAdvanced(institutionItem.correo, "",
+                          "Estimad@:  ${institutionItem.nombreInstitucion}, favor su colaboración en: ");
+                    },
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  InkWell(
+                    child: FaIcon(
+                      FontAwesomeIcons.whatsapp,
+                      color: AppTheme.themeVino,
+                      size: 25,
+                    ),
+                    onTap: () {
+                      callWhatsApp(int.parse(institutionItem.telefono));
+                    },
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
-         SizedBox(
-                  height: 25,
-                ),
+        SizedBox(
+          height: 25,
+        ),
       ],
     );
   }
@@ -241,7 +266,8 @@ class _CitizenListInstitucionModuleState
     if (institutionItem.idaAyudaCovid == 0) {
       respuesta = "";
     } else {
-      respuesta = "Consultas sobre Covid19 desde ${institutionItem.fechaConCovid}";
+      respuesta =
+          "Consultas sobre Covid19 desde ${institutionItem.fechaConCovid}";
     }
 
     return Text(

@@ -141,75 +141,85 @@ class _ListCitizenHelpModuleState extends State<ListCitizenHelpModule> {
 
       child: Row(
         children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                  width: MediaQuery.of(context).size.width - 110,
-                  child: Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.gamepad,
-                        color: AppTheme.themeVino,
-                        size: 15,
-                      ),
-                      Text('${entityItem.regPersona} ',
-                          style: kTitleCardStyle),
-                    ],
-                  )),
-              // Row(
-              //   children: <Widget>[
-              //     Icon(
-              //       Icons.place,
-              //       color: AppTheme.themeVino,
-              //       size: 15,
-              //     ),
-              //     Text('Prioridad: ${entityItem.}',
-              //         style: kSubTitleCardStyle)
-              //   ],
-              // ),
-              Container(
-                  child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.phone_android,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Telefono: ${entityItem.regTelefono}',
-                    style: kSubTitleCardStyle,
-                  ),
-                ],
-              )),
-              // Container(
-              //   width: MediaQuery.of(context).size.width,
-              //   child: Row(
-              //     children: <Widget>[
-              //       Icon(
-              //         Icons.store_mall_directory,
-              //         color: AppTheme.themeVino,
-              //         size: 15,
-              //       ),
-              //       Text(
-              //         'Ubicacion: ${entityItem.regUbicacion}',
-              //         style: kSubTitleCardStyle,
-              //       )
-              //     ],
-              //   ),
-              // ),
-
-              Container(
-                width: MediaQuery.of(context).size.width - 80,
-                child: Row(
+          Flexible(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                    width: MediaQuery.of(context).size.width - 110,
+                    child: Row(
+                      children: <Widget>[
+                        Icon(
+                          Icons.gamepad,
+                          color: AppTheme.themeVino,
+                          size: 15,
+                        ),
+                        Expanded(
+                          child: Text(
+                            '${entityItem.regPersona} ',
+                            style: kTitleCardStyle,
+                            softWrap: true,
+                            overflow: TextOverflow.clip,
+                          ),
+                        ),
+                      ],
+                    )),
+                // Row(
+                //   children: <Widget>[
+                //     Icon(
+                //       Icons.place,
+                //       color: AppTheme.themeVino,
+                //       size: 15,
+                //     ),
+                //     Text('Prioridad: ${entityItem.}',
+                //         style: kSubTitleCardStyle)
+                //   ],
+                // ),
+                Container(
+                    child: Row(
                   children: <Widget>[
                     Icon(
-                      Icons.store_mall_directory,
+                      Icons.phone_android,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
-            
+                    Expanded(
+                      child: Text(
+                        'Telefono: ${entityItem.regTelefono}',
+                        style: kSubTitleCardStyle,
+                        softWrap: true,
+                        overflow: TextOverflow.clip,
+                      ),
+                    ),
+                  ],
+                )),
+                // Container(
+                //   width: MediaQuery.of(context).size.width,
+                //   child: Row(
+                //     children: <Widget>[
+                //       Icon(
+                //         Icons.store_mall_directory,
+                //         color: AppTheme.themeVino,
+                //         size: 15,
+                //       ),
+                //       Text(
+                //         'Ubicacion: ${entityItem.regUbicacion}',
+                //         style: kSubTitleCardStyle,
+                //       )
+                //     ],
+                //   ),
+                // ),
+
+                Container(
+                  width: MediaQuery.of(context).size.width - 80,
+                  child: Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.store_mall_directory,
+                        color: AppTheme.themeVino,
+                        size: 15,
+                      ),
                       RichText(
                         overflow: TextOverflow.clip,
                         text: TextSpan(
@@ -217,11 +227,11 @@ class _ListCitizenHelpModuleState extends State<ListCitizenHelpModule> {
                           style: TextStyle(fontSize: 12, color: Colors.black),
                         ),
                       ),
-             
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
@@ -233,7 +243,9 @@ class _ListCitizenHelpModuleState extends State<ListCitizenHelpModule> {
         child: Column(
       children: <Widget>[
         ImageOvalNetwork(
-            imageNetworkUrl: 'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg', sizeImage: Size.fromWidth(40)),
+            imageNetworkUrl:
+                'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg',
+            sizeImage: Size.fromWidth(40)),
         SizedBox(
           height: 1.5,
         ),

@@ -24,7 +24,7 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
   var result;
   int _group = 1;
   int _selectedRadio = 74;
-  
+
   @override
   void initState() {
     prefs.ultimaPagina = ListMultimediaModule.routeName;
@@ -123,35 +123,33 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
   Widget listItemsEntity(BuildContext context, AsyncSnapshot snapshot) {
     final size = MediaQuery.of(context).size;
 
-    return Expanded(
-      child: ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        physics: ClampingScrollPhysics(),
-        itemCount: snapshot.data.length,
-        itemBuilder: (context, index) {
-          Multimedia entityItem = snapshot.data[index];
+    return ListView.builder(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      physics: ClampingScrollPhysics(),
+      itemCount: snapshot.data.length,
+      itemBuilder: (context, index) {
+        Multimedia entityItem = snapshot.data[index];
 
-          return Column(
-            children: <Widget>[
-              Container(
-                width: size.width * 0.98,
-                margin: EdgeInsets.symmetric(vertical: 0.0),
-                decoration: boxDecorationList(),
-                child: Column(
-                  children: <Widget>[
-                    ListTile(
-                      leading: iconEntity(entityItem),
-                      title: listEntity(context, entityItem),
-                    ),
-                  ],
-                ),
+        return Column(
+          children: <Widget>[
+            Container(
+              width: size.width * 0.98,
+              margin: EdgeInsets.symmetric(vertical: 0.0),
+              decoration: boxDecorationList(),
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    leading: iconEntity(entityItem),
+                    title: listEntity(context, entityItem),
+                  ),
+                ],
               ),
-              //   divider(),
-            ],
-          );
-        },
-      ),
+            ),
+            //   divider(),
+          ],
+        );
+      },
     );
   }
 
@@ -187,52 +185,65 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
 
       child: Row(
         children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                  width: MediaQuery.of(context).size.width - 130,
-                  child: Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.gamepad,
-                        color: AppTheme.themeVino,
-                        size: 15,
+          Flexible(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.gamepad,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Material: ${entityItem.mulTitulo} ',
+                        style: kSubTitleCardStyle,
+                        softWrap: true,
+                        overflow: TextOverflow.clip,
                       ),
-                      Text('Material: ${entityItem.mulTitulo} ',
-                          style: kSubTitleCardStyle),
-                    ],
-                  )),
-              Container(
-                  width: MediaQuery.of(context).size.width - 130,
-                  child: Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.place,
-                        color: AppTheme.themeVino,
-                        size: 15,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Resumen: ${entityItem.mulResumen}',
+                        style: kSubTitleCardStyle,
+                        softWrap: true,
+                        overflow: TextOverflow.clip,
                       ),
-                      Text('Resumen: ${entityItem.mulResumen}',
-                          style: kSubTitleCardStyle)
-                    ],
-                  )),
-              Container(
-                  width: MediaQuery.of(context).size.width - 90,
-                  child: Row(
-                    children: <Widget>[
-                      // Icon(
-                      //   Icons.place,
-                      //   color: AppTheme.themeVino,
-                      //   size: 15,
-                      // ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    // Icon(
+                    //   Icons.place,
+                    //   color: AppTheme.themeVino,
+                    //   size: 15,
+                    // ),
 
-                      Text(
-                          'inicio: ${entityItem.detFechaInicio} - Conclusión: ${entityItem.detFechaFin}',
-                          style: kSubTitleCardStyle),
-                    ],
-                  )),
-            ],
+                    Expanded(
+                      child: Text(
+                        'inicio: ${entityItem.detFechaInicio} - Conclusión: ${entityItem.detFechaFin}',
+                        style: kSubTitleCardStyle,
+                        softWrap: true,
+                        overflow: TextOverflow.clip,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
