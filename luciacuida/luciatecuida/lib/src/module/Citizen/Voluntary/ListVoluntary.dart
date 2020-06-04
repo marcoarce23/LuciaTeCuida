@@ -72,7 +72,8 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
               context,
               40.0,
               'LISTADO VOLUNTARIOS',
-              FaIcon(FontAwesomeIcons.handHoldingMedical, color: AppTheme.themeVino),
+              FaIcon(FontAwesomeIcons.handHoldingMedical,
+                  color: AppTheme.themeVino),
             ),
           ),
           divider(),
@@ -100,7 +101,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
   }
 
   Widget listItemsEntity(BuildContext context, AsyncSnapshot snapshot) {
-      final size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
 
     return Expanded(
       child: ListView.builder(
@@ -122,12 +123,12 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                     ListTile(
                       leading: iconEntity(entityItem),
                       title: listEntity(context, entityItem),
-                     ),
+                    ),
                   ],
                 ),
               ),
-            //  divider(),
-            SizedBox(height:7.0),
+              //  divider(),
+              SizedBox(height: 7.0),
             ],
           );
         },
@@ -167,114 +168,125 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
 
       child: Row(
         children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                  width: MediaQuery.of(context).size.width - 110,
-                  child: Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.gamepad,
-                        color: AppTheme.themeVino,
-                        size: 15,
-                      ),
-                      Text('${entityItem.perNombrepersonal} ',
-                          style: kTitleCardStyle,),
-                    ],
-                  )),
-                  SizedBox(height:7.0),
-
+          Flexible(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
                 Row(
-                children: <Widget>[
+                  children: <Widget>[
+                    Icon(
+                      Icons.gamepad,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                                          child: Text(
+                        '${entityItem.perNombrepersonal} ',
+                        style: kTitleCardStyle,
+                        softWrap: true,
+                        overflow: TextOverflow.clip,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(children: <Widget>[
                   Icon(
                     Icons.bubble_chart,
                     color: AppTheme.themeVino,
                     size: 15,
                   ),
-                  Text('Inst.: ${entityItem.desInstitucion}',
-                      style: kSubTitleCardStyle,),]
-              ),
-              SizedBox(height:7.0),
-
-              Row(
-                children: <Widget>[
+                  Expanded(
+                    child: Text(
+                      'Inst.: ${entityItem.desInstitucion}',
+                      style: kSubTitleCardStyle,
+                      softWrap: true,
+                      overflow: TextOverflow.clip,
+                    ),
+                  ),
+                ]),
+                Row(children: <Widget>[
                   Icon(
                     Icons.place,
                     color: AppTheme.themeVino,
                     size: 15,
                   ),
-                  Text('Telef.: ${entityItem.perTelefono}',
-                      style: kSubTitleCardStyle,),]
-              ),
-              SizedBox(height:7.0),
-              
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.store_mall_directory,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Correo: ${entityItem.perCorreo}',
-                    style: kSubTitleCardStyle,
-                  )
-                ],
-              ),
-              SizedBox(height:7.0),
-              Wrap(
-                children: <Widget>[
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.phoneVolume,
-                      color: AppTheme.themeVino,
-                      size: 25,
+                  Expanded(
+                                      child: Text(
+                      'Telef.: ${entityItem.perTelefono}',
+                      style: kSubTitleCardStyle,
+                      softWrap: true,
                     ),
-                    onTap: () {
-                      callNumber(int.parse(entityItem.perTelefono));
-                    },
                   ),
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.comment,
+                ]),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.store_mall_directory,
                       color: AppTheme.themeVino,
-                      size: 25,
+                      size: 15,
                     ),
-                    onTap: () {
-                      sendSMS(int.parse(entityItem.perTelefono));
-                    },
-                  ),
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.mailBulk,
-                      color: AppTheme.themeVino,
-                      size: 25,
+                    Expanded(
+                                          child: Text(
+                        'Correo: ${entityItem.perCorreo}',
+                        style: kSubTitleCardStyle,
+                        softWrap: true,
+                      ),
+                    )
+                  ],
+                ),
+                Wrap(
+                  children: <Widget>[
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.phoneVolume,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        callNumber(int.parse(entityItem.perTelefono));
+                      },
                     ),
-                    onTap: () {
-                      sendEmailAdvanced(
-                          entityItem.perCorreo,
-                          "Colaboración ${entityItem.desEspecialidad}",
-                          "Estimad@:  ${entityItem.perNombrepersonal}, favor su colaboración en: ");
-                    },
-                  ),
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.whatsapp,
-                      color: AppTheme.themeVino,
-                      size: 25,
+                    SizedBox(width: 20.0),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.comment,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        sendSMS(int.parse(entityItem.perTelefono));
+                      },
                     ),
-                    onTap: () {
-                      callWhatsApp(int.parse(entityItem.perTelefono));
-                    },
-                  )
-                ],
-              ),
-            ],
+                    SizedBox(width: 20.0),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.mailBulk,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        sendEmailAdvanced(
+                            entityItem.perCorreo,
+                            "Colaboración ${entityItem.desEspecialidad}",
+                            "Estimad@:  ${entityItem.perNombrepersonal}, favor su colaboración en: ");
+                      },
+                    ),
+                    SizedBox(width: 20.0),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.whatsapp,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        callWhatsApp(int.parse(entityItem.perTelefono));
+                      },
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -285,15 +297,17 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
     return Container(
         child: Column(
       children: <Widget>[
-        ImageOvalNetwork( imageNetworkUrl: prefs.avatarImagen, sizeImage: Size.fromWidth(35)),
-       SizedBox(height:5.0),
+        ImageOvalNetwork(
+            imageNetworkUrl: prefs.avatarImagen, sizeImage: Size.fromWidth(35)),
+        SizedBox(height: 5.0),
         Text(
           '${entityItem.desEspecialidad}',
           style: TextStyle(
-              fontSize: 12, color: AppTheme.themeVino, fontWeight: FontWeight.w400),
+              fontSize: 12,
+              color: AppTheme.themeVino,
+              fontWeight: FontWeight.w400),
         ),
       ],
     ));
   }
-
 }
