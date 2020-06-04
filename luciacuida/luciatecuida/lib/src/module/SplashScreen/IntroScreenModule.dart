@@ -118,8 +118,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                 image: AssetImage(
                                   'assets/image/onboarding0.png',
                                 ),
-                                height: 220.0,
-                                width: 220.0,
+                                height: 180.0,
+                                width: 180.0,
                               ),
                             ),
                             Text(
@@ -186,8 +186,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                 image: AssetImage(
                                   'assets/image/onboarding2.png',
                                 ),
-                                height: 200.0,
-                                width: 200.0,
+                                height: 180.0,
+                                width: 180.0,
                               ),
                             ),
                             SizedBox(height: 10.0),
@@ -247,7 +247,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                           size: 35.0),
                                       SizedBox(width: 10.0),
                                       Text(
-                                        'COnisderar que el traajo de la gente es de voluntariado en funcion........',
+                                        'COnisderar que el traajo de la gente es de \n voluntariado en funcion........',
                                         style: kSubtitleStyleBlack,
                                       ),
                                     ],
@@ -268,8 +268,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                 image: AssetImage(
                                   'assets/image/onboarding1.png',
                                 ),
-                                height: 200.0,
-                                width: 200.0,
+                                height: 180.0,
+                                width: 180.0,
                               ),
                             ),
                             SizedBox(height: 5.0),
@@ -331,7 +331,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                           size: 35.0),
                                       SizedBox(width: 10.0),
                                       Text(
-                                        'COnisderar que el traajo de la gente es de voluntariado en funcion........',
+                                        'COnisderar que el traajo de la gente es de \nvoluntariado en funcion........',
                                         style: kSubtitleStyleBlack,
                                       ),
                                     ],
