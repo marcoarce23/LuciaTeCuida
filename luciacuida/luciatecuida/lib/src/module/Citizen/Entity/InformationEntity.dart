@@ -1,0 +1,498 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:luciatecuida/src/Model/Entity.dart';
+import 'package:luciatecuida/src/Model/Generic.dart';
+import 'package:luciatecuida/src/Model/PreferenceUser.dart';
+import 'package:luciatecuida/src/Theme/ThemeModule.dart';
+import 'package:luciatecuida/src/Util/Util.dart';
+import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
+import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
+
+class InformationEntityModule extends StatefulWidget {
+  InformationEntityModule({Key key}) : super(key: key);
+
+  @override
+  _InformationEntityModuleState createState() =>
+      _InformationEntityModuleState();
+}
+
+class _InformationEntityModuleState extends State<InformationEntityModule> {
+  final generic = new Generic();
+  final prefs = new PreferensUser();
+  var result;
+  String _esCovid = 'NO';
+Institucion entityItem;
+
+  @override
+  void initState() {
+    //  prefs.ultimaPagina = ListEntityModule.routeName;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(height: 5.0),
+          Container(
+            width: size.width * 0.96,
+            margin: EdgeInsets.symmetric(vertical: 0.0),
+            child: contenedorTitulo(
+              context,
+              40.0,
+              'INFORMACIÓN DE TU ORGANIZACIÓN',
+              FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
+            ),
+          ),
+          divider(),
+          futureItemsEntity(context),
+          copyRigth(),
+        ],
+      ),
+      floatingActionButton: generaFloatbuttonHome(context),
+    );
+  }
+
+  Widget futureItemsEntity(BuildContext context) {
+    return FutureBuilder(
+        future: generic.getAll(new Institucion(), urlGetInstitucion + '1022',
+            primaryKeyGetInsitucion),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+              return Center(child: CircularProgressIndicator());
+              break;
+            default:
+              return listItemsEntity(context, snapshot);
+          }
+        });
+  }
+
+  Widget listItemsEntity(BuildContext context, AsyncSnapshot snapshot) {
+    final size = MediaQuery.of(context).size;
+
+    return Expanded(
+      child: ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        physics: ClampingScrollPhysics(),
+        itemCount: snapshot.data.length,
+        itemBuilder: (context, index) {
+           entityItem = snapshot.data[index];
+
+          return Column(
+            children: <Widget>[
+              Container(
+                width: size.width * 0.97,
+                margin: EdgeInsets.symmetric(vertical: 0.0),
+                //  decoration: boxDecorationList(),
+                child: Column(
+                  children: <Widget>[
+                   
+                    
+        Container(
+          padding: EdgeInsets.only(top: 3.0),
+          child: Column(
+            children: <Widget>[
+              Align(
+                child: RadialProgress(
+                  width: 4,
+                  goalCompleted: 0.90,
+                  progressColor: AppTheme.themeVino,
+                  progressBackgroundColor: Colors.white,
+                  child: Container(
+                      child: ImageOvalNetwork(
+                          imageNetworkUrl: entityItem.foto,
+                          sizeImage: Size.fromWidth(90))
+                          ),
+                ),
+              ),
+            ],
+          ),
+        ),
+
+
+
+                    SizedBox(
+                      height: 5.0,
+                    ),
+                    Text('INFORMACIÓN DE LA ORGANIZACIÓN',
+                        style: kSigsTitleStyle),
+                    SizedBox(
+                      height: 7.0,
+                    ),
+                    listEntity(context, entityItem),
+                    divider(),
+                     Row(
+                      children: <Widget>[
+                        _crearBotonOrganizacion('Editar Organización'),
+                      ],
+                    ),
+         
+                    divider(),
+                      Text('HORARIOS DE ATENCIÓN',
+                        style: kSigsTitleStyle),
+                    SizedBox(
+                      height: 7.0,
+                    ),
+                    listEntityAtencion(context, entityItem),
+                    
+           
+                    divider(),
+                   
+                    _crearBotonAtencion('Editar Atención'),
+                  ],
+                ),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget listEntity(BuildContext context, Institucion entityItem) {
+    if(entityItem.esSucursal != 0)
+      _esCovid = 'SI';
+
+    return Container(
+      child: Row(
+        children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                  child: Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.gamepad,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    '${entityItem.nombreInstitucion} ',
+                    style: kSubTitleCardStyle,
+                  ),
+                ],
+              )),
+
+               Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.place,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Token (Código de Seguridad) : ${entityItem.token}',
+                    style: kSubTitleCardStyle,
+                  )
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.place,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Departamento: ${entityItem.desUbicacion}',
+                    style: kSubTitleCardStyle,
+                  )
+                ],
+              ),
+
+               Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.place,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Sucursal: $_esCovid',
+                    style: kSubTitleCardStyle,
+                  )
+                ],
+              ),
+
+               Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.place,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Tipo de Institución: ${entityItem.desInsitucion}',
+                    style: kSubTitleCardStyle,
+                  )
+                ],
+              ),
+               Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.place,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Teléfono : ${entityItem.telefono}',
+                    style: kSubTitleCardStyle,
+                  )
+                ],
+              ),
+               Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.place,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Ubicación: ${entityItem.direccion}',
+                    style: kSubTitleCardStyle,
+                  )
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.place,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Correo Electrónico: ${entityItem.perCorreoElectronico}',
+                    style: kSubTitleCardStyle,
+                  )
+                ],
+              ),
+               Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.place,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Página Web: ${entityItem.perPaginaWeb}',
+                    style: kSubTitleCardStyle,
+                  )
+                ],
+              ),
+               Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.place,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Facebook: ${entityItem.perFacebbok}',
+                    style: kSubTitleCardStyle,
+                  )
+                ],
+              ),
+               Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.place,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Twitter: ${entityItem.perTwitter}',
+                    style: kSubTitleCardStyle,
+                  )
+                ],
+              ),
+               Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.place,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Youtube: ${entityItem.perYouTube}',
+                    style: kSubTitleCardStyle,
+                  )
+                ],
+              ),
+               Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.place,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Información Complementaria:',
+                    style: kSubTitleCardStyle,
+                  ),
+                  Text(
+                    '${entityItem.perInformacionComp}',
+                    style: kSubTitleCardStyle,
+                  )
+                ],
+              ),
+              
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget listEntityAtencion(BuildContext context, Institucion entityItem) {
+    return Container(
+      child: Row(
+        children: <Widget>[
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                  child: Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.gamepad,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Lunes : ${entityItem.lunesH} ',
+                    style: kTitleWelcomeStyle,
+                  ),
+                ],
+              )),
+              Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.place,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Martes: ${entityItem.martesH}',
+                    style: kTitleWelcomeStyle,
+                  )
+                ],
+              ),
+              Container(
+                  child: Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.phone_android,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Miercoles: ${entityItem.miercolesH}',
+                    style: kTitleWelcomeStyle,
+                  ),
+                ],
+              )),
+              Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.store_mall_directory,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Jueves: ${entityItem.juevesH}',
+                    style: kTitleWelcomeStyle,
+                  )
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.store_mall_directory,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Viernes: ${entityItem.viernesH}',
+                    style: kTitleWelcomeStyle,
+                  )
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.store_mall_directory,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Sábado: ${entityItem.sabadoH}',
+                    style: kTitleWelcomeStyle,
+                  )
+                ],
+              ),
+              Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.store_mall_directory,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Domingo: ${entityItem.domingoH}',
+                    style: kTitleWelcomeStyle,
+                  )
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _crearBotonOrganizacion(String text) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 80.0),
+      width: MediaQuery.of(context).size.width,
+      child: RaisedButton.icon(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        color: AppTheme.themeVino,
+        textColor: Colors.white,
+        label: Text(
+          text,
+          style: kBotontitleStyle,
+        ),
+        icon: FaIcon(FontAwesomeIcons.edit, color: Colors.white),
+        onPressed: () => Navigator.pushNamed(context, 'entidad', arguments: entityItem ),
+      ),
+    );
+  }
+
+  Widget _crearBotonAtencion(String text) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 80.0),
+      width: MediaQuery.of(context).size.width,
+      child: RaisedButton.icon(
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        color: AppTheme.themeVino,
+        textColor: Colors.white,
+        label: Text(
+          text,
+          style: kBotontitleStyle,
+        ),
+        icon: FaIcon(FontAwesomeIcons.edit, color: Colors.white),
+        onPressed: () =>  Navigator.pushNamed(context, 'entidad', arguments: entityItem ),
+      ),
+    );
+  }
+}

@@ -117,7 +117,23 @@ class Institucion extends Entity {
   String desInsitucion;
   String desUbicacion;
   int esSucursal;
+  int lunes;
+  int martes;
+  int miercoles;
+  int jueves;
+  int viernes;
+  int sabado;
+  int domingo;
 
+ String lunesH;
+  String martesH;
+  String miercolesH;
+  String juevesH;
+  String viernesH;
+  String sabadoH;
+  String domingoH;
+
+  
   Institucion(
       {this.idInstitucion,
       this.foto,
@@ -138,7 +154,22 @@ class Institucion extends Entity {
       this.usuario,
       this.desInsitucion,
       this.esSucursal,
-      this.desUbicacion});
+      this.desUbicacion,
+      this.lunes,
+   this.martes,
+   this.miercoles,
+   this.jueves,
+   this.viernes,
+   this.sabado,
+   this.domingo,
+    this.lunesH,
+   this.martesH,
+   this.miercolesH,
+   this.juevesH,
+   this.viernesH,
+   this.sabadoH,
+   this.domingoH,  
+ });
 
   fromJson(Map<String, dynamic> json) => new Institucion(
         idInstitucion: json["IDCOV_INSTITUCION"],
@@ -161,6 +192,20 @@ class Institucion extends Entity {
         desInsitucion: json["DES_INSTITUCION"],
         desUbicacion: json["DES_UBICACION"],
         esSucursal: json["IDA_ESTADOCOVD"],
+        lunes: json["INS_LUNES"],
+        martes: json["INS_MARTES"],
+        miercoles: json["INS_MIERCOLES"],
+        jueves: json["INS_JUEVES"],
+        viernes: json["INS_VIERNES"],
+        sabado: json["INS_SABADO"],
+        domingo: json["INS_DOMINGO"],
+        lunesH: json["INS_LUNES_HORARIO"],
+        martesH: json["INS_MARTES_HORARIO"],
+        miercolesH: json["INS_MIERCOLES_HORARIO"],
+        juevesH: json["INS_JUEVES_HORARIO"],
+        viernesH: json["INS_VIERNES_HORARIO"],
+        sabadoH: json["INS_SABADO_HORARIO"],
+        domingoH: json["INS_DOMINGO_HORARIO"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -184,6 +229,20 @@ class Institucion extends Entity {
         "DES_INSTITUCION": desInsitucion,
         "DES_UBICACION": desUbicacion,
         "IDA_ESTADOCOVD": esSucursal,
+         "INS_LUNES" :lunes,
+        "INS_MARTES" : martes,
+        "INS_MIERCOLES":miercoles,
+        "INS_JUEVES":jueves,
+       "INS_VIERNES":viernes,
+        "INS_SABADO":sabado,
+        "INS_DOMINGO":domingo,
+       "INS_LUNES_HORARIO":lunesH,
+       "INS_MARTES_HORARIO":martesH,
+       "INS_MIERCOLES_HORARIO":miercolesH,
+        "INS_JUEVES_HORARIO":juevesH,
+        "INS_VIERNES_HORARIO": viernesH,
+        "INS_SABADO_HORARIO":sabadoH,
+        "INS_DOMINGO_HORARIO" : domingoH,
       };
 }
 
@@ -402,6 +461,13 @@ class Voluntary extends Entity {
   String desEspecialidad;
   String desExpedido;
   String usuario;
+ int lunes;
+  int martes;
+  int miercoles;
+  int jueves;
+  int viernes;
+  int sabado;
+  int domingo;
 
   Voluntary(
       {this.idcovPersonal = 0,
@@ -426,7 +492,15 @@ class Voluntary extends Entity {
       this.desInstitucion,
       this.desEspecialidad,
       this.desExpedido,
-      this.usuario});
+      this.usuario,
+        this.lunes,
+   this.martes,
+   this.miercoles,
+   this.jueves,
+   this.viernes,
+   this.sabado,
+   this.domingo,
+   });
 
   fromJson(Map<String, dynamic> json) => new Voluntary(
       idcovPersonal: json["IDCOV_PERSONAL"],
@@ -449,7 +523,15 @@ class Voluntary extends Entity {
       desInstitucion: json["DES_INSTITUCION"],
       desEspecialidad: json["DES_ESPECIALIDAD"],
       desExpedido: json["DES_EXPEDIDO"],
-      usuario: json["USUARIO"]);
+      usuario: json["USUARIO"],
+       lunes: json["INS_LUNES"],
+        martes: json["INS_MARTES"],
+        miercoles: json["INS_MIERCOLES"],
+        jueves: json["INS_JUEVES"],
+        viernes: json["INS_VIERNES"],
+        sabado: json["INS_SABADO"],
+        domingo: json["INS_DOMINGO"],
+        );
 
   Map<String, dynamic> toJson() => {
         "IDCOV_PERSONAL": idcovPersonal,
@@ -473,7 +555,13 @@ class Voluntary extends Entity {
         "DES_INSTITUCION": desInstitucion,
         "DES_ESPECIALIDAD": desEspecialidad,
         "DES_EXPEDIDO": desExpedido,
-        "USUARIO": usuario
+        "USUARIO": usuario, "INS_LUNES" :lunes,
+        "INS_MARTES" : martes,
+        "INS_MIERCOLES":miercoles,
+        "INS_JUEVES":jueves,
+       "INS_VIERNES":viernes,
+        "INS_SABADO":sabado,
+        "INS_DOMINGO":domingo
       };
 }
 

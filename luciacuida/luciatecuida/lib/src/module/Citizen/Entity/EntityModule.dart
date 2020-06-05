@@ -16,6 +16,7 @@ import 'package:luciatecuida/src/Widget/InputField/InputFieldWidget.dart';
 import 'package:luciatecuida/src/Widget/Message/Message.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/AtentionEntityodule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/ListEntityModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Entity/WelcomeEntity.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Map/MapAdressModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
@@ -127,13 +128,15 @@ class _EntityModuleState extends State<EntityModule> {
   InputEmailField email;
 
   bool _save = false;
-  bool esSucursal = false;
+
   File foto;
   double latitud = 0.0;
   double longitud = 0.0;
   LatLng latLng = LatLng(0, 0);
   int valorInstitucion = 3;
   int valorDepartamento = 60;
+  int _valorId =0;
+  bool esSucursal = false;
 
   String imagen =
       'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg';
@@ -144,61 +147,29 @@ class _EntityModuleState extends State<EntityModule> {
   final generic = new Generic();
   final prefs = new PreferensUser();
   Institucion entity = new Institucion();
-  Institucion entityData = new Institucion();
-
-  String sToken;
 
   @override
   void initState() {
     prefs.ultimaPagina = EntityModule.routeName;
-    //_cargarEntity();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-     if (prefs.idInsitucion != '0') {
-       Institucion entityData= new Institucion();
-      generic.getAll(new Institucion(), urlGetInstitucion + prefs.idInsitucion, primaryKeyGetInsitucion)
-          .then((value) {
-        print('llego al fXXXX ${value.length}');
-        if (value.length > 0)
-               entityData  = value[0];
+    print('entro aaaaa Build: ${ModalRoute.of(context).settings.arguments}');
+    final Institucion entityData = ModalRoute.of(context).settings.arguments;
 
-       
-            print('desInsitucion ${entityData.desInsitucion}');
-            print('desUbicacion ${entityData.desUbicacion}');
-            print('direccion ${entityData.direccion}');
-          print('esSucursal ${entityData.esSucursal}');
-          print('foto ${entityData.foto}');
-            print('idInstitucion ${entityData.idInstitucion}');
-            print('insLat ${entityData.insLat}');
-            print('token ${entityData.token}');
-          print('insLng ${entityData.insLng}');
-          print('nombreInstitucion ${entityData.nombreInstitucion}');
-            print('perCorreoElectronico ${entityData.perCorreoElectronico}');
-            print('perFacebbok ${entityData.perFacebbok}');
-          print('perYouTube ${entityData.perYouTube}');
-          sToken = entityData.token;
-print('sToken $sToken');
-          valorInstitucion = entityData.tipoInstitucion;
-          valorDepartamento = entityData.ubicacion;
-          imagen = entityData.foto;
-        //   telefono.objectValue = 'ddddddd';
-          // if(entityData.esSucursal == 0)
-          // {
-          //    esSucursal =true;
-          // }
-          
-          // else {esSucursal =false;}
-      }
-    );
-//  setState(() {
-//               entity.ubicacion = entityD.ubicacion;
-//               entity.telefono = entityD.telefono;
-//               esSucursal =true;
-//             });
-        
+    if (entityData != null) {
+      _valorId = entityData.idInstitucion;
+      entity = entityData;
+      valorInstitucion = entity.tipoInstitucion;
+      valorDepartamento = entity.ubicacion;
+      imagen = entity.foto;
+      
+      if (entity.esSucursal != 0)
+        esSucursal = true;
+      else
+        esSucursal = false;
     }
 
     return Scaffold(
@@ -265,80 +236,78 @@ print('sToken $sToken');
   }
 
   Widget _crearCampos() {
-  //   nombre = InputTextField(
-  //       FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
-  //       'Nombre de la institución:',
-  //       entity.nombreInstitucion,
-  //       'Ingrese el nombre',
-  //       true);
-  //   token = InputPhoneField(
-  //       FaIcon(FontAwesomeIcons.creditCard, color: AppTheme.themeVino),
-  //       'Ingrese el número de token:',
-  //       sToken,
-  //       'Ej: 214213 - solo números',
-  //       true);
-  //  //  // getWidget2(sToken, 'Dirección/ubicacion:', FaIcon(FontAwesomeIcons.dotCircle, color: AppTheme.themeVino), 'Ingrese su dirección/ubicación', true );
-  //   direccion = InputMultilineField(
-  //       FaIcon(FontAwesomeIcons.dotCircle, color: AppTheme.themeVino),
-  //       'Dirección/ubicacion:',
-  //       entity.direccion,
-  //       'Ingrese su dirección/ubicación',
-  //       true);
-  //   telefono = InputPhoneField(
-  //       FaIcon(FontAwesomeIcons.mobileAlt, color: AppTheme.themeVino),
-  //       'Telefono de referencia',
-  //       entity.telefono,
-  //       'Ingrese el número de referencia',
-  //       true);
-  //   informacion = InputMultilineField(
-  //       FaIcon(FontAwesomeIcons.listAlt, color: AppTheme.themeVino),
-  //       'Información complementaria:',
-  //       entity.perInformacionComp,
-  //       'Informacióm complementaria',
-  //       false);
-  //   facebook = InputTextField(
-  //       FaIcon(FontAwesomeIcons.facebook, color: AppTheme.themeVino),
-  //       'Cuenta Facebook:',
-  //       entity.perFacebbok,
-  //       'Ingrese la cuenta Facebook',
-  //       false);
-  //   twitter = InputTextField(
-  //       FaIcon(FontAwesomeIcons.twitter, color: AppTheme.themeVino),
-  //       'Cuenta Twitter:',
-  //       entity.perTwitter,
-  //       'Ingrese la cuenta Twitter',
-  //       false);
-  //   paginaWeb = InputUrlField(
-  //       FaIcon(FontAwesomeIcons.edge, color: AppTheme.themeVino),
-  //       'Pagina Web/block:',
-  //       entity.perPaginaWeb,
-  //       'Página/block oficial',
-  //       false);
-  //   youtube = InputTextField(
-  //       FaIcon(FontAwesomeIcons.youtube, color: AppTheme.themeVino),
-  //       'Cuenta YouTube:',
-  //       entity.perYouTube,
-  //       'Ingrese la cuenta YouTube',
-  //       false);
-  //   email = InputEmailField(
-  //       FaIcon(FontAwesomeIcons.mailBulk, color: AppTheme.themeVino),
-  //       'Correo Electronico:',
-  //       entity.perCorreoElectronico,
-  //       'Ingrese el correo electrónico',
-  //       'Ingrese su correo electronico',
-  //       false);
+    nombre = InputTextField(
+        FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
+        'Nombre de la institución:',
+        entity.nombreInstitucion,
+        'Ingrese el nombre',
+        true);
+    token = InputPhoneField(
+        FaIcon(FontAwesomeIcons.creditCard, color: AppTheme.themeVino),
+        'Ingrese el número de token:',
+        entity.token,
+        'Ej: 214213 - solo números',
+        true);
+    direccion = InputMultilineField(
+        FaIcon(FontAwesomeIcons.dotCircle, color: AppTheme.themeVino),
+        'Dirección/ubicacion:',
+        entity.direccion,
+        'Ingrese su dirección/ubicación',
+        true);
+    telefono = InputPhoneField(
+        FaIcon(FontAwesomeIcons.mobileAlt, color: AppTheme.themeVino),
+        'Telefono de referencia',
+        entity.telefono,
+        'Ingrese el número de referencia',
+        true);
+    informacion = InputMultilineField(
+        FaIcon(FontAwesomeIcons.listAlt, color: AppTheme.themeVino),
+        'Información complementaria:',
+        entity.perInformacionComp,
+        'Informacióm complementaria',
+        false);
+    facebook = InputTextField(
+        FaIcon(FontAwesomeIcons.facebook, color: AppTheme.themeVino),
+        'Cuenta Facebook:',
+        entity.perFacebbok,
+        'Ingrese la cuenta Facebook',
+        false);
+    twitter = InputTextField(
+        FaIcon(FontAwesomeIcons.twitter, color: AppTheme.themeVino),
+        'Cuenta Twitter:',
+        entity.perTwitter,
+        'Ingrese la cuenta Twitter',
+        false);
+    paginaWeb = InputUrlField(
+        FaIcon(FontAwesomeIcons.edge, color: AppTheme.themeVino),
+        'Pagina Web/block:',
+        entity.perPaginaWeb,
+        'Página/block oficial',
+        false);
+    youtube = InputTextField(
+        FaIcon(FontAwesomeIcons.youtube, color: AppTheme.themeVino),
+        'Cuenta YouTube:',
+        entity.perYouTube,
+        'Ingrese la cuenta YouTube',
+        false);
+    email = InputEmailField(
+        FaIcon(FontAwesomeIcons.mailBulk, color: AppTheme.themeVino),
+        'Correo Electronico:',
+        entity.perCorreoElectronico,
+        'Ingrese el correo electrónico',
+        'Ingrese su correo electronico',
+        false);
 
     return Column(
       children: <Widget>[
         _crearTipoInstitucion(),
         _crearDpto(),
         _crearSucursal('Es sucursal'),
-        _crearToken(),
-     //   token,
-        // nombre,
-        // direccion,
-        // telefono,
-        // informacion,
+        token,
+        nombre,
+        direccion,
+        telefono,
+        informacion,
         contenedorSubTitulo(
           context,
           40.0,
@@ -346,47 +315,15 @@ print('sToken $sToken');
           FaIcon(FontAwesomeIcons.chromecast, color: Colors.white60),
         ),
         SizedBox(height: 5.0),
-        // facebook,
-        // twitter,
-        // paginaWeb,
-        // youtube,
-        // email,
+        facebook,
+        twitter,
+        paginaWeb,
+        youtube,
+        email,
         _crearBoton(resource.save),
       ],
     );
   }
-
- Widget _crearToken() {
-   print('sToken $sToken');
-    print('sToken en WIDGETTTTT ${entityData.token}');
-      return Padding(
-      padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
-      child: TextFormField(
-        initialValue: entityData.token,
-        enableInteractiveSelection: true,
-        enableSuggestions: true,
-        autocorrect: true,
-        autovalidate: false,
-        maxLength: 10,
-        toolbarOptions: ToolbarOptions(copy: true, cut:true, paste: true, selectAll: true),
-        keyboardType: TextInputType.phone,
-        decoration: InputDecoration(
-          focusColor: Colors.blue,
-          hintText: 'widget.hint',
-          labelText: 'widget.text',
-          icon:FaIcon(FontAwesomeIcons.creditCard, color: AppTheme.themeVino),
-        ),
-        onChanged: (value) {
-          setState(() {
-            sToken = value;
-          });
-        },
-        validator: (value) => validator.validateTextfieldEmpty(value, true),
-        onSaved: (value) => sToken= value,
-      ),
-    );
-  }
-
 
   Widget _crearSucursal(String text) {
     return SwitchListTile(
@@ -413,7 +350,7 @@ print('sToken $sToken');
   }
 
   Widget _crearDpto() {
-   
+    print('valor combo ingresado BBBB: $valorDepartamento');
     return Center(
         child: FutureBuilder(
             future: generic.getAll(new GetClasificador(),
@@ -460,7 +397,7 @@ print('sToken $sToken');
   }
 
   Widget _crearTipoInstitucion() {
-   
+    print('valor combo ingresado AAAAA: $valorInstitucion');
     return Center(
         child: FutureBuilder(
             future: generic.getAll(new GetClasificador(),
@@ -492,36 +429,6 @@ print('sToken $sToken');
               }
             }));
   }
-
-
-
-  //          entity.idInstitucion = entityD.idInstitucion;
-  //  entity.nombreInstitucion = entityD.nombreInstitucion ;
-  //   });
-
-  //  print('valor entitty nombreee ${entityData.nombreInstitucion}');
-  // entity.idInstitucion = entityData.idInstitucion;
-  //  entity.nombreInstitucion = entityData.nombreInstitucion ;
-  // entity.insLat = entity.insLat;
-  // entity.insLng = entity.insLng;
-  // entity.token = entity.token;
-  // valorInstitucion = entityData.tipoInstitucion;
-  // valorDepartamento = entityData.ubicacion;
-  /*     if(entityData.esSucursal == 0) esSucursal  = false;
-      else esSucursal  = true;
-      
-      entity.token = entityData.token;
-      entity.nombreInstitucion = entityData.nombreInstitucion ;
-     
-      entity.direccion = entityData.direccion;
-      entity.telefono = entityData.telefono;
-      entity.perInformacionComp = entityData.perInformacionComp;
-      entity.perFacebbok = entityData.perFacebbok;
-      entity.perTwitter = entityData.perTwitter;
-      entity.perPaginaWeb = entityData.perPaginaWeb;
-      entity.perYouTube = entityData.perYouTube;
-      entity.perCorreoElectronico = entityData.perCorreoElectronico ;
-      entity.usuario = entityData.usuario; */
 
   _crearIconAppImagenes() {
     return IconButton(
@@ -585,7 +492,7 @@ print('sToken $sToken');
       _save = true;
     });
 
-    entity.idInstitucion = 0;
+    entity.idInstitucion = _valorId;
     entity.insLat = latLng.latitude;
     entity.insLng = latLng.longitude;
     entity.tipoInstitucion = valorInstitucion;
@@ -607,23 +514,25 @@ print('sToken $sToken');
     entity.perCorreoElectronico = email.objectValue;
     entity.usuario = prefs.userId;
 
-    final dataMap = generic.add(entity, urlAddInstitucion);
-    await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-    print('resultado:$result');
+print('EL VALOR DE EL ID DE LA INSTITUCION:${entity.idInstitucion.toString()}');
+
+    if(_valorId != -1)
+    {
+        final dataMap = generic.add(entity, urlAddInstitucion);
+        await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+        print('resultado de insertarrrrr:$result');
+    }
+    else
+    {
+      final dataMap = generic.add(entity, urlAddInstitucion);
+        await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+        print('resultado de modificarrrrr:$result');
+    }
 
     if (result != "-1" || result != "-2") {
       prefs.idInsitucion = result;
-
       Navigator.of(context).push(CupertinoPageRoute(
           builder: (BuildContext context) => ListEntityModule()));
-
-      enviarNotificaciones(
-          urlGetToken + '2/${prefs.idInsitucion}',
-          'organizacion',
-          'Nueva organización',
-          nombre.objectValue,
-          'Bienvenido a la aplicación',
-          'Estamos Contigo');
     }
     if (result == "-1") {
       scaffoldKey.currentState
