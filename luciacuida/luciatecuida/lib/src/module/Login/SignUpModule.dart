@@ -1,7 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:imei_plugin/imei_plugin.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'dart:async';
+
 import 'package:luciatecuida/src/Model/Entity.dart';
 import 'package:luciatecuida/src/Model/Generic.dart';
 import 'package:luciatecuida/src/Model/PreferenceUser.dart';
@@ -13,9 +17,6 @@ import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 import 'package:luciatecuida/src/module/SplashScreen/IntroScreenModule.dart';
 import 'package:luciatecuida/src/module/UtilModule/PageViewModule.dart';
-import 'package:page_transition/page_transition.dart';
-import 'dart:async';
-import 'package:imei_plugin/imei_plugin.dart';
 
 class SignUpModule extends StatefulWidget {
   static final String routeName = 'login';
@@ -96,20 +97,30 @@ class _SignUpModuleState extends State<SignUpModule> {
         final dataMap1 = generic.getAll(
             entity, getLogin + '${currentUser.email}', primaryKeyGetLogin);
 
+        print('SE SETEOOOO 1111');
         dataMap1.then((value) {
+          print('SE SETEOOOO 222');
           if (value.length > 0) {
+            print('SE SETEOOOO 333');
             for (int i = 0; i < value.length; i++) {
               entity = value[i];
+              print('SE SETEOOOO 333iiii');
             }
+            print('SE SETEOOOO 333iiii coooo ${entity.idInstitucion}');
             prefs.imei = _platformImei;
             prefs.nombreUsuario = entity.nombrePersona;
             prefs.correoElectronico = entity.correo;
             prefs.avatarImagen = entity.avatar;
             prefs.nombreInstitucion = entity.nombreInstitucion;
-            prefs.idInsitucion = entity.idInstitucion;
+            prefs.idInsitucion = '1029'; //entity.idInstitucion;
             prefs.idPersonal = entity.idPersonal;
             prefs.userId = entity.idUsuario;
 
+            print('SE SETEOOOO 999 ${prefs.imei}');
+            print('SE SETEOOOO 888 ${prefs.correoElectronico}');
+            print('SE SETEOOOO 77 ${prefs.idInsitucion}');
+            print('SE SETEOOOO 66 ${prefs.idPersonal}');
+            print('SE SETEOOOO 55 ${prefs.userId}');
             Navigator.push(
                 context,
                 PageTransition(
@@ -119,6 +130,21 @@ class _SignUpModuleState extends State<SignUpModule> {
                   child: HomePageModule(),
                 ));
           } else {
+            prefs.imei = _platformImei;
+            prefs.nombreUsuario = currentUser.displayName;
+            prefs.correoElectronico = currentUser.email;
+            prefs.avatarImagen = currentUser.photoUrl;
+            prefs.userId = currentUser.displayName;
+            prefs.idInsitucion = "0";
+            prefs.idPersonal = "-1";
+            prefs.userId = currentUser.email;
+
+            print('SE SETEOOOO 444 ${prefs.imei}');
+            print('SE SETEOOOO 555 ${prefs.correoElectronico}');
+            print('SE SETEOOOO 66 ${prefs.idInsitucion}');
+            print('SE SETEOOOO 777 ${prefs.idPersonal}');
+            print('SE SETEOOOO 777 ${prefs.userId}');
+
             entity.idUsuario = currentUser.id;
             entity.idInstitucion = '-1';
             entity.nombrePersona = currentUser.displayName;
@@ -136,25 +162,15 @@ class _SignUpModuleState extends State<SignUpModule> {
             final dataMap = generic.add(entity, urlAddSignIn);
             dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
 
-            if (result != "-1") {
-              prefs.imei = _platformImei;
-              prefs.nombreUsuario = currentUser.displayName;
-              prefs.correoElectronico = currentUser.email;
-              prefs.avatarImagen = currentUser.photoUrl;
-              prefs.userId = result;
-
-              Navigator.push(
-                  context,
-                  PageTransition(
-                    curve: Curves.bounceOut,
-                    type: PageTransitionType.rotate,
-                    alignment: Alignment.topCenter,
-                    child: IntroScreenModule(), //AgreeLoginModule(),
-                  ));
-            } else {
-              scaffoldKey.currentState.showSnackBar(
-                  messageNOk("Se produjo un error, vuelta a intentarlo"));
-            }
+            print('SE SETEOOOO result de logeo $result');
+            Navigator.push(
+                context,
+                PageTransition(
+                  curve: Curves.bounceOut,
+                  type: PageTransitionType.rotate,
+                  alignment: Alignment.topCenter,
+                  child: IntroScreenModule(), //AgreeLoginModule(),
+                ));
           }
         });
       });
@@ -175,22 +191,15 @@ class _SignUpModuleState extends State<SignUpModule> {
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      // begin: Alignment.topCenter,
-                      // end: Alignment.bottomRight,
-                      // stops: [0.1, 0.4, 0.6, 0.9],
                       colors: [
                         Colors.white, Colors.white, Colors.white, Colors.white,
-                        // Color.fromRGBO(254, 253, 253, 1.0),
-                        // Color.fromRGBO(254, 253, 251, 1.0),
-                        // Color.fromRGBO(235, 217, 211, 1.0),
-                        // Color.fromRGBO(253, 252, 252, 1.0),
                       ],
                     ),
                   ),
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 25.0),
                     child: Column(
-                //      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      //      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
                         Container(
                           child: Column(
@@ -257,7 +266,6 @@ class _SignUpModuleState extends State<SignUpModule> {
       //   margin: EdgeInsets.symmetric(vertical: 10),
       child: Column(
         children: <Widget>[
-          
           Row(
             children: <Widget>[
               Expanded(
@@ -356,8 +364,8 @@ class _SignUpModuleState extends State<SignUpModule> {
   _leerAcuerdo() {
     return Align(
       alignment: Alignment.topCenter,
-          child: Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           FlatButton(
@@ -368,11 +376,12 @@ class _SignUpModuleState extends State<SignUpModule> {
                 curve: Curves.bounceOut,
                 type: PageTransitionType.rotate,
                 alignment: Alignment.topCenter,
-                child: PageViewModule(title: 'Políticas de Privacidad', selectedUrl: 'http://ruta88.net/privacidad.html'),
+                child: PageViewModule(
+                    title: 'Políticas de Privacidad',
+                    selectedUrl: 'http://ruta88.net/privacidad.html'),
               ),
             ),
           ),
-        
         ],
       ),
     );

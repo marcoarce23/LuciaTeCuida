@@ -206,8 +206,8 @@ cabeceraInformativa() {
   
   Flexible( flex: 1,  child: Column(
     children: <Widget>[
-      Text( 'Voluntario(a): ${prefs.nombreUsuario}' ,  style: kTitleCardStyle ,softWrap: true,    ),
-      Text(  'Institución: ${prefs.nombreInstitucion}' , style:  kTitleCardStyle,softWrap: true,    ),
+      Text( 'Voluntario(a): ${prefs.idPersonal}' ,  style: kTitleCardStyle ,softWrap: true,    ),
+      Text(  'Institución: ${prefs.idInsitucion}' , style:  kTitleCardStyle,softWrap: true,    ),
     ],
   ));
   

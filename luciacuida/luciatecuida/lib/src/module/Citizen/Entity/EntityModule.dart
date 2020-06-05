@@ -9,101 +9,13 @@ import 'package:luciatecuida/src/Model/PreferenceUser.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/Util/Resource.dart' as resource;
-import 'package:luciatecuida/src/Util/SearchDelegate/DataSearch.dart';
+
 import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/Widget/InputField/InputFieldWidget.dart';
 import 'package:luciatecuida/src/Widget/Message/Message.dart';
-import 'package:luciatecuida/src/module/Citizen/Entity/AtentionEntityodule.dart';
-import 'package:luciatecuida/src/module/Citizen/Entity/ListEntityModule.dart';
-import 'package:luciatecuida/src/module/Citizen/Entity/WelcomeEntity.dart';
-import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
-import 'package:luciatecuida/src/module/Map/MapAdressModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Entity/InformationEntity.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
-import 'package:luciatecuida/src/Util/Validator.dart' as validator;
-
-class EntityAllModule extends StatefulWidget {
-  static final String routeName = 'entidad';
-  const EntityAllModule({Key key}) : super(key: key);
-
-  @override
-  _EntityAllModuleState createState() => _EntityAllModuleState();
-}
-
-class _EntityAllModuleState extends State<EntityAllModule> {
-  final prefs = new PreferensUser();
-  final generic = new Generic();
-  int page = 0;
-
-  final List<Widget> optionPage = [
-    EntityModule(),
-    AtentionEntityModule(),
-    ListEntityModule()
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      page = index;
-    });
-  }
-
-  @override
-  void initState() {
-    prefs.ultimaPagina = EntityAllModule.routeName;
-    page = 0;
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        toolbarOpacity: 0.7,
-        iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
-        elevation: 0,
-        title: Text("INSTITUCIONES - GRUPOS", style: kTitleAppBar),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              showSearch(context: context, delegate: DataSearchVoluntary());
-            },
-          )
-        ],
-      ),
-      drawer: DrawerCitizen(),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        items: [
-          BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.userCircle,
-                size: 25,
-              ),
-              title: Text('Institucion')),
-          BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.calendarCheck,
-                size: 25,
-              ),
-              title: Text('Atención')),
-          BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.users,
-                size: 25,
-              ),
-              title: Text('Listado')),
-        ],
-        currentIndex: page,
-        unselectedItemColor: Colors.black54,
-        selectedItemColor: AppTheme.themeVino,
-        onTap: _onItemTapped,
-      ),
-      body: optionPage[page],
-    );
-  }
-}
 
 class EntityModule extends StatefulWidget {
   static final String routeName = 'entidad';
@@ -135,7 +47,8 @@ class _EntityModuleState extends State<EntityModule> {
   LatLng latLng = LatLng(0, 0);
   int valorInstitucion = 3;
   int valorDepartamento = 60;
-  int _valorId =0;
+  int _valorId = 0;
+  bool bandera = false;
   bool esSucursal = false;
 
   String imagen =
@@ -156,21 +69,23 @@ class _EntityModuleState extends State<EntityModule> {
 
   @override
   Widget build(BuildContext context) {
-    print('entro aaaaa Build: ${ModalRoute.of(context).settings.arguments}');
+    print('entro EntityModule Build: ${ModalRoute.of(context).settings.arguments}');
     final Institucion entityData = ModalRoute.of(context).settings.arguments;
 
     if (entityData != null) {
-      _valorId = entityData.idInstitucion;
       entity = entityData;
-      valorInstitucion = entity.tipoInstitucion;
-      valorDepartamento = entity.ubicacion;
-      imagen = entity.foto;
-      
-      if (entity.esSucursal != 0)
-        esSucursal = true;
-      else
-        esSucursal = false;
-    }
+      _valorId = entityData.idInstitucion;
+
+      if(bandera ==false)
+      {
+            valorInstitucion = entity.tipoInstitucion;
+            valorDepartamento = entity.ubicacion;
+            imagen = entity.foto;
+          
+            if (entity.esSucursal != 0) esSucursal = true;
+            else esSucursal = false;
+      }
+ }
 
     return Scaffold(
       key: scaffoldKey,
@@ -180,7 +95,7 @@ class _EntityModuleState extends State<EntityModule> {
           _crearForm(context),
         ],
       ),
-      floatingActionButton: generaFloatbuttonHome(context),
+      floatingActionButton: generaFloatButtonInformationEntity(context),
     );
   }
 
@@ -332,6 +247,7 @@ class _EntityModuleState extends State<EntityModule> {
       activeColor: AppTheme.themeVino,
       onChanged: (value) => setState(() {
         esSucursal = value;
+        bandera = true;
       }),
     );
   }
@@ -350,7 +266,7 @@ class _EntityModuleState extends State<EntityModule> {
   }
 
   Widget _crearDpto() {
-    print('valor combo ingresado BBBB: $valorDepartamento');
+
     return Center(
         child: FutureBuilder(
             future: generic.getAll(new GetClasificador(),
@@ -370,8 +286,8 @@ class _EntityModuleState extends State<EntityModule> {
                       onChanged: (value) {
                         setState(() {
                           valorDepartamento = int.parse(value);
-                          print(
-                              'valor combo ingresado ENTITY MEDICINA: $valorDepartamento y valueeee: $value');
+                          bandera = true;
+ 
                         });
                       },
                     ),
@@ -397,7 +313,7 @@ class _EntityModuleState extends State<EntityModule> {
   }
 
   Widget _crearTipoInstitucion() {
-    print('valor combo ingresado AAAAA: $valorInstitucion');
+
     return Center(
         child: FutureBuilder(
             future: generic.getAll(new GetClasificador(),
@@ -417,8 +333,8 @@ class _EntityModuleState extends State<EntityModule> {
                       onChanged: (value) {
                         setState(() {
                           valorInstitucion = int.parse(value);
-                          print(
-                              'valor combo ingresado ENTITY MEDICINA: $valorInstitucion y valueeee: $value');
+                          bandera = true;
+ 
                         });
                       },
                     ),
@@ -438,18 +354,6 @@ class _EntityModuleState extends State<EntityModule> {
       ),
       onPressed: _seleccionarFoto,
     );
-  }
-
-  _crearIconAppMap() {
-    return IconButton(
-        icon: Icon(
-          Icons.map,
-          color: AppTheme.themeVino,
-        ),
-        onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => MapAdressModule()),
-            ));
   }
 
   _crearIconAppCamara() {
@@ -514,39 +418,33 @@ class _EntityModuleState extends State<EntityModule> {
     entity.perCorreoElectronico = email.objectValue;
     entity.usuario = prefs.userId;
 
-print('EL VALOR DE EL ID DE LA INSTITUCION:${entity.idInstitucion.toString()}');
+    print(
+        'EL VALOR DE EL ID DE LA INSTITUCION:${entity.idInstitucion.toString()}');
 
-    if(_valorId != -1)
-    {
-        final dataMap = generic.add(entity, urlAddInstitucion);
-        await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-        print('resultado de insertarrrrr:$result');
-    }
-    else
-    {
-      final dataMap = generic.add(entity, urlAddInstitucion);
-        await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-        print('resultado de modificarrrrr:$result');
-    }
+    final dataMap = generic.add(entity, urlAddInstitucion);
+    await dataMap.then((respuesta) {
+      result = respuesta["TIPO_RESPUESTA"];
+      print('resultado de la oepracio:$result');
+    
 
-    if (result != "-1" || result != "-2") {
-      prefs.idInsitucion = result;
-      Navigator.of(context).push(CupertinoPageRoute(
-          builder: (BuildContext context) => ListEntityModule()));
-    }
-    if (result == "-1") {
-      scaffoldKey.currentState
-          .showSnackBar(messageNOk('Error, vuelta a intentarlo'));
-    }
-    if (result == "2") {
-      scaffoldKey.currentState
-          .showSnackBar(messageNOk("Error, El TOKEN esta siendo utilizado"));
-    }
+      if (result != "-1" || result != "-2") {
+        prefs.idInsitucion = result;
+        Navigator.of(context).push(CupertinoPageRoute(
+            builder: (BuildContext context) => InformationEntityModule()));
+      }
+      if (result == "-1") {
+        scaffoldKey.currentState
+            .showSnackBar(messageNOk('Error, vuelta a intentarlo'));
+      }
+      if (result == "2") {
+        scaffoldKey.currentState
+            .showSnackBar(messageNOk("Error, El TOKEN esta siendo utilizado"));
+      }
 
-    setState(() {
-      _save = false;
+      setState(() {  _save = false; });
     });
   }
+
 
   _seleccionarFoto() async => _procesarImagen(ImageSource.gallery);
   _tomarFoto() async => _procesarImagen(ImageSource.camera);
