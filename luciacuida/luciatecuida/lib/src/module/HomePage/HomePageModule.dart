@@ -40,8 +40,21 @@ class HomePageModule extends StatefulWidget {
 
 class _HomePageModuleState extends State<HomePageModule> {
   final prefs = new PreferensUser();
-
   final generic = new Generic();
+   int _selectedIndex = 0;
+
+
+  
+
+
+  List<Widget> _widgetOptions = <Widget>[
+Text(""),
+
+
+
+  
+  ];
+
 
   @override
   void initState() {
@@ -70,59 +83,45 @@ class _HomePageModuleState extends State<HomePageModule> {
               ),
             ],
           )),
-      body: Stack(
-        children: <Widget>[
-          fondoApp(),
-          SingleChildScrollView(
-            child: Center(
-              child: Column(
-                children: <Widget>[
-                  // _titulos(),
-                  Container(
-                    child: Column(
-                      children: <Widget>[
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.center,
-                        //   children: <Widget>[
-                        //     Text(
-                        //       'Bienvenidos a la aplicación',
-                        //       style: kTitleHomeCursiveStyle,
-                        //     ),
-                        //   ],
-                        // ),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.center,
-                        //   children: <Widget>[
-                        //     Text(
-                        //       'de todos.',
-                        //       style: kTitleHomeCursiveStyle,
-                        //     ),
-                        //   ],
-                        // ),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.center,
-                        //   children: <Widget>[
-                        //     Text(
-                        //       'Lucia Te Cuida',
-                        //       style: kTitleHomeCursiveStyle,
-                        //     ),
-                        //   ],
-                        // ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20.0),
-                  _botonesRedondeados()
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
+      body: metodoHome(),
       drawer: DrawerCitizen(),
       bottomNavigationBar: _bottomNavigationBar(context),
     );
   }
+
+  Widget metodoHome() {
+    return Stack(
+      children: <Widget>[
+        fondoApp(),
+        SingleChildScrollView(
+          child: Center(
+            child: Column(
+              children: <Widget>[
+                
+                Container(
+                  child: Column(
+                    children: <Widget>[                     
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20.0),
+                _botonesRedondeados()
+              ],
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+
+
 
   Widget _bottomNavigationBar(BuildContext context) {
     return Theme(
@@ -136,15 +135,18 @@ class _HomePageModuleState extends State<HomePageModule> {
       child: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.notification_important, size: 20.0),
-              title: Text('Notificaciones')),
+              icon: Icon(Icons.perm_contact_calendar  , size: 20.0),
+              title: Text('Contactenos')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.video_library, size: 20.0),
+              icon: Icon(Icons.event_note  , size: 20.0),
               title: Text('Eventos')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.add_call, size: 20.0),
+              icon: Icon(Icons.perm_media  , size: 20.0),
               title: Text('Multimedia')),
         ],
+         currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
       ),
     );
   }
@@ -329,10 +331,10 @@ class DrawerCitizen extends StatelessWidget {
                           sizeImage: Size.fromWidth(70)),
                     )),
                 Flexible(
-                                    child: Column(
+                  child: Column(
                     children: <Widget>[
                       Expanded(
-                                              child: Text(
+                        child: Text(
                           prefs.nombreUsuario,
                           style: TextStyle(
                               color: AppTheme.themePlomo, fontSize: 18.0),
@@ -341,11 +343,11 @@ class DrawerCitizen extends StatelessWidget {
                         ),
                       ),
                       Expanded(
-                                              child: Text(
+                        child: Text(
                           prefs.correoElectronico,
                           style: TextStyle(
                               color: AppTheme.themePlomo, fontSize: 16.0),
-                               softWrap: true,
+                          softWrap: true,
                           overflow: TextOverflow.clip,
                         ),
                       ),
