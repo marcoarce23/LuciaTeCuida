@@ -50,12 +50,10 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-              
-
                 ButtonPanic(
                   titulo: "CONSULTA",
                 ),
-                  Align(
+                Align(
                   alignment: Alignment.topRight,
                   child: Container(
                     margin: EdgeInsets.only(right: 15),
@@ -112,8 +110,8 @@ class _ButtonPanic extends State<ButtonPanic> {
   BotonPanico botonPanico = new BotonPanico();
   final generic = new Generic();
 
-    int _group = 1;
-    int _selectedRadio = 1;
+  int _group = 1;
+  int _selectedRadio = 1;
 
   bool checkMuyAlto = false;
   bool checkAlto = false;
@@ -176,9 +174,10 @@ class _ButtonPanic extends State<ButtonPanic> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Text(" Selecciona el tipo de consulta y/o ayuda:", style: textStyle),
+                            Text(" Selecciona el tipo de consulta y/o ayuda:",
+                                style: textStyle),
                           ],
-                        ),                        
+                        ),
                         Row(
                           children: <Widget>[
                             Text('Consulta Covid',
@@ -194,7 +193,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                                 });
                               },
                             ),
-                                 Text('Medicmentos-alimentos',
+                            Text('Medicmentos-alimentos',
                                 style: TextStyle(fontSize: 12)),
                             Radio(
                               value: 66,
@@ -211,10 +210,9 @@ class _ButtonPanic extends State<ButtonPanic> {
                         ),
                         Row(
                           children: <Widget>[
-                             Text('Consulta Médica',
+                            Text('Consulta Médica',
                                 style: TextStyle(fontSize: 12)),
                             Radio(
-                              
                               value: 64,
                               groupValue: _group,
                               onChanged: (T) {
@@ -225,7 +223,6 @@ class _ButtonPanic extends State<ButtonPanic> {
                                 });
                               },
                             ),
-                      
                             Text('Bonos-Otros servicios',
                                 style: TextStyle(fontSize: 12)),
                             Radio(
@@ -383,6 +380,14 @@ class _ButtonPanic extends State<ButtonPanic> {
     if (result == "0") {
       Scaffold.of(context).showSnackBar(messageOk(
           "Se registro correctamente, a las ${DateFormat("HH:mm").format(DateTime.now())} del ${DateFormat("dd/MM/yyyy").format(DateTime.now())}"));
+
+      enviarNotificaciones(
+          urlGetToken + '4/.',
+          'ayudaPersona',
+          'Solicitud de atención a una persona',
+          'Usuario: ${prefs.correoElectronico} solicita ayuda',
+          '',
+          '');
     } else {
       Scaffold.of(context)
           .showSnackBar(messageNOk("Ocurrio un error inseperado"));
