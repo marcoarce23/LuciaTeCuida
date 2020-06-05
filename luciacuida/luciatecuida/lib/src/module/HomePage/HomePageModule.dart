@@ -17,6 +17,7 @@ import 'package:luciatecuida/src/module/Citizen/CitizenMultimedia/CitizenMultime
 import 'package:luciatecuida/src/module/Citizen/CitizenPanicButton/CitizenPanicButtonModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/EntityModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/EventEntityModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Entity/InformationEntity.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/ListDetailModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/ListMultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/MultimediaModule.dart';
@@ -451,7 +452,7 @@ class DrawerCitizen extends StatelessWidget {
               'Registra tu Institución',
               () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => EntityAllModule()),
+                    MaterialPageRoute(builder: (context) => InformationEntityModule()),
                   )),
 
           CustomListTile(

@@ -31,6 +31,21 @@ final kTitleCardStyle = TextStyle(
   height: 1.5,
 );
 
+final kTitleBoldWelcomeStyle = TextStyle(
+  color: Colors.black87,
+  fontSize: 14,
+  fontWeight: FontWeight.w400,
+  height: 1.0,
+);
+
+final kTitleWelcomeStyle = TextStyle(
+  color: Colors.black87,
+
+  fontSize: 14,
+  fontWeight: FontWeight.w400,
+  height: 1.0,
+);
+
 final kSubTitleCardStyle = TextStyle(
   color: Colors.black87,
   fontSize: 14,
@@ -175,7 +190,8 @@ Widget crearFondo(BuildContext context, String imagen) {
                   child: Container(
                       child: ImageOvalNetwork(
                           imageNetworkUrl: imagen,
-                          sizeImage: Size.fromWidth(90))),
+                          sizeImage: Size.fromWidth(90))
+                          ),
                 ),
               ),
             ],
