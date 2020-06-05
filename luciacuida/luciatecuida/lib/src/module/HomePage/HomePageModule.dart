@@ -18,6 +18,7 @@ import 'package:luciatecuida/src/module/Citizen/CitizenPanicButton/CitizenPanicB
 import 'package:luciatecuida/src/module/Citizen/Entity/EntityModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/EventEntityModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/ListDetailModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Multimedia/ListMultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/MultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/EventModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/FoundAllVoluntaryGroupModule.dart';
@@ -41,20 +42,11 @@ class HomePageModule extends StatefulWidget {
 class _HomePageModuleState extends State<HomePageModule> {
   final prefs = new PreferensUser();
   final generic = new Generic();
-   int _selectedIndex = 0;
-
-
-  
-
+  int _selectedIndex = 0;
 
   List<Widget> _widgetOptions = <Widget>[
-Text(""),
-
-
-
-  
+    Text(""),
   ];
-
 
   @override
   void initState() {
@@ -97,11 +89,9 @@ Text(""),
           child: Center(
             child: Column(
               children: <Widget>[
-                
                 Container(
                   child: Column(
-                    children: <Widget>[                     
-                    ],
+                    children: <Widget>[],
                   ),
                 ),
                 SizedBox(height: 20.0),
@@ -114,14 +104,23 @@ Text(""),
     );
   }
 
-void _onItemTapped(int index) {
+  void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      if (index == 2) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => CitizenEventsModule()),
+        );
+      }
+      if (index == 3) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ListMultimediaModule()),
+        );
+      }
     });
   }
-
-
-
 
   Widget _bottomNavigationBar(BuildContext context) {
     return Theme(
@@ -135,16 +134,15 @@ void _onItemTapped(int index) {
       child: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.perm_contact_calendar  , size: 20.0),
+              icon: Icon(Icons.perm_contact_calendar, size: 20.0),
               title: Text('Contactenos')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.event_note  , size: 20.0),
-              title: Text('Eventos')),
+              icon: Icon(Icons.event_note, size: 20.0), title: Text('Eventos')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.perm_media  , size: 20.0),
+              icon: Icon(Icons.perm_media, size: 20.0),
               title: Text('Multimedia')),
         ],
-         currentIndex: _selectedIndex,
+        currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
         onTap: _onItemTapped,
       ),
