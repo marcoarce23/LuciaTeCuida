@@ -10,6 +10,7 @@ import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/Widget/InputField/InputFieldWidget.dart';
 import 'package:luciatecuida/src/Widget/Message/Message.dart';
+import 'package:luciatecuida/src/module/Citizen/Entity/InformationEntity.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 
 class AtentionEntityModule extends StatefulWidget {
@@ -55,12 +56,15 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
   int intSabado = 0;
   int intDomingo = 0;
   var result;
+  int _valorId = 0;
+  bool bandera = false;
 
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final generic = new Generic();
   final prefs = new PreferensUser();
-  Atencion entity = new Atencion();
+  Institucion entity = new Institucion();
+  Atencion entityAtencion = new  Atencion();
 
   @override
   void initState() {
@@ -70,6 +74,23 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
 
   @override
   Widget build(BuildContext context) {
+     final Institucion entityData = ModalRoute.of(context).settings.arguments;
+
+    if (entityData != null) {
+       entity = entityData;
+      _valorId = entityData.idInstitucion;
+
+      // if(bandera ==false)
+      // {
+      //       valorInstitucion = entity.tipoInstitucion;
+      //       valorDepartamento = entity.ubicacion;
+      //       imagen = entity.foto;
+          
+      //       if (entity.esSucursal != 0) esSucursal = true;
+      //       else esSucursal = false;
+      // }
+    }
+
     return Scaffold(
       key: scaffoldKey,
       body: Stack(
@@ -77,7 +98,7 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
           _crearForm(context),
         ],
       ),
-      floatingActionButton: generaFloatbuttonHome(context),
+      floatingActionButton: generaFloatButtonInformationEntity(context),
     );
   }
 
@@ -242,7 +263,7 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
           color: AppTheme.themeVino,
         ),
         'Atención',
-        '',
+        entity.lunesH,
         'Ej: 08:00  a 13:30',
         false);
     martesH = InputTextField(
@@ -251,7 +272,7 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
           color: AppTheme.themeVino,
         ),
         'Atención',
-        '',
+        entity.martesH,
         'Ej: 08:00  a 13:30',
         false);
     miercolesH = InputTextField(
@@ -260,7 +281,7 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
           color: AppTheme.themeVino,
         ),
         'Atención',
-        '',
+        entity.miercolesH,
         'Ej: 08:00  a 13:30',
         false);
     juevesH = InputTextField(
@@ -269,7 +290,7 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
           color: AppTheme.themeVino,
         ),
         'Atención',
-        '',
+        entity.juevesH,
         'Ej: 08:00  a 13:30',
         false);
     viernesH = InputTextField(
@@ -278,7 +299,7 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
           color: AppTheme.themeVino,
         ),
         'Atención',
-        '',
+        entity.viernesH,
         'Ej: 08:00  a 13:30',
         false);
     sabadoH = InputTextField(
@@ -287,7 +308,7 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
           color: AppTheme.themeVino,
         ),
         'Atención',
-        '',
+        entity.sabadoH,
         'Ej: 08:00  a 13:30',
         false);
     domingoH = InputTextField(
@@ -296,7 +317,7 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
           color: AppTheme.themeVino,
         ),
         'Atención',
-        '',
+        entity.domingoH,
         'Ej: 08:00  a 13:30',
         false);
 
@@ -398,8 +419,15 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
   }
 
   _submit() async {
+
     print('valor del prefsss. ${prefs.userId}');
-    if (prefs.userId == '-1')
+
+print('lunes ${lunes.objectValue}');
+print('martes ${martes.objectValue}');
+print('miercoles ${miercoles.objectValue}');
+print('jueves ${jueves.objectValue}');
+
+    if (prefs.userId == '-1' || prefs.userId == '0')
       scaffoldKey.currentState.showSnackBar(messageNOk(
           "Para registrar una Atención debe registrar su Institución"));
     else {
@@ -439,31 +467,38 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
         selectDomingo = true;
       }
 
-      entity.idInstitucion = int.parse(prefs.idInsitucion);
-      entity.idInstitucionPersonal = -1;
-      entity.perLunes = intLunes;
-      entity.perMartes = intMartes;
-      entity.perMiercoles = intMiercoles;
-      entity.perJueves = intJueves;
-      entity.perViernes = intViernes;
-      entity.perSabado = intSabado;
-      entity.perDomingo = intDomingo;
-      entity.perLunesH = lunesH.objectValue;
-      entity.perMartesH = martesH.objectValue;
-      entity.perMiercolesH = miercolesH.objectValue;
-      entity.perJuevesH = juevesH.objectValue;
-      entity.perViernesH = viernesH.objectValue;
-      entity.perSabadoH = sabadoH.objectValue;
-      entity.perDomingoH = domingoH.objectValue;
-      entity.usuario = prefs.userId;
+      entityAtencion.idInstitucion = int.parse(prefs.idInsitucion);
+      entityAtencion.idInstitucionPersonal = -1;
+      entityAtencion.perLunes = intLunes;
+      entityAtencion.perMartes = intMartes;
+      entityAtencion.perMiercoles = intMiercoles;
+      entityAtencion.perJueves = intJueves;
+      entityAtencion.perViernes = intViernes;
+      entityAtencion.perSabado = intSabado;
+      entityAtencion.perDomingo = intDomingo;
+      entityAtencion.perLunesH = lunesH.objectValue;
+      entityAtencion.perMartesH = martesH.objectValue;
+      entityAtencion.perMiercolesH = miercolesH.objectValue;
+      entityAtencion.perJuevesH = juevesH.objectValue;
+      entityAtencion.perViernesH = viernesH.objectValue;
+      entityAtencion.perSabadoH = sabadoH.objectValue;
+      entityAtencion.perDomingoH = domingoH.objectValue;
+      entityAtencion.usuario = prefs.userId;
 
-      final dataMap = generic.add(entity, urlAddAtencionInstitucion);
+      final dataMap = generic.add(entityAtencion, urlAddAtencionInstitucion);
 
-      await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+      await dataMap.then((respuesta)  
+      {
+        result = respuesta["TIPO_RESPUESTA"];
 
       if (result == "0")
-        scaffoldKey.currentState
+       {
+          scaffoldKey.currentState
             .showSnackBar(messageOk("Se insertó correctamente"));
+
+             Navigator.of(context).push(CupertinoPageRoute(
+            builder: (BuildContext context) => InformationEntityModule()));
+       }
       else
         scaffoldKey.currentState
             .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
@@ -471,6 +506,8 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
       setState(() {
         _save = false;
       });
+    }
+      );
     }
   }
 }

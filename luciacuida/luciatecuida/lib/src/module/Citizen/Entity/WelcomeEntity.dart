@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/Generic.dart';
 import 'package:luciatecuida/src/Model/PreferenceUser.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Voluntary/InformationVoluntary.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/VoluntaryModule.dart';
 
 class WelcomeEntityModule extends StatelessWidget {
@@ -104,7 +105,7 @@ Widget _crearAccionesEdicion(BuildContext context) {
             ),
             onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => VoluntaryAllModule()),
+                  MaterialPageRoute(builder: (context) => InformationVoluntary()),
                 )),
         SizedBox(height: 5.0),
         Text(
@@ -119,7 +120,7 @@ Widget _crearAccionesEdicion(BuildContext context) {
             ),
             onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => VoluntaryAllModule()),
+                  MaterialPageRoute(builder: (context) => InformationVoluntary()),
                 )),
         SizedBox(height: 5.0),
         Text(
@@ -142,7 +143,7 @@ Widget _crearAccionesEdicion(BuildContext context) {
             ),
             onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => VoluntaryAllModule()),
+                  MaterialPageRoute(builder: (context) => InformationVoluntary()),
                 )),
         SizedBox(height: 5.0),
         Text(
@@ -157,7 +158,7 @@ Widget _crearAccionesEdicion(BuildContext context) {
             ),
             onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => VoluntaryAllModule()),
+                  MaterialPageRoute(builder: (context) => InformationVoluntary()),
                 )),
         SizedBox(height: 5.0),
         Text(

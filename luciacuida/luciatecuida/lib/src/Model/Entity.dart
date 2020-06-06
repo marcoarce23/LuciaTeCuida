@@ -287,13 +287,13 @@ class Atencion extends Entity {
   fromJson(Map<String, dynamic> json) => new Atencion(
       idInstitucion: json["IDCOV_INSTITUCION"],
       idInstitucionPersonal: json["IDCOV_ENTITY_PERSONAL"],
-      perLunes: json["PER_LUNES"],
-      perMartes: json["PER_MARTES"],
-      perMiercoles: json["PER_MIERCOLES"],
-      perJueves: json["PER_JUEVES"],
-      perViernes: json["PER_VIERNES"],
-      perSabado: json["PER_SABADO"],
-      perDomingo: json["PER_DOMINGO"],
+      perLunes: json["INS_LUNES"],
+      perMartes: json["INS_MARTES"],
+      perMiercoles: json["INS_MIERCOLES"],
+      perJueves: json["INS_JUEVES"],
+      perViernes: json["INS_VIERNES"],
+      perSabado: json["INSSABADO"],
+      perDomingo: json["INS_DOMINGO"],
       perLunesH: json["INS_LUNES_HORARIO"],
       perMartesH: json["INS_MARTES_HORARIO"],
       perMiercolesH: json["INS_MIERCOLES_HORARIO"],
@@ -306,13 +306,13 @@ class Atencion extends Entity {
   Map<String, dynamic> toJson() => {
         "IDCOV_INSTITUCION": idInstitucion,
         "IDCOV_ENTITY_PERSONAL": idInstitucionPersonal,
-        "PER_LUNES": perLunes,
-        "PER_MARTES": perMartes,
-        "PER_MIERCOLES": perMiercoles,
-        "PER_JUEVES": perJueves,
-        "PER_VIERNES": perViernes,
-        "PER_SABADO": perSabado,
-        "PER_DOMINGO": perDomingo,
+        "INS_LUNES": perLunes,
+        "INS_MARTES": perMartes,
+        "INS_MIERCOLES": perMiercoles,
+        "INS_JUEVES": perJueves,
+        "INS_VIERNES": perViernes,
+        "INS_SABADO": perSabado,
+        "INS_DOMINGO": perDomingo,
         "INS_LUNES_HORARIO": perLunesH,
         "INS_MARTES_HORARIO": perMartesH,
         "INS_MIERCOLES_HORARIO": perMiercolesH,
@@ -467,7 +467,7 @@ class Voluntary extends Entity {
   int viernes;
   int sabado;
   int domingo;
-  int idaEstado;
+  int idCovAtencion;
 
   Voluntary({
     this.idcovPersonal = 0,
@@ -489,51 +489,52 @@ class Voluntary extends Entity {
     this.idaEstado,
     //  this.perYouTube,
 
-    this.perPaginaWeb,
-    this.desInstitucion,
-    this.desEspecialidad,
-    this.desExpedido,
-    this.usuario,
-    this.lunes,
-    this.martes,
-    this.miercoles,
-    this.jueves,
-    this.viernes,
-    this.sabado,
-    this.domingo,
-  });
+      this.perPaginaWeb,
+      this.desInstitucion,
+      this.desEspecialidad,
+      this.desExpedido,
+      this.usuario,
+        this.lunes,
+   this.martes,
+   this.miercoles,
+   this.jueves,
+   this.viernes,
+   this.sabado,
+   this.domingo,
+   this.idCovAtencion,
+   });
 
   fromJson(Map<String, dynamic> json) => new Voluntary(
-        idcovPersonal: json["IDCOV_PERSONAL"],
-        foto: json["PER_FOTO"],
-        idcovInstitucion: json["IDCOV_INSTITUCION"],
-        idcovLogin: json["IDCOV_LOGIN"],
-        idaTipopersonal: json["IDA_TIPOPERSONAL"],
-        perNombrepersonal: json["PER_NOMBREPERSONAL"],
-        perApellido: json["PER_APELLIDO"],
-        idaEstado: json["IDA_ESTADOVOLUNTARIO"],
-        perCorreo: json["PER_CORREO"],
-        perTelefono: json["PER_TELEFONO"],
-        perAyudacovid: json["PER_AYUDACOVID"],
-        perCI: json["PER_CI"],
-        idaExtension: json["IDA_EXTENCIONCI"],
-        idaSexo: json["IDA_SEXO"],
-        perInformacionComplementaria: json["PER_INFORMACIONCOMPLEMENTARIA"],
-        perFacebbok: json["PER_CUENTAFACEBOOK"],
-        perTwitter: json["PER_CUENTATWITTER"],
-        perPaginaWeb: json["PER_PAGINAWEB"],
-        desInstitucion: json["DES_INSTITUCION"],
-        desEspecialidad: json["DES_ESPECIALIDAD"],
-        desExpedido: json["DES_EXPEDIDO"],
-        usuario: json["USUARIO"],
-        lunes: json["INS_LUNES"],
-        martes: json["INS_MARTES"],
-        miercoles: json["INS_MIERCOLES"],
-        jueves: json["INS_JUEVES"],
-        viernes: json["INS_VIERNES"],
-        sabado: json["INS_SABADO"],
-        domingo: json["INS_DOMINGO"],
-      );
+      idcovPersonal: json["IDCOV_PERSONAL"],
+      foto: json["PER_FOTO"],
+      idcovInstitucion: json["IDCOV_INSTITUCION"],
+      idcovLogin: json["IDCOV_LOGIN"],
+      idaTipopersonal: json["IDA_TIPOPERSONAL"],
+      perNombrepersonal: json["PER_NOMBREPERSONAL"],
+      perApellido: json["PER_APELLIDO"],
+      perCorreo: json["PER_CORREO"],
+      perTelefono: json["PER_TELEFONO"],
+      perAyudacovid: json["PER_AYUDACOVID"],
+      perCI: json["PER_CI"],
+      idaExtension: json["IDA_EXTENCIONCI"],
+      idaSexo: json["IDA_SEXO"],
+      perInformacionComplementaria: json["PER_INFORMACIONCOMPLEMENTARIA"],
+      perFacebbok: json["PER_CUENTAFACEBOOK"],
+      perTwitter: json["PER_CUENTATWITTER"],
+      perPaginaWeb: json["PER_PAGINAWEB"],
+      desInstitucion: json["DES_INSTITUCION"],
+      desEspecialidad: json["DES_ESPECIALIDAD"],
+      desExpedido: json["DES_EXPEDIDO"],
+      usuario: json["USUARIO"],
+       lunes: json["PER_LUNES"],
+        martes: json["PER_MARTES"],
+        miercoles: json["PER_MIERCOLES"],
+        jueves: json["PER_JUEVES"],
+        viernes: json["PER_VIERNES"],
+        sabado: json["PER_SABADO"],
+        domingo: json["PER_DOMINGO"],
+        idCovAtencion: json["IDCOV_ATENCION"],
+        );
 
   Map<String, dynamic> toJson() => {
         "IDCOV_PERSONAL": idcovPersonal,
@@ -560,13 +561,15 @@ class Voluntary extends Entity {
         "DES_INSTITUCION": desInstitucion,
         "DES_ESPECIALIDAD": desEspecialidad,
         "DES_EXPEDIDO": desExpedido,
-        "USUARIO": usuario, "INS_LUNES": lunes,
-        "INS_MARTES": martes,
-        "INS_MIERCOLES": miercoles,
-        "INS_JUEVES": jueves,
-        "INS_VIERNES": viernes,
-        "INS_SABADO": sabado,
-        "INS_DOMINGO": domingo
+        "USUARIO": usuario,
+        "PER_LUNES" :lunes,
+        "PER_MARTES" : martes,
+        "PER_MIERCOLES":miercoles,
+        "PER_JUEVES":jueves,
+       "PER_VIERNES":viernes,
+        "PER_SABADO":sabado,
+        "PER_DOMINGO":domingo,
+        "IDCOV_ATENCION": idCovAtencion
       };
 }
 
@@ -581,6 +584,7 @@ class VoluntarioAtencion extends Entity {
   int perSabado;
   int perDomingo;
   String usuario;
+
 
   VoluntarioAtencion(
       {this.idCovAtencion = 0,

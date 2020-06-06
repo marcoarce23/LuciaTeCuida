@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,18 +11,16 @@ import 'package:luciatecuida/src/module/Citizen/CitizenEmergency/CitizenEmergenc
 import 'package:luciatecuida/src/module/Citizen/CitizenEvents/CitizenEventsModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenHelp/CitizenHelpModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenInstitution/CitizenListInstitucionModule.dart';
-import 'package:luciatecuida/src/module/Citizen/CitizenMultimedia/CitizenMultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenPanicButton/CitizenPanicButtonModule.dart';
-import 'package:luciatecuida/src/module/Citizen/Entity/EntityModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/EventEntityModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/InformationEntity.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/ListDetailModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/ListMultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/MultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/EventModule.dart';
-import 'package:luciatecuida/src/module/Citizen/Voluntary/FoundAllVoluntaryGroupModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/FoundVoluntaryModule.dart';
-import 'package:luciatecuida/src/module/Citizen/Voluntary/VoluntaryModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Voluntary/InformationVoluntary.dart';
+import 'package:luciatecuida/src/module/Contactos/ContactAppModule.dart';
 import 'package:luciatecuida/src/module/Contactos/ContatGeneralModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 import 'package:luciatecuida/src/module/SplashScreen/IntroScreenModule.dart';
@@ -51,6 +47,7 @@ class _HomePageModuleState extends State<HomePageModule> {
 
   @override
   void initState() {
+    generic.add( new TokenImei (correo1: prefs.correoElectronico, imei: prefs.imei, token:prefs.token), urlAddTokenImei);
     super.initState();
   }
 
@@ -106,15 +103,25 @@ class _HomePageModuleState extends State<HomePageModule> {
   }
 
   void _onItemTapped(int index) {
+
     setState(() {
       _selectedIndex = index;
-      if (index == 2) {
+print('_selectedIndex $_selectedIndex');
+
+       if (_selectedIndex == 0) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ContactAppModule()),
+        );
+      }
+
+      if (_selectedIndex == 1) {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => CitizenEventsModule()),
         );
       }
-      if (index == 3) {
+      if (_selectedIndex == 2) {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => ListMultimediaModule()),
@@ -153,19 +160,19 @@ class _HomePageModuleState extends State<HomePageModule> {
   Widget _botonesRedondeados() {
     return Wrap(children: <Widget>[
       _crearBotonRedondeado(Colors.purpleAccent, Icons.hotel, 'Ayuda Urgente',
-          '2', 14.0, CitizenPanicButtonModule(), 0, ""),
+          '2', 16.0, CitizenPanicButtonModule(), 0, ""),
       _crearBotonRedondeado(Colors.blue, Icons.add_comment,
           'Consulta a voluntarios', '1', 14.0, FoundVoluntaryModule(), 0, ""),
       _crearBotonRedondeado(Colors.pinkAccent, Icons.accessible_forward,
           'Ayuda a una persona', '3', 14.0, HelpFriendAllModule(), 0, ""),
       _crearBotonRedondeado(Colors.deepPurple, Icons.phone_in_talk,
-          'Números de urgencia', '5', 14.0, ContactGeneralModule(), 0, ""),
+          'Números de urgencia', '5', 15.0, ContactGeneralModule(), 0, ""),
       _crearBotonRedondeado(
           Colors.cyan,
           Icons.add_to_queue,
           'Prueba de control',
           '6',
-          14.0,
+          16.0,
           HomePageModule(),
           1,
           "https://omi.app/covid-19/welcome"),
@@ -175,16 +182,16 @@ class _HomePageModuleState extends State<HomePageModule> {
           'Violencia IntraFamiliar',
           '6',
           14.0,
-          HomePageModule(),
-          1,
-          "https://omi.app/covid-19/welcome"),
-      // _crearBotonRedondeado(Colors.orange, Icons.blur_linear,
-      //     'Eventos vigentes', '4', 14.0, CitizenEventsModule(), 0, ""),
+          ContactGeneralModule(),
+          0,
+          ""),
+_crearBotonRedondeadoImage(Colors.green, 'assets/instituciones.png',
+          'Organizaciones', '6', 16.0, CitizenListInstitucionModule(), 0, ""),
+
       _crearBotonRedondeadoImage(Colors.amberAccent, 'assets/eventos.png',
-          'Eventos vigentes', '4', 10.0, CitizenListInstitucionModule(), 0, ""),
-      //_crearBotonRedondeado(Colors.blueAccent, Icons.people, 'Voluntarios', '5', 20.0,CitizenListInstitucionModule()),
-      _crearBotonRedondeadoImage(Colors.green, 'assets/instituciones.png',
-          'Organizaciones', '6', 10.0, CitizenListInstitucionModule(), 0, ""),
+          'Voluntarios', '4', 18.0, CitizenListInstitucionModule(), 0, ""),
+ 
+      
     ]);
   }
 
@@ -220,10 +227,6 @@ class _HomePageModuleState extends State<HomePageModule> {
               colors: [
                 AppTheme.themeVino, AppTheme.themeVino, AppTheme.themeVino,
                 AppTheme.themeVino,
-                // Color.fromRGBO(84, 153, 199, 0.6),
-                // Color.fromRGBO(84, 153, 199, 1.0),
-                // Color.fromRGBO(84, 153, 199, 0.6),
-                // Color.fromRGBO(84, 153, 199, 1.0),
               ],
             )),
             //  borderRadius: BorderRadius.circular(20.0)),
@@ -279,10 +282,6 @@ class _HomePageModuleState extends State<HomePageModule> {
               colors: [
                 AppTheme.themeVino, AppTheme.themeVino, AppTheme.themeVino,
                 AppTheme.themeVino,
-                // Color.fromRGBO(84, 153, 199, 0.6),
-                // Color.fromRGBO(84, 153, 199, 1.0),
-                // Color.fromRGBO(84, 153, 199, 0.6),
-                // Color.fromRGBO(84, 153, 199, 1.0),
               ],
             )),
             //  borderRadius: BorderRadius.circular(20.0)),
@@ -311,6 +310,7 @@ class DrawerCitizen extends StatelessWidget {
   final prefs = new PreferensUser();
   @override
   Widget build(BuildContext context) {
+    print('prefs.idPersonal : ${prefs.idPersonal}');
     if (prefs.idPersonal != '-1') {
       return Drawer(
           child: ListView(
@@ -449,10 +449,10 @@ class DrawerCitizen extends StatelessWidget {
           // ),
           CustomListTile(
               Icons.edit_location,
-              'Registra tu Institución',
+              'Registra Institución - Voluntario',
               () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => InformationEntityModule()),
+                    MaterialPageRoute(builder: (context) => EntityAllModule()),
                   )),
 
           CustomListTile(
@@ -492,7 +492,7 @@ class DrawerCitizen extends StatelessWidget {
               () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => VoluntaryAllModule()),
+                        builder: (context) => InformationVoluntary()),
                   )),
           CustomListTile(
               Icons.share,
@@ -580,7 +580,7 @@ class DrawerCitizen extends StatelessWidget {
           //         )),
           CustomListTile(
               Icons.edit_location,
-              'Registra tu Institución',
+              'Registra Institución',
               () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => EntityAllModule()),
@@ -591,12 +591,12 @@ class DrawerCitizen extends StatelessWidget {
               () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => VoluntaryAllModule()),
+                        builder: (context) => InformationVoluntary()),
                   )),
           CustomListTile(
               Icons.share,
               'Comparte la aplicación',
-              () => sharedText('Comparte la aplicación LuciaTeCuida',
+              () => sharedText('Te contamos que existe una aplicación de grupos de voluntariados de diversas áreas. Queremos compartir la aplicación "EstamosContigo" y que nos ayudes a compartir',
                   'Comparte la app http://bit.ly/mrPlayStore', 'text/html')),
           CustomListTile(
               Icons.bubble_chart,

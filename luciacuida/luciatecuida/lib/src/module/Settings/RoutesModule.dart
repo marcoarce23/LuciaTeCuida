@@ -14,7 +14,7 @@ String urlGetInstitucion            =    'http://covid19.ruta88.net/COVID/Instit
 
 
 final String primaryKeyGetVoluntario = '_DevuelvePersonalResult';
-String urlGetVoluntario              =    'http://covid19.ruta88.net/COVID/Personal/srvPersonal.svc/DevuelvePersonal';
+String urlGetVoluntario              =    'http://covid19.ruta88.net/COVID/Personal/srvPersonal.svc/DevuelvePersonal/';
 
 String urlGetAtencion                =    'http://covid19.ruta88.net/COVID/Atencion/srvAtencion.svc/DevuelveAtencion/{pIdInstitucion}/{pIdPersonal} ';
 

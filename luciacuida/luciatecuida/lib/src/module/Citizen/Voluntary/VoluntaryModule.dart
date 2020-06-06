@@ -15,93 +15,10 @@ import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/Widget/InputField/InputFieldWidget.dart';
 import 'package:luciatecuida/src/Widget/Message/Message.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/AtentionModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Voluntary/InformationVoluntary.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/ListVoluntary.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
-
-class VoluntaryAllModule extends StatefulWidget {
-  static final String routeName = 'voluntario';
-  const VoluntaryAllModule({Key key}) : super(key: key);
-
-  @override
-  _VoluntaryAllModuleState createState() => _VoluntaryAllModuleState();
-}
-
-class _VoluntaryAllModuleState extends State<VoluntaryAllModule> {
-  final prefs = new PreferensUser();
-  final generic = new Generic();
-  int page = 0;
-
-  final List<Widget> optionPage = [
-    VoluntaryModule(),
-    AtentionModule(),
-    ListVoluntaryModule()
-  ];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      page = index;
-    });
-  }
-
-  @override
-  void initState() {
-    prefs.ultimaPagina = VoluntaryAllModule.routeName;
-    page = 0;
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        toolbarOpacity: 0.7,
-        iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
-        elevation: 0,
-        title: Text("VOLUNTARIO", style: kTitleAppBar),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              showSearch(context: context, delegate: DataSearchVoluntary());
-            },
-          )
-        ],
-      ),
-      drawer: DrawerCitizen(),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        items: [
-          BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.userCircle,
-                size: 25,
-              ),
-              title: Text('Voluntario')),
-          BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.calendarCheck,
-                size: 25,
-              ),
-              title: Text('Atención')),
-          BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.users,
-                size: 25,
-              ),
-              title: Text('Integrantes')),
-        ],
-        currentIndex: page,
-        unselectedItemColor: Colors.black54,
-        selectedItemColor: AppTheme.themeVino,
-        onTap: _onItemTapped,
-      ),
-      body: optionPage[page],
-    );
-  }
-}
-
 class VoluntaryModule extends StatefulWidget {
   static final String routeName = 'voluntary';
   const VoluntaryModule({Key key}) : super(key: key);
@@ -163,7 +80,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
           _crearForm(context),
         ],
       ),
-      floatingActionButton: generaFloatbuttonHome(context),
+      floatingActionButton: generaFloatButtonInformationVoluntary(context),
     );
   }
 
@@ -532,23 +449,18 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
       prefs.idInsitucion = list[0];
       prefs.idPersonal = list[1];
 
-      scaffoldKey.currentState
-          .showSnackBar(messageOk("Se inserto correctamente"));
+       // scaffoldKey.currentState.showSnackBar(messageOk("Se inserto correctamente"));
 
-      enviarNotificaciones(
-          urlGetToken + '2/${prefs.idInsitucion}',
-          'Voluntario',
-          'Nuevo voluntario',
-          nombre.objectValue,
-          'Bienvenido al Grupo',
-          prefs.nombreInstitucion);
+            
+        enviarNotificaciones(urlGetToken+'2/${prefs.idInsitucion}', 
+                            'Voluntario',
+                             'Nuevo voluntario', 
+                             nombre.objectValue, 
+                             'Bienvenido al Grupo',
+                            prefs.nombreInstitucion); 
 
-      if (result == "-1")
-        scaffoldKey.currentState
-            .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
-      if (result == "2")
-        scaffoldKey.currentState
-            .showSnackBar(messageNOk("Error, TOKEN INVALIDO"));
+    Navigator.of(context).push(CupertinoPageRoute(
+            builder: (BuildContext context) => InformationVoluntary()));   
 
       setState(() {
         _save = false;

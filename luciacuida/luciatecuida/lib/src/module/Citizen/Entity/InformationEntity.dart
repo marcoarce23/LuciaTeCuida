@@ -4,9 +4,97 @@ import 'package:luciatecuida/src/Model/Entity.dart';
 import 'package:luciatecuida/src/Model/Generic.dart';
 import 'package:luciatecuida/src/Model/PreferenceUser.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
+import 'package:luciatecuida/src/Util/SearchDelegate/DataSearch.dart';
 import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
+import 'package:luciatecuida/src/module/Citizen/Entity/ListEntityModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Voluntary/InformationVoluntary.dart';
+import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
+
+class EntityAllModule extends StatefulWidget {
+  static final String routeName = 'entidadGeneral';
+  const EntityAllModule({Key key}) : super(key: key);
+
+  @override
+  _EntityAllModuleState createState() => _EntityAllModuleState();
+}
+
+class _EntityAllModuleState extends State<EntityAllModule> {
+  final prefs = new PreferensUser();
+  final generic = new Generic();
+  int page = 0;
+
+  final List<Widget> optionPage = [
+     InformationEntityModule(),
+     InformationVoluntary(),
+     ListEntityModule()
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      page = index;
+    });
+  }
+
+  @override
+  void initState() {
+    prefs.ultimaPagina = EntityAllModule.routeName;
+    page = 0;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        toolbarOpacity: 0.7,
+        iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
+        elevation: 0,
+        title: Text("INSTITUCIONES - GRUPOS", style: kTitleAppBar),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(context: context, delegate: DataSearchVoluntary());
+            },
+          )
+        ],
+      ),
+      drawer: DrawerCitizen(),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        items: [
+          BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.userCircle,
+                size: 25,
+              ),
+              title: Text('Institucion')),
+          BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.calendarCheck,
+                size: 25,
+              ),
+              title: Text('Voluntariado')),
+          BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.users,
+                size: 25,
+              ),
+              title: Text('Listado')),
+        ],
+        currentIndex: page,
+        unselectedItemColor: Colors.black54,
+        selectedItemColor: AppTheme.themeVino,
+        onTap: _onItemTapped,
+      ),
+      body: optionPage[page],
+      
+    );
+  }
+}
 
 class InformationEntityModule extends StatefulWidget {
   InformationEntityModule({Key key}) : super(key: key);
@@ -31,7 +119,44 @@ Institucion entityItem;
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+   
+   print('prefs.idInsitucion para crear: ${prefs.idInsitucion}');
+   final size = MediaQuery.of(context).size;
+
+   if(prefs.idInsitucion == '-1')
+   {
+     print('prefs.idInsituXXXX: ${prefs.idInsitucion}');
+
+       return Scaffold(
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(height: 5.0),
+          Container(
+            width: size.width * 0.96,
+            margin: EdgeInsets.symmetric(vertical: 0.0),
+            child: contenedorTitulo(
+              context,
+              40.0,
+              'INFORMACIÓN DE TU ORGANIZACIÓN',
+              FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
+            ),
+          ),
+          Row(
+                      children: <Widget>[
+                        _crearBotonOrganizacion('Crear Organización'),
+                      ],
+                    ),
+          copyRigth(),
+        ],
+      ),
+      floatingActionButton: generaFloatbuttonHome(context),
+    );
+   }
+    
+   else
+   {
+    print('prefs.idInsiTArget: ${prefs.idInsitucion}');
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,11 +179,15 @@ Institucion entityItem;
       ),
       floatingActionButton: generaFloatbuttonHome(context),
     );
+   }
+
+
   }
 
   Widget futureItemsEntity(BuildContext context) {
+    
     return FutureBuilder(
-        future: generic.getAll(new Institucion(), urlGetInstitucion + '1022',
+        future: generic.getAll(new Institucion(), urlGetInstitucion + prefs.idInsitucion,
             primaryKeyGetInsitucion),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
@@ -491,7 +620,7 @@ Institucion entityItem;
           style: kBotontitleStyle,
         ),
         icon: FaIcon(FontAwesomeIcons.edit, color: Colors.white),
-        onPressed: () =>  Navigator.pushNamed(context, 'entidad', arguments: entityItem ),
+        onPressed: () =>  Navigator.pushNamed(context, 'AtentionEntity', arguments: entityItem ),
       ),
     );
   }

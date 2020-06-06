@@ -43,7 +43,7 @@ class _ListCitizenHelpModuleState extends State<ListCitizenHelpModule> {
               child: contenedorTitulo(
                 context,
                 40.0,
-                'LISTADO DE AYUDA A UN AMIGO',
+                'LISTADO DE AYUDA A UN AMIGO.',
                 FaIcon(FontAwesomeIcons.handHoldingHeart,
                     color: AppTheme.themeVino),
               ),

@@ -9,8 +9,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
 import 'package:luciatecuida/src/Model/Generic.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Entity/InformationEntity.dart';
+import 'package:luciatecuida/src/module/Citizen/Voluntary/InformationVoluntary.dart';
+import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vector_math/vector_math_64.dart' as math;
 import 'package:path_provider/path_provider.dart';
@@ -18,7 +20,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
+
 
 final String userName = null;
 
@@ -143,7 +145,7 @@ loadPDF(String path) async {
 }
 
 Widget generaFloatbuttonHome(BuildContext context) {
-/*
+
   return FloatingActionButton(
     onPressed: () {
       Navigator.push(
@@ -155,9 +157,38 @@ Widget generaFloatbuttonHome(BuildContext context) {
     child: FaIcon(FontAwesomeIcons.home),
     backgroundColor: AppTheme.themeVino,
   );
-*/
+}
 
-return Container();
+
+
+Widget generaFloatButtonInformationEntity(BuildContext context) {
+
+  return FloatingActionButton(
+    onPressed: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => InformationVoluntary(),
+          ));
+    },
+    child: FaIcon(FontAwesomeIcons.arrowLeft, ),
+    backgroundColor: AppTheme.themeVino,
+  );
+}
+
+Widget generaFloatButtonInformationVoluntary(BuildContext context) {
+
+  return FloatingActionButton(
+    onPressed: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => InformationVoluntary(),
+          ));
+    },
+    child: FaIcon(FontAwesomeIcons.arrowLeft, ),
+    backgroundColor: AppTheme.themeVino,
+  );
 }
 
 class ImageOpaqueAssets extends StatelessWidget {

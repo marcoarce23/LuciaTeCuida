@@ -10,6 +10,7 @@ import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/Widget/InputField/InputFieldWidget.dart';
 import 'package:luciatecuida/src/Widget/Message/Message.dart';
+import 'package:luciatecuida/src/module/Citizen/Voluntary/InformationVoluntary.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 
@@ -51,7 +52,11 @@ class _AtentionModuleState extends State<AtentionModule> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final generic = new Generic();
   final prefs = new PreferensUser();
-  Atencion entity = new Atencion();
+  Voluntary entity = new Voluntary();
+  VoluntarioAtencion entityAtencion = new  VoluntarioAtencion();
+
+int _valorId = 0;
+  bool bandera = false;
 
   @override
   void initState() {
@@ -62,13 +67,30 @@ class _AtentionModuleState extends State<AtentionModule> {
   @override
   Widget build(BuildContext context) {
 
+     final Voluntary entityData = ModalRoute.of(context).settings.arguments;
+
+    if (entityData != null) {
+       entity = entityData;
+      _valorId = entityData.idCovAtencion;
+
+      // if(bandera ==false)
+      // {
+      //       valorInstitucion = entity.tipoInstitucion;
+      //       valorDepartamento = entity.ubicacion;
+      //       imagen = entity.foto;
+          
+      //       if (entity.esSucursal != 0) esSucursal = true;
+      //       else esSucursal = false;
+      // }
+    }
+
     return Scaffold(
       key: scaffoldKey,
       drawer: DrawerCitizen(),
       body: Stack(
         children: <Widget>[ fondoApp(),_crearForm(context),],
       ),
-      floatingActionButton: generaFloatbuttonHome(context),
+      floatingActionButton: generaFloatButtonInformationVoluntary(context),
     );
   }
 
@@ -306,32 +328,39 @@ class _AtentionModuleState extends State<AtentionModule> {
       selectDomingo = true;
     }
 
-    entity.idInstitucion = int.parse(prefs.idInsitucion);
-    entity.idInstitucionPersonal = int.parse(prefs.idPersonal);
-    entity.perLunes = intLunes;
-    entity.perMartes = intMartes;
-    entity.perMiercoles = intMiercoles;
-    entity.perJueves = intJueves;
-    entity.perViernes = intViernes;
-    entity.perSabado = intaSabado;
-    entity.perDomingo = intDomingo;
-    entity.perLunesH = '-1';
-    entity.perMartesH = '-1';
-    entity.perMiercolesH = '-1';
-    entity.perJuevesH = '-1';
-    entity.perViernesH = '-1';
-    entity.perSabadoH = '-1';
-    entity.perDomingoH = '-1';
-    entity.usuario = prefs.userId;
+print(' intLunes; $intLunes intMartes $intMartes');
 
-print('valores: $entity');
-    final dataMap = generic.add(entity, urlAddAtencion);
+    entityAtencion.idCovAtencion = _valorId;
+    entityAtencion.idCovEntityPersonal = int.parse(prefs.idPersonal);
+    entityAtencion.perLunes = intLunes;
+    entityAtencion.perMartes = intMartes;
+    entityAtencion.perMiercoles = intMiercoles;
+    entityAtencion.perJueves = intJueves;
+    entityAtencion.perViernes = intViernes;
+    entityAtencion.perSabado = intaSabado;
+    entityAtencion.perDomingo = intDomingo;
+    // entityAtencion.perLunesH = '-1';
+    // entityAtencion.perMartesH = '-1';
+    // entityAtencion.perMiercolesH = '-1';
+    // entityAtencion.perJuevesH = '-1';
+    // entityAtencion.perViernesH = '-1';
+    // entityAtencion.perSabadoH = '-1';
+    // entityAtencion.perDomingoH = '-1';
+    entityAtencion.usuario = prefs.userId;
 
-    await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
 
-    if (result == "0")
-      scaffoldKey.currentState
-          .showSnackBar(messageOk("Se insertó correctamente"));
+    final dataMap = generic.add(entityAtencion, urlAddAtencion);
+
+    await dataMap.then((respuesta) 
+    {
+      result = respuesta["TIPO_RESPUESTA"];
+
+    if (result == "0"){
+     
+    
+    Navigator.of(context).push(CupertinoPageRoute(
+            builder: (BuildContext context) => InformationVoluntary()));
+    }
     else
       scaffoldKey.currentState
           .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
@@ -339,6 +368,7 @@ print('valores: $entity');
     setState(() {
       _save = false;
     });
+  });
   }
-  }
+}
 }

@@ -16,6 +16,7 @@ import 'package:luciatecuida/src/module/Citizen/CitizenPanicButton/ListCitizenPa
 import 'package:luciatecuida/src/module/Citizen/Entity/AtentionEntityodule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/EntityModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/EventEntityModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Entity/InformationEntity.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/ListEntityModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/ListMultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/MultimediaModule.dart';
@@ -118,6 +119,7 @@ class _MyAppState extends State<MyApp> {
        
         'AtentionEntity': (BuildContext context) => AtentionEntityModule(),
         'entidad': (BuildContext context) => new EntityModule(),
+        'entidadGeneral': (BuildContext context) => new EntityAllModule(),
         'listaEntidad': (BuildContext context) => new ListEntityModule(),
         'eventEntity': (BuildContext context) => new ListEntityModule(),
         'eventoEntidad': (BuildContext context) => new EventEntityModule(),
