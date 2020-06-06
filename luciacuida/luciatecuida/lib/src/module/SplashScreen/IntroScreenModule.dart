@@ -118,8 +118,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                 image: AssetImage(
                                   'assets/image/onboarding0.png',
                                 ),
-                                height: 180.0,
-                                width: 180.0,
+                                height: 150.0,
+                                width: 150.0,
                               ),
                             ),
                             Text(
@@ -186,8 +186,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                 image: AssetImage(
                                   'assets/image/onboarding2.png',
                                 ),
-                                height: 180.0,
-                                width: 180.0,
+                                height: 150.0,
+                                width: 150.0,
                               ),
                             ),
                             SizedBox(height: 10.0),
@@ -268,8 +268,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                 image: AssetImage(
                                   'assets/image/onboarding1.png',
                                 ),
-                                height: 180.0,
-                                width: 180.0,
+                                height: 150.0,
+                                width: 150.0,
                               ),
                             ),
                             SizedBox(height: 5.0),
