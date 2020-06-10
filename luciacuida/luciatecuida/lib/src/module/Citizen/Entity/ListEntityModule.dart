@@ -42,7 +42,7 @@ class _ListEntityModuleState extends State<ListEntityModule> {
             child: contenedorTitulo(
               context,
               40.0,
-              'LISTADO ENTIDADES-INSTITUCIONES',
+              'LISTADO DE LAS ORGANIZACIONES',
               FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
             ),
           ),
@@ -59,7 +59,7 @@ class _ListEntityModuleState extends State<ListEntityModule> {
   Widget futureItemsEntity(BuildContext context) {
     return FutureBuilder(
         future: generic.getAll(
-            new Institucion(), urlGetInstitucion, primaryKeyGetInsitucion),
+            new Institucion(), urlGetInstitucion + '-1', primaryKeyGetInsitucion),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:

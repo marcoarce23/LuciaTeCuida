@@ -4,93 +4,96 @@ import 'package:luciatecuida/src/Model/Entity.dart';
 import 'package:luciatecuida/src/Model/Generic.dart';
 import 'package:luciatecuida/src/Model/PreferenceUser.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
+import 'package:luciatecuida/src/Util/SearchDelegate/DataSearch.dart';
 import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
+import 'package:luciatecuida/src/module/Citizen/Entity/ListEntityModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Voluntary/ListVoluntary.dart';
+import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 
-// class VoluntaryAllModule extends StatefulWidget {
-//   static final String routeName = 'voluntario';
-//   const VoluntaryAllModule({Key key}) : super(key: key);
+class VoluntaryAllModule extends StatefulWidget {
+  static final String routeName = 'voluntarioAll';
+  const VoluntaryAllModule({Key key}) : super(key: key);
 
-//   @override
-//   _VoluntaryAllModuleState createState() => _VoluntaryAllModuleState();
-// }
+  @override
+  _VoluntaryAllModuleState createState() => _VoluntaryAllModuleState();
+}
 
-// class _VoluntaryAllModuleState extends State<VoluntaryAllModule> {
-//   final prefs = new PreferensUser();
-//   final generic = new Generic();
-//   int page = 0;
+class _VoluntaryAllModuleState extends State<VoluntaryAllModule> {
+  final prefs = new PreferensUser();
+  final generic = new Generic();
+  int page = 0;
 
-//   final List<Widget> optionPage = [
-//     InformationVoluntary(),
-//     VoluntaryModule(),
-//    // AtentionModule(),
-//     ListVoluntaryModule()
-//   ];
+  final List<Widget> optionPage = [
+    InformationVoluntary(),
+    ListVoluntaryModule(),
+    ListEntityModule()
+  ];
 
-//   void _onItemTapped(int index) {
-//     setState(() {
-//       page = index;
-//     });
-//   }
+  void _onItemTapped(int index) {
+    setState(() {
+      page = index;
+    });
+  }
 
-//   @override
-//   void initState() {
-//     prefs.ultimaPagina = VoluntaryAllModule.routeName;
-//     page = 0;
-//     super.initState();
-//   }
+  @override
+  void initState() {
+    prefs.ultimaPagina = VoluntaryAllModule.routeName;
+    page = 0;
+    super.initState();
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: Colors.white,
-//         toolbarOpacity: 0.7,
-//         iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
-//         elevation: 0,
-//         title: Text("VOLUNTARIO", style: kTitleAppBar),
-//         actions: <Widget>[
-//           IconButton(
-//             icon: Icon(Icons.search),
-//             onPressed: () {
-//               showSearch(context: context, delegate: DataSearchVoluntary());
-//             },
-//           )
-//         ],
-//       ),
-//       drawer: DrawerCitizen(),
-//       bottomNavigationBar: BottomNavigationBar(
-//         backgroundColor: Colors.white,
-//         items: [
-//           BottomNavigationBarItem(
-//               icon: FaIcon(
-//                 FontAwesomeIcons.userCircle,
-//                 size: 25,
-//               ),
-//               title: Text('Voluntario')),
-//           BottomNavigationBarItem(
-//               icon: FaIcon(
-//                 FontAwesomeIcons.calendarCheck,
-//                 size: 25,
-//               ),
-//               title: Text('Atención')),
-//           BottomNavigationBarItem(
-//               icon: FaIcon(
-//                 FontAwesomeIcons.users,
-//                 size: 25,
-//               ),
-//               title: Text('Integrantes')),
-//         ],
-//         currentIndex: page,
-//         unselectedItemColor: Colors.black54,
-//         selectedItemColor: AppTheme.themeVino,
-//         onTap: _onItemTapped,
-//       ),
-//       body: optionPage[page],
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        toolbarOpacity: 0.7,
+        iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
+        elevation: 0,
+        title: Text("ACERCA VOLUNTARIADO", style: kTitleAppBar),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(context: context, delegate: DataSearchVoluntary());
+            },
+          )
+        ],
+      ),
+      drawer: DrawerCitizen(),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        items: [
+          BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.userCircle,
+                size: 25,
+              ),
+              title: Text('Registro')),
+          BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.calendarCheck,
+                size: 25,
+              ),
+              title: Text('Voluntariados')),
+          BottomNavigationBarItem(
+              icon: FaIcon(
+                FontAwesomeIcons.users,
+                size: 25,
+              ),
+              title: Text('Organizaciones')),
+        ],
+        currentIndex: page,
+        unselectedItemColor: Colors.black54,
+        selectedItemColor: AppTheme.themeVino,
+        onTap: _onItemTapped,
+      ),
+      body: optionPage[page],
+    );
+  }
+}
 
 class InformationVoluntary extends StatefulWidget {
   @override
@@ -155,7 +158,8 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
                 context,
                 40.0,
                 'INFORMACIÓN DE TU PERFIL',
-                FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
+                FaIcon(FontAwesomeIcons.peopleArrows,
+                    color: AppTheme.themeVino),
               ),
             ),
             divider(),
@@ -204,13 +208,13 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
                 child: Column(
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.only(top: 3.0),
+                      padding: EdgeInsets.only(top: 0.0),
                       child: Column(
                         children: <Widget>[
                           Align(
                             child: RadialProgress(
-                              width: 4,
-                              goalCompleted: 0.90,
+                              width: 2.5,
+                              goalCompleted: 0.85,
                               progressColor: AppTheme.themeVino,
                               progressBackgroundColor: Colors.white,
                               child: Container(
@@ -226,23 +230,23 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
                       height: 5.0,
                     ),
                     Text('INFORMACIÓN DE VOLUNTARIADO', style: kSigsTitleStyle),
-                    SizedBox(
-                      height: 7.0,
-                    ),
-                    listEntity(context, entityItem),
                     divider(),
+
+                    listEntity(context, entityItem),
+                    SizedBox(height:10.0),
                     Row(
                       children: <Widget>[
-                        _crearBotonOrganizacion('Editar Información', context),
+                        _crearBotonOrganizacion('Editar Datos', context),
                       ],
                     ),
-                    divider(),
-                    Text('HORARIOS DE ATENCIÓN', style: kSigsTitleStyle),
                     SizedBox(
-                      height: 7.0,
+                      height: 20.0,
                     ),
-                    listEntityAtencion(context, entityItem),
+                    Text('HORARIOS DE ATENCIÓN', style: kSigsTitleStyle),
                     divider(),
+
+                    listEntityAtencion(context, entityItem),
+                    SizedBox(height: 10.0),
                     _crearBotonAtencion('Editar Atención', context),
                   ],
                 ),
@@ -420,124 +424,91 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
   }
 
   Widget listEntityAtencion(BuildContext context, Voluntary entityItem) {
-    return Container(
-      child: Row(
-        children: <Widget>[
+    return Column(
+      children: <Widget>[
+        Row(children: <Widget>[
           Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Container(
-                  child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.gamepad,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Lunes : ${entityItem.lunes} ',
-                    style: kTitleWelcomeStyle,
-                  ),
-                ],
-              )),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Martes: ${entityItem.martes}',
-                    style: kTitleWelcomeStyle,
-                  )
-                ],
-              ),
-              Container(
-                  child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.phone_android,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Miercoles: ${entityItem.miercoles == 0 ? 'SI' : 'NO' }',
-                    style: kTitleWelcomeStyle,
-                  ),
-                ],
-              )),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.store_mall_directory,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Jueves: ${entityItem.jueves== 0 ? 'SI' : 'NO' }',
-                    style: kTitleWelcomeStyle,
-                  )
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.store_mall_directory,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Viernes: ${atiende(entityItem.viernes)}',
-                    style: kTitleWelcomeStyle,
-                  )
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.store_mall_directory,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Sábado: ${atiende(entityItem.sabado)}',
-                    style: kTitleWelcomeStyle,
-                  )
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.store_mall_directory,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Domingo: ${atiende(entityItem.domingo)}',
-                    style: kTitleWelcomeStyle,
-                  )
-                ],
+              Text(
+                'Lunes : ${entityItem.lunes == 0 ? '(NO)' : '(SI)'}',
+                style: kTitleWelcomeStyle,
               ),
             ],
           ),
-        ],
-      ),
+          SizedBox(
+            width: 35.0,
+          ),
+          Column(
+            children: <Widget>[
+              Text(
+                'Martes : ${entityItem.martes == 0 ? '(NO)' : '(SI)'}',
+                style: kTitleWelcomeStyle,
+              ),
+            ],
+          ),
+          SizedBox(
+            width: 40.0,
+          ),
+          Column(
+            children: <Widget>[
+              Text(
+                'Miércoles : ${entityItem.miercoles == 0 ? '(NO)' : '(SI)'}',
+                style: kTitleWelcomeStyle,
+              ),
+            ],
+          ),
+        ]),
+        SizedBox(height: 10.0),
+        Row(children: <Widget>[
+          Column(
+            children: <Widget>[
+              Text(
+                'Jueves : ${entityItem.jueves == 0 ? '(NO)' : '(SI)'}',
+                style: kTitleWelcomeStyle,
+              ),
+            ],
+          ),
+          SizedBox(
+            width: 35.0,
+          ),
+          Column(
+            children: <Widget>[
+              Text(
+                'Viernes : ${entityItem.viernes == 0 ? '(NO)' : '(SI)'}',
+                style: kTitleWelcomeStyle,
+              ),
+            ],
+          ),
+          SizedBox(
+            width: 40.0,
+          ),
+          Column(
+            children: <Widget>[
+              Text(
+                'Sábado : ${entityItem.sabado == 0 ? '(NO)' : '(SI)'}',
+                style: kTitleWelcomeStyle,
+              ),
+            ],
+          ),
+        ]),
+        SizedBox(height: 10.0),
+        Row(children: <Widget>[
+          Column(
+            children: <Widget>[
+              Text(
+                'Domingo : ${entityItem.jueves == 0 ? '(NO)' : '(SI)'}',
+                style: kTitleWelcomeStyle,
+              ),
+            ],
+          ),
+        ]),
+      ],
     );
-  }
-
-  String atiende(int value)
-  {
-     if (value == 0)
-      return 'No atiende';
-    else
-    return 'Atiende';
   }
 
   Widget _crearBotonOrganizacion(String text, BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 80.0),
+      padding: EdgeInsets.symmetric(horizontal: 90.0),
       width: MediaQuery.of(context).size.width,
       child: RaisedButton.icon(
         shape:
@@ -557,7 +528,7 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
 
   Widget _crearBotonAtencion(String text, BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 80.0),
+      padding: EdgeInsets.symmetric(horizontal: 90.0),
       width: MediaQuery.of(context).size.width,
       child: RaisedButton.icon(
         shape:

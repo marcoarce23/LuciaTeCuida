@@ -5,21 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
 import 'package:mime_type/mime_type.dart';
-//import 'package:flutter_image_compress/flutter_image_compress.dart';
-
-enum SomeStatus {
-  getHosptalAdd,
-  element2,
-  element3,
-  element4,
-}
-
-const Map<SomeStatus, String> SomeStatusName = {
-  SomeStatus.getHosptalAdd: "Element 1",
-  SomeStatus.element2: "Element 2",
-  SomeStatus.element3: "Element 3",
-  SomeStatus.element4: "Element 4",
-};
 
 class Generic {
 
@@ -56,7 +41,7 @@ Future<Map<String, dynamic>> add(Entity objeto, String urlService) async {
       final url = urlService;
       print('url: $url');
       final response = await http.post(url, headers: {"Content-Type": "application/json"}, body: _body);
-      
+
       return dataMap(response);
   }
 

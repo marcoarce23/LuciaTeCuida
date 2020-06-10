@@ -168,7 +168,7 @@ Widget generaFloatButtonInformationEntity(BuildContext context) {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => InformationVoluntary(),
+            builder: (context) => EntityAllModule(),
           ));
     },
     child: FaIcon(FontAwesomeIcons.arrowLeft, ),
@@ -183,7 +183,7 @@ Widget generaFloatButtonInformationVoluntary(BuildContext context) {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => InformationVoluntary(),
+            builder: (context) => VoluntaryAllModule(),
           ));
     },
     child: FaIcon(FontAwesomeIcons.arrowLeft, ),

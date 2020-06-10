@@ -449,7 +449,7 @@ class DrawerCitizen extends StatelessWidget {
           // ),
           CustomListTile(
               Icons.edit_location,
-              'Registra Institución - Voluntario',
+              'Registra tu Institución',
               () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => EntityAllModule()),
@@ -492,7 +492,7 @@ class DrawerCitizen extends StatelessWidget {
               () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => InformationVoluntary()),
+                        builder: (context) => VoluntaryAllModule()),
                   )),
           CustomListTile(
               Icons.share,
@@ -591,7 +591,7 @@ class DrawerCitizen extends StatelessWidget {
               () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => InformationVoluntary()),
+                        builder: (context) => VoluntaryAllModule()),
                   )),
           CustomListTile(
               Icons.share,

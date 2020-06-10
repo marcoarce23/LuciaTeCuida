@@ -244,7 +244,6 @@ class _InputPhoneFieldState extends State<InputPhoneField> {
   }
 
   Widget getWidget() {
-    print('valor del token: ${widget.objectValue}');
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
       child: TextFormField(
@@ -329,8 +328,9 @@ class InputNumberField extends StatefulWidget {
   final FaIcon icon;
   final String hint;
   final bool valida;
+  final bool readOnly;
 
-  InputNumberField(this.icon, this.text, this.objectValue, this.hint, this.valida);
+  InputNumberField(this.icon, this.text, this.objectValue, this.hint, this.valida, this.readOnly);
 
   @override
   _InputNumberFieldState createState() => _InputNumberFieldState();
@@ -348,10 +348,11 @@ class _InputNumberFieldState extends State<InputNumberField> {
       child: TextFormField(
         initialValue: widget.objectValue,
         enableInteractiveSelection: true,
-       // enableSuggestions: true,
-       // autocorrect: true,
-     //   autovalidate: false,
+        enableSuggestions: true,
+        autocorrect: true,
+        autovalidate: true,
         maxLength: 6,
+        readOnly: widget.readOnly,
         toolbarOptions: ToolbarOptions(copy: true, cut:true, paste: true, selectAll: true),
         keyboardType: TextInputType.number,
         decoration: InputDecoration(

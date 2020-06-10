@@ -48,6 +48,7 @@ class _EntityModuleState extends State<EntityModule> {
   int valorInstitucion = 3;
   int valorDepartamento = 60;
   int _valorId = 0;
+    int estado = 0;
   bool bandera = false;
   bool esSucursal = false;
 

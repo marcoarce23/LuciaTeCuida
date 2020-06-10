@@ -71,17 +71,14 @@ int _valorId = 0;
 
     if (entityData != null) {
        entity = entityData;
-      _valorId = entityData.idCovAtencion;
-
-      // if(bandera ==false)
-      // {
-      //       valorInstitucion = entity.tipoInstitucion;
-      //       valorDepartamento = entity.ubicacion;
-      //       imagen = entity.foto;
-          
-      //       if (entity.esSucursal != 0) esSucursal = true;
-      //       else esSucursal = false;
-      // }
+       if(entity.lunes == 1) selectLunes = true; 
+     if(entity.martes == 1) selectMartes = true; 
+     if(entity.miercoles == 1) selectMiercoles = true; 
+     if(entity.jueves == 1) selectJueves= true; 
+     if(entity.viernes == 1) selectViernes = true; 
+     if(entity.sabado == 1) selectSabado = true; 
+     if(entity.domingo == 1) selectDomingo = true; 
+ 
     }
 
     return Scaffold(
@@ -132,23 +129,24 @@ int _valorId = 0;
         key: formKey,
         child: Column(
           children: <Widget>[
-            informacionProfesional(context),
-            SizedBox(height: 5.0),
-          contenedorTitulo(
+            SizedBox(height: 20.0),
+             contenedorTitulo(
               context,
               40.0,
               'REGISTRO DE ATENCIÓN',
               FaIcon(FontAwesomeIcons.calendarAlt, color: AppTheme.themeVino),
             ),
-       
+            SizedBox(height: 7.0),
+            informacionProfesional(context),
             SizedBox(height: 5.0),
+
             Container(
               width: size.width * 0.98,
               margin: EdgeInsets.symmetric(vertical: 0.0),
               decoration: contenedorCampos(),
               child: _crearCampos(),
             ),
-
+SizedBox(height: 15.0),
             Row(
               
               mainAxisAlignment: MainAxisAlignment.center,
@@ -160,6 +158,7 @@ int _valorId = 0;
                 ),
               ],
             ),
+            SizedBox(height: 15.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
