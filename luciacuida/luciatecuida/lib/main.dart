@@ -23,6 +23,7 @@ import 'package:luciatecuida/src/module/Citizen/Multimedia/MultimediaModule.dart
 import 'package:luciatecuida/src/module/Citizen/Voluntary/AtentionModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/EventModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/FoundVoluntaryModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Voluntary/InformationVoluntary.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/ListEventModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/ListVoluntary.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/VoluntaryModule.dart';
@@ -110,6 +111,9 @@ class _MyAppState extends State<MyApp> {
         'introScreen': (BuildContext context) => new IntroScreenModule(),
         'home': (BuildContext context) => new HomePageModule(),
         'mapAtencion': (BuildContext context) => new MapAdressModule(),
+
+        'voluntarioAll' : (BuildContext context) => new VoluntaryAllModule(),
+
         
         'lisVoluntary': (BuildContext context) => new ListVoluntaryModule(),
         'ListEventVoluntary': (BuildContext context) => new ListEventModule(),

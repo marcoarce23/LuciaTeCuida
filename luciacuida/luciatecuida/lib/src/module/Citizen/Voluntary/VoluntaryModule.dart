@@ -14,11 +14,9 @@ import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/Widget/InputField/InputFieldWidget.dart';
 import 'package:luciatecuida/src/Widget/Message/Message.dart';
-import 'package:luciatecuida/src/module/Citizen/Voluntary/AtentionModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/InformationVoluntary.dart';
-import 'package:luciatecuida/src/module/Citizen/Voluntary/ListVoluntary.dart';
-import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
+
 class VoluntaryModule extends StatefulWidget {
   static final String routeName = 'voluntary';
   const VoluntaryModule({Key key}) : super(key: key);
@@ -43,9 +41,11 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
   InputNumberField token;
 
   int _group = 1;
+  int estado = 0;
   int _selectedRadio = 1;
   bool _save = false;
   bool esCovid = false;
+    bool readOnly = false;
   File foto;
   String imagen =
       'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg';
@@ -58,7 +58,6 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
   final generic = new Generic();
   final prefs = new PreferensUser();
   Voluntary entity = new Voluntary();
- 
 
   @override
   void initState() {
@@ -70,13 +69,19 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
   Widget build(BuildContext context) {
     final Voluntary entityData = ModalRoute.of(context).settings.arguments;
 
-    if (entityData != null) entity = entityData;
+    if (entityData != null) {
+      entity = entityData;
+      estado = 1;
+      readOnly = true;
+    }
 
     return Scaffold(
       key: scaffoldKey,
       body: Stack(
         children: <Widget>[
+          
           fondoApp(),
+          
           crearFondo(context, imagen),
           _crearForm(context),
         ],
@@ -107,7 +112,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
 
   Widget _crearForm(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    
+
     return SingleChildScrollView(
       child: Form(
         key: formKey,
@@ -161,7 +166,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
         'Ingrese el token entregado:',
         '000000',
         'Ej: 023431',
-        true);
+        true, readOnly);
 
     // tipoEspecialidad = InputDropDown(
     //     FaIcon(FontAwesomeIcons.userMd, color: AppTheme.themeVino),
@@ -257,7 +262,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
                 groupValue: _group,
                 onChanged: (T) {
                   print(T);
-_selectedRadio = T;
+                  _selectedRadio = T;
                   setState(() {
                     _group = T;
                   });
@@ -269,7 +274,7 @@ _selectedRadio = T;
                 groupValue: _group,
                 onChanged: (T) {
                   print(T);
-_selectedRadio = T;
+                  _selectedRadio = T;
                   setState(() {
                     _group = T;
                   });
@@ -445,38 +450,35 @@ _selectedRadio = T;
 
     await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
 
-    if (result != "-1" || result != '-2') 
-    {
-        final list = result.split('|');
-        prefs.idInsitucion = list[0];
-        prefs.idPersonal = list[1];
+    if (result != "-1" || result != '-2') {
+      final list = result.split('|');
+      prefs.idInsitucion = list[0];
+      prefs.idPersonal = list[1];
 
-       // scaffoldKey.currentState.showSnackBar(messageOk("Se inserto correctamente"));
+      if (estado == 0) {
+        enviarNotificaciones(
+            urlGetToken + '2/${prefs.idInsitucion}',
+            'Voluntario',
+            'Nuevo voluntario',
+            nombre.objectValue,
+            'Bienvenido al Grupo',
+            prefs.nombreInstitucion);
+      }
 
-            
-        enviarNotificaciones(urlGetToken+'2/${prefs.idInsitucion}', 
-                            'Voluntario',
-                             'Nuevo voluntario', 
-                             nombre.objectValue, 
-                             'Bienvenido al Grupo',
-                            prefs.nombreInstitucion); 
+      Navigator.of(context).push(CupertinoPageRoute(
+          builder: (BuildContext context) => InformationVoluntary()));
 
-    Navigator.of(context).push(CupertinoPageRoute(
-            builder: (BuildContext context) => InformationVoluntary()));   
+      if (result == "-1")
+        scaffoldKey.currentState
+            .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
+      if (result == "2")
+        scaffoldKey.currentState
+            .showSnackBar(messageNOk("Error, TOKEN INVALIDO"));
 
-    if (result == "-1")
-      scaffoldKey.currentState
-          .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
-    if (result == "2")
-      scaffoldKey.currentState
-          .showSnackBar(messageNOk("Error, TOKEN INVALIDO"));
-
-    setState(() {
-      _save = false;
-    });
-
-    //Navigator.of(context).push(CupertinoPageRoute(builder: (BuildContext context) => SliderShowModule()));
-  }
+      setState(() {
+        _save = false;
+      });
+    }
   }
 
   _seleccionarFoto() async => _procesarImagen(ImageSource.gallery);

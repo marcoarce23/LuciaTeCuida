@@ -178,12 +178,12 @@ Widget crearFondo(BuildContext context, String imagen) {
         fondoModaro,
   
         Container(
-          padding: EdgeInsets.only(top: 10.0),
+          padding: EdgeInsets.only(top: 32.0),
           child: Column(
             children: <Widget>[
               Align(
                 child: RadialProgress(
-                  width: 4,
+                  width: 3,
                   goalCompleted: 0.90,
                   progressColor: AppTheme.themeVino,
                   progressBackgroundColor: Colors.white,
@@ -211,25 +211,6 @@ cabeceraInformativa() {
     ],
   ));
   
-  
-  /*RichText(
-    text: TextSpan(
-      text: 'Voluntario(a): ${prefs.nombreUsuario}',
-      style: kTitleCardStyle,
-      children: <TextSpan>[
-        TextSpan(
-          text: '\n' + 'Institución: ${prefs.nombreInstitucion}',
-          style: TextStyle(
-            color: Colors.black87,
-            fontWeight: FontWeight.w400,
-            fontSize: 16,
-          ),
-        ),
-      ],
-    ),
-  );
-*/
-
 }
 
 boxDecoration() {

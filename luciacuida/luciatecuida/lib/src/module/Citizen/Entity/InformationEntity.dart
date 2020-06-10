@@ -8,7 +8,6 @@ import 'package:luciatecuida/src/Util/SearchDelegate/DataSearch.dart';
 import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/ListEntityModule.dart';
-import 'package:luciatecuida/src/module/Citizen/Voluntary/InformationVoluntary.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 
@@ -27,8 +26,7 @@ class _EntityAllModuleState extends State<EntityAllModule> {
 
   final List<Widget> optionPage = [
      InformationEntityModule(),
-     InformationVoluntary(),
-     ListEntityModule()
+      ListEntityModule()
   ];
 
   void _onItemTapped(int index) {
@@ -52,7 +50,7 @@ class _EntityAllModuleState extends State<EntityAllModule> {
         toolbarOpacity: 0.7,
         iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
         elevation: 0,
-        title: Text("INSTITUCIONES - GRUPOS", style: kTitleAppBar),
+        title: Text("INSTITUCIONES", style: kTitleAppBar),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
@@ -68,22 +66,16 @@ class _EntityAllModuleState extends State<EntityAllModule> {
         items: [
           BottomNavigationBarItem(
               icon: FaIcon(
-                FontAwesomeIcons.userCircle,
+                FontAwesomeIcons.fileInvoice,
                 size: 25,
               ),
-              title: Text('Institucion')),
-          BottomNavigationBarItem(
+              title: Text('Registro')),
+                   BottomNavigationBarItem(
               icon: FaIcon(
-                FontAwesomeIcons.calendarCheck,
+                FontAwesomeIcons.school,
                 size: 25,
               ),
-              title: Text('Voluntariado')),
-          BottomNavigationBarItem(
-              icon: FaIcon(
-                FontAwesomeIcons.users,
-                size: 25,
-              ),
-              title: Text('Listado')),
+              title: Text('Organizaciones')),
         ],
         currentIndex: page,
         unselectedItemColor: Colors.black54,
@@ -250,28 +242,31 @@ Institucion entityItem;
                     ),
                     Text('INFORMACIÓN DE LA ORGANIZACIÓN',
                         style: kSigsTitleStyle),
-                    SizedBox(
-                      height: 7.0,
-                    ),
+                 
+                     divider(),
                     listEntity(context, entityItem),
-                    divider(),
+               SizedBox(
+                      height: 10.0,
+                    ),
                      Row(
                       children: <Widget>[
-                        _crearBotonOrganizacion('Editar Organización'),
+                        _crearBotonOrganizacion('Editar Datos'),
                       ],
                     ),
          
-                    divider(),
+                     SizedBox(
+                      height: 14.0,
+                    ),
                       Text('HORARIOS DE ATENCIÓN',
                         style: kSigsTitleStyle),
+                        divider(),
                     SizedBox(
                       height: 7.0,
                     ),
                     listEntityAtencion(context, entityItem),
-                    
-           
-                    divider(),
-                   
+                     SizedBox(
+                      height: 7.0,
+                    ),
                     _crearBotonAtencion('Editar Atención'),
                   ],
                 ),
@@ -491,7 +486,7 @@ Institucion entityItem;
                   child: Row(
                 children: <Widget>[
                   Icon(
-                    Icons.gamepad,
+                    Icons.calendar_today,
                     color: AppTheme.themeVino,
                     size: 15,
                   ),
@@ -504,7 +499,7 @@ Institucion entityItem;
               Row(
                 children: <Widget>[
                   Icon(
-                    Icons.place,
+                    Icons.calendar_today,
                     color: AppTheme.themeVino,
                     size: 15,
                   ),
@@ -518,7 +513,7 @@ Institucion entityItem;
                   child: Row(
                 children: <Widget>[
                   Icon(
-                    Icons.phone_android,
+                    Icons.calendar_today,
                     color: AppTheme.themeVino,
                     size: 15,
                   ),
@@ -531,7 +526,7 @@ Institucion entityItem;
               Row(
                 children: <Widget>[
                   Icon(
-                    Icons.store_mall_directory,
+                    Icons.calendar_today,
                     color: AppTheme.themeVino,
                     size: 15,
                   ),
@@ -544,7 +539,7 @@ Institucion entityItem;
               Row(
                 children: <Widget>[
                   Icon(
-                    Icons.store_mall_directory,
+                    Icons.calendar_today,
                     color: AppTheme.themeVino,
                     size: 15,
                   ),
@@ -557,7 +552,7 @@ Institucion entityItem;
               Row(
                 children: <Widget>[
                   Icon(
-                    Icons.store_mall_directory,
+                    Icons.calendar_today,
                     color: AppTheme.themeVino,
                     size: 15,
                   ),
@@ -570,7 +565,7 @@ Institucion entityItem;
               Row(
                 children: <Widget>[
                   Icon(
-                    Icons.store_mall_directory,
+                    Icons.calendar_today,
                     color: AppTheme.themeVino,
                     size: 15,
                   ),

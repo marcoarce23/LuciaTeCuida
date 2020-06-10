@@ -71,8 +71,8 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
             child: contenedorTitulo(
               context,
               40.0,
-              'LISTADO VOLUNTARIOS',
-              FaIcon(FontAwesomeIcons.handHoldingMedical,
+              'LISTADO DE VOLUNTARIOS',
+              FaIcon(FontAwesomeIcons.peopleArrows,
                   color: AppTheme.themeVino),
             ),
           ),
@@ -88,7 +88,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
   Widget futureItemsEntity(BuildContext context) {
     return FutureBuilder(
         future: generic.getAll(
-            new Voluntary(), urlGetVoluntario, primaryKeyGetVoluntario),
+            new Voluntary(), urlGetVoluntario + prefs.idInsitucion + '/-1', primaryKeyGetVoluntario),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:

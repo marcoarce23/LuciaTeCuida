@@ -78,17 +78,14 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
 
     if (entityData != null) {
        entity = entityData;
-      _valorId = entityData.idInstitucion;
-
-      // if(bandera ==false)
-      // {
-      //       valorInstitucion = entity.tipoInstitucion;
-      //       valorDepartamento = entity.ubicacion;
-      //       imagen = entity.foto;
-          
-      //       if (entity.esSucursal != 0) esSucursal = true;
-      //       else esSucursal = false;
-      // }
+       if(entity.lunes == 1) selectLunes = true; 
+     if(entity.martes == 1) selectMartes = true; 
+     if(entity.miercoles == 1) selectMiercoles = true; 
+     if(entity.jueves == 1) selectJueves= true; 
+     if(entity.viernes == 1) selectViernes = true; 
+     if(entity.sabado == 1) selectSabado = true; 
+     if(entity.domingo == 1) selectDomingo = true; 
+ 
     }
 
     return Scaffold(
