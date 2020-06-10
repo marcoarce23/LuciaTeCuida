@@ -452,6 +452,7 @@ class Voluntary extends Entity {
   String perCI;
   int idaExtension;
   int idaSexo;
+  int idaEstado;
   String perInformacionComplementaria;
   String perFacebbok;
   String perTwitter;
