@@ -67,12 +67,16 @@ class _CitizenEventsDetailModuleState extends State<CitizenEventsDetailModule> {
                   SizedBox(
                     width: 15,
                   ),
-                  Text(
-                    widget.eventosItem.fecha + ' ' + widget.eventosItem.hora,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                        color: Colors.black),
+                  Expanded(
+                    child: Text(
+                      widget.eventosItem.fecha + ' ' + widget.eventosItem.hora,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: Colors.black),
+                      softWrap: true,
+                      overflow: TextOverflow.clip,
+                    ),
                   ),
                 ],
               ),
@@ -88,12 +92,16 @@ class _CitizenEventsDetailModuleState extends State<CitizenEventsDetailModule> {
                   SizedBox(
                     width: 15,
                   ),
-                  Text(
-                    widget.eventosItem.titulo,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                        color: Colors.black),
+                  Expanded(
+                    child: Text(
+                      widget.eventosItem.titulo,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: Colors.black),
+                      softWrap: true,
+                      overflow: TextOverflow.clip,
+                    ),
                   ),
                 ],
               ),
@@ -109,12 +117,16 @@ class _CitizenEventsDetailModuleState extends State<CitizenEventsDetailModule> {
                   SizedBox(
                     width: 15,
                   ),
-                  Text(
-                    widget.eventosItem.expositor,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                        color: Colors.black),
+                  Expanded(
+                    child: Text(
+                      widget.eventosItem.expositor,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: Colors.black),
+                      softWrap: true,
+                      overflow: TextOverflow.clip,
+                    ),
                   ),
                 ],
               ),
@@ -130,12 +142,16 @@ class _CitizenEventsDetailModuleState extends State<CitizenEventsDetailModule> {
                   SizedBox(
                     width: 15,
                   ),
-                  Text(
-                    widget.eventosItem.objetivo,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                        color: Colors.black),
+                  Expanded(
+                    child: Text(
+                      widget.eventosItem.objetivo,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: Colors.black),
+                      softWrap: true,
+                      overflow: TextOverflow.clip,
+                    ),
                   ),
                 ],
               ),
@@ -151,12 +167,16 @@ class _CitizenEventsDetailModuleState extends State<CitizenEventsDetailModule> {
                   SizedBox(
                     width: 15,
                   ),
-                  Text(
-                    widget.eventosItem.dirigidoA,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                        color: Colors.black),
+                  Expanded(
+                    child: Text(
+                      widget.eventosItem.dirigidoA,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: Colors.black),
+                      softWrap: true,
+                      overflow: TextOverflow.clip,
+                    ),
                   ),
                 ],
               ),
@@ -172,12 +192,16 @@ class _CitizenEventsDetailModuleState extends State<CitizenEventsDetailModule> {
                   SizedBox(
                     width: 15,
                   ),
-                  Text(
-                    widget.eventosItem.ubicacion,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                        color: Colors.black),
+                  Expanded(
+                    child: Text(
+                      widget.eventosItem.ubicacion,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: Colors.black),
+                      softWrap: true,
+                      overflow: TextOverflow.clip,
+                    ),
                   ),
                 ],
               ),
@@ -186,7 +210,7 @@ class _CitizenEventsDetailModuleState extends State<CitizenEventsDetailModule> {
           ),
         ),
       ),
-       drawer: DrawerCitizen(),
+      drawer: DrawerCitizen(),
     );
   }
 }
