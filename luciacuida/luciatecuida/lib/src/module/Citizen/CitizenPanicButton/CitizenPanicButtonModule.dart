@@ -302,11 +302,11 @@ class _ButtonPanic extends State<ButtonPanic> {
                         ),
                         TextFormField(
                           style: TextStyle(color: Colors.black, fontSize: 13),
-                          textCapitalization: TextCapitalization.sentences,
-                          enableSuggestions: true,
+                         // textCapitalization: TextCapitalization.sentences,
+                          //enableSuggestions: true,
                           maxLength: 100,
-                          autocorrect: true,
-                          autovalidate: false,
+                          //autocorrect: true,
+                          //autovalidate: false,
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
                             focusColor: Colors.blue,
@@ -321,6 +321,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                           onChanged: (value) {
                             botonPanico.botDetalle = value;
                           },
+                           
                         ),
                         TextFormField(
                           keyboardType: TextInputType.phone,
@@ -374,25 +375,37 @@ class _ButtonPanic extends State<ButtonPanic> {
     botonPanico.idLogin = int.parse(prefs.userId);
     botonPanico.botCordenadalat = latLng.latitude;
     botonPanico.botCordenadalon = latLng.longitude;
-    final dataMap = generic.add(botonPanico, urlAddBotonPanico);
-    var result;
-    await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-    if (result == "0") {
-      Scaffold.of(context).showSnackBar(messageOk(
-          "Se registro correctamente, a las ${DateFormat("HH:mm").format(DateTime.now())} del ${DateFormat("dd/MM/yyyy").format(DateTime.now())}"));
 
-      enviarNotificaciones(
-          urlGetToken + '4/.',
-          'ayudaPersona',
-          'Solicitud de atención a una persona',
-          'Usuario: ${prefs.correoElectronico} solicita ayuda',
-          '',
-          '');
+    if (botonPanico.idaCatalogo == 1) {
+      Scaffold.of(context).showSnackBar(
+          messageWarning("Debe seleccionar el tipo de ayuda que necesita"));
+      return;
+    } else if (botonPanico.botDetalle == null ||
+        botonPanico.botTelefono == null) {
+      Scaffold.of(context).showSnackBar(messageWarning(
+          "Debe completar los campos los campos del detalle y teléfono"));
+      return;
     } else {
-      Scaffold.of(context)
-          .showSnackBar(messageNOk("Ocurrio un error inseperado"));
-    }
+      final dataMap = generic.add(botonPanico, urlAddBotonPanico);
+      var result;
+      await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+      if (result == "0") {
+        Scaffold.of(context).showSnackBar(messageOk(
+            "Se registro correctamente, a las ${DateFormat("HH:mm").format(DateTime.now())} del ${DateFormat("dd/MM/yyyy").format(DateTime.now())}"));
 
-    print('resultado:$result');
+        enviarNotificaciones(
+            urlGetToken + '4/.',
+            'ayudaPersona',
+            'Solicitud de atención a una persona',
+            'Usuario: ${prefs.correoElectronico} solicita ayuda',
+            '',
+            '');
+      } else {
+        Scaffold.of(context)
+            .showSnackBar(messageNOk("Ocurrio un error inseperado"));
+      }
+
+      print('resultado:$result');
+    }
   }
 }
