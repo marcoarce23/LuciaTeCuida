@@ -5,6 +5,7 @@ import 'package:luciatecuida/src/Model/Generic.dart';
 import 'package:luciatecuida/src/Model/PreferenceUser.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/Util/SearchDelegate/DataSearch.dart';
+import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/UtilModule/PageViewModule.dart';
 import 'CitizenImageDetailModule.dart';
@@ -41,7 +42,7 @@ class _CitizenMultimediaModuleState extends State<CitizenMultimediaModule> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-          child: Scaffold(
+      child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
           toolbarOpacity: 0.7,
@@ -58,6 +59,7 @@ class _CitizenMultimediaModuleState extends State<CitizenMultimediaModule> {
           ],
         ),
         drawer: DrawerCitizen(),
+        floatingActionButton: generaFloatbuttonHome(context),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.white,
           items: const <BottomNavigationBarItem>[
@@ -346,7 +348,7 @@ class PageDocuments extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               //campoBuscarPorInstitucionCategoria(),
- Center(
+              Center(
                 child: contenedorTitulo(
                   context,
                   40.0,
@@ -430,11 +432,15 @@ class PageDocuments extends StatelessWidget {
           trailing: Icon(Icons.navigate_next),
         ),
         onTap: () {
+          loadPDF(multimediaDocumento.mulEnlace);
+          print(multimediaDocumento.mulEnlace);
+/*
           Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => PageViewModule(
                     title: multimediaDocumento.mulTitulo,
                     selectedUrl: multimediaDocumento.mulEnlace,
                   )));
+                  */
         });
   }
 }
