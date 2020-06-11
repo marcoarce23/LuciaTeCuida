@@ -11,6 +11,7 @@ import 'package:luciatecuida/src/module/Citizen/CitizenEmergency/CitizenEmergenc
 import 'package:luciatecuida/src/module/Citizen/CitizenEvents/CitizenEventsModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenHelp/CitizenHelpModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenInstitution/CitizenListInstitucionModule.dart';
+import 'package:luciatecuida/src/module/Citizen/CitizenMultimedia/CitizenMultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenPanicButton/CitizenPanicButtonModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/EventEntityModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/InformationEntity.dart';
@@ -124,7 +125,7 @@ print('_selectedIndex $_selectedIndex');
       if (_selectedIndex == 2) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => ListMultimediaModule()),
+          MaterialPageRoute(builder: (context) => CitizenMultimediaModule()),
         );
       }
     });

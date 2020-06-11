@@ -469,7 +469,7 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
             ],
           ),
           SizedBox(
-            width: 35.0,
+            width: 20.0,
           ),
           Column(
             children: <Widget>[
@@ -496,7 +496,7 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
           Column(
             children: <Widget>[
               Text(
-                'Domingo : ${entityItem.jueves == 0 ? '(NO)' : '(SI)'}',
+                'Domingo : ${entityItem.domingo == 0 ? '(NO)' : '(SI)'}',
                 style: kTitleWelcomeStyle,
               ),
             ],

@@ -109,6 +109,7 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
             urlGetMultimedia + _selectedRadio.toString(),
             primaryKeyGetMultimedia),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
+           if (snapshot.hasData) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
               return Center(child: CircularProgressIndicator());
@@ -116,6 +117,9 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
             default:
               //mostramos los datos
               return listItemsEntity(context, snapshot);
+          }
+           } else {
+            return Center(child: CircularProgressIndicator());
           }
         });
   }

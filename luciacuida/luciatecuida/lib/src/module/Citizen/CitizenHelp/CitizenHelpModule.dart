@@ -362,7 +362,7 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
     registroAmigo.regTipoAPoyo = valorTipoAyuda;
     registroAmigo.latitud = latLng.latitude;
     registroAmigo.longitud = latLng.longitude;
-    registroAmigo.usuario = prefs.userId;
+    registroAmigo.usuario = prefs.correoElectronico;
 
     final dataMap = generic.add(registroAmigo, urlAddVoluntary);
     await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);

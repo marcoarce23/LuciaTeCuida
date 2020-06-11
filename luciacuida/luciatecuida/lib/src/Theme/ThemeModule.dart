@@ -71,6 +71,7 @@ final kSubtitleStyleBlack = TextStyle(
   color: Colors.black54,
   fontSize: 15.0,
   height: 1.2,
+  
 );
 
 final kSigTitleStyle = TextStyle(
@@ -157,7 +158,7 @@ Widget crearFondo(BuildContext context, String imagen) {
     final size = MediaQuery.of(context).size;
 
     final fondoModaro = Container(
-      height: size.height * 0.33,
+      height: size.height * 0.450,
       width: double.infinity,
       decoration: BoxDecoration(
       gradient: LinearGradient(
@@ -165,18 +166,23 @@ Widget crearFondo(BuildContext context, String imagen) {
    // end: Alignment.bottomRight,
    // stops: [1.0, 1.0, 1.0, 1.0],
     colors: [ Color.fromRGBO(174, 214, 241, 1.0),Color.fromRGBO(174, 214, 241, 1.0),Color.fromRGBO(174, 214, 241, 1.0),Color.fromRGBO(174, 214, 241, 1.0),
-//  Color.fromRGBO(168, 18, 8, 0.4),   
-//                     Color.fromRGBO(168, 18, 8, 0.5),
-//                 Color.fromRGBO(252, 252, 252, 0.6),
-                  
-//                 Color.fromRGBO(252, 252, 252, 0.4),
+
     ],
   )),
     );
+
     return Stack(
       children: <Widget>[
         fondoModaro,
   
+ImageOpaqueNetworkCustomize(
+                'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg',
+                AppTheme.themeVino,
+                Size(MediaQuery.of(context).size.width, 310),
+                0.58,
+                BoxFit.cover),
+
+
         Container(
           padding: EdgeInsets.only(top: 32.0),
           child: Column(

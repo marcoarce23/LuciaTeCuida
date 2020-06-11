@@ -75,6 +75,10 @@ callWhatsApp(int number) async {
       "*Lucia te cuida* :Un saludo cordial, le pido su colaboración...");
 }
 
+callWhatsAppText(int number, String text) async {
+  await FlutterOpenWhatsapp.sendSingleMessage("591" + number.toString(), text);
+}
+
 callWhatsAppAdvanced(String message) async {
   await FlutterOpenWhatsapp.sendSingleMessage('', message);
 }

@@ -115,7 +115,7 @@ Institucion entityItem;
    print('prefs.idInsitucion para crear: ${prefs.idInsitucion}');
    final size = MediaQuery.of(context).size;
 
-   if(prefs.idInsitucion == '-1')
+   if(prefs.idInsitucion == '0')
    {
      print('prefs.idInsituXXXX: ${prefs.idInsitucion}');
 

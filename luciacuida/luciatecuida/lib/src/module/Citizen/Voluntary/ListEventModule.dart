@@ -62,6 +62,7 @@ class _ListEventModuleState extends State<ListEventModule> {
             urlGetEvento + prefs.idInsitucion + '/${prefs.idPersonal}',
             primaryKeyGetEvento),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
+           if (snapshot.hasData) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
               return Center(child: CircularProgressIndicator());
@@ -69,6 +70,9 @@ class _ListEventModuleState extends State<ListEventModule> {
             default:
               //mostramos los datos
               return listItemsEntity(context, snapshot);
+          }
+           } else {
+            return Center(child: CircularProgressIndicator());
           }
         });
   }

@@ -60,6 +60,7 @@ class _ListEventEntityState extends State<ListEventEntity> {
         future: generic.getAll(new Evento(),
             urlGetEvento + prefs.idInsitucion + '/-1', primaryKeyGetEvento),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
               return Center(child: CircularProgressIndicator());
@@ -67,6 +68,9 @@ class _ListEventEntityState extends State<ListEventEntity> {
             default:
               //mostramos los datos
               return listItemsEntity(context, snapshot);
+          }
+           } else {
+            return Center(child: CircularProgressIndicator());
           }
         });
   }

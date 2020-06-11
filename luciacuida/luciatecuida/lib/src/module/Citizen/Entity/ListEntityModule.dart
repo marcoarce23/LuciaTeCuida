@@ -61,12 +61,16 @@ class _ListEntityModuleState extends State<ListEntityModule> {
         future: generic.getAll(
             new Institucion(), urlGetInstitucion + '-1', primaryKeyGetInsitucion),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
               return Center(child: CircularProgressIndicator());
               break;
             default:
               return listItemsEntity(context, snapshot);
+          }
+           } else {
+            return Center(child: CircularProgressIndicator());
           }
         });
   }

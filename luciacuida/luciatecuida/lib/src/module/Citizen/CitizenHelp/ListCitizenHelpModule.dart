@@ -63,12 +63,16 @@ class _ListCitizenHelpModuleState extends State<ListCitizenHelpModule> {
         future: generic.getAll(
             new RegistroAmigo(), urlGetDevuelveAyuda, primaryKeyGetAyudaAmigo),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-              return Center(child: CircularProgressIndicator());
-              break;
-            default:
-              return listItemsEntity(context, snapshot);
+          if (snapshot.hasData) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return Center(child: CircularProgressIndicator());
+                break;
+              default:
+                return listItemsEntity(context, snapshot);
+            }
+          } else {
+            return Center(child: CircularProgressIndicator());
           }
         });
   }

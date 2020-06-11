@@ -67,6 +67,8 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
 
   @override
   Widget build(BuildContext context) {
+     print('prefs.userId es: ${prefs.userId}');
+
     final Voluntary entityData = ModalRoute.of(context).settings.arguments;
 
     if (entityData != null) {
@@ -414,6 +416,8 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
   }
 
   _submit() async {
+    print('prefs.userId es: ${prefs.userId}');
+
     entity.foto = imagen;
 
     if (!formKey.currentState.validate()) return;
@@ -422,8 +426,6 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
     setState(() {
       _save = true;
     });
-
-    var now = DateTime.now().weekday;
 
     entity.idcovPersonal = 0;
     entity.idcovInstitucion = int.parse(token.objectValue);
@@ -463,10 +465,12 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
             nombre.objectValue,
             'Bienvenido al Grupo',
             prefs.nombreInstitucion);
+
+             Navigator.of(context).push(CupertinoPageRoute(
+          builder: (BuildContext context) => InformationVoluntary()));
       }
 
-      Navigator.of(context).push(CupertinoPageRoute(
-          builder: (BuildContext context) => InformationVoluntary()));
+     
 
       if (result == "-1")
         scaffoldKey.currentState

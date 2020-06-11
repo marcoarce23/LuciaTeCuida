@@ -112,7 +112,7 @@ class _SignUpModuleState extends State<SignUpModule> {
             prefs.correoElectronico = entity.correo;
             prefs.avatarImagen = entity.avatar;
             prefs.nombreInstitucion = entity.nombreInstitucion;
-            prefs.idInsitucion = '1029'; //entity.idInstitucion;
+            prefs.idInsitucion = entity.idInstitucion;
             prefs.idPersonal = entity.idPersonal;
             prefs.userId = entity.idUsuario;
 
@@ -160,7 +160,14 @@ class _SignUpModuleState extends State<SignUpModule> {
             entity.primeraVez = '-1';
 
             final dataMap = generic.add(entity, urlAddSignIn);
-            dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+            dataMap.then((respuesta) {
+              prefs.userId = respuesta["TIPO_RESPUESTA"];  
+              print('USER ID LOGIN  ${prefs.userId}');
+          
+            }
+            ); 
+            
+         
 
             print('SE SETEOOOO result de logeo $result');
             Navigator.push(
@@ -197,7 +204,7 @@ class _SignUpModuleState extends State<SignUpModule> {
                     ),
                   ),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 25.0),
+                    padding: EdgeInsets.symmetric(vertical: 10.0),
                     child: Column(
                       //      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
@@ -213,7 +220,6 @@ class _SignUpModuleState extends State<SignUpModule> {
                             ],
                           ),
                         ),
-                        //   SizedBox(height: 20.0),
                         _crearForm(context),
                       ],
                     ),
@@ -233,7 +239,7 @@ class _SignUpModuleState extends State<SignUpModule> {
           children: <Widget>[
             _dividerOr(),
             _gmailButton(),
-            _botonInvitado('Entrar como invitado'),
+            _botonInvitado('Modo Emergencia'),
             SizedBox(height: 10.0),
             Wrap(
               //  mainAxisAlignment: MainAxisAlignment.start,
@@ -338,7 +344,7 @@ class _SignUpModuleState extends State<SignUpModule> {
           text,
           style: kSubtitleStyle,
         ),
-        icon: FaIcon(FontAwesomeIcons.peopleArrows, color: Colors.white),
+        icon: FaIcon(FontAwesomeIcons.hospitalUser, color: Colors.white),
         onPressed: () {
           prefs.imei = entity.imei;
           prefs.nombreUsuario = 'Invitado';

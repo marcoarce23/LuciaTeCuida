@@ -72,8 +72,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
               context,
               40.0,
               'LISTADO DE VOLUNTARIOS',
-              FaIcon(FontAwesomeIcons.peopleArrows,
-                  color: AppTheme.themeVino),
+              FaIcon(FontAwesomeIcons.peopleArrows, color: AppTheme.themeVino),
             ),
           ),
           divider(),
@@ -88,14 +87,20 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
   Widget futureItemsEntity(BuildContext context) {
     return FutureBuilder(
         future: generic.getAll(
-            new Voluntary(), urlGetVoluntario + prefs.idInsitucion + '/-1', primaryKeyGetVoluntario),
+            new Voluntary(),
+            urlGetVoluntario1 + prefs.idInsitucion + '/-1',
+            primaryKeyGetVoluntario1),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-              return Center(child: CircularProgressIndicator());
-              break;
-            default:
-              return listItemsEntity(context, snapshot);
+          if (snapshot.hasData) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return Center(child: CircularProgressIndicator());
+                break;
+              default:
+                return listItemsEntity(context, snapshot);
+            }
+          } else {
+            return Center(child: CircularProgressIndicator());
           }
         });
   }
@@ -280,7 +285,8 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                         size: 25,
                       ),
                       onTap: () {
-                        callWhatsApp(int.parse(entityItem.perTelefono));
+                        callWhatsAppText(int.parse(entityItem.perTelefono),
+                        'Estimado *${entityItem.perNombrepersonal.trim()}*: \nSoy un _voluntario_ y deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosConTigo*.');
                       },
                     )
                   ],
