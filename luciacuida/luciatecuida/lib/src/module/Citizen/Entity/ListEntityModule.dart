@@ -246,7 +246,10 @@ class _ListEntityModuleState extends State<ListEntityModule> {
                       size: 25,
                     ),
                     onTap: () {
-                      callWhatsApp(int.parse(entityItem.telefono));
+                      callWhatsAppText(int.parse(entityItem.telefono), 
+                      
+                      'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.'
+                       );
                     },
                   )
                 ],

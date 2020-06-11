@@ -339,7 +339,7 @@ class _PageMedicinaState extends State<PageMedicina> {
                                 color: AppTheme.themeVino,
                               ),
                               onTap: () {
-                                callWhatsApp(solicitudAyuda.telefono);
+                                callWhatsAppText(solicitudAyuda.telefono,'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
                               },
                             ),
                           ],
@@ -692,7 +692,10 @@ class _PageCovidState extends State<PageCovid> {
                                 color: AppTheme.themeVino,
                               ),
                               onTap: () {
-                                callWhatsApp(solicitudAyuda.telefono);
+                                callWhatsAppText(solicitudAyuda.telefono,
+                                
+                                'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.'
+                                );
                               },
                             ),
                           ],
@@ -1018,7 +1021,7 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
                                 color: AppTheme.themeVino,
                               ),
                               onTap: () {
-                                callWhatsApp(solicitudAyuda.telefono);
+                                callWhatsAppText(solicitudAyuda.telefono,'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
                               },
                             ),
                           ],
@@ -1346,7 +1349,7 @@ class _PageBonosState extends State<PageBonos> {
                                 color: AppTheme.themeVino,
                               ),
                               onTap: () {
-                                callWhatsApp(solicitudAyuda.telefono);
+                                callWhatsAppText(solicitudAyuda.telefono,'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
                               },
                             ),
                           ],
@@ -1674,7 +1677,10 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
                                 color: AppTheme.themeVino,
                               ),
                               onTap: () {
-                                callWhatsApp(solicitudAyuda.telefono);
+                                callWhatsAppText(solicitudAyuda.telefono, 
+                                'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.'
+                                
+                                 );
                               },
                             ),
                           ],
