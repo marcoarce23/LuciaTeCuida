@@ -31,28 +31,30 @@ class _ListEntityModuleState extends State<ListEntityModule> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(height: 10.0),
-          Container(
-            width: size.width * 0.96,
-            margin: EdgeInsets.symmetric(vertical: 0.0),
-            child: contenedorTitulo(
-              context,
-              40.0,
-              'LISTADO DE LAS ORGANIZACIONES',
-              FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
+    return SafeArea(
+          child: Scaffold(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 10.0),
+            Container(
+              width: size.width * 0.96,
+              margin: EdgeInsets.symmetric(vertical: 0.0),
+              child: contenedorTitulo(
+                context,
+                40.0,
+                'LISTADO DE LAS ORGANIZACIONES',
+                FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
+              ),
             ),
-          ),
-          divider(),
-          
-          futureItemsEntity(context),
-          copyRigth(),
-        ],
+            divider(),
+            
+            futureItemsEntity(context),
+            copyRigth(),
+          ],
+        ),
+        floatingActionButton: generaFloatbuttonHome(context),
       ),
-      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 
