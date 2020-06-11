@@ -165,21 +165,11 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
   Widget _crearCampos() {
     token = InputNumberField(
         FaIcon(FontAwesomeIcons.barcode, color: AppTheme.themeVino),
-        'Ingrese el token entregado:',
-        '000000',
+        'Ingrese solo números para el token:',
+        '0000',
         'Ej: 023431',
         true, readOnly);
 
-    // tipoEspecialidad = InputDropDown(
-    //     FaIcon(FontAwesomeIcons.userMd, color: AppTheme.themeVino),
-    //     'Especialidad:',
-    //     '11',
-    //     urlGetClasificador + '10');
-    // expedido = InputDropDown(
-    //     FaIcon(FontAwesomeIcons.sortDown, color: AppTheme.themeVino),
-    //     'Expedido:',
-    //     '60',
-    //     urlGetClasificador + '53');
     nombre = InputTextField(
         FaIcon(FontAwesomeIcons.userFriends, color: AppTheme.themeVino),
         'Nombre completo voluntario:',

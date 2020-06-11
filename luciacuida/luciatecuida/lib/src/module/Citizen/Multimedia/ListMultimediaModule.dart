@@ -22,7 +22,7 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
   final generic = new Generic();
   final prefs = new PreferensUser();
   var result;
-  int _group = 1;
+  int _group = 0;
   int _selectedRadio = 74;
 
   @override
@@ -59,40 +59,40 @@ print('valor selecteradio es: $_selectedRadio');
                 SizedBox(width: 5.0),
                 Text('Imágenes'),
                 Radio(
-                  value: 74,
+                  value: 0,
                   groupValue: _group,
                   onChanged: (T) {
-                    print(T);
-                    _selectedRadio = T;
+              
+                    _selectedRadio = 74;
                     setState(() {
                       _group = T;
                     });
                   },
                 ),
-                // Text('Videos'),
-                // Radio(
-                //   value: 75,
-                //   groupValue: _group,
-                //   onChanged: (T) {
-                //     print(T);
-                //     _selectedRadio = T;
-                //     setState(() {
-                //       _group = T;
-                //     });
-                //   },
-                // ),
-                // Text('Documentos'),
-                // Radio(
-                //   value: 76,
-                //   groupValue: _group,
-                //   onChanged: (T) {
-                //     print(T);
-                //     _selectedRadio = T;
-                //     setState(() {
-                //       _group = T;
-                //     });
-                //   },
-                // ),
+                Text('Videos'),
+                Radio(
+                  value: 1,
+                  groupValue: _group,
+                  onChanged: (T) {
+               
+                    _selectedRadio = 75;
+                    setState(() {
+                      _group = T;
+                    });
+                  },
+                ),
+                Text('Documentos'),
+                Radio(
+                  value: 2,
+                  groupValue: _group,
+                  onChanged: (T) {
+                   
+                    _selectedRadio = 76;
+                    setState(() {
+                      _group = T;
+                    });
+                  },
+                ),
               ],
             ),
             divider(),

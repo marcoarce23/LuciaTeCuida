@@ -59,17 +59,6 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
               // stops: [0.1, 0.4, 0.7, 0.9],
               colors: [
                 Colors.white, Colors.white, Colors.white, Colors.white,
-                // Color.fromRGBO(237, 237, 236, 1.0),
-                // Color.fromRGBO(252, 252, 252, 1.0),
-                // Color.fromRGBO(251, 251, 251, 1.0),
-                // Color.fromRGBO(239, 240, 239, 1.0),
-                //     Color.fromRGBO(245, 173, 53, 1.0),
-                //     Color.fromRGBO(236, 220, 109, 1.0),
-                //     Color.fromRGBO(70, 191, 167 , 1.0),
-                // Color(0xFF3594DD),
-                // Color(0xFF4563DB),
-                // Color(0xFF5036D5),
-                // Color(0xFF5B16D0),
               ],
             ),
           ),
@@ -109,272 +98,314 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                       });
                     },
                     children: <Widget>[
-                      Flexible(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Center(
-                              child: Image(
-                                image: AssetImage(
-                                  'assets/image/onboarding0.png',
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Center(
+                                child: Image(
+                                  image: AssetImage(
+                                    'assets/image/onboarding0.png',
+                                  ),
+                                  height: 150.0,
+                                  width: 150.0,
                                 ),
-                                height: 150.0,
-                                width: 150.0,
                               ),
-                            ),
-                            Text(
-                              'Lucia Te Cuida, es una APP social para tod@s.',
-                              style: kTitleStyleBlack,
-                              textAlign: TextAlign.center,
-                              softWrap: true,
-                              overflow: TextOverflow.clip,
-                            ),
-                            SizedBox(height: 15.0),
-                            Expanded(
-                              child: Column(
-                                children: <Widget>[
-                                  Row(
-                                    children: <Widget>[
-                                      SizedBox(width: 11.0),
-                                      FaIcon(
-                                          FontAwesomeIcons.handHoldingMedical,
-                                          color: AppTheme.themeVino,
-                                          size: 35.0),
-                                      SizedBox(width: 11.0),
-                                      Expanded(
-                                        child: Text(
-                                          'Para todas las personas que requieren de una ayuda médica gratuita.',
+                              Text(
+                                'Estamos contigo, es una APP social para los voluntarios.',
+                                style: kTitleStyleBlack,
+                                textAlign: TextAlign.center,
+                                softWrap: true,
+                                overflow: TextOverflow.clip,
+                              ),
+                              SizedBox(height: 15.0),
+                              Expanded(
+                                child: Column(
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(width: 11.0),
+                                        FaIcon(
+                                            FontAwesomeIcons.handHoldingMedical,
+                                            color: AppTheme.themeVino,
+                                            size: 35.0),
+                                        SizedBox(width: 11.0),
+
+                                        Expanded(
+                                          child: Text(
+                                            'Para todas las personas que requieren de una ayuda médica gratuita.',
+                                            style: kSubtitleStyleBlack,
+                                            softWrap: true,
+                                            overflow: TextOverflow.clip,
+                                            textAlign: TextAlign.justify,
+                                          ),
+                                        ),
+
+                                      ],
+                                    ),
+                                    SizedBox(height: 10.0),
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(width: 11.0),
+                                        FaIcon(FontAwesomeIcons.handHoldingHeart,
+                                            color: AppTheme.themeVino,
+                                            size: 35.0),
+                                        SizedBox(width: 11.0),
+                                        Expanded(
+                                          child: Text(
+                                          'Personas que requieren de apoyo espiritual, de motivacional y emocional.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
                                           overflow: TextOverflow.clip,
                                           textAlign: TextAlign.justify,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 10.0),
-                                  Row(
-                                    children: <Widget>[
-                                      FaIcon(FontAwesomeIcons.handHoldingHeart,
-                                          color: AppTheme.themeVino,
-                                          size: 35.0),
-                                      SizedBox(width: 11.0),
-                                      Text(
-                                        'Personas que requieren de apoyo espiritual,\nde motivacional y emocional.',
-                                        style: kSubtitleStyleBlack,
-                                        softWrap: true,
-                                        overflow: TextOverflow.clip,
-                                        textAlign: TextAlign.justify,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 11.0),
-                                  Row(
-                                    children: <Widget>[
-                                      FaIcon(FontAwesomeIcons.handHoldingWater,
-                                          color: AppTheme.themeVino,
-                                          size: 35.0),
-                                      SizedBox(width: 10.0),
-                                      Text(
-                                        'Es una aplicación tan humana que pre_\ntende dar una esperanza a las personas.',
-                                        style: kSubtitleStyleBlack,
-                                        softWrap: true,
-                                        overflow: TextOverflow.clip,
-                                        textAlign: TextAlign.justify,
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 11.0),
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(width: 11.0),
+                                        FaIcon(FontAwesomeIcons.handHoldingWater,
+                                            color: AppTheme.themeVino,
+                                            size: 35.0),
+                                        SizedBox(width: 10.0),
+                                        Expanded(
+                                          child: Text(
+                                          'Es una aplicación tan humana que pretende dar una esperanza a las personas.',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                      Flexible(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Center(
-                              child: Image(
-                                image: AssetImage(
-                                  'assets/image/onboarding2.png',
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Center(
+                                child: Image(
+                                  image: AssetImage(
+                                    'assets/image/onboarding2.png',
+                                  ),
+                                  height: 150.0,
+                                  width: 150.0,
                                 ),
-                                height: 150.0,
-                                width: 150.0,
                               ),
-                            ),
-                            SizedBox(height: 10.0),
-                            Text(
-                              'QUIENES FORMAN PARTE ?',
-                              style: kTitleStyleBlack,
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(height: 13.0),
-                            Expanded(
-                              child: Column(
-                                children: <Widget>[
-                                  Row(
-                                    children: <Widget>[
-                                      FaIcon(FontAwesomeIcons.peopleCarry,
-                                          color: AppTheme.themeVino,
-                                          size: 35.0),
-                                      SizedBox(width: 10.0),
-                                      Text(
-                                        'Grupo de voluntarios comprometidos\n y dedicados a brindarte un apoyo.',
-                                        style: kSubtitleStyleBlack,
-                                        softWrap: true,
-                                        overflow: TextOverflow.clip,
-                                        textAlign: TextAlign.justify,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 13.0),
-                                  Row(
-                                    children: <Widget>[
-                                      FaIcon(FontAwesomeIcons.peopleArrows,
-                                          color: AppTheme.themeVino,
-                                          size: 35.0),
-                                      SizedBox(width: 13.0),
-                                      Text(
-                                        'Personas que nos preocupa tu salud,\n nos preocupa tu bienestar.',
-                                        style: kSubtitleStyleBlack,
-                                        softWrap: true,
-                                        overflow: TextOverflow.clip,
-                                        textAlign: TextAlign.justify,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 13.0),
-                                  Row(
-                                    children: <Widget>[
-                                      FaIcon(FontAwesomeIcons.diagnoses,
-                                          color: AppTheme.themeVino,
-                                          size: 35.0),
-                                      SizedBox(width: 10.0),
-                                      Text(
-                                        'Grupo de ciudadanos bolivianos que \n convecidos con nuestro trabajo\npodemos hacer a diferencia en tu vida.',
-                                        style: kSubtitleStyleBlack,
-                                        softWrap: true,
-                                        overflow: TextOverflow.clip,
-                                        textAlign: TextAlign.justify,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 13.0),
-                                  Row(
-                                    children: <Widget>[
-                                      FaIcon(FontAwesomeIcons.diagnoses,
-                                          color: AppTheme.themeVino,
-                                          size: 35.0),
-                                      SizedBox(width: 10.0),
-                                      Text(
-                                        'COnisderar que el traajo de la gente es de \n voluntariado en funcion........',
-                                        style: kSubtitleStyleBlack,
-                                        softWrap: true,
-                                        overflow: TextOverflow.clip,
-                                        textAlign: TextAlign.justify,
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                              SizedBox(height: 10.0),
+                              Text(
+                                'QUIENES FORMAN PARTE ?',
+                                style: kTitleStyleBlack,
+                                textAlign: TextAlign.center,
                               ),
-                            ),
-                          ],
+                              SizedBox(height: 13.0),
+                              Expanded(
+                                child: Column(
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(width: 10.0),
+                                        FaIcon(FontAwesomeIcons.peopleCarry,
+                                            color: AppTheme.themeVino,
+                                            size: 35.0),
+                                        SizedBox(width: 10.0),
+                                        Expanded(
+                                          child: Text(
+                                          'Grupo de voluntarios comprometidos y dedicados a brindarte un apoyo.',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 13.0),
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(width: 10.0),
+                                        FaIcon(FontAwesomeIcons.peopleArrows,
+                                            color: AppTheme.themeVino,
+                                            size: 35.0),
+                                        SizedBox(width: 13.0),
+                                        Expanded(
+                                          child: Text(
+                                          'Personas que nos preocupa tu salud, nos preocupa tu bienestar.',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 13.0),
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(width: 10.0),
+                                        FaIcon(FontAwesomeIcons.diagnoses,
+                                            color: AppTheme.themeVino,
+                                            size: 35.0),
+                                        SizedBox(width: 10.0),
+                                        Expanded(
+                                          child: Text(
+                                          'Grupo de ciudadanos bolivianos que convecidos con nuestro trabajo podemos hacer a diferencia en tu vida.',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 13.0),
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(width: 10.0),
+                                        FaIcon(FontAwesomeIcons.diagnoses,
+                                            color: AppTheme.themeVino,
+                                            size: 35.0),
+                                        SizedBox(width: 10.0),
+                                        Expanded(
+                                          child: Text(
+                                          'COnisderar que el traajo de la gente es de voluntariado en funcion........',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      Flexible(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Center(
-                              child: Image(
-                                image: AssetImage(
-                                  'assets/image/onboarding1.png',
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Center(
+                                child: Image(
+                                  image: AssetImage(
+                                    'assets/image/onboarding1.png',
+                                  ),
+                                  height: 150.0,
+                                  width: 150.0,
                                 ),
-                                height: 150.0,
-                                width: 150.0,
                               ),
-                            ),
-                            SizedBox(height: 5.0),
-                            Column(
-                              children: <Widget>[
-                                Text(
-                                  'SOLO TE RECOMENDAMOS.',
-                                  style: kTitleStyleBlack,
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 12.0),
-                            Expanded(
-                              child: Column(
+                              SizedBox(height: 5.0),
+                              Column(
                                 children: <Widget>[
-                                  Row(
-                                    children: <Widget>[
-                                      FaIcon(FontAwesomeIcons.firstAid,
-                                          color: AppTheme.themeVino,
-                                          size: 30.0),
-                                      SizedBox(width: 10.0),
-                                      Text(
-                                        'Hacer buen uso de la aplicación, el tiempo \ntuyo y el nuestro es valioso.',
-                                        style: kSubtitleStyleBlack,
-                                        softWrap: true,
-                                        overflow: TextOverflow.clip,
-                                        textAlign: TextAlign.justify,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 12.0),
-                                  Row(
-                                    children: <Widget>[
-                                      FaIcon(FontAwesomeIcons.listUl,
-                                          color: AppTheme.themeVino,
-                                          size: 30.0),
-                                      SizedBox(width: 10.0),
-                                      Text(
-                                        'Brindar información real y veridica a las \npersonas con las que tengas un contacto \na traves de la aplicación LuciaTeCuida.',
-                                        style: kSubtitleStyleBlack,
-                                        softWrap: true,
-                                        overflow: TextOverflow.clip,
-                                        textAlign: TextAlign.justify,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 12.0),
-                                  Row(
-                                    children: <Widget>[
-                                      FaIcon(FontAwesomeIcons.users,
-                                          color: AppTheme.themeVino,
-                                          size: 30.0),
-                                      SizedBox(width: 10.0),
-                                      Text(
-                                        'Difunde el uso de la aplicación con tus \namig@s, familiares y personas para que \npodamos llegar a mas personas.',
-                                        style: kSubtitleStyleBlack,
-                                        softWrap: true,
-                                        overflow: TextOverflow.clip,
-                                        textAlign: TextAlign.justify,
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: <Widget>[
-                                      FaIcon(FontAwesomeIcons.diagnoses,
-                                          color: AppTheme.themeVino,
-                                          size: 35.0),
-                                      SizedBox(width: 10.0),
-                                      Text(
-                                        'COnisderar que el traajo de la gente es de \nvoluntariado en funcion........',
-                                        style: kSubtitleStyleBlack,
-                                        softWrap: true,
-                                        overflow: TextOverflow.clip,
-                                        textAlign: TextAlign.justify,
-                                      ),
-                                    ],
+                                  Text(
+                                    'SOLO TE RECOMENDAMOS.',
+                                    style: kTitleStyleBlack,
+                                    textAlign: TextAlign.center,
                                   ),
                                 ],
                               ),
-                            ),
-                          ],
+                              SizedBox(height: 12.0),
+                              Expanded(
+                                child: Column(
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(width: 10.0),
+                                        FaIcon(FontAwesomeIcons.firstAid,
+                                            color: AppTheme.themeVino,
+                                            size: 30.0),
+                                        SizedBox(width: 10.0),
+                                        Expanded(
+                                          child: Text(
+                                          'Hacer buen uso de la aplicación, el tiempo tuyo y el nuestro es valioso.',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 12.0),
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(width: 10.0),
+                                        FaIcon(FontAwesomeIcons.listUl,
+                                            color: AppTheme.themeVino,
+                                            size: 30.0),
+                                        SizedBox(width: 10.0),
+                                        Expanded(
+                                          child: Text(
+                                          'Brindar información real y veridica a las personas con las que tengas un contacto a traves de la aplicación LuciaTeCuida.',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 12.0),
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(width: 10.0),
+                                        FaIcon(FontAwesomeIcons.users,
+                                            color: AppTheme.themeVino,
+                                            size: 30.0),
+                                        SizedBox(width: 10.0),
+                                        Expanded(
+                                          child: Text(
+                                          'Difunde el uso de la aplicación con tus amig@s, familiares y personas para que podamos llegar a mas personas.',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 12.0),
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(width: 10.0),
+                                        FaIcon(FontAwesomeIcons.diagnoses,
+                                            color: AppTheme.themeVino,
+                                            size: 35.0),
+                                        SizedBox(width: 10.0),
+                                        Expanded(
+                                          child: Text(
+                                          'COnisderar que el trabajo de la gente es de voluntariado en funcion........',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
