@@ -60,7 +60,6 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-<<<<<<< HEAD
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,32 +73,14 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
               40.0,
               'LISTADO DE VOLUNTARIOS',
               FaIcon(FontAwesomeIcons.peopleArrows, color: AppTheme.themeVino),
-=======
-    return SafeArea(
-          child: Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(height: 10.0),
-            Container(
-              width: size.width * 0.96,
-              margin: EdgeInsets.symmetric(vertical: 0.0),
-              child: contenedorTitulo(
-                context,
-                40.0,
-                'LISTADO DE VOLUNTARIOS',
-                FaIcon(FontAwesomeIcons.peopleArrows,
-                    color: AppTheme.themeVino),
-              ),
->>>>>>> developer
             ),
-            divider(),
-            futureItemsEntity(context),
-            copyRigth(),
-          ],
-        ),
-        floatingActionButton: generaFloatbuttonHome(context),
+          ),
+          divider(),
+          futureItemsEntity(context),
+          copyRigth(),
+        ],
       ),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 

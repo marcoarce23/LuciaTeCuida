@@ -35,6 +35,7 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
+print('valor selecteradio es: $_selectedRadio');
     return SafeArea(
           child: Scaffold(
         body: Column(
@@ -68,30 +69,30 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
                     });
                   },
                 ),
-                Text('Videos'),
-                Radio(
-                  value: 75,
-                  groupValue: _group,
-                  onChanged: (T) {
-                    print(T);
-                    _selectedRadio = T;
-                    setState(() {
-                      _group = T;
-                    });
-                  },
-                ),
-                Text('Documentos'),
-                Radio(
-                  value: 76,
-                  groupValue: _group,
-                  onChanged: (T) {
-                    print(T);
-                    _selectedRadio = T;
-                    setState(() {
-                      _group = T;
-                    });
-                  },
-                ),
+                // Text('Videos'),
+                // Radio(
+                //   value: 75,
+                //   groupValue: _group,
+                //   onChanged: (T) {
+                //     print(T);
+                //     _selectedRadio = T;
+                //     setState(() {
+                //       _group = T;
+                //     });
+                //   },
+                // ),
+                // Text('Documentos'),
+                // Radio(
+                //   value: 76,
+                //   groupValue: _group,
+                //   onChanged: (T) {
+                //     print(T);
+                //     _selectedRadio = T;
+                //     setState(() {
+                //       _group = T;
+                //     });
+                //   },
+                // ),
               ],
             ),
             divider(),

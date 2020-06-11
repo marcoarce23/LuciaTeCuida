@@ -229,7 +229,6 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
         entity.perPaginaWeb,
         'Ingrese su página web/bloc',
         false);
-    //sexo = InputSexo();
 
     return FadeInLeft(
       duration: Duration(milliseconds: 250),
@@ -251,7 +250,6 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
               _crearExpedido(),
             ],
           ),
-          //    _crearSexo(),
 
           Row(
             children: <Widget>[
@@ -263,7 +261,6 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
                 value: 0,
                 groupValue: _group,
                 onChanged: (T) {
-                  print(T);
                   _selectedRadio = T;
                   setState(() {
                     _group = T;
@@ -275,7 +272,6 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
                 value: 1,
                 groupValue: _group,
                 onChanged: (T) {
-                  print(T);
                   _selectedRadio = T;
                   setState(() {
                     _group = T;

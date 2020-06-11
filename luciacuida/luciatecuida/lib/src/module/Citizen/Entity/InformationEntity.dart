@@ -113,14 +113,9 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
     print('prefs.idInsitucion para crear: ${prefs.idInsitucion}');
     final size = MediaQuery.of(context).size;
 
-<<<<<<< HEAD
    if(prefs.idInsitucion == '0')
    {
      print('prefs.idInsituXXXX: ${prefs.idInsitucion}');
-=======
-    if (prefs.idInsitucion == '-1') {
-      print('prefs.idInsituXXXX: ${prefs.idInsitucion}');
->>>>>>> developer
 
       return Scaffold(
         body: Column(

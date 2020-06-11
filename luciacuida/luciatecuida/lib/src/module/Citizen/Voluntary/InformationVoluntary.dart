@@ -7,7 +7,7 @@ import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/Util/SearchDelegate/DataSearch.dart';
 import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
-import 'package:luciatecuida/src/module/Citizen/Entity/ListEntityModule.dart';
+import 'package:luciatecuida/src/module/Citizen/Entity/ListEntityConsult.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/ListVoluntary.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
@@ -28,7 +28,7 @@ class _VoluntaryAllModuleState extends State<VoluntaryAllModule> {
   final List<Widget> optionPage = [
     InformationVoluntary(),
     ListVoluntaryModule(),
-    ListEntityModule()
+    ListEntityConsult()
   ];
 
   void _onItemTapped(int index) {
@@ -69,19 +69,19 @@ class _VoluntaryAllModuleState extends State<VoluntaryAllModule> {
           items: [
             BottomNavigationBarItem(
                 icon: FaIcon(
-                  FontAwesomeIcons.userCircle,
+                  FontAwesomeIcons.userMd,
                   size: 25,
                 ),
                 title: Text('Registro')),
             BottomNavigationBarItem(
                 icon: FaIcon(
-                  FontAwesomeIcons.calendarCheck,
+                  FontAwesomeIcons.users,
                   size: 25,
                 ),
                 title: Text('Voluntariados')),
             BottomNavigationBarItem(
                 icon: FaIcon(
-                  FontAwesomeIcons.users,
+                  FontAwesomeIcons.school,
                   size: 25,
                 ),
                 title: Text('Organizaciones')),
@@ -103,6 +103,7 @@ class InformationVoluntary extends StatefulWidget {
 }
 
 class _InformationVoluntaryState extends State<InformationVoluntary> {
+
   final generic = new Generic();
   final prefs = new PreferensUser();
   var result;
