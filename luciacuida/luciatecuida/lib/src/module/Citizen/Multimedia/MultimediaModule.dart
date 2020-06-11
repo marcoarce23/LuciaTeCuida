@@ -493,10 +493,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
   }
 
   _submit() async {
-    if (valor == 0) entity.mulEnlace = imagen;
-    if (valor == 1) entity.mulEnlace = imagenPDF;
-    if (valor == 2) entity.mulEnlace = imagenVideo;
-
+  
     if (!formKey.currentState.validate()) return;
 
     formKey.currentState.save();
@@ -512,9 +509,9 @@ class _MultimediaModuleState extends State<MultimediaModule> {
     entity.mulResumen = resumen.objectValue;
     entity.detFechaFin = _inputFieldDateFinController.text;
     entity.detFechaInicio = _inputFieldDateInicioController.text;
-    entity.usuario = prefs.userId;
+    entity.usuario = prefs.correoElectronico;
 
-    print('IMPRIMIR VALORES TIP MATERIAL: $valorTipoMaterial');
+    print('IMPRIMIR ENTITY MULENLACE: ${entity.mulEnlace}');
     final dataMap = generic.add(entity, urlAddMultimedia);
 
     await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
@@ -537,8 +534,6 @@ class _MultimediaModuleState extends State<MultimediaModule> {
     setState(() {
       _save = false;
     });
-
-    //Navigator.of(context).push(CupertinoPageRoute(builder: (BuildContext context) => SliderShowModule()));
   }
 
   // _seleccionarVideo() async => _procesarVideo(VideoSource.gallery);
@@ -568,9 +563,9 @@ class _MultimediaModuleState extends State<MultimediaModule> {
       imagen = await generic.subirImagenFile(file);
     }
     setState(() {
-      entity.mulEnlace = imagenPDF;
+      entity.mulEnlace = imagen;
       print(
-          'cargadodefecto PDF ${entity.mulEnlace} y enlace defecto $imagenPDF');
+          'cargadodefecto PDF ${entity.mulEnlace} y enlace defecto $imagenPDF y el valor de pdf es: $imagen');
     });
   }
 
@@ -581,7 +576,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
       imagen = await generic.subirVideo(file);
     }
     setState(() {
-      entity.mulEnlace = imagenVideo;
+      entity.mulEnlace = imagen;
       print('cargadod e iagen ${entity.mulEnlace}');
     });
   }

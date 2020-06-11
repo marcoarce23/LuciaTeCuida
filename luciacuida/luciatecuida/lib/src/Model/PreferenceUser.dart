@@ -93,6 +93,14 @@ class PreferensUser
       _prefs.setString('idPersonal', value);
     }
 
+ get idDepartamento {
+      return _prefs.getInt('idDepartamento') ?? 60;
+    }
+
+    set idDepartamento( int value ) {
+      _prefs.setInt('idDepartamento', value);
+    }
+
     // GET y SET de la última página
     get ultimaPagina {
       return _prefs.getString('ultimaPagina') ?? 'login';

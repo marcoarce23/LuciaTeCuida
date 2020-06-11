@@ -16,7 +16,6 @@ import 'package:luciatecuida/src/module/Citizen/CitizenPanicButton/CitizenPanicB
 import 'package:luciatecuida/src/module/Citizen/Entity/EventEntityModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/InformationEntity.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/ListDetailModule.dart';
-import 'package:luciatecuida/src/module/Citizen/Multimedia/ListMultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/MultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/EventModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/FoundVoluntaryModule.dart';
@@ -41,6 +40,7 @@ class _HomePageModuleState extends State<HomePageModule> {
   final prefs = new PreferensUser();
   final generic = new Generic();
   int _selectedIndex = 0;
+int valorExpedido = 60;
 
   List<Widget> _widgetOptions = <Widget>[
     Text(""),
@@ -93,7 +93,8 @@ class _HomePageModuleState extends State<HomePageModule> {
                     children: <Widget>[],
                   ),
                 ),
-                SizedBox(height: 20.0),
+            
+                 _crearExpedido(),
                 _botonesRedondeados()
               ],
             ),
@@ -129,6 +130,51 @@ print('_selectedIndex $_selectedIndex');
         );
       }
     });
+  }
+
+ List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> lista = new List();
+
+    for (var i = 0; i < snapshot.data.length; i++) {
+      GetClasificador item = snapshot.data[i];
+      lista.add(DropdownMenuItem(
+        child: Text(item.nombre),
+        value: item.id.toString(),
+      ));
+    }
+    return lista;
+  }
+
+Widget _crearExpedido() {
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(),
+                urlGetClasificador + '53', primaryKeyGetClasifidor),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 10.0),
+                    Text('DEPARTAMENTOS HABILITADOS:'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.angleDown,
+                          color: AppTheme.themeVino),
+                      value: valorExpedido.toString(), //valor
+                      items: getDropDown(snapshot),
+                      onChanged: (value) {
+                        setState(() {
+                          valorExpedido = int.parse(value);
+                          prefs.idDepartamento = value;
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
   }
 
   Widget _bottomNavigationBar(BuildContext context) {

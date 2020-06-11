@@ -160,27 +160,27 @@ class _ButtonPanic extends State<ButtonPanic> {
               //color: Colors.white
             ),
             //color: Colors.red,
-            margin: EdgeInsets.only(top: 5, left: 15, right: 15),
+            margin: EdgeInsets.only(top: 5, left: 7, right: 7),
             child: Padding(
                 padding: const EdgeInsets.only(
                   top: 0.0,
                 ),
                 child: ListTile(
                   title: Container(
-                    padding: EdgeInsets.only(top: 1, left: 5),
+                    padding: EdgeInsets.only(top: 1, left: 2),
                     //height: 20.0,
                     child: Column(
                       children: <Widget>[
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Text(" Selecciona el tipo de consulta y/o ayuda:",
+                            Text("Selecciona el tipo de ayuda",
                                 style: textStyle),
                           ],
                         ),
                         Row(
                           children: <Widget>[
-                            Text('Consulta Covid',
+                            Text('Consulta COVID',
                                 style: TextStyle(fontSize: 12)),
                             Radio(
                               value: 65,
@@ -193,7 +193,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                                 });
                               },
                             ),
-                            Text('Medicmentos-alimentos',
+                            Text('Medicamentos-alimentos',
                                 style: TextStyle(fontSize: 12)),
                             Radio(
                               value: 66,
@@ -223,7 +223,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                                 });
                               },
                             ),
-                            Text('Bonos-Otros servicios',
+                            Text('Bonos - otros servicios',
                                 style: TextStyle(fontSize: 12)),
                             Radio(
                               value: 77,
