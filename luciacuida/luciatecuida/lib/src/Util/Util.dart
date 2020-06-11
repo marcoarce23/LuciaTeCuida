@@ -163,10 +163,7 @@ Widget generaFloatbuttonHome(BuildContext context) {
   );
 }
 
-
-
 Widget generaFloatButtonInformationEntity(BuildContext context) {
-
   return FloatingActionButton(
     onPressed: () {
       Navigator.push(
