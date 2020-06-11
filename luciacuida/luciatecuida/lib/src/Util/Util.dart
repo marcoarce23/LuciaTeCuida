@@ -151,16 +151,19 @@ loadPDF(String path) async {
 Widget generaFloatbuttonHome(BuildContext context) {
 
   return FloatingActionButton(
-    onPressed: () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HomePageModule(),
-          ));
-    },
-    child: FaIcon(FontAwesomeIcons.home),
-    backgroundColor: AppTheme.themeVino,
-  );
+  onPressed: () {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomePageModule(),
+        ));
+  },
+  child: FaIcon(FontAwesomeIcons.home),
+  backgroundColor: AppTheme.themeVino,
+  
+  
+  
+    );
 }
 
 Widget generaFloatButtonInformationEntity(BuildContext context) {

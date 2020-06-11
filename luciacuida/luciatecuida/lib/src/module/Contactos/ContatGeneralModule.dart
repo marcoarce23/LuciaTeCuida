@@ -6,6 +6,7 @@ import 'package:luciatecuida/src/Model/PreferenceUser.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
+import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 import 'package:luciatecuida/src/module/UtilModule/PageViewModule.dart';
 
@@ -18,7 +19,7 @@ class ContactGeneralModule extends StatefulWidget {
 }
 
 class _ContactGeneralModuleState extends State<ContactGeneralModule> {
- final generic = new Generic();
+  final generic = new Generic();
   final prefs = new PreferensUser();
   var result;
 
@@ -47,8 +48,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
                   context,
                   40.0,
                   'NÚMEROS PILOTOS DE URGENCIA',
-                  FaIcon(FontAwesomeIcons.headset,
-                      color: AppTheme.themeVino),
+                  FaIcon(FontAwesomeIcons.headset, color: AppTheme.themeVino),
                 ),
               ),
               divider(),
@@ -58,6 +58,8 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
           ),
         ),
       ),
+      drawer: DrawerCitizen(),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 
@@ -78,7 +80,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
 
   Widget listItemsEntity(BuildContext context, AsyncSnapshot snapshot) {
     final size = MediaQuery.of(context).size;
-   print('tamanio: ${snapshot.hasData}');
+    print('tamanio: ${snapshot.hasData}');
     return Expanded(
       child: ListView.builder(
         shrinkWrap: true,
@@ -113,7 +115,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
   }
 
   Widget listEntity(BuildContext context, Emergencia entityItem) {
-     print('tamanio: ${entityItem.correo}');
+    print('tamanio: ${entityItem.correo}');
     return Row(
       children: <Widget>[
         Column(
@@ -166,61 +168,65 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
             //     ],
             //   ),
             // ),
-          //  Text('Puedes contactactarte por aca',
-          //             style: TextStyle(fontSize: 15, color: Colors.black87),
-          //           ),
-            SizedBox(height:7.0),
-           
-              Wrap(
-                children: <Widget>[
-                     InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.phoneVolume,
-                      color: AppTheme.themeVino,
-                      size: 25,
-                    ),
-                    onTap: () {
-                      callNumber(entityItem.telefono);
-                    },
+            //  Text('Puedes contactactarte por aca',
+            //             style: TextStyle(fontSize: 15, color: Colors.black87),
+            //           ),
+            SizedBox(height: 7.0),
+
+            Wrap(
+              children: <Widget>[
+                InkWell(
+                  child: FaIcon(
+                    FontAwesomeIcons.phoneVolume,
+                    color: AppTheme.themeVino,
+                    size: 25,
                   ),
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.comment,
-                      color: AppTheme.themeVino,
-                      size: 25,
-                    ),
-                    onTap: () {
-                      sendSMS(entityItem.telefono);
-                    },
+                  onTap: () {
+                    callNumber(entityItem.telefono);
+                  },
+                ),
+                SizedBox(width: 20.0),
+                InkWell(
+                  child: FaIcon(
+                    FontAwesomeIcons.comment,
+                    color: AppTheme.themeVino,
+                    size: 25,
                   ),
-                 
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.whatsapp,
-                      color: AppTheme.themeVino,
-                      size: 25,
-                    ),
-                    onTap: () {
-                      callWhatsApp(entityItem.telefono);
-                    },
-                  ), SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.internetExplorer,
-                      color: AppTheme.themeVino,
-                      size: 25,
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => PageViewModule(title:'Pagina emergencia', selectedUrl: entityItem.correo,)),
-                  );
-                    },
+                  onTap: () {
+                    sendSMS(entityItem.telefono);
+                  },
+                ),
+                SizedBox(width: 20.0),
+                InkWell(
+                  child: FaIcon(
+                    FontAwesomeIcons.whatsapp,
+                    color: AppTheme.themeVino,
+                    size: 25,
                   ),
-                ],
-              ),
+                  onTap: () {
+                    callWhatsApp(entityItem.telefono);
+                  },
+                ),
+                SizedBox(width: 20.0),
+                InkWell(
+                  child: FaIcon(
+                    FontAwesomeIcons.internetExplorer,
+                    color: AppTheme.themeVino,
+                    size: 25,
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => PageViewModule(
+                                title: 'Pagina emergencia',
+                                selectedUrl: entityItem.correo,
+                              )),
+                    );
+                  },
+                ),
+              ],
+            ),
           ],
         ),
       ],

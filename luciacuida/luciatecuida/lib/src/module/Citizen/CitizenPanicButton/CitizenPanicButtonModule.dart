@@ -45,8 +45,8 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
             //backgroundColor: AppTheme.themeColorNaranja,
           ),
           drawer: DrawerCitizen(),
-//         bottomNavigationBar: _bottomNavigationBar(context)),
-
+         floatingActionButton: generaFloatbuttonHome(context),         
+    
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[

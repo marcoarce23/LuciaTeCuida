@@ -43,7 +43,9 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
 
             //backgroundColor: AppTheme.themeColorNaranja,
           ),
-          drawer: DrawerCitizen(),
+          drawer: DrawerCitizen(),  
+         floatingActionButton: generaFloatbuttonHome(context),        
+
           body: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
