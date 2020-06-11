@@ -224,11 +224,12 @@ class _ListCitizenHelpModuleState extends State<ListCitizenHelpModule> {
                         color: AppTheme.themeVino,
                         size: 15,
                       ),
-                      RichText(
-                        overflow: TextOverflow.clip,
-                        text: TextSpan(
-                          text: 'Ubicacion: ${entityItem.regUbicacion}',
-                          style: TextStyle(fontSize: 12, color: Colors.black),
+                      Expanded(
+                        child: Text(
+                          'Ubicació:  ${entityItem.regUbicacion}',
+                          style: kSubTitleCardStyle,
+                          softWrap: true,
+                          overflow: TextOverflow.clip,
                         ),
                       ),
                     ],

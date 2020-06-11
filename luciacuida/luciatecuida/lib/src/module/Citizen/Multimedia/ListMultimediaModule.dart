@@ -35,70 +35,72 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(height: 10.0),
-          Container(
-            width: size.width * 0.96,
-            margin: EdgeInsets.symmetric(vertical: 0.0),
-            child: contenedorTitulo(
-              context,
-              40.0,
-              'LISTADO MATERIAL MULTIMEDIA',
-              FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
+    return SafeArea(
+          child: Scaffold(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 10.0),
+            Container(
+              width: size.width * 0.96,
+              margin: EdgeInsets.symmetric(vertical: 0.0),
+              child: contenedorTitulo(
+                context,
+                40.0,
+                'LISTADO MATERIAL MULTIMEDIA',
+                FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
+              ),
             ),
-          ),
-          Row(
-            children: <Widget>[
-              SizedBox(width: 10.0),
-              //  FaIcon(FontAwesomeIcons.male, color: AppTheme.themeVino),
-              SizedBox(width: 5.0),
-              Text('Imágenes'),
-              Radio(
-                value: 74,
-                groupValue: _group,
-                onChanged: (T) {
-                  print(T);
-                  _selectedRadio = T;
-                  setState(() {
-                    _group = T;
-                  });
-                },
-              ),
-              Text('Videos'),
-              Radio(
-                value: 75,
-                groupValue: _group,
-                onChanged: (T) {
-                  print(T);
-                  _selectedRadio = T;
-                  setState(() {
-                    _group = T;
-                  });
-                },
-              ),
-              Text('Documentos'),
-              Radio(
-                value: 76,
-                groupValue: _group,
-                onChanged: (T) {
-                  print(T);
-                  _selectedRadio = T;
-                  setState(() {
-                    _group = T;
-                  });
-                },
-              ),
-            ],
-          ),
-          divider(),
-          futureItemsEntity(context),
-          copyRigth(),
-        ],
+            Row(
+              children: <Widget>[
+                SizedBox(width: 10.0),
+                //  FaIcon(FontAwesomeIcons.male, color: AppTheme.themeVino),
+                SizedBox(width: 5.0),
+                Text('Imágenes'),
+                Radio(
+                  value: 74,
+                  groupValue: _group,
+                  onChanged: (T) {
+                    print(T);
+                    _selectedRadio = T;
+                    setState(() {
+                      _group = T;
+                    });
+                  },
+                ),
+                Text('Videos'),
+                Radio(
+                  value: 75,
+                  groupValue: _group,
+                  onChanged: (T) {
+                    print(T);
+                    _selectedRadio = T;
+                    setState(() {
+                      _group = T;
+                    });
+                  },
+                ),
+                Text('Documentos'),
+                Radio(
+                  value: 76,
+                  groupValue: _group,
+                  onChanged: (T) {
+                    print(T);
+                    _selectedRadio = T;
+                    setState(() {
+                      _group = T;
+                    });
+                  },
+                ),
+              ],
+            ),
+            divider(),
+            futureItemsEntity(context),
+            copyRigth(),
+          ],
+        ),
+        floatingActionButton: generaFloatbuttonHome(context),
       ),
-      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 

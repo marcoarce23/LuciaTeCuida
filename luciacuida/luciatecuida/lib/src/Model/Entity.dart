@@ -125,7 +125,7 @@ class Institucion extends Entity {
   int sabado;
   int domingo;
 
- String lunesH;
+  String lunesH;
   String martesH;
   String miercolesH;
   String juevesH;
@@ -133,43 +133,42 @@ class Institucion extends Entity {
   String sabadoH;
   String domingoH;
 
-  
-  Institucion(
-      {this.idInstitucion,
-      this.foto,
-      this.insLat,
-      this.insLng,
-      this.tipoInstitucion,
-      this.token,
-      this.nombreInstitucion,
-      this.ubicacion,
-      this.direccion,
-      this.telefono,
-      this.perInformacionComp,
-      this.perFacebbok,
-      this.perTwitter,
-      this.perPaginaWeb,
-      this.perYouTube,
-      this.perCorreoElectronico,
-      this.usuario,
-      this.desInsitucion,
-      this.esSucursal,
-      this.desUbicacion,
-      this.lunes,
-   this.martes,
-   this.miercoles,
-   this.jueves,
-   this.viernes,
-   this.sabado,
-   this.domingo,
+  Institucion({
+    this.idInstitucion,
+    this.foto,
+    this.insLat,
+    this.insLng,
+    this.tipoInstitucion,
+    this.token,
+    this.nombreInstitucion,
+    this.ubicacion,
+    this.direccion,
+    this.telefono,
+    this.perInformacionComp,
+    this.perFacebbok,
+    this.perTwitter,
+    this.perPaginaWeb,
+    this.perYouTube,
+    this.perCorreoElectronico,
+    this.usuario,
+    this.desInsitucion,
+    this.esSucursal,
+    this.desUbicacion,
+    this.lunes,
+    this.martes,
+    this.miercoles,
+    this.jueves,
+    this.viernes,
+    this.sabado,
+    this.domingo,
     this.lunesH,
-   this.martesH,
-   this.miercolesH,
-   this.juevesH,
-   this.viernesH,
-   this.sabadoH,
-   this.domingoH,  
- });
+    this.martesH,
+    this.miercolesH,
+    this.juevesH,
+    this.viernesH,
+    this.sabadoH,
+    this.domingoH,
+  });
 
   fromJson(Map<String, dynamic> json) => new Institucion(
         idInstitucion: json["IDCOV_INSTITUCION"],
@@ -229,20 +228,20 @@ class Institucion extends Entity {
         "DES_INSTITUCION": desInsitucion,
         "DES_UBICACION": desUbicacion,
         "IDA_ESTADOCOVD": esSucursal,
-         "INS_LUNES" :lunes,
-        "INS_MARTES" : martes,
-        "INS_MIERCOLES":miercoles,
-        "INS_JUEVES":jueves,
-       "INS_VIERNES":viernes,
-        "INS_SABADO":sabado,
-        "INS_DOMINGO":domingo,
-       "INS_LUNES_HORARIO":lunesH,
-       "INS_MARTES_HORARIO":martesH,
-       "INS_MIERCOLES_HORARIO":miercolesH,
-        "INS_JUEVES_HORARIO":juevesH,
+        "INS_LUNES": lunes,
+        "INS_MARTES": martes,
+        "INS_MIERCOLES": miercoles,
+        "INS_JUEVES": jueves,
+        "INS_VIERNES": viernes,
+        "INS_SABADO": sabado,
+        "INS_DOMINGO": domingo,
+        "INS_LUNES_HORARIO": lunesH,
+        "INS_MARTES_HORARIO": martesH,
+        "INS_MIERCOLES_HORARIO": miercolesH,
+        "INS_JUEVES_HORARIO": juevesH,
         "INS_VIERNES_HORARIO": viernesH,
-        "INS_SABADO_HORARIO":sabadoH,
-        "INS_DOMINGO_HORARIO" : domingoH,
+        "INS_SABADO_HORARIO": sabadoH,
+        "INS_DOMINGO_HORARIO": domingoH,
       };
 }
 
@@ -453,6 +452,7 @@ class Voluntary extends Entity {
   String perCI;
   int idaExtension;
   int idaSexo;
+  int idaEstado;
   String perInformacionComplementaria;
   String perFacebbok;
   String perTwitter;
@@ -461,7 +461,7 @@ class Voluntary extends Entity {
   String desEspecialidad;
   String desExpedido;
   String usuario;
- int lunes;
+  int lunes;
   int martes;
   int miercoles;
   int jueves;
@@ -470,24 +470,25 @@ class Voluntary extends Entity {
   int domingo;
   int idCovAtencion;
 
-  Voluntary(
-      {this.idcovPersonal = 0,
-      this.foto,
-      this.idcovInstitucion,
-      this.idcovLogin,
-      this.idaTipopersonal,
-      this.perNombrepersonal,
-      this.perApellido,
-      this.perCorreo,
-      this.perTelefono,
-      this.perAyudacovid,
-      this.perCI,
-      this.idaExtension,
-      this.idaSexo,
-      this.perInformacionComplementaria,
-      this.perFacebbok,
-      this.perTwitter,
-      //  this.perYouTube,
+  Voluntary({
+    this.idcovPersonal = 0,
+    this.foto,
+    this.idcovInstitucion,
+    this.idcovLogin,
+    this.idaTipopersonal,
+    this.perNombrepersonal,
+    this.perApellido,
+    this.perCorreo,
+    this.perTelefono,
+    this.perAyudacovid,
+    this.perCI,
+    this.idaExtension,
+    this.idaSexo,
+    this.perInformacionComplementaria,
+    this.perFacebbok,
+    this.perTwitter,
+    this.idaEstado,
+    //  this.perYouTube,
 
       this.perPaginaWeb,
       this.desInstitucion,
@@ -547,6 +548,9 @@ class Voluntary extends Entity {
         "PER_CORREO": perCorreo,
         "PER_TELEFONO": perTelefono,
         "PER_AYUDACOVID": perAyudacovid,
+
+        "IDA_ESTADOVOLUNTARIO": idaEstado,
+
         "PER_CI": perCI,
         "IDA_EXTENCIONCI": idaExtension,
         "IDA_SEXO": idaSexo,

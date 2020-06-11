@@ -40,45 +40,47 @@ class _CitizenMultimediaModuleState extends State<CitizenMultimediaModule> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        toolbarOpacity: 0.7,
-        iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
-        elevation: 0,
-        title: Text("MATERIAL MULTIMEDIA", style: kTitleAppBar),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {
-              showSearch(context: context, delegate: DataSearchMultimedia());
-            },
-          )
-        ],
+    return SafeArea(
+          child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          toolbarOpacity: 0.7,
+          iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
+          elevation: 0,
+          title: Text("MATERIAL MULTIMEDIA", style: kTitleAppBar),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                showSearch(context: context, delegate: DataSearchMultimedia());
+              },
+            )
+          ],
+        ),
+        drawer: DrawerCitizen(),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.image),
+              title: Text('Imagenes'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.videocam),
+              title: Text('Videos'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.picture_as_pdf),
+              title: Text('Documentos'),
+            ),
+          ],
+          currentIndex: page,
+          unselectedItemColor: Colors.black54,
+          selectedItemColor: AppTheme.themeVino,
+          onTap: _onItemTapped,
+        ),
+        body: SafeArea(child: optionPage[page]),
       ),
-      drawer: DrawerCitizen(),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.image),
-            title: Text('Imagenes'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.videocam),
-            title: Text('Videos'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.picture_as_pdf),
-            title: Text('Documentos'),
-          ),
-        ],
-        currentIndex: page,
-        unselectedItemColor: Colors.black54,
-        selectedItemColor: AppTheme.themeVino,
-        onTap: _onItemTapped,
-      ),
-      body: optionPage[page],
     );
   }
 }

@@ -25,8 +25,8 @@ class _EntityAllModuleState extends State<EntityAllModule> {
   int page = 0;
 
   final List<Widget> optionPage = [
-     InformationEntityModule(),
-      ListEntityModule()
+    InformationEntityModule(),
+    ListEntityModule()
   ];
 
   void _onItemTapped(int index) {
@@ -70,7 +70,7 @@ class _EntityAllModuleState extends State<EntityAllModule> {
                 size: 25,
               ),
               title: Text('Registro')),
-                   BottomNavigationBarItem(
+          BottomNavigationBarItem(
               icon: FaIcon(
                 FontAwesomeIcons.school,
                 size: 25,
@@ -83,7 +83,6 @@ class _EntityAllModuleState extends State<EntityAllModule> {
         onTap: _onItemTapped,
       ),
       body: optionPage[page],
-      
     );
   }
 }
@@ -101,7 +100,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
   final prefs = new PreferensUser();
   var result;
   String _esCovid = 'NO';
-Institucion entityItem;
+  Institucion entityItem;
 
   @override
   void initState() {
@@ -111,76 +110,74 @@ Institucion entityItem;
 
   @override
   Widget build(BuildContext context) {
-   
-   print('prefs.idInsitucion para crear: ${prefs.idInsitucion}');
-   final size = MediaQuery.of(context).size;
+    print('prefs.idInsitucion para crear: ${prefs.idInsitucion}');
+    final size = MediaQuery.of(context).size;
 
+<<<<<<< HEAD
    if(prefs.idInsitucion == '0')
    {
      print('prefs.idInsituXXXX: ${prefs.idInsitucion}');
+=======
+    if (prefs.idInsitucion == '-1') {
+      print('prefs.idInsituXXXX: ${prefs.idInsitucion}');
+>>>>>>> developer
 
-       return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(height: 5.0),
-          Container(
-            width: size.width * 0.96,
-            margin: EdgeInsets.symmetric(vertical: 0.0),
-            child: contenedorTitulo(
-              context,
-              40.0,
-              'INFORMACIÓN DE TU ORGANIZACIÓN',
-              FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
+      return Scaffold(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 5.0),
+            Container(
+              width: size.width * 0.96,
+              margin: EdgeInsets.symmetric(vertical: 0.0),
+              child: contenedorTitulo(
+                context,
+                40.0,
+                'INFORMACIÓN DE TU ORGANIZACIÓN',
+                FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
+              ),
             ),
-          ),
-          Row(
-                      children: <Widget>[
-                        _crearBotonOrganizacion('Crear Organización'),
-                      ],
-                    ),
-          copyRigth(),
-        ],
-      ),
-      floatingActionButton: generaFloatbuttonHome(context),
-    );
-   }
-    
-   else
-   {
-    print('prefs.idInsiTArget: ${prefs.idInsitucion}');
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(height: 5.0),
-          Container(
-            width: size.width * 0.96,
-            margin: EdgeInsets.symmetric(vertical: 0.0),
-            child: contenedorTitulo(
-              context,
-              40.0,
-              'INFORMACIÓN DE TU ORGANIZACIÓN',
-              FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
+            Row(
+              children: <Widget>[
+                _crearBotonOrganizacion('Crear Organización'),
+              ],
             ),
-          ),
-          divider(),
-          futureItemsEntity(context),
-          copyRigth(),
-        ],
-      ),
-      floatingActionButton: generaFloatbuttonHome(context),
-    );
-   }
-
-
+            copyRigth(),
+          ],
+        ),
+        floatingActionButton: generaFloatbuttonHome(context),
+      );
+    } else {
+      print('prefs.idInsiTArget: ${prefs.idInsitucion}');
+      return Scaffold(
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(height: 5.0),
+            Container(
+              width: size.width * 0.96,
+              margin: EdgeInsets.symmetric(vertical: 0.0),
+              child: contenedorTitulo(
+                context,
+                40.0,
+                'INFORMACIÓN DE TU ORGANIZACIÓN',
+                FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
+              ),
+            ),
+            divider(),
+            futureItemsEntity(context),
+            copyRigth(),
+          ],
+        ),
+        floatingActionButton: generaFloatbuttonHome(context),
+      );
+    }
   }
 
   Widget futureItemsEntity(BuildContext context) {
-    
     return FutureBuilder(
-        future: generic.getAll(new Institucion(), urlGetInstitucion + prefs.idInsitucion,
-            primaryKeyGetInsitucion),
+        future: generic.getAll(new Institucion(),
+            urlGetInstitucion + prefs.idInsitucion, primaryKeyGetInsitucion),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
@@ -202,7 +199,7 @@ Institucion entityItem;
         physics: ClampingScrollPhysics(),
         itemCount: snapshot.data.length,
         itemBuilder: (context, index) {
-           entityItem = snapshot.data[index];
+          entityItem = snapshot.data[index];
 
           return Column(
             children: <Widget>[
@@ -212,59 +209,50 @@ Institucion entityItem;
                 //  decoration: boxDecorationList(),
                 child: Column(
                   children: <Widget>[
-                   
-                    
-        Container(
-          padding: EdgeInsets.only(top: 3.0),
-          child: Column(
-            children: <Widget>[
-              Align(
-                child: RadialProgress(
-                  width: 4,
-                  goalCompleted: 0.90,
-                  progressColor: AppTheme.themeVino,
-                  progressBackgroundColor: Colors.white,
-                  child: Container(
-                      child: ImageOvalNetwork(
-                          imageNetworkUrl: entityItem.foto,
-                          sizeImage: Size.fromWidth(90))
+                    Container(
+                      padding: EdgeInsets.only(top: 3.0),
+                      child: Column(
+                        children: <Widget>[
+                          Align(
+                            child: RadialProgress(
+                              width: 4,
+                              goalCompleted: 0.90,
+                              progressColor: AppTheme.themeVino,
+                              progressBackgroundColor: Colors.white,
+                              child: Container(
+                                  child: ImageOvalNetwork(
+                                      imageNetworkUrl: entityItem.foto,
+                                      sizeImage: Size.fromWidth(90))),
+                            ),
                           ),
-                ),
-              ),
-            ],
-          ),
-        ),
-
-
-
+                        ],
+                      ),
+                    ),
                     SizedBox(
                       height: 5.0,
                     ),
                     Text('INFORMACIÓN DE LA ORGANIZACIÓN',
                         style: kSigsTitleStyle),
-                 
-                     divider(),
+                    divider(),
                     listEntity(context, entityItem),
-               SizedBox(
+                    SizedBox(
                       height: 10.0,
                     ),
-                     Row(
+                    Row(
                       children: <Widget>[
                         _crearBotonOrganizacion('Editar Datos'),
                       ],
                     ),
-         
-                     SizedBox(
+                    SizedBox(
                       height: 14.0,
                     ),
-                      Text('HORARIOS DE ATENCIÓN',
-                        style: kSigsTitleStyle),
-                        divider(),
+                    Text('HORARIOS DE ATENCIÓN', style: kSigsTitleStyle),
+                    divider(),
                     SizedBox(
                       height: 7.0,
                     ),
                     listEntityAtencion(context, entityItem),
-                     SizedBox(
+                    SizedBox(
                       height: 7.0,
                     ),
                     _crearBotonAtencion('Editar Atención'),
@@ -279,195 +267,242 @@ Institucion entityItem;
   }
 
   Widget listEntity(BuildContext context, Institucion entityItem) {
-    if(entityItem.esSucursal != 0)
-      _esCovid = 'SI';
+    if (entityItem.esSucursal != 0) _esCovid = 'SI';
 
     return Container(
       child: Row(
         children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                  child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.gamepad,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    '${entityItem.nombreInstitucion} ',
-                    style: kSubTitleCardStyle,
-                  ),
-                ],
-              )),
-
-               Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Token (Código de Seguridad) : ${entityItem.token}',
-                    style: kSubTitleCardStyle,
-                  )
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Departamento: ${entityItem.desUbicacion}',
-                    style: kSubTitleCardStyle,
-                  )
-                ],
-              ),
-
-               Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Sucursal: $_esCovid',
-                    style: kSubTitleCardStyle,
-                  )
-                ],
-              ),
-
-               Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Tipo de Institución: ${entityItem.desInsitucion}',
-                    style: kSubTitleCardStyle,
-                  )
-                ],
-              ),
-               Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Teléfono : ${entityItem.telefono}',
-                    style: kSubTitleCardStyle,
-                  )
-                ],
-              ),
-               Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Ubicación: ${entityItem.direccion}',
-                    style: kSubTitleCardStyle,
-                  )
-                ],
-              ),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Correo Electrónico: ${entityItem.perCorreoElectronico}',
-                    style: kSubTitleCardStyle,
-                  )
-                ],
-              ),
-               Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Página Web: ${entityItem.perPaginaWeb}',
-                    style: kSubTitleCardStyle,
-                  )
-                ],
-              ),
-               Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Facebook: ${entityItem.perFacebbok}',
-                    style: kSubTitleCardStyle,
-                  )
-                ],
-              ),
-               Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Twitter: ${entityItem.perTwitter}',
-                    style: kSubTitleCardStyle,
-                  )
-                ],
-              ),
-               Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Youtube: ${entityItem.perYouTube}',
-                    style: kSubTitleCardStyle,
-                  )
-                ],
-              ),
-               Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Información Complementaria:',
-                    style: kSubTitleCardStyle,
-                  ),
-                  Text(
-                    '${entityItem.perInformacionComp}',
-                    style: kSubTitleCardStyle,
-                  )
-                ],
-              ),
-              
-            ],
+          Flexible(
+                      child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                    child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.gamepad,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Text(
+                      '${entityItem.nombreInstitucion} ',
+                      style: kSubTitleCardStyle,
+                         overflow: TextOverflow.clip,
+                          softWrap: true,
+                    ),
+                  ],
+                )),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                                        child: Text(
+                        'Token (Código de Seguridad) : ${entityItem.token}',
+                        style: kSubTitleCardStyle,
+                           overflow: TextOverflow.clip,
+                            softWrap: true,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                                        child: Text(
+                        'Departamento: ${entityItem.desUbicacion}',
+                        style: kSubTitleCardStyle,
+                           overflow: TextOverflow.clip,
+                            softWrap: true,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                                        child: Text(
+                        'Sucursal: $_esCovid',
+                        style: kSubTitleCardStyle,
+                           overflow: TextOverflow.clip,
+                            softWrap: true,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                                        child: Text(
+                        'Tipo de Institución: ${entityItem.desInsitucion}',
+                        style: kSubTitleCardStyle,
+                           overflow: TextOverflow.clip,
+                            softWrap: true,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                                        child: Text(
+                        'Teléfono : ${entityItem.telefono}',
+                        style: kSubTitleCardStyle,
+                           overflow: TextOverflow.clip,
+                            softWrap: true,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                                        child: Text(
+                        'Ubicación: ${entityItem.direccion}',
+                        style: kSubTitleCardStyle,
+                           overflow: TextOverflow.clip,
+                            softWrap: true,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                                        child: Text(
+                        'Correo Electrónico: ${entityItem.perCorreoElectronico}',
+                        style: kSubTitleCardStyle,
+                           overflow: TextOverflow.clip,
+                            softWrap: true,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                                        child: Text(
+                        'Página Web: ${entityItem.perPaginaWeb}',
+                        style: kSubTitleCardStyle,
+                           overflow: TextOverflow.clip,
+                            softWrap: true,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                                        child: Text(
+                        'Facebook: ${entityItem.perFacebbok}',
+                        style: kSubTitleCardStyle,
+                           overflow: TextOverflow.clip,
+                            softWrap: true,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                                        child: Text(
+                        'Twitter: ${entityItem.perTwitter}',
+                        style: kSubTitleCardStyle,
+                           overflow: TextOverflow.clip,
+                            softWrap: true,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                                        child: Text(
+                        'Youtube: ${entityItem.perYouTube}',
+                        style: kSubTitleCardStyle,
+                           overflow: TextOverflow.clip,
+                            softWrap: true,
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Text(
+                      'Información Complementaria:',
+                      style: kSubTitleCardStyle,
+                    ),
+                    Expanded(
+                                        child: Text(
+                        '${entityItem.perInformacionComp}',
+                        style: kSubTitleCardStyle,
+                           overflow: TextOverflow.clip,
+                            softWrap: true,
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -583,20 +618,23 @@ Institucion entityItem;
   }
 
   Widget _crearBotonOrganizacion(String text) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 80.0),
-      width: MediaQuery.of(context).size.width,
-      child: RaisedButton.icon(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-        color: AppTheme.themeVino,
-        textColor: Colors.white,
-        label: Text(
-          text,
-          style: kBotontitleStyle,
+    return Expanded(
+          child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 80.0),
+        width: MediaQuery.of(context).size.width,
+        child: RaisedButton.icon(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          color: AppTheme.themeVino,
+          textColor: Colors.white,
+          label: Text(
+            text,
+            style: kBotontitleStyle,
+          ),
+          icon: FaIcon(FontAwesomeIcons.edit, color: Colors.white),
+          onPressed: () =>
+              Navigator.pushNamed(context, 'entidad', arguments: entityItem),
         ),
-        icon: FaIcon(FontAwesomeIcons.edit, color: Colors.white),
-        onPressed: () => Navigator.pushNamed(context, 'entidad', arguments: entityItem ),
       ),
     );
   }
@@ -615,7 +653,8 @@ Institucion entityItem;
           style: kBotontitleStyle,
         ),
         icon: FaIcon(FontAwesomeIcons.edit, color: Colors.white),
-        onPressed: () =>  Navigator.pushNamed(context, 'AtentionEntity', arguments: entityItem ),
+        onPressed: () => Navigator.pushNamed(context, 'AtentionEntity',
+            arguments: entityItem),
       ),
     );
   }

@@ -419,7 +419,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
     print('prefs.userId es: ${prefs.userId}');
 
     entity.foto = imagen;
-
+    entity.idaEstado =81;
     if (!formKey.currentState.validate()) return;
 
     formKey.currentState.save();
