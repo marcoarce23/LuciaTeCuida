@@ -214,7 +214,7 @@ class _ContactAppModuleState extends State<ContactAppModule> {
                       size: 25,
                     ),
                     onTap: () {
-                      callWhatsApp(entityItem.telefono);
+                      callWhatsAppText(entityItem.telefono, 'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.' );
                     },
                   )
                 ],

@@ -245,7 +245,8 @@ class _CitizenListInstitucionModuleState
                       size: 25,
                     ),
                     onTap: () {
-                      callWhatsApp(int.parse(institutionItem.telefono));
+                      callWhatsAppText(int.parse(institutionItem.telefono),
+                      'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
                     },
                   )
                 ],

@@ -252,8 +252,10 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
                         size: 25,
                       ),
                       onTap: () {
-                        callWhatsApp(
-                            int.parse(profesionalesDeInstitucion.telefono));
+                        callWhatsAppText(
+                            int.parse(profesionalesDeInstitucion.telefono),
+                            'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.'
+                            );
                       },
                     )
                   ],

@@ -8,6 +8,7 @@ import 'package:luciatecuida/src/Util/SearchDelegate/DataSearch.dart';
 import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/UtilModule/PageViewModule.dart';
+import 'package:luciatecuida/src/module/UtilModule/PdfViewer.dart';
 import 'CitizenImageDetailModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 
@@ -432,7 +433,11 @@ class PageDocuments extends StatelessWidget {
           trailing: Icon(Icons.navigate_next),
         ),
         onTap: () {
-          loadPDF(multimediaDocumento.mulEnlace);
+PdfPagePreview pdf = new PdfPagePreview(imgPath: multimediaDocumento.mulEnlace,);
+
+
+
+//          loadPDF(multimediaDocumento.mulEnlace);
           print(multimediaDocumento.mulEnlace);
 /*
           Navigator.of(context).push(MaterialPageRoute(

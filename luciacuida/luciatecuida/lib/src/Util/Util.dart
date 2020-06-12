@@ -70,7 +70,7 @@ Future<LatLng> getLocation() async {
   return LatLng(location1.latitude, location1.longitude);
 }
 
-callWhatsApp(int number) async {
+callWhatsApp1(int number) async {
   await FlutterOpenWhatsapp.sendSingleMessage("591" + number.toString(),
       "*Lucia te cuida* :Un saludo cordial, le pido su colaboración...");
 }
