@@ -45,7 +45,7 @@ final String urlAddEvento      =    'http://covid19.ruta88.net/COVID/Evento/srvE
 final String urlAddAtencion    =    'http://covid19.ruta88.net/COVID/Atencion/srvAtencion.svc/Atencion';
 final String urlAddAtencionInstitucion    =    'http://covid19.ruta88.net/COVID/Atencion/srvAtencion.svc/AtencionInstitucion';
 final String urlAddTokenImei = 'http://covid19.ruta88.net/COVID/Login/srvLogin.svc/RegistrarDispositivo';
-
+final String urlAprobar = 'http://covid19.ruta88.net/COVID/Personal/srvPersonal.svc/EstadoPersonal/';
 // METODO DELETE
 final String urlDeleteAyudaAmigo  =  'http://covid19.ruta88.net/COVID/AyudaAmigo/srvAyudaAmigo.svc/EliminarAyudaAmigo/';
 final String urlDeleteVoluntario  =  'http://covid19.ruta88.net/COVID/Personal/srvPersonal.svc/EliminarPersonal/';

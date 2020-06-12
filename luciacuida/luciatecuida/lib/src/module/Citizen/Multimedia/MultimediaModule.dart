@@ -521,12 +521,12 @@ class _MultimediaModuleState extends State<MultimediaModule> {
       scaffoldKey.currentState
           .showSnackBar(messageOk("Se insertó correctamente"));
      
-      enviarNotificaciones(urlGetToken+'2/${prefs.idInsitucion}', 
-                            'multimedia',
-                             'Nuevo Material', 
-                             titulo.objectValue, 
-                             'Fecha del evento',
-                             _inputFieldDateInicioController.text); 
+      // enviarNotificaciones(urlGetToken+'2/${prefs.idInsitucion}', 
+      //                       'multimedia',
+      //                        'Nuevo Material', 
+      //                        titulo.objectValue, 
+      //                        'Fecha del evento',
+      //                        _inputFieldDateInicioController.text); 
     } else
       scaffoldKey.currentState
           .showSnackBar(messageNOk("Error, vuelta a intentarlo"));

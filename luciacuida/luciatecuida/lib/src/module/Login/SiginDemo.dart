@@ -4,23 +4,16 @@ import 'dart:convert' show json;
 import "package:http/http.dart" as http;
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:luciatecuida/src/Model/PreferenceUser.dart';
 import 'package:luciatecuida/src/module/Login/SignUpModule.dart';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
   scopes: <String>[
     'email',
-    'https://www.googleapis.com/auth/contacts.readonly',
+    'profile',
   ],
 );
 
-// void main() {
-//   runApp(
-//     MaterialApp(
-//       title: 'Google Sign In',
-//       home: SignInDemo(),
-//     ),
-//   );
-// }
 
 class SignInDemo extends StatefulWidget {
   @override
@@ -30,10 +23,12 @@ class SignInDemo extends StatefulWidget {
 class SignInDemoState extends State<SignInDemo> {
   GoogleSignInAccount _currentUser;
   String _contactText;
+    final prefs = new PreferensUser();
 
   @override
   void initState() {
     super.initState();
+ 
     _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
       setState(() {
         _currentUser = account;
@@ -110,6 +105,9 @@ class SignInDemoState extends State<SignInDemo> {
   }
 
   Widget _buildBody() {
+  
+ 
+
     if (_currentUser != null) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -121,23 +119,24 @@ class SignInDemoState extends State<SignInDemo> {
             title: Text(_currentUser.displayName ?? ''),
             subtitle: Text(_currentUser.email ?? ''),
           ),
-          const Text("Signed in successfully."),
-          Text(_contactText ?? ''),
+          const Text("Logueo exitoso.!."),
+        //  Text(_contactText ?? ''),
           RaisedButton(
-            child: const Text('SIGN OUT'),
+            child: const Text('CERRAR SESIÓN'),
             onPressed: _handleSignOut,
           ),
-          RaisedButton(
-            child: const Text('REFRESH'),
-            onPressed: _handleGetContact,
-          ),
+          // RaisedButton(
+          //   child: const Text('REFRESH'),
+          //   onPressed: _handleGetContact,
+          // ),
         ],
       );
-    } else {
+    } 
+    else {
       return Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          const Text("You are not currently signed in."),
+      //    const Text("You are not currently signed in."),
           RaisedButton(
             child: const Text('Cerrar Session'),
             onPressed: _handleSignOut,
@@ -149,9 +148,10 @@ class SignInDemoState extends State<SignInDemo> {
 
   @override
   Widget build(BuildContext context) {
+       _currentUser = prefs.correoElectronico;
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Google Sign In'),
+          title: const Text('ESTAS LOGUEADO COMO'),
         ),
         body: ConstrainedBox(
           constraints: const BoxConstraints.expand(),

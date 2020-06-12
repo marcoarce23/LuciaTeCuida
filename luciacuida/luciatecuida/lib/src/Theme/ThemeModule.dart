@@ -48,9 +48,9 @@ final kTitleWelcomeStyle = TextStyle(
 
 final kSubTitleCardStyle = TextStyle(
   color: Colors.black87,
-  fontSize: 14,
-  fontWeight: FontWeight.w400,
-  height: 1.0,
+  fontSize: 15,
+  fontWeight: FontWeight.w600,
+  height: 1.5,
 );
 
 final kSubSubTitleCardStyle = TextStyle(

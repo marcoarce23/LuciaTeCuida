@@ -232,14 +232,100 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                       size: 15,
                     ),
                     Expanded(
-                      child: Text(
-                        'Correo: ${entityItem.perCorreo}',
-                        style: kSubTitleCardStyle,
-                        softWrap: true,
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                            'Correo: ', style: kTitleCardStyle),
+                      
+                           Text(
+                            '${entityItem.perCorreo}',
+                            style: kSubTitleCardStyle,
+                            softWrap: true,
+                          ),
+                        ],
                       ),
                     )
                   ],
                 ),
+                SizedBox(height: 10.0),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.store_mall_directory,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                      child: Row(
+                        children: <Widget>[
+                          Text(
+                            'Estado: ${entityItem.estadoUsuario == 81 ? '(Por Confirmar)' : entityItem.estadoUsuario == 82 ? '(Activo)' : '(Baja)'}',
+                            style: kSubTitleCardStyle,
+                            softWrap: true,
+                          ),
+                          SizedBox(width: 5.0),
+                          Opacity(
+                            opacity: (entityItem.estadoUsuario == 81)
+                                ? 1
+                                : (entityItem.estadoUsuario == 82) ? 0 : 1,
+                            child: ClipOval(
+                              child: Material(
+                                color: Colors.white, // button color
+                                child: InkWell(
+                                    splashColor: AppTheme
+                                        .backGroundInstitutionPrimary, // inkwell color
+                                    child: SizedBox(
+                                      width: 30,
+                                      height: 30,
+                                      child: FaIcon(
+                                        FontAwesomeIcons.thumbsUp,
+                                        color: Colors.green,
+                                        size: 25,
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      setState(() {
+                                        _submitAlta(entityItem);
+                                      });
+                                    }),
+                              ),
+                            ),
+                          ),
+                          Opacity(
+                            opacity: (entityItem.estadoUsuario == 81)
+                                ? 1
+                                : (entityItem.estadoUsuario == 82)
+                                    ? 1
+                                    : (entityItem.estadoUsuario == 83) ? 0 : 0,
+                            child: ClipOval(
+                              child: Material(
+                                color: Colors.white, // button color
+                                child: InkWell(
+                                    splashColor: AppTheme
+                                        .backGroundInstitutionPrimary, // inkwell color
+                                    child: SizedBox(
+                                      width: 30,
+                                      height: 30,
+                                      child: FaIcon(
+                                        FontAwesomeIcons.thumbsDown,
+                                        color: Colors.red,
+                                        size: 25,
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      setState(() {
+                                        _submitBaja(entityItem);
+                                      });
+                                    }),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(height: 11.0),
                 Wrap(
                   children: <Widget>[
                     InkWell(
@@ -286,7 +372,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                       ),
                       onTap: () {
                         callWhatsAppText(int.parse(entityItem.perTelefono),
-                        'Estimado *${entityItem.perNombrepersonal.trim()}*: \nSoy un _voluntario_ y deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosConTigo*.');
+                            'Estimado *${entityItem.perNombrepersonal.trim()}*: \nSoy un _voluntario_ y deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosConTigo*.');
                       },
                     )
                   ],
@@ -296,6 +382,53 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
           ),
         ],
       ),
+    );
+  }
+
+  _submitAlta(Voluntary entityItem) async {
+    final dataMap = generic.add(new Voluntary(),
+        urlAprobar + entityItem.idcovPersonal.toString() + '/82');
+
+    dataMap.then((respuesta) 
+    {
+      result = respuesta["TIPO_RESPUESTA"];
+    print('resultado de entro a la alta icono verde:$result');
+
+    if (result == "0") {
+      Scaffold.of(context)
+          .showSnackBar(messageOk("Se dio de alta al voluntario"));
+
+      enviarNotificaciones(
+          urlGetToken + '2/${prefs.idInsitucion}',
+          'Voluntario',
+          'Nuevo voluntario',
+          entityItem.perNombrepersonal,
+          'Bienvenido al Grupo',
+          prefs.nombreInstitucion);
+    } else
+      Scaffold.of(context)
+          .showSnackBar(messageNOk("Se produjo un error. Vuelva a intentarlo"));
+  }
+    );
+  }
+
+  _submitBaja(Voluntary entityItem) async {
+    final dataMap = generic.add(new Voluntary(),
+        urlAprobar + entityItem.idcovPersonal.toString() + '/83');
+
+    await dataMap.then((respuesta) 
+    {
+
+      result = respuesta["TIPO_RESPUESTA"];
+    print('resultado de la baja entro icono rojo:$result');
+
+    if (result == "0")
+      Scaffold.of(context)
+          .showSnackBar(messageOk("Se dio de baja al voluntario"));
+    else
+      Scaffold.of(context)
+          .showSnackBar(messageNOk("Se produjo un error. Vuelva a intentarlo"));
+  }
     );
   }
 

@@ -4,11 +4,9 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:http/http.dart' as http;
 
-
 import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
-
 
 class PdfViewerPage extends StatefulWidget {
   @override
@@ -33,7 +31,10 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("CodingBoot Flutter PDF Viewer",style: TextStyle(fontWeight: FontWeight.bold),),
+        title: Text(
+          "CodingBoot Flutter PDF Viewer",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       body: localPath != null
           ? PDFView(
@@ -45,7 +46,8 @@ class _PdfViewerPageState extends State<PdfViewerPage> {
 }
 
 class ApiServiceProvider {
-  static final String url = "http://jornadasciberseguridad.riasc.unileon.es/archivos/ejemplo_esp.pdf";
+  static final String url =
+      "http://jornadasciberseguridad.riasc.unileon.es/archivos/ejemplo_esp.pdf";
 
   static Future<String> loadPDF() async {
     var response = await http.get(url);
@@ -56,15 +58,6 @@ class ApiServiceProvider {
     return file.path;
   }
 }
-
-
-
-
-
-
-
-
-
 
 class PdfPreviewer {
   static const MethodChannel _channel = const MethodChannel('pdf_previewer');
@@ -88,8 +81,6 @@ class PdfPreviewer {
   }
 }
 
-
-
 /// Displays an empty container that will represent a document page template with a fixed [width] and [height]
 /// where the user will use to pick a coordenate.
 /// [widgetWidth] should be called along with the [widgetHeight] in order to make the aspect ratio fit
@@ -99,7 +90,12 @@ class TemplatePageWidget extends StatefulWidget {
   final bool isLoading;
   final String previewPath;
 
-  TemplatePageWidget({@required this.width, @required this.height, this.isLoading, this.previewPath}) : assert(width > 0.0 && height > 0.0);
+  TemplatePageWidget(
+      {@required this.width,
+      @required this.height,
+      this.isLoading,
+      this.previewPath})
+      : assert(width > 0.0 && height > 0.0);
   TemplatePageState createState() => new TemplatePageState();
 }
 
@@ -125,7 +121,8 @@ class TemplatePageState extends State<TemplatePageWidget> {
       decoration: new BoxDecoration(
         color: Colors.white,
         boxShadow: [
-          BoxShadow(spreadRadius: 1.0, color: Color(0xffebebeb), blurRadius: 3.0),
+          BoxShadow(
+              spreadRadius: 1.0, color: Color(0xffebebeb), blurRadius: 3.0),
         ],
         border: Border.all(
           width: 1.0,
@@ -136,7 +133,6 @@ class TemplatePageState extends State<TemplatePageWidget> {
     );
   }
 }
-
 
 class PdfPagePreview extends StatefulWidget {
   final String imgPath;

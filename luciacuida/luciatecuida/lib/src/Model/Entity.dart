@@ -469,6 +469,8 @@ class Voluntary extends Entity {
   int sabado;
   int domingo;
   int idCovAtencion;
+  int estadoUsuario;
+  String usuarioCreacion;
 
   Voluntary({
     this.idcovPersonal = 0,
@@ -488,46 +490,48 @@ class Voluntary extends Entity {
     this.perFacebbok,
     this.perTwitter,
     this.idaEstado,
+    this.estadoUsuario,
+    this.usuarioCreacion,
     //  this.perYouTube,
 
-      this.perPaginaWeb,
-      this.desInstitucion,
-      this.desEspecialidad,
-      this.desExpedido,
-      this.usuario,
-        this.lunes,
-   this.martes,
-   this.miercoles,
-   this.jueves,
-   this.viernes,
-   this.sabado,
-   this.domingo,
-   this.idCovAtencion,
-   });
+    this.perPaginaWeb,
+    this.desInstitucion,
+    this.desEspecialidad,
+    this.desExpedido,
+    this.usuario,
+    this.lunes,
+    this.martes,
+    this.miercoles,
+    this.jueves,
+    this.viernes,
+    this.sabado,
+    this.domingo,
+    this.idCovAtencion,
+  });
 
   fromJson(Map<String, dynamic> json) => new Voluntary(
-      idcovPersonal: json["IDCOV_PERSONAL"],
-      foto: json["PER_FOTO"],
-      idcovInstitucion: json["IDCOV_INSTITUCION"],
-      idcovLogin: json["IDCOV_LOGIN"],
-      idaTipopersonal: json["IDA_TIPOPERSONAL"],
-      perNombrepersonal: json["PER_NOMBREPERSONAL"],
-      perApellido: json["PER_APELLIDO"],
-      perCorreo: json["PER_CORREO"],
-      perTelefono: json["PER_TELEFONO"],
-      perAyudacovid: json["PER_AYUDACOVID"],
-      perCI: json["PER_CI"],
-      idaExtension: json["IDA_EXTENCIONCI"],
-      idaSexo: json["IDA_SEXO"],
-      perInformacionComplementaria: json["PER_INFORMACIONCOMPLEMENTARIA"],
-      perFacebbok: json["PER_CUENTAFACEBOOK"],
-      perTwitter: json["PER_CUENTATWITTER"],
-      perPaginaWeb: json["PER_PAGINAWEB"],
-      desInstitucion: json["DES_INSTITUCION"],
-      desEspecialidad: json["DES_ESPECIALIDAD"],
-      desExpedido: json["DES_EXPEDIDO"],
-      usuario: json["USUARIO"],
-       lunes: json["PER_LUNES"],
+        idcovPersonal: json["IDCOV_PERSONAL"],
+        foto: json["PER_FOTO"],
+        idcovInstitucion: json["IDCOV_INSTITUCION"],
+        idcovLogin: json["IDCOV_LOGIN"],
+        idaTipopersonal: json["IDA_TIPOPERSONAL"],
+        perNombrepersonal: json["PER_NOMBREPERSONAL"],
+        perApellido: json["PER_APELLIDO"],
+        perCorreo: json["PER_CORREO"],
+        perTelefono: json["PER_TELEFONO"],
+        perAyudacovid: json["PER_AYUDACOVID"],
+        perCI: json["PER_CI"],
+        idaExtension: json["IDA_EXTENCIONCI"],
+        idaSexo: json["IDA_SEXO"],
+        perInformacionComplementaria: json["PER_INFORMACIONCOMPLEMENTARIA"],
+        perFacebbok: json["PER_CUENTAFACEBOOK"],
+        perTwitter: json["PER_CUENTATWITTER"],
+        perPaginaWeb: json["PER_PAGINAWEB"],
+        desInstitucion: json["DES_INSTITUCION"],
+        desEspecialidad: json["DES_ESPECIALIDAD"],
+        desExpedido: json["DES_EXPEDIDO"],
+        usuario: json["USUARIO"],
+        lunes: json["PER_LUNES"],
         martes: json["PER_MARTES"],
         miercoles: json["PER_MIERCOLES"],
         jueves: json["PER_JUEVES"],
@@ -535,7 +539,9 @@ class Voluntary extends Entity {
         sabado: json["PER_SABADO"],
         domingo: json["PER_DOMINGO"],
         idCovAtencion: json["IDCOV_ATENCION"],
-        );
+        usuarioCreacion: json["USUARIOCREACION"],
+        estadoUsuario: json["IDA_ESTADOVOLUNTARIO"],
+      );
 
   Map<String, dynamic> toJson() => {
         "IDCOV_PERSONAL": idcovPersonal,
@@ -563,14 +569,16 @@ class Voluntary extends Entity {
         "DES_ESPECIALIDAD": desEspecialidad,
         "DES_EXPEDIDO": desExpedido,
         "USUARIO": usuario,
-        "PER_LUNES" :lunes,
-        "PER_MARTES" : martes,
-        "PER_MIERCOLES":miercoles,
-        "PER_JUEVES":jueves,
-       "PER_VIERNES":viernes,
-        "PER_SABADO":sabado,
-        "PER_DOMINGO":domingo,
-        "IDCOV_ATENCION": idCovAtencion
+        "PER_LUNES": lunes,
+        "PER_MARTES": martes,
+        "PER_MIERCOLES": miercoles,
+        "PER_JUEVES": jueves,
+        "PER_VIERNES": viernes,
+        "PER_SABADO": sabado,
+        "PER_DOMINGO": domingo,
+        "IDCOV_ATENCION": idCovAtencion,
+        "USUARIOCREACION": usuarioCreacion,
+        "IDA_ESTADOVOLUNTARIO": estadoUsuario
       };
 }
 
@@ -585,7 +593,6 @@ class VoluntarioAtencion extends Entity {
   int perSabado;
   int perDomingo;
   String usuario;
-
 
   VoluntarioAtencion(
       {this.idCovAtencion = 0,
