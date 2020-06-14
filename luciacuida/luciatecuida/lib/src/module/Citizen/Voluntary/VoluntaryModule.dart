@@ -40,6 +40,8 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
   InputSexo sexo;
   InputNumberField token;
 
+  int _valorId = 0;
+
   int _group = 1;
   int estado = 0;
   int _selectedRadio = 1;
@@ -73,6 +75,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
 
     if (entityData != null) {
       entity = entityData;
+      _valorId = entity.idcovPersonal;
       estado = 1;
       readOnly = true;
     }
@@ -413,7 +416,8 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
       _save = true;
     });
 
-    entity.idcovPersonal = 0;
+print('TOKENNN : ${token.objectValue}');
+    entity.idcovPersonal = _valorId;
     entity.idcovInstitucion = int.parse(token.objectValue);
     entity.idcovLogin = int.parse(prefs.userId);
     entity.idaTipopersonal = valorTipoEspecialidad;
@@ -440,6 +444,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
     await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
 
     if (result != "-1" || result != '-2') {
+      print('VLARO DEL LSIT: $result');
       final list = result.split('|');
       prefs.idInsitucion = list[0];
       prefs.idPersonal = list[1];
@@ -452,10 +457,10 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
             nombre.objectValue,
             'Bienvenido al Grupo',
             prefs.nombreInstitucion);
-
+      }
              Navigator.of(context).push(CupertinoPageRoute(
           builder: (BuildContext context) => InformationVoluntary()));
-      }
+      
 
      
 
