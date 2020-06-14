@@ -140,52 +140,67 @@ class _SignUpModuleState extends State<SignUpModule> {
                         alignment: Alignment.topCenter,
                         child: HomePageModule(),
                       ));
-                } else {
-                  prefs.imei = _platformImei;
-                  prefs.nombreUsuario = currentUser.displayName;
-                  prefs.correoElectronico = currentUser.email;
-                  prefs.avatarImagen = currentUser.photoUrl;
-                  prefs.userId = currentUser.displayName;
-                  prefs.idInsitucion = "0";
-                  prefs.idPersonal = "-1";
-                  prefs.userId = currentUser.email;
+                } 
+                else 
+                {
+                      
 
-                  print(
-                      'SE SETEOOOO cuadno es priemra Vez pref.userId: ${prefs.userId}');
+                      _crearNuevo();
 
-                  entity.idUsuario = currentUser.id;
-                  entity.idInstitucion = '-1';
-                  entity.nombrePersona = currentUser.displayName;
-                  entity.nombreInstitucion = '-1';
-                  entity.usuario = currentUser.email;
-                  entity.correo = currentUser.email;
-                  entity.avatar = (currentUser.photoUrl == null)
-                      ? 'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg'
-                      : currentUser.photoUrl;
-                  entity.password = '-1';
-                  entity.tokenDispositivo = prefs.token;
-                  entity.imei = _platformImei;
-                  entity.primeraVez = '-1';
-
-                  final dataMap = generic.add(entity, urlAddSignIn);
-                  dataMap.then((respuesta) {
-                    prefs.userId = respuesta["TIPO_RESPUESTA"];
-                    print('USER ID LOGIN  ${prefs.userId}');
-                  });
-
-                  Navigator.push(
-                      context,
-                      PageTransition(
-                        curve: Curves.bounceOut,
-                        type: PageTransitionType.rotate,
-                        alignment: Alignment.topCenter,
-                        child: IntroScreenModule(), //AgreeLoginModule(),
-                      ));
+                
                 }
               });
         });
           
       }
+
+_crearNuevo() async
+{
+  prefs.imei = _platformImei;
+                      prefs.nombreUsuario = currentUser.displayName;
+                      prefs.correoElectronico = currentUser.email;
+                      prefs.avatarImagen = currentUser.photoUrl;
+                      prefs.userId = currentUser.displayName;
+                      prefs.idInsitucion = "0";
+                      prefs.idPersonal = "-1";
+                      prefs.userId = currentUser.email;
+
+                      print(
+                          'SE SETEOOOO cuadno es priemra Vez pref.userId: ${prefs.userId}');
+
+                      entity.idUsuario = currentUser.id;
+                      entity.idInstitucion = '-1';
+                      entity.nombrePersona = currentUser.displayName;
+                      entity.nombreInstitucion = '-1';
+                      entity.usuario = currentUser.email;
+                      entity.correo = currentUser.email;
+                      entity.avatar = (currentUser.photoUrl == null)
+                          ? 'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg'
+                          : currentUser.photoUrl;
+                      entity.password = '-1';
+                      entity.tokenDispositivo = prefs.token;
+                      entity.imei = _platformImei;
+                      entity.primeraVez = '-1';
+                      entity.idCreacionInstitucion =  0;
+                      entity.idPersonal = '0';
+                      entity.nombreCreacionInstitucion = '';
+
+await generic.add(entity, urlAddSignIn).then((respuesta) {
+                        prefs.userId = respuesta["TIPO_RESPUESTA"];
+                        print('USER ID LOGIN RRRRRRRRRRRR ${prefs.userId}');
+
+                          Navigator.push(
+                          context,
+                          PageTransition(
+                            curve: Curves.bounceOut,
+                            type: PageTransitionType.rotate,
+                            alignment: Alignment.topCenter,
+                            child: IntroScreenModule(), //AgreeLoginModule(),
+                          ));
+
+                      });
+
+}
 
 
   Widget build(BuildContext context) {
