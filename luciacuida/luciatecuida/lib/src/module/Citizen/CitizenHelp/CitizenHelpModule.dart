@@ -343,7 +343,8 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
   }
 
   _submit() async {
-    
+
+   
     LatLng latLng;
     latLng = await getLocation().then((onvalue) => latLng = onvalue);
 
@@ -370,9 +371,10 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
     if (result == "0") {
       scaffoldKey.currentState
           .showSnackBar(messageOk("Se registro correctamente."));
+     
       enviarNotificaciones(urlGetToken+'2/${prefs.idInsitucion}', 
                             'ayudaPersona',
-                             'Ayuda a un amigo', 
+                             'ayudaPersona', 
                              nombre.objectValue, 
                              'Teléfono de contacto',
                             telefono.objectValue); 

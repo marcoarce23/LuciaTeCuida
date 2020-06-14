@@ -390,7 +390,7 @@ class _EventEntityModuleState extends State<EventEntityModule> {
     entity.eveUbicacion = ubicacion.objectValue;
     entity.eveFecha = _inputFieldDateController.text;
     entity.eveHora = _inputFieldTimeController.text;
-    entity.usuario = prefs.userId;
+    entity.usuario = prefs.correoElectronico;
 
     final dataMap = generic.add(entity, urlAddEvento);
 

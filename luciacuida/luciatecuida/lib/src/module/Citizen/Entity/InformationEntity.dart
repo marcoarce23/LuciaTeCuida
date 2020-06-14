@@ -42,6 +42,7 @@ class _EntityAllModuleState extends State<EntityAllModule> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,53 +105,131 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
 
   @override
   void initState() {
-    //  prefs.ultimaPagina = ListEntityModule.routeName;
+      prefs.ultimaPagina = ListEntityModule.routeName;
     super.initState();
   }
 
+
+  Widget _crearTexto() {
+
+    return  Container(
+        padding: EdgeInsets.symmetric( horizontal: 10.0 ),
+        child: Flexible(
+          child: Column(
+            children: <Widget>[
+              Text(
+                'sssssss',
+                textAlign: TextAlign.justify,
+              ),
+              // SizedBox(height:10.0),
+              // Expanded(
+              //                 child: Text(
+              //     'Sit minim rcet eu.',
+              //     textAlign: TextAlign.justify,
+              //   ),
+              // ),
+              // SizedBox(height:10.0),
+              //   Expanded(
+              //   child:Text(
+              //   'Sit mco. Deserunt  amet eu.',
+              //   textAlign: TextAlign.justify,
+              // ),
+              //   ),
+              // SizedBox(height:10.0),
+              //   Expanded(
+              //  child:Text(
+              //   'Sit llamco.  amet eu.',
+              //   textAlign: TextAlign.justify,
+              // ),
+              //   ),
+              // SizedBox(height:10.0),
+              //   Expanded(
+              //                     child: Text(
+              //     'ion adipisicing nostrud amet eu.',
+              //     textAlign: TextAlign.justify,
+              // ),
+              //  ),
+            ],
+          ),
+        ),
+
+    );
+
+  }
+
+  Widget _crearImagen(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      child: GestureDetector(
+        onTap: (){},
+        child: Image(
+          image: NetworkImage('https://images.pexels.com/photos/814499/pexels-photo-814499.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+          height: 160.0,
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
-    print('prefs.idInsitucion para crear: ${prefs.idInsitucion}');
+    print('prefs.idCreacionInsitucion para crear: ${prefs.idCreacionInsitucion.toString()}');
     final size = MediaQuery.of(context).size;
 
-   if(prefs.idInsitucion == '0')
-   {
-     print('prefs.idInsituXXXX: ${prefs.idInsitucion}');
+    if (prefs.idCreacionInsitucion == 0) 
+    {
+      print('prefs.idCreacionInsitucion: ${prefs.idCreacionInsitucion.toString()}');
 
       return Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            SizedBox(height: 5.0),
-            Container(
-              width: size.width * 0.96,
-              margin: EdgeInsets.symmetric(vertical: 0.0),
-              child: contenedorTitulo(
-                context,
-                40.0,
-                'INFORMACIÓN DE TU ORGANIZACIÓN',
-                FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
-              ),
-            ),
-            Row(
-              children: <Widget>[
-                _crearBotonOrganizacion('Crear Organización'),
-              ],
-            ),
-            copyRigth(),
-          ],
-        ),
+        body: Container(
+          child: Column(
+            children: <Widget>[
+              _crearBotonOrganizacion('Crear Organización'),
+            ],
+          )),
+          //  copyRigth(),
+           // SizedBox(height: 5.0),
+            // Container(
+            //   width: size.width * 0.96,
+            //   margin: EdgeInsets.symmetric(vertical: 0.0),
+            //   child: contenedorTitulo(
+            //     context,
+            //     40.0,
+            //     'INFORMACIÓN DE TU ORGANIZACIÓN',
+            //     FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
+            //   ),
+            // ),
+           
+           
+                 
+//_crearBotonOrganizacion('Crear Organización'),
+          //    _crearImagen(context) ,
+            //  SizedBox(height: 10.0,),
+              //_crearTexto(),                
+              //  divider(),
+              //  _crearBotonOrganizacion('Crear Organización'),
+         
+          
+           
+    
         floatingActionButton: generaFloatbuttonHome(context),
       );
-    } else {
-      print('prefs.idInsiTArget: ${prefs.idInsitucion}');
+    } 
+
+   else  {
+      print('prefs.idCreacionInsitucion ELSEE: ${prefs.idCreacionInsitucion}');
       return Scaffold(
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 5.0),
             Container(
-              width: size.width * 0.96,
+             // width: size.width * 0.96,
               margin: EdgeInsets.symmetric(vertical: 0.0),
               child: contenedorTitulo(
                 context,
@@ -268,7 +347,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
       child: Row(
         children: <Widget>[
           Flexible(
-                      child: Column(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -283,8 +362,8 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                     Text(
                       '${entityItem.nombreInstitucion} ',
                       style: kSubTitleCardStyle,
-                         overflow: TextOverflow.clip,
-                          softWrap: true,
+                      overflow: TextOverflow.clip,
+                      softWrap: true,
                     ),
                   ],
                 )),
@@ -296,11 +375,11 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                       size: 15,
                     ),
                     Expanded(
-                                        child: Text(
+                      child: Text(
                         'Token (Código de Seguridad) : ${entityItem.token}',
                         style: kSubTitleCardStyle,
-                           overflow: TextOverflow.clip,
-                            softWrap: true,
+                        overflow: TextOverflow.clip,
+                        softWrap: true,
                       ),
                     )
                   ],
@@ -313,11 +392,11 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                       size: 15,
                     ),
                     Expanded(
-                                        child: Text(
+                      child: Text(
                         'Departamento: ${entityItem.desUbicacion}',
                         style: kSubTitleCardStyle,
-                           overflow: TextOverflow.clip,
-                            softWrap: true,
+                        overflow: TextOverflow.clip,
+                        softWrap: true,
                       ),
                     )
                   ],
@@ -330,11 +409,11 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                       size: 15,
                     ),
                     Expanded(
-                                        child: Text(
+                      child: Text(
                         'Sucursal: $_esCovid',
                         style: kSubTitleCardStyle,
-                           overflow: TextOverflow.clip,
-                            softWrap: true,
+                        overflow: TextOverflow.clip,
+                        softWrap: true,
                       ),
                     )
                   ],
@@ -347,11 +426,11 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                       size: 15,
                     ),
                     Expanded(
-                                        child: Text(
+                      child: Text(
                         'Tipo de Institución: ${entityItem.desInsitucion}',
                         style: kSubTitleCardStyle,
-                           overflow: TextOverflow.clip,
-                            softWrap: true,
+                        overflow: TextOverflow.clip,
+                        softWrap: true,
                       ),
                     )
                   ],
@@ -364,11 +443,11 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                       size: 15,
                     ),
                     Expanded(
-                                        child: Text(
+                      child: Text(
                         'Teléfono : ${entityItem.telefono}',
                         style: kSubTitleCardStyle,
-                           overflow: TextOverflow.clip,
-                            softWrap: true,
+                        overflow: TextOverflow.clip,
+                        softWrap: true,
                       ),
                     )
                   ],
@@ -381,11 +460,11 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                       size: 15,
                     ),
                     Expanded(
-                                        child: Text(
+                      child: Text(
                         'Ubicación: ${entityItem.direccion}',
                         style: kSubTitleCardStyle,
-                           overflow: TextOverflow.clip,
-                            softWrap: true,
+                        overflow: TextOverflow.clip,
+                        softWrap: true,
                       ),
                     )
                   ],
@@ -398,11 +477,11 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                       size: 15,
                     ),
                     Expanded(
-                                        child: Text(
+                      child: Text(
                         'Correo Electrónico: ${entityItem.perCorreoElectronico}',
                         style: kSubTitleCardStyle,
-                           overflow: TextOverflow.clip,
-                            softWrap: true,
+                        overflow: TextOverflow.clip,
+                        softWrap: true,
                       ),
                     )
                   ],
@@ -415,11 +494,11 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                       size: 15,
                     ),
                     Expanded(
-                                        child: Text(
+                      child: Text(
                         'Página Web: ${entityItem.perPaginaWeb}',
                         style: kSubTitleCardStyle,
-                           overflow: TextOverflow.clip,
-                            softWrap: true,
+                        overflow: TextOverflow.clip,
+                        softWrap: true,
                       ),
                     )
                   ],
@@ -432,11 +511,11 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                       size: 15,
                     ),
                     Expanded(
-                                        child: Text(
+                      child: Text(
                         'Facebook: ${entityItem.perFacebbok}',
                         style: kSubTitleCardStyle,
-                           overflow: TextOverflow.clip,
-                            softWrap: true,
+                        overflow: TextOverflow.clip,
+                        softWrap: true,
                       ),
                     )
                   ],
@@ -449,11 +528,11 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                       size: 15,
                     ),
                     Expanded(
-                                        child: Text(
+                      child: Text(
                         'Twitter: ${entityItem.perTwitter}',
                         style: kSubTitleCardStyle,
-                           overflow: TextOverflow.clip,
-                            softWrap: true,
+                        overflow: TextOverflow.clip,
+                        softWrap: true,
                       ),
                     )
                   ],
@@ -466,11 +545,11 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                       size: 15,
                     ),
                     Expanded(
-                                        child: Text(
+                      child: Text(
                         'Youtube: ${entityItem.perYouTube}',
                         style: kSubTitleCardStyle,
-                           overflow: TextOverflow.clip,
-                            softWrap: true,
+                        overflow: TextOverflow.clip,
+                        softWrap: true,
                       ),
                     )
                   ],
@@ -487,11 +566,11 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                       style: kSubTitleCardStyle,
                     ),
                     Expanded(
-                                        child: Text(
+                      child: Text(
                         '${entityItem.perInformacionComp}',
                         style: kSubTitleCardStyle,
-                           overflow: TextOverflow.clip,
-                            softWrap: true,
+                        overflow: TextOverflow.clip,
+                        softWrap: true,
                       ),
                     )
                   ],
@@ -614,8 +693,8 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
 
   Widget _crearBotonOrganizacion(String text) {
     return Expanded(
-          child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 80.0),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 60.0),
         width: MediaQuery.of(context).size.width,
         child: RaisedButton.icon(
           shape:

@@ -29,12 +29,14 @@ class PushNotificationProvider {
       {
       print('======= On Message ========');
       print(info);
+    //  info.
 
       String argumento = 'no-data';
       if (Platform.isAndroid) {
-        argumento = info['data']['ayuda'] ?? 'no-data';
+        argumento =  info['notification']['body'] ?? 'no-data'; 
+        print('aaaaaa: ${ info['data']['ayudaPersona']}');
       } else {
-        argumento = info['ayuda'] ?? 'no-data-ios';
+        argumento = info['ayudaPersona'] ?? 'no-data-ios';
       }
 
       _mensajesStreamController.sink.add(argumento);
@@ -47,10 +49,13 @@ class PushNotificationProvider {
 
       String argumento = 'no-data';
 
-      if (Platform.isAndroid) {
-        argumento = info['data']['ayuda'] ?? 'no-data';
-      } else {  argumento = info['ayuda'] ?? 'no-data-ios'; }
-      _mensajesStreamController.sink.add(argumento);
+      if (Platform.isAndroid) 
+      {
+        argumento = info['notification']['body'] ?? 'no-data'; 
+        print('aaaaaa: ${ info['data']['ayudaPersona']}');
+      } 
+      else {  argumento = info['ayudaPersona'] ?? 'no-data-ios'; }
+          _mensajesStreamController.sink.add(argumento);
     }, 
     
     onResume: (info)
@@ -59,8 +64,12 @@ class PushNotificationProvider {
         print(info);
         String argumento = 'no-data';
 
-        if (Platform.isAndroid) { argumento = info['data']['ayuda'] ?? 'no-data'; } 
-        else { argumento = info['ayuda'] ?? 'no-data-ios'; }
+        if (Platform.isAndroid) 
+        {
+  
+           argumento =  info['notification']['body'] ?? 'no-data'; 
+         } 
+        else { argumento = info['ayudaPersona'] ?? 'no-data-ios'; }
 
         _mensajesStreamController.sink.add(argumento);
     }

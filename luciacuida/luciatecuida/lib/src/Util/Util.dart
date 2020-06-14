@@ -28,20 +28,21 @@ final String userName = null;
  enviarNotificaciones(String urlGetToken, String clave, String titulo, String valorTitulo, String subTitulo, String subTituloValor) 
  {
    Token entityToken;
- final dataMapToken = new Generic().getAll(new Token(), urlGetToken, primaryKeyGetToken);
+   final dataMapToken = new Generic().getAll(new Token(), urlGetToken, primaryKeyGetToken);
 
         dataMapToken.then((value) 
         {
              if (value.length > 0) 
              {
-                for (int i = 0; i < value.length; i++) 
+                for (int i = 0; i < value.length; i++)
+                { 
                      entityToken = value[i];
-                     print('entrooo las veces de: ');
+                 //    print('entrooo las veces de: $entityToken');
+                      new Generic().sebnFCM(entityToken.llaveToken, clave, '$titulo - $valorTitulo - $subTitulo $subTituloValor - Fecha - ${DateTime.now()}');
+                }
               }
-            
-            print('el valor del token: ${entityToken.llaveToken} --- calve $clave --- $titulo - $valorTitulo- $subTitulo $subTituloValor Fecha - ${DateTime.now()}');
-             new Generic().sebnFCM(entityToken.llaveToken, clave, '$titulo - $valorTitulo - $subTitulo $subTituloValor - Fecha - ${DateTime.now()}');
-        });
+         }
+      );
  }
 
 int daysInMonth(int month) {

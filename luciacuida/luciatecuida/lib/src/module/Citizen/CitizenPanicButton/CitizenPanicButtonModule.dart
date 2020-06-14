@@ -116,7 +116,7 @@ class _ButtonPanic extends State<ButtonPanic> {
   bool checkMuyAlto = false;
   bool checkAlto = false;
   bool checkMedio = false;
-
+  String fechaNotificacion = "-/-/- --:--";
   final prefs = new PreferensUser();
 
   @override
@@ -135,7 +135,7 @@ class _ButtonPanic extends State<ButtonPanic> {
   Widget buttonPanic() {
     //botonPanico.botFecha=DateTime.now();
 
-    String fechaNotificacion = "-/-/- --:--";
+    
 
     botonPanico.botFecha =
         DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now());

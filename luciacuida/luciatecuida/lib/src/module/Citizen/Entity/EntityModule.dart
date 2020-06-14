@@ -417,7 +417,7 @@ class _EntityModuleState extends State<EntityModule> {
     entity.perPaginaWeb = paginaWeb.objectValue;
     entity.perYouTube = youtube.objectValue;
     entity.perCorreoElectronico = email.objectValue;
-    entity.usuario = prefs.userId;
+    entity.usuario = prefs.correoElectronico;
 
     print(
         'EL VALOR DE EL ID DE LA INSTITUCION:${entity.idInstitucion.toString()}');
@@ -429,7 +429,9 @@ class _EntityModuleState extends State<EntityModule> {
     
 
       if (result != "-1" || result != "-2") {
+        prefs.idCreacionInsitucion = int.parse(result);
         prefs.idInsitucion = result;
+        
         Navigator.of(context).push(CupertinoPageRoute(
             builder: (BuildContext context) => InformationEntityModule()));
       }

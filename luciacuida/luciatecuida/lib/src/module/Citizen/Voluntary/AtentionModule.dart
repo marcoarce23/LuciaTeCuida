@@ -345,7 +345,7 @@ print(' intLunes; $intLunes intMartes $intMartes');
     // entityAtencion.perViernesH = '-1';
     // entityAtencion.perSabadoH = '-1';
     // entityAtencion.perDomingoH = '-1';
-    entityAtencion.usuario = prefs.userId;
+    entityAtencion.usuario = prefs.correoElectronico;
 
 
     final dataMap = generic.add(entityAtencion, urlAddAtencion);

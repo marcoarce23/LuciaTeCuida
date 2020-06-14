@@ -758,6 +758,8 @@ class LoginSigIn extends Entity {
   String idUsuario;
   String idInstitucion;
   String nombrePersona;
+   int idCreacionInstitucion;
+  String nombreCreacionInstitucion;
   String correo;
   String nombreInstitucion;
   String usuario;
@@ -780,6 +782,8 @@ class LoginSigIn extends Entity {
       this.avatar,
       this.imei,
       this.tokenDispositivo,
+      this.idCreacionInstitucion,
+      this.nombreCreacionInstitucion,
       this.primeraVez});
 
   fromJson(Map<String, dynamic> json) => new LoginSigIn(
@@ -787,6 +791,10 @@ class LoginSigIn extends Entity {
         idInstitucion: json["ID_INSTITUCION"],
         nombrePersona: json["NOMBRE_PERSONA"],
         nombreInstitucion: json["NOMBRE_INSTITUCION"],
+
+        idCreacionInstitucion: json["ID_INSTITUCION_CREACION"],
+        nombreCreacionInstitucion: json["NOMBRE_INSTITUCION_CREACION"],
+
         correo: json["CORREO"],
         usuario: json["USUARIO"],
         password: json["PASSWORD"],
@@ -810,6 +818,8 @@ class LoginSigIn extends Entity {
         "TOKEN": tokenDispositivo,
         "PRIMERA_VEZ": primeraVez,
         "IDCOV_PERSONAL": idPersonal,
+        "ID_INSTITUCION_CREACION": idCreacionInstitucion,
+        "NOMBRE_INSTITUCION_CREACION" : nombreCreacionInstitucion,
       };
 }
 

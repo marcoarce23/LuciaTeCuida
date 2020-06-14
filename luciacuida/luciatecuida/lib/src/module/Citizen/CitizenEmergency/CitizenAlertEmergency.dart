@@ -15,7 +15,7 @@ class CitizenAlertEmergency extends StatefulWidget {
   String voluntario;
   static final String routeName = 'CiudadanoAlertaEmergencia';
 
-  CitizenAlertEmergency(@required this.personal, @required this.voluntario);
+  CitizenAlertEmergency(this.personal, this.voluntario);
 
   @override
   _CitizenAlertEmergencyState createState() => _CitizenAlertEmergencyState();

@@ -480,7 +480,7 @@ print('jueves ${jueves.objectValue}');
       entityAtencion.perViernesH = viernesH.objectValue;
       entityAtencion.perSabadoH = sabadoH.objectValue;
       entityAtencion.perDomingoH = domingoH.objectValue;
-      entityAtencion.usuario = prefs.userId;
+      entityAtencion.usuario = prefs.correoElectronico;
 
       final dataMap = generic.add(entityAtencion, urlAddAtencionInstitucion);
 

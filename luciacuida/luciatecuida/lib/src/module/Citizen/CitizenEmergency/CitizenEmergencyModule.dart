@@ -9,9 +9,8 @@ import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/Message/Message.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenEmergency/CitizenAlertEmergency.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
-
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
-import 'package:luciatecuida/src/module/UtilModule/PageViewModule.dart';
+
 
 class CitizenEmergencyModule extends StatefulWidget {
   static final String routeName = 'CiudadanoEmergencia';
@@ -108,11 +107,16 @@ class PageMedicina extends StatefulWidget {
 class _PageMedicinaState extends State<PageMedicina> {
   final generic = new Generic();
   final prefs = new PreferensUser();
+  String _notificacion = '';
 
   RegistrarAyuda registrarAyuda = new RegistrarAyuda();
 
   @override
   Widget build(BuildContext context) {
+
+    final _valor = ModalRoute.of(context).settings.arguments;
+    if(_valor != null) _notificacion = _valor; 
+
     return SingleChildScrollView(
       child: Container(
         child: Padding(
@@ -126,6 +130,10 @@ class _PageMedicinaState extends State<PageMedicina> {
                 "Medicina".toUpperCase(),
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
+              Opacity(
+                opacity: _notificacion.length > 1 ? 1.0 : 0.0,
+                child: Text('Pantalla redireccionado por una noticicaón: $_notificacion')
+                ),
               Align(
                   alignment: Alignment.topRight,
                   child: Padding(
@@ -530,30 +538,30 @@ class _PageCovidState extends State<PageCovid> {
         colorCuadro, detallePrioridad, tempDate, solicitudAyuda, context);
   }
 
-  _submitCovidConcluido(
-      BuildContext context, SolicitudAyuda solicitudAyuda) async {
-    registrarAyuda.idaBotonPanico = solicitudAyuda.idaBotonPanico;
-    registrarAyuda.idaPersonal = int.parse(prefs.idPersonal);
-    registrarAyuda.fecha =
-        DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now());
-    registrarAyuda.idaEstado = 79; // en concluido
-    registrarAyuda.usuario = prefs.correoElectronico;
+  // _submitCovidConcluido(
+  //     BuildContext context, SolicitudAyuda solicitudAyuda) async {
+  //   registrarAyuda.idaBotonPanico = solicitudAyuda.idaBotonPanico;
+  //   registrarAyuda.idaPersonal = int.parse(prefs.idPersonal);
+  //   registrarAyuda.fecha =
+  //       DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now());
+  //   registrarAyuda.idaEstado = 79; // en concluido
+  //   registrarAyuda.usuario = prefs.correoElectronico;
 
-    final dataMap = generic.add(registrarAyuda, urlAddSolicitudAyud);
-    var result;
-    await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-    if (result == "0") {
-      setState(() {
-        Scaffold.of(context)
-            .showSnackBar(messageOk("Se concluyo la solicitud"));
-      });
-    } else {
-      Scaffold.of(context)
-          .showSnackBar(messageNOk("Ocurrio un error inseperado"));
-    }
+  //   final dataMap = generic.add(registrarAyuda, urlAddSolicitudAyud);
+  //   var result;
+  //   await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+  //   if (result == "0") {
+  //     setState(() {
+  //       Scaffold.of(context)
+  //           .showSnackBar(messageOk("Se concluyo la solicitud"));
+  //     });
+  //   } else {
+  //     Scaffold.of(context)
+  //         .showSnackBar(messageNOk("Ocurrio un error inseperado"));
+  //   }
 
-    print('resultado:$result');
-  }
+  //   print('resultado:$result');
+  // }
 
   _submitCovidAtender(
       BuildContext context, SolicitudAyuda solicitudAyuda) async {
@@ -861,29 +869,29 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
         colorCuadro, detallePrioridad, tempDate, solicitudAyuda, context);
   }
 
-  _submitConcluido(BuildContext context, SolicitudAyuda solicitudAyuda) async {
-    registrarAyuda.idaBotonPanico = solicitudAyuda.idaBotonPanico;
-    registrarAyuda.idaPersonal = int.parse(prefs.idPersonal);
-    registrarAyuda.fecha =
-        DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now());
-    registrarAyuda.idaEstado = 79; // en concluido
-    registrarAyuda.usuario = prefs.correoElectronico;
+  // _submitConcluido(BuildContext context, SolicitudAyuda solicitudAyuda) async {
+  //   registrarAyuda.idaBotonPanico = solicitudAyuda.idaBotonPanico;
+  //   registrarAyuda.idaPersonal = int.parse(prefs.idPersonal);
+  //   registrarAyuda.fecha =
+  //       DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now());
+  //   registrarAyuda.idaEstado = 79; // en concluido
+  //   registrarAyuda.usuario = prefs.correoElectronico;
 
-    final dataMap = generic.add(registrarAyuda, urlAddSolicitudAyud);
-    var result;
-    await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-    if (result == "0") {
-      setState(() {
-        Scaffold.of(context)
-            .showSnackBar(messageOk("Se concluyo la solicitud"));
-      });
-    } else {
-      Scaffold.of(context)
-          .showSnackBar(messageNOk("Ocurrio un error inseperado"));
-    }
+  //   final dataMap = generic.add(registrarAyuda, urlAddSolicitudAyud);
+  //   var result;
+  //   await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+  //   if (result == "0") {
+  //     setState(() {
+  //       Scaffold.of(context)
+  //           .showSnackBar(messageOk("Se concluyo la solicitud"));
+  //     });
+  //   } else {
+  //     Scaffold.of(context)
+  //         .showSnackBar(messageNOk("Ocurrio un error inseperado"));
+  //   }
 
-    print('resultado:$result');
-  }
+  //   print('resultado:$result');
+  // }
 
   _submitAtender(BuildContext context, SolicitudAyuda solicitudAyuda) async {
     registrarAyuda.idaBotonPanico = solicitudAyuda.idaBotonPanico;
@@ -1187,30 +1195,30 @@ class _PageBonosState extends State<PageBonos> {
         colorCuadro, detallePrioridad, tempDate, solicitudAyuda, context);
   }
 
-  _submitMedicamentosConcluido(
-      BuildContext context, SolicitudAyuda solicitudAyuda) async {
-    registrarAyuda.idaBotonPanico = solicitudAyuda.idaBotonPanico;
-    registrarAyuda.idaPersonal = int.parse(prefs.idPersonal);
-    registrarAyuda.fecha =
-        DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now());
-    registrarAyuda.idaEstado = 79; // en concluido
-    registrarAyuda.usuario = prefs.correoElectronico;
+  // _submitMedicamentosConcluido(
+  //     BuildContext context, SolicitudAyuda solicitudAyuda) async {
+  //   registrarAyuda.idaBotonPanico = solicitudAyuda.idaBotonPanico;
+  //   registrarAyuda.idaPersonal = int.parse(prefs.idPersonal);
+  //   registrarAyuda.fecha =
+  //       DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now());
+  //   registrarAyuda.idaEstado = 79; // en concluido
+  //   registrarAyuda.usuario = prefs.correoElectronico;
 
-    final dataMap = generic.add(registrarAyuda, urlAddSolicitudAyud);
-    var result;
-    await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-    if (result == "0") {
-      setState(() {
-        Scaffold.of(context)
-            .showSnackBar(messageOk("Se concluyo la solicitud"));
-      });
-    } else {
-      Scaffold.of(context)
-          .showSnackBar(messageNOk("Ocurrio un error inseperado"));
-    }
+  //   final dataMap = generic.add(registrarAyuda, urlAddSolicitudAyud);
+  //   var result;
+  //   await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+  //   if (result == "0") {
+  //     setState(() {
+  //       Scaffold.of(context)
+  //           .showSnackBar(messageOk("Se concluyo la solicitud"));
+  //     });
+  //   } else {
+  //     Scaffold.of(context)
+  //         .showSnackBar(messageNOk("Ocurrio un error inseperado"));
+  //   }
 
-    print('resultado:$result');
-  }
+  //   print('resultado:$result');
+  // }
 
   _submitMedicamentosAtender(
       BuildContext context, SolicitudAyuda solicitudAyuda) async {
@@ -1502,44 +1510,46 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
         new DateFormat("dd/MM/yyyy").parse(solicitudAyuda.fecha);
     Color colorCuadro;
     String detallePrioridad;
-    if (solicitudAyuda.idaPrioridad == "Muy Alta") {
+
+    if (solicitudAyuda.idaPrioridad.toString() == "Muy Alta") {
       colorCuadro = AppTheme.themeColorRojo;
       detallePrioridad = "Muy alta";
-    } else if (solicitudAyuda.idaPrioridad == "Alta") {
+    } else if (solicitudAyuda.idaPrioridad.toString() == "Alta") {
       colorCuadro = AppTheme.themeVino;
       detallePrioridad = "Alta";
     } else {
       colorCuadro = AppTheme.themeColorVerde;
       detallePrioridad = "Media";
     }
+
     return contenidoAtencionSolicitudes(
         colorCuadro, detallePrioridad, tempDate, solicitudAyuda, context);
   }
 
-  _submitMedicamentosConcluido(
-      BuildContext context, SolicitudAyuda solicitudAyuda) async {
-    registrarAyuda.idaBotonPanico = solicitudAyuda.idaBotonPanico;
-    registrarAyuda.idaPersonal = int.parse(prefs.idPersonal);
-    registrarAyuda.fecha =
-        DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now());
-    registrarAyuda.idaEstado = 79; // en concluido
-    registrarAyuda.usuario = prefs.correoElectronico;
+  // _submitMedicamentosConcluido(
+  //     BuildContext context, SolicitudAyuda solicitudAyuda) async {
+  //   registrarAyuda.idaBotonPanico = solicitudAyuda.idaBotonPanico;
+  //   registrarAyuda.idaPersonal = int.parse(prefs.idPersonal);
+  //   registrarAyuda.fecha =
+  //       DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now());
+  //   registrarAyuda.idaEstado = 79; // en concluido
+  //   registrarAyuda.usuario = prefs.correoElectronico;
 
-    final dataMap = generic.add(registrarAyuda, urlAddSolicitudAyud);
-    var result;
-    await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-    if (result == "0") {
-      setState(() {
-        Scaffold.of(context)
-            .showSnackBar(messageOk("Se concluyo la solicitud"));
-      });
-    } else {
-      Scaffold.of(context)
-          .showSnackBar(messageNOk("Ocurrio un error inseperado"));
-    }
+  //   final dataMap = generic.add(registrarAyuda, urlAddSolicitudAyud);
+  //   var result;
+  //   await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+  //   if (result == "0") {
+  //     setState(() {
+  //       Scaffold.of(context)
+  //           .showSnackBar(messageOk("Se concluyo la solicitud"));
+  //     });
+  //   } else {
+  //     Scaffold.of(context)
+  //         .showSnackBar(messageNOk("Ocurrio un error inseperado"));
+  //   }
 
-    print('resultado:$result');
-  }
+  //   print('resultado:$result');
+  // }
 
   _submitAyudaAmigo(BuildContext context, SolicitudAyuda solicitudAyuda) async {
     registrarAyuda.idaBotonPanico = solicitudAyuda.idaBotonPanico;

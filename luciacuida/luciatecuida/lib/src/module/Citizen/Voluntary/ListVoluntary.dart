@@ -149,9 +149,18 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
       background: Container(
         color: Colors.red,
         padding: EdgeInsets.only(left: 20.0),
-        child: Text(
-          'Eliminar registro',
-          style: TextStyle(color: Colors.white),
+        child: Row(
+          children: <Widget>[
+             Icon(
+                      Icons.delete_forever,
+                      color: Colors.white,
+                      size: 15,
+                    ),
+            Text(
+              'Desea eliminar al voluntario?',
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
         ),
       ),
       onDismissed: (value) {
@@ -165,7 +174,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
 
         if (result != null || result != '-1')
           Scaffold.of(context)
-              .showSnackBar(messageOk("Se elimino el registro."));
+              .showSnackBar(messageOk("Se elimino al voluntario: ${entityItem.perNombrepersonal}"));
         else
           Scaffold.of(context).showSnackBar(
               messageNOk("Se  produjo un error. Vuelva a intentarlo."));
@@ -181,7 +190,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.gamepad,
+                      Icons.account_circle,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -197,7 +206,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                 ),
                 Row(children: <Widget>[
                   Icon(
-                    Icons.bubble_chart,
+                    Icons.business,
                     color: AppTheme.themeVino,
                     size: 15,
                   ),
@@ -210,9 +219,25 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                     ),
                   ),
                 ]),
+
+                 Row(children: <Widget>[
+                  Icon(
+                    Icons.add_to_home_screen,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Expanded(
+                    child: Text(
+                      'Asistencia Covid: ${entityItem.idCovAtencion == 1 ? 'SI' : 'NO' }',
+                      style: kSubTitleCardStyle,
+                      softWrap: true,
+                    ),
+                  ),
+                ]),
+
                 Row(children: <Widget>[
                   Icon(
-                    Icons.place,
+                    Icons.add_to_home_screen,
                     color: AppTheme.themeVino,
                     size: 15,
                   ),
@@ -227,7 +252,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.store_mall_directory,
+                      Icons.email,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -247,11 +272,11 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                     )
                   ],
                 ),
-                SizedBox(height: 10.0),
+                SizedBox(height: 5.0),
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.store_mall_directory,
+                      Icons.account_box,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),

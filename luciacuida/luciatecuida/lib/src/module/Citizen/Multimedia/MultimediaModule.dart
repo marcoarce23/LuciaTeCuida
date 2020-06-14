@@ -621,9 +621,9 @@ class _MultimediaModuleState extends State<MultimediaModule> {
       // setState(() {
       //   _isLoading = true;
       // });
-    } on PlatformException catch (e) {
+    } on PlatformException catch (exception) {
       scaffoldKey.currentState
-          .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
+          .showSnackBar(messageNOk("Error: ${exception.toString()}, vuelta a intentarlo"));
     }
   }
 }

@@ -34,8 +34,6 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
-print('valor selecteradio es: $_selectedRadio');
     return SafeArea(
           child: Scaffold(
         body: Column(
@@ -179,7 +177,7 @@ print('valor selecteradio es: $_selectedRadio');
               .delete('$urlDeleteMultimedia${item.toString()}/${prefs.userId}');
 
           dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-          print('resultado:$result');
+
         });
 
         if (result != null || result != '-1')

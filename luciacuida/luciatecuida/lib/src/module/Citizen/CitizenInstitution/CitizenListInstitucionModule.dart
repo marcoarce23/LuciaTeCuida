@@ -96,7 +96,7 @@ class _CitizenListInstitucionModuleState
   }
 
   Widget listItemsInstitution(BuildContext context, AsyncSnapshot snapshot) {
-    final size = MediaQuery.of(context).size;
+   // final size = MediaQuery.of(context).size;
     return ListView.builder(
       shrinkWrap: true,
       scrollDirection: Axis.vertical,

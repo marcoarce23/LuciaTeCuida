@@ -53,6 +53,16 @@ class PreferensUser
         _prefs.setString('nombreUsuario', value);
       }
 
+
+get nombreCreacionInstitucion {
+        return _prefs.getString('nombreCreacionInstitucion') ?? '';
+      }
+
+      set nombreCreacionInstitucion( String value ) {
+        _prefs.setString('nombreCreacionInstitucion', value);
+      }
+
+
  get nombreInstitucion {
         return _prefs.getString('nombreInstitucion') ?? '-1';
       }
@@ -69,7 +79,16 @@ class PreferensUser
       _prefs.setString('token', value);
     }
     
-         get idInsitucion {
+    get idCreacionInsitucion
+    {
+      return _prefs.getInt('idCreacionInsitucion') ?? 0;
+    }
+
+    set idCreacionInsitucion( int value ) {
+      _prefs.setInt('idCreacionInsitucion', value);
+    }
+
+     get idInsitucion {
       return _prefs.getString('idInsitucion') ?? '-1';
     }
 
@@ -103,7 +122,7 @@ class PreferensUser
 
     // GET y SET de la última página
     get ultimaPagina {
-      return _prefs.getString('ultimaPagina') ?? 'login';
+      return _prefs.getString('ultimaPagina') ?? 'Splash';
     }
 
     set ultimaPagina( String value ) {

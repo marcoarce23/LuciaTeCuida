@@ -189,6 +189,7 @@ class _EventModuleState extends State<EventModule> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
+                  
                   Text('CARGAR IMAGEN DEL EVENTO',
                       style: TextStyle(
                         color: AppTheme.themeVino,
@@ -388,7 +389,7 @@ class _EventModuleState extends State<EventModule> {
     entity.eveUbicacion = ubicacion.objectValue;
     entity.eveFecha = _inputFieldDateController.text;
     entity.eveHora = _inputFieldTimeController.text;
-    entity.usuario = prefs.userId;
+    entity.usuario = prefs.correoElectronico;
 
     final dataMap = generic.add(entity, urlAddEvento);
 

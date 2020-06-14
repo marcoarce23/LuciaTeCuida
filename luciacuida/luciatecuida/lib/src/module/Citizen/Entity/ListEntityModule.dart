@@ -122,9 +122,18 @@ class _ListEntityModuleState extends State<ListEntityModule> {
       background: Container(
         color: Colors.red,
         padding: EdgeInsets.only(left: 20.0),
-        child: Text(
-          'Eliminar registro',
-          style: TextStyle(color: Colors.white),
+        child: Row(
+          children: <Widget>[
+             Icon(
+                      Icons.delete_forever,
+                      color: Colors.white,
+                      size: 15,
+                    ),
+            Text(
+              'Desea eliminar la Organiz.?',
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
         ),
       ),
       onDismissed: (value) {
@@ -138,7 +147,7 @@ class _ListEntityModuleState extends State<ListEntityModule> {
 
         if (result != null || result != '-1')
           Scaffold.of(context)
-              .showSnackBar(messageOk("Se elimino el registro."));
+              .showSnackBar(messageOk("Se elimino la Organización. ${entityItem.desInsitucion}"));
         else
           Scaffold.of(context).showSnackBar(
               messageNOk("Se  produjo un error. Vuelva a intentarlo."));
@@ -155,11 +164,11 @@ class _ListEntityModuleState extends State<ListEntityModule> {
                   child: Row(
                     children: <Widget>[
                       Icon(
-                        Icons.gamepad,
+                        Icons.business,
                         color: AppTheme.themeVino,
                         size: 15,
                       ),
-                      Text('Nombre: ${entityItem.nombreInstitucion} ',
+                      Text('${entityItem.nombreInstitucion} ',
                           style: kSubTitleCardStyle,),
                     ],
                   )),
@@ -191,7 +200,7 @@ class _ListEntityModuleState extends State<ListEntityModule> {
               Row(
                 children: <Widget>[
                   Icon(
-                    Icons.store_mall_directory,
+                    Icons.adjust,
                     color: AppTheme.themeVino,
                     size: 15,
                   ),
@@ -271,7 +280,7 @@ class _ListEntityModuleState extends State<ListEntityModule> {
           height: 1.5,
         ),
         Text(
-          '${entityItem.telefono}',
+          '${entityItem.desInsitucion}',
           style: TextStyle(
               fontSize: 12, color: Colors.black87, fontWeight: FontWeight.w400),
         ),

@@ -127,11 +127,11 @@ class _ListEntityConsultState extends State<ListEntityConsult> {
                   child: Row(
                     children: <Widget>[
                       Icon(
-                        Icons.gamepad,
+                        Icons.business,
                         color: AppTheme.themeVino,
                         size: 15,
                       ),
-                      Text('Nombre: ${entityItem.nombreInstitucion} ',
+                      Text('${entityItem.nombreInstitucion} ',
                           style: kSubTitleCardStyle,),
                     ],
                   )),
@@ -163,7 +163,7 @@ class _ListEntityConsultState extends State<ListEntityConsult> {
               Row(
                 children: <Widget>[
                   Icon(
-                    Icons.store_mall_directory,
+                    Icons.adjust,
                     color: AppTheme.themeVino,
                     size: 15,
                   ),
@@ -242,7 +242,7 @@ class _ListEntityConsultState extends State<ListEntityConsult> {
           height: 1.5,
         ),
         Text(
-          '${entityItem.telefono}',
+          '${entityItem.desInsitucion}',
           style: TextStyle(
               fontSize: 12, color: Colors.black87, fontWeight: FontWeight.w400),
         ),

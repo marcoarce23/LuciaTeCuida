@@ -8,14 +8,20 @@ class NotificacionesModule extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final arg = ModalRoute.of(context).settings.arguments;
+    print('valro obtenido: $arg');
+     
+   
 
-
-    return Scaffold(
+     return Scaffold(
       appBar: AppBar(
-        title: Text('NOTIFICACIONES - LUCIA TE CUIDA'),
+        title: Text('NOTIFICACIONES - ESTAMOS CONTIGO'),
       ),
-      body: Center(
-        child: Text(arg),//arg),
+      body: Container(
+        child: Column(
+          children: <Widget>[
+            Text('valor optenido $arg'),
+          ],
+        ),//arg),
       ),
     );
   }

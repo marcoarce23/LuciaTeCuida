@@ -149,7 +149,8 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
       );
     }
 
-    if (prefs.idPersonal != '-1' && prefs.idInsitucion != '-1') {
+    if (prefs.idPersonal != '-1' && prefs.idInsitucion != '0') 
+    {
       print('prefs.idInsiTArget: ${prefs.idPersonal}');
       return SafeArea(
               child: Scaffold(

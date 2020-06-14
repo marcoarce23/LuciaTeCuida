@@ -29,7 +29,6 @@ import 'package:luciatecuida/src/module/UtilModule/PageViewModule.dart';
 
 class HomePageModule extends StatefulWidget {
   static final String routeName = 'home';
-
   HomePageModule({Key key}) : super(key: key);
 
   @override
@@ -40,15 +39,16 @@ class _HomePageModuleState extends State<HomePageModule> {
   final prefs = new PreferensUser();
   final generic = new Generic();
   int _selectedIndex = 0;
-int valorExpedido = 60;
+  int valorExpedido = 60;
 
-  List<Widget> _widgetOptions = <Widget>[
-    Text(""),
-  ];
-
-  @override
+   @override
   void initState() {
-    generic.add( new TokenImei (correo1: prefs.correoElectronico, imei: prefs.imei, token:prefs.token), urlAddTokenImei);
+    generic.add(
+        new TokenImei(
+            correo1: prefs.correoElectronico,
+            imei: prefs.imei,
+            token: prefs.token),
+        urlAddTokenImei);
     super.initState();
   }
 
@@ -56,7 +56,6 @@ int valorExpedido = 60;
   Widget build(BuildContext context) {
     prefs.ultimaPagina = HomePageModule.routeName;
     //  generic.add( new TokenImei (correo1: prefs.correoElectronico, imei: prefs.imei, token:prefs.token), urlAddTokenImei);
-
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.white,
@@ -68,7 +67,7 @@ int valorExpedido = 60;
               Text("PANTALLA PRINCIPAL.", style: kTitleAppBar),
               SizedBox(width: 10.0),
               FaIcon(
-                FontAwesomeIcons.keybase,
+                FontAwesomeIcons.fistRaised,
                 color: AppTheme.themeVino,
                 size: 18,
               ),
@@ -93,8 +92,7 @@ int valorExpedido = 60;
                     children: <Widget>[],
                   ),
                 ),
-            
-                 _crearExpedido(),
+                _crearExpedido(),
                 _botonesRedondeados()
               ],
             ),
@@ -105,12 +103,10 @@ int valorExpedido = 60;
   }
 
   void _onItemTapped(int index) {
-
     setState(() {
       _selectedIndex = index;
-print('_selectedIndex $_selectedIndex');
 
-       if (_selectedIndex == 0) {
+      if (_selectedIndex == 0) {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => ContactAppModule()),
@@ -132,30 +128,31 @@ print('_selectedIndex $_selectedIndex');
     });
   }
 
- List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+  List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
     List<DropdownMenuItem<String>> lista = new List();
 
     for (var i = 0; i < snapshot.data.length; i++) {
       GetClasificador item = snapshot.data[i];
       lista.add(DropdownMenuItem(
-        child: Text(item.nombre),
+        child: Text(item.detalle),
         value: item.id.toString(),
       ));
     }
     return lista;
   }
 
-Widget _crearExpedido() {
+  Widget _crearExpedido() {
     return Center(
         child: FutureBuilder(
             future: generic.getAll(new GetClasificador(),
-                urlGetClasificador + '53', primaryKeyGetClasifidor),
+                urlGetDepartamento, primaryKeyGetDepartamento),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return Row(
                   children: <Widget>[
-                    SizedBox(width: 10.0),
-                    Text('DEPARTAMENTOS HABILITADOS:'),
+                    
+                    SizedBox(width: 15.0),
+                    Text('DEPARTAMENTOS :', style: kSigssTitleStyle,),
                     SizedBox(width: 15.0),
                     DropdownButton(
                       icon: FaIcon(FontAwesomeIcons.angleDown,
@@ -165,7 +162,7 @@ Widget _crearExpedido() {
                       onChanged: (value) {
                         setState(() {
                           valorExpedido = int.parse(value);
-                          prefs.idDepartamento = value;
+                          prefs.idDepartamento = valorExpedido;
                         });
                       },
                     ),
@@ -189,12 +186,12 @@ Widget _crearExpedido() {
       child: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.perm_contact_calendar, size: 20.0),
+              icon: Icon(Icons.contact_phone, size: 20.0),
               title: Text('Contactenos')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.event_note, size: 20.0), title: Text('Eventos')),
+              icon: Icon(Icons.event_available, size: 20.0), title: Text('Eventos')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.perm_media, size: 20.0),
+              icon: Icon(Icons.ondemand_video, size: 20.0),
               title: Text('Multimedia')),
         ],
         currentIndex: _selectedIndex,
@@ -206,43 +203,26 @@ Widget _crearExpedido() {
 
   Widget _botonesRedondeados() {
     return Wrap(children: <Widget>[
-      _crearBotonRedondeado(Colors.purpleAccent, Icons.hotel, 'Ayuda Urgente',
+      _crearBotonRedondeado(Colors.purpleAccent,  FaIcon(FontAwesomeIcons.procedures, color: Colors.white, size:35.0), 'Ayuda Urgente',
           '2', 16.0, CitizenPanicButtonModule(), 0, ""),
-      _crearBotonRedondeado(Colors.blue, Icons.add_comment,
+      _crearBotonRedondeado(Colors.blue,  FaIcon(FontAwesomeIcons.userMd, color: Colors.white, size:35.0),
           'Consulta a voluntarios', '1', 14.0, FoundVoluntaryModule(), 0, ""),
-      _crearBotonRedondeado(Colors.pinkAccent, Icons.accessible_forward,
+      _crearBotonRedondeado(Colors.pinkAccent,  FaIcon(FontAwesomeIcons.userInjured, color: Colors.white, size:35.0),
           'Ayuda a una persona', '3', 14.0, HelpFriendAllModule(), 0, ""),
-      _crearBotonRedondeado(Colors.deepPurple, Icons.phone_in_talk,
+      _crearBotonRedondeado(Colors.deepPurple,  FaIcon(FontAwesomeIcons.viber, color: Colors.white, size:40.0),
           'Números de urgencia', '5', 15.0, ContactGeneralModule(), 0, ""),
-      _crearBotonRedondeado(
-          Colors.cyan,
-          Icons.add_to_queue,
-          'Prueba de control',
-          '6',
-          16.0,
-          HomePageModule(),
-          1,
-          "https://omi.app/covid-19/welcome"),
-      _crearBotonRedondeado(
-          Colors.cyan,
-          Icons.add_to_queue,
-          'Violencia IntraFamiliar',
-          '6',
-          14.0,
-          ContactGeneralModule(),
-          0,
-          ""),
-_crearBotonRedondeadoImage(Colors.green, 'assets/instituciones.png',
+      _crearBotonRedondeado(   Colors.orangeAccent,    FaIcon(FontAwesomeIcons.laptopMedical, color: Colors.white, size:35.0),
+          'Prueba de control',    '6',  16.0,  HomePageModule(), 1, "https://omi.app/covid-19/welcome"),
+      _crearBotonRedondeado(Colors.cyan,  FaIcon(FontAwesomeIcons.tty, color: Colors.white, size:38.0),
+          'Violencia IntraFamiliar', '6', 14.0, ContactGeneralModule(), 0, ""),
+      _crearBotonRedondeado(Colors.green,  FaIcon(FontAwesomeIcons.school, color: Colors.white, size:35.0),
           'Organizaciones', '6', 16.0, CitizenListInstitucionModule(), 0, ""),
-
-      _crearBotonRedondeadoImage(Colors.amberAccent, 'assets/eventos.png',
+      _crearBotonRedondeado(Colors.indigoAccent, FaIcon(FontAwesomeIcons.users, color: Colors.white, size:35.0),
           'Voluntarios', '4', 18.0, CitizenListInstitucionModule(), 0, ""),
- 
-      
     ]);
   }
 
-  Widget _crearBotonRedondeado(Color color, IconData icono, String texto,
+  Widget _crearBotonRedondeado(Color color, FaIcon icono, String texto,
       String valor, double size, Widget widget, int acceso, String link) {
     return InkWell(
       onTap: () {
@@ -272,7 +252,9 @@ _crearBotonRedondeadoImage(Colors.green, 'assets/instituciones.png',
               end: Alignment.bottomRight,
               stops: [0.1, 0.4, 0.7, 0.9],
               colors: [
-                AppTheme.themeVino, AppTheme.themeVino, AppTheme.themeVino,
+                AppTheme.themeVino,
+                AppTheme.themeVino,
+                AppTheme.themeVino,
                 AppTheme.themeVino,
               ],
             )),
@@ -284,7 +266,7 @@ _crearBotonRedondeadoImage(Colors.green, 'assets/instituciones.png',
                 CircleAvatar(
                   backgroundColor: color,
                   radius: 30.0,
-                  child: Icon(icono, color: Colors.white, size: 42.0),
+                  child:  icono,
                   //Icon(icono, color: Colors.white, size: 42.0),
                 ),
                 Text(texto,
@@ -296,68 +278,12 @@ _crearBotonRedondeadoImage(Colors.green, 'assets/instituciones.png',
       ),
     );
   }
-
-  Widget _crearBotonRedondeadoImage(Color color, String image, String texto,
-      String valor, double size, Widget widget, int acceso, String link) {
-    return InkWell(
-      onTap: () {
-        if (acceso == 1) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => PageViewModule(
-                      title: 'TEST DE PRUEBA', selectedUrl: link)));
-        } else {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => widget),
-          );
-        }
-      },
-      child: ClipRect(
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-          child: Container(
-            height: 100.0,
-            width: 160,
-            margin: EdgeInsets.all(9.0),
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomRight,
-              stops: [0.1, 0.4, 0.7, 0.9],
-              colors: [
-                AppTheme.themeVino, AppTheme.themeVino, AppTheme.themeVino,
-                AppTheme.themeVino,
-              ],
-            )),
-            //  borderRadius: BorderRadius.circular(20.0)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                SizedBox(height: 5.0),
-                CircleAvatar(
-                  backgroundColor: color,
-                  radius: 30.0,
-                  child: Image.asset(image, width: 40.0, height: 40.0),
-                  //Icon(icono, color: Colors.white, size: 42.0),
-                ),
-                Text(texto,
-                    style: TextStyle(color: AppTheme.white, fontSize: size)),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+ }
 
 class DrawerCitizen extends StatelessWidget {
   final prefs = new PreferensUser();
   @override
   Widget build(BuildContext context) {
-    print('prefs.idPersonal : ${prefs.idPersonal}');
     if (prefs.idPersonal != '-1') {
       return Drawer(
           child: ListView(
@@ -403,131 +329,48 @@ class DrawerCitizen extends StatelessWidget {
               ],
             )),
           ),
-
-          //callWhatsAppAdvanced('Queremos compartir la ��������������������������������� http://bit.ly/mrPlayStore app')),
-          //openWeb('http://mapacovid19.ruta88.net/'),
-          //sharedImage('assets/image/twitter.jpg','twitter','twitter.jpg','jpg','imagen de apoyo JPG'),
-          // Navigator.push(
-          //   context,
-          //   MaterialPageRoute(builder: (context) => SignInDemo()),
-          // )),
-
-          // CustomListTile(
-          //     Icons.business,
-          //     'Inicio',
-          //     () => Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) => PageViewModule(title: 'TEST DE PRUEBA', selectedUrl: 'https://omi.app/covid-19/welcome')),
-          //         )),
-
-          // CustomListTile(
-          //     Icons.business,
-          //     'Conoce las instituciones',
-          //     () => Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) => CitizenListInstitucionModule()),
-          //         )),
-          // CustomListTile(
-          //     Icons.perm_phone_msg,
-          //     'Consulta a un voluntario',
-          //     () => Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) => FoundVoluntaryModule()),
-          //         )),
-          // CustomListTile(
-          //     Icons.hotel,
-          //     'Pedir ayuda urgente',
-          //     () => Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) => CitizenPanicButtonModule()),
-          //         )),
+       
           CustomListTile(
-              Icons.accessible_forward,
-              'Ayuda a una persona',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => HelpFriendAllModule()),
-                  )),
-          // CustomListTile(
-          //     Icons.event_available,
-          //     'Eventos vigentes',
-          //     () => Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) => CitizenEventsModule()),
-          //         )),
-          // CustomListTile(
-          //     Icons.play_circle_outline,
-          //     'Ver Multimedia',
-          //     () => Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) => CitizenMultimediaModule()),
-          //         )),
-          // CustomListTile(
-          //     Icons.edit_location,
-          //     'Registra tu Institución',
-          //     () => Navigator.push(
-          //           context,
-          //           MaterialPageRoute(builder: (context) => EntityAllModule()),
-          //         )),
-
-          CustomListTile(
-              Icons.add_comment,
-              'Atiende las solicitudes',
+              Icons.add_call,
+              '    Atiende las solicitudes',
               () => Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => CitizenEmergencyModule()),
                   )),
-          // CustomListTile(
-          //   Icons.map,
-          //   'Mapa de solicitudes',
-          //   () => openWeb('http://mapacovid19.ruta88.net/'),
-          //   // Navigator.push(
-          //   //       context,
-          //   //       MaterialPageRoute(builder: (context) => MapAdressModule()),
-          //   //     )
-          // ),
           CustomListTile(
-              Icons.edit_location,
-              'Registra tu Institución',
+              Icons.business,
+              '    Registra tu Organización',
               () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => EntityAllModule()),
                   )),
-
           CustomListTile(
               Icons.event_available,
-              'Crear Eventos-Entidades',
+              '    Eventos de la Organización',
               () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => EventAllModule()),
                   )),
           CustomListTile(
               Icons.event_note,
-              'Crear Eventos-Voluntarios',
+              '    Eventos del Voluntario',
               () => Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => EventVoluntaryAllModule()),
                   )),
           CustomListTile(
-              Icons.image,
-              'Cargar Multimedia',
+              Icons.ondemand_video,
+              '    Material Multimedia',
               () => Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => MultimediaAllModule()),
                   )),
           CustomListTile(
-              Icons.airline_seat_individual_suite,
-              'Registrar Atención médica',
+              Icons.assignment,
+              '    Registrar Atención Realizada',
               () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -535,7 +378,7 @@ class DrawerCitizen extends StatelessWidget {
                   )),
           CustomListTile(
               Icons.person_add,
-              'Registrate como voluntario',
+              '    Registrate como voluntario',
               () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -543,18 +386,18 @@ class DrawerCitizen extends StatelessWidget {
                   )),
           CustomListTile(
               Icons.share,
-              'Comparte la aplicación',
+              '    Comparte la aplicación',
               () => sharedText('Comparte la aplicación LuciaTeCuida',
                   'Comparte la app http://bit.ly/mrPlayStore', 'text/html')),
           CustomListTile(
-              Icons.bubble_chart,
-              'Acerca de Lucia Te Cuida',
+              Icons.add_to_home_screen,
+              '   Acerca de la aplicación',
               () => Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => IntroScreenModule()),
                   )),
-          CustomListTile(Icons.exit_to_app, 'Cerrar Sesión', () {
+          CustomListTile(Icons.exit_to_app, '    Cerrar Sesión', () {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => SignInDemo()),
@@ -600,41 +443,17 @@ class DrawerCitizen extends StatelessWidget {
               ],
             )),
           ),
-
+        
           CustomListTile(
-              Icons.accessible_forward,
-              'Ayuda a una persona',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => HelpFriendAllModule()),
-                  )),
-          // CustomListTile(
-          //     Icons.event_available,
-          //     'Eventos vigentes',
-          //     () => Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) => CitizenEventsModule()),
-          //         )),
-          // CustomListTile(
-          //     Icons.play_circle_outline,
-          //     'Ver Multimedia',
-          //     () => Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) => CitizenMultimediaModule()),
-          //         )),
-          CustomListTile(
-              Icons.edit_location,
-              'Registra Institución',
+              Icons.business,
+              '    Registra tu Organización',
               () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => EntityAllModule()),
                   )),
           CustomListTile(
               Icons.person_add,
-              'Registrate como voluntario',
+              '    Registrate como voluntario',
               () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -642,12 +461,14 @@ class DrawerCitizen extends StatelessWidget {
                   )),
           CustomListTile(
               Icons.share,
-              'Comparte la aplicación',
-              () => sharedText('Te contamos que existe una aplicación de grupos de voluntariados de diversas áreas. Queremos compartir la aplicación "EstamosContigo" y que nos ayudes a compartir',
-                  'Comparte la app http://bit.ly/mrPlayStore', 'text/html')),
+              '    Comparte la aplicación',
+              () => sharedText(
+                  'Te contamos que existe una aplicación de grupos de voluntariados de diversas áreas. Queremos compartir la aplicación "_*EstamosContigo*_" y que nos ayudes a compartirla.\n Ayudemos a las personas que requieren de nosotros.\n',
+                  'Comparte la app en playStore: http://bit.ly/mrPlayStore \n. Muchas gracias por tu tiempo.',
+                  'text/html')),
           CustomListTile(
-              Icons.bubble_chart,
-              'Acerca de Lucia Te Cuida',
+              Icons.add_to_home_screen,
+              '    Acerca de la aplicación',
               () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -655,7 +476,7 @@ class DrawerCitizen extends StatelessWidget {
                   )),
           CustomListTile(
               Icons.exit_to_app,
-              'Cerrar Sesión',
+              '    Cerrar Sesión',
               () => Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => SignInDemo()),

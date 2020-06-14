@@ -65,10 +65,26 @@ class _MyAppState extends State<MyApp> {
     final pushProvider = new PushNotificationProvider();
     pushProvider.initNotifications();
     pushProvider.mensajes.listen((data) {
-         print('Argumento del Push');
-         print(data);
-      navigatorKey.currentState.pushNamed('notificaciones', arguments: data );
-  
+         print('Argumento del Push: $data');
+
+         if(data == 'ayudaPersona')
+             navigatorKey.currentState.pushNamed('CiudadanoEmergencia', arguments: data );
+
+        else if(data == 'Voluntario')
+             navigatorKey.currentState.pushNamed('EncuentraVoluntario', arguments: data );
+        
+         else if(data == 'organizacion')
+             navigatorKey.currentState.pushNamed('ListaInstituciones', arguments: data );
+        
+         else if(data == 'emergencia')
+             navigatorKey.currentState.pushNamed('CiudadanoEmergencia', arguments: data );
+        
+         else if(data == 'eventos')
+             navigatorKey.currentState.pushNamed('CiudadanoEventos', arguments: data );
+        
+         else if(data == 'multimedia')
+             navigatorKey.currentState.pushNamed('CiudadanoMultimedia', arguments: data );
+
       }
     );
   }
@@ -79,7 +95,7 @@ class _MyAppState extends State<MyApp> {
         .copyWith(statusBarColor: Colors.transparent));
 
     return MaterialApp(
-      title: 'LUCIA TE CUIDA',
+      title: 'ESTAMOS CONTIGO',
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -99,11 +115,12 @@ class _MyAppState extends State<MyApp> {
       ],
 
 
-    //  initialRoute: prefs.ultimaPagina,
+      initialRoute: prefs.ultimaPagina,
     //  home: new FilePickerDemo(),//MapAdressModule(),
-        home: new SignUpModule(),//FilePickerDemo(),
+     //   home: new SplashScreenModule(),//FilePickerDemo(),
 
         routes: <String, WidgetBuilder>{
+          'Splash': (BuildContext context) => new SplashScreenModule(),
         'notificaciones': (BuildContext context) => new NotificacionesModule(),
         'login': (BuildContext context) => new SignUpModule(),
         'forget': (BuildContext context) => new ForgetPassword(),

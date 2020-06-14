@@ -9,7 +9,7 @@ import 'package:luciatecuida/src/Model/PreferenceUser.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/Util/Resource.dart' as resource;
-import 'package:luciatecuida/src/Util/SearchDelegate/DataSearch.dart';
+
 import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/Widget/InputField/InputFieldWidget.dart';
@@ -308,7 +308,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
                     Text('Exp.'),
                     SizedBox(width: 15.0),
                     DropdownButton(
-                      icon: FaIcon(FontAwesomeIcons.angleDown,
+                      icon: FaIcon(FontAwesomeIcons.sort,
                           color: AppTheme.themeVino),
                       value: valorExpedido.toString(), //valor
                       items: getDropDown(snapshot),
@@ -352,7 +352,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
                     Text('Especialidad'),
                     SizedBox(width: 15.0),
                     DropdownButton(
-                      icon: FaIcon(FontAwesomeIcons.angleDown,
+                      icon: FaIcon(FontAwesomeIcons.sort,
                           color: AppTheme.themeVino),
                       value: valorTipoEspecialidad.toString(), //valor
                       items: getDropDown(snapshot),
@@ -432,7 +432,8 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
     entity.perFacebbok = facebook.objectValue;
     entity.perTwitter = twitter.objectValue;
     entity.perPaginaWeb = paginaWeb.objectValue;
-    entity.usuario = prefs.userId;
+    entity.usuario = prefs.correoElectronico;
+    entity.estadoUsuario = 81;
 
     final dataMap = generic.add(entity, urlAddPersonal);
 
