@@ -21,29 +21,25 @@ import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
-
 final String userName = null;
 
+enviarNotificaciones(String urlGetToken, String clave, String titulo,
+    String valorTitulo, String subTitulo, String subTituloValor) {
+  Token entityToken;
+  final dataMapToken =
+      new Generic().getAll(new Token(), urlGetToken, primaryKeyGetToken);
 
- enviarNotificaciones(String urlGetToken, String clave, String titulo, String valorTitulo, String subTitulo, String subTituloValor) 
- {
-   Token entityToken;
-   final dataMapToken = new Generic().getAll(new Token(), urlGetToken, primaryKeyGetToken);
-
-        dataMapToken.then((value) 
-        {
-             if (value.length > 0) 
-             {
-                for (int i = 0; i < value.length; i++)
-                { 
-                     entityToken = value[i];
-                 //    print('entrooo las veces de: $entityToken');
-                      new Generic().sebnFCM(entityToken.llaveToken, clave, '$titulo - $valorTitulo - $subTitulo $subTituloValor - Fecha - ${DateTime.now()}');
-                }
-              }
-         }
-      );
- }
+  dataMapToken.then((value) {
+    if (value.length > 0) {
+      for (int i = 0; i < value.length; i++) {
+        entityToken = value[i];
+        //    print('entrooo las veces de: $entityToken');
+        new Generic().sebnFCM(entityToken.llaveToken, clave,
+            '$titulo - $valorTitulo - $subTitulo $subTituloValor - Fecha - ${DateTime.now()}');
+      }
+    }
+  });
+}
 
 int daysInMonth(int month) {
   var now = DateTime.now();
@@ -150,21 +146,37 @@ loadPDF(String path) async {
 }
 
 Widget generaFloatbuttonHome(BuildContext context) {
-
   return FloatingActionButton(
-  onPressed: () {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => HomePageModule(),
-        ));
-  },
-  child: FaIcon(FontAwesomeIcons.home),
-  backgroundColor: AppTheme.themeVino,
-  
-  
-  
+    onPressed: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePageModule(),
+          ));
+    },
+    child: FaIcon(FontAwesomeIcons.home),
+    backgroundColor: AppTheme.themeVino,
+  );
+}
+
+Widget generaHTTP_TEXT(String cadena) {
+  if (cadena.contains("http") ||
+      cadena.contains("https") ||
+      cadena.contains("www")) {
+    return InkWell(
+      child: FaIcon(
+        FontAwesomeIcons.link,
+        size: 25,
+        color: AppTheme.themeVino,
+      ),
+      onTap: () {
+        openWeb(cadena);
+      },
     );
+  } else {
+    return Text(cadena,
+        style: kSubTitleCardStyle, overflow: TextOverflow.clip, softWrap: true);
+  }
 }
 
 Widget generaFloatButtonInformationEntity(BuildContext context) {
@@ -176,13 +188,14 @@ Widget generaFloatButtonInformationEntity(BuildContext context) {
             builder: (context) => EntityAllModule(),
           ));
     },
-    child: FaIcon(FontAwesomeIcons.arrowLeft, ),
+    child: FaIcon(
+      FontAwesomeIcons.arrowLeft,
+    ),
     backgroundColor: AppTheme.themeVino,
   );
 }
 
 Widget generaFloatButtonInformationVoluntary(BuildContext context) {
-
   return FloatingActionButton(
     onPressed: () {
       Navigator.push(
@@ -191,7 +204,9 @@ Widget generaFloatButtonInformationVoluntary(BuildContext context) {
             builder: (context) => VoluntaryAllModule(),
           ));
     },
-    child: FaIcon(FontAwesomeIcons.arrowLeft, ),
+    child: FaIcon(
+      FontAwesomeIcons.arrowLeft,
+    ),
     backgroundColor: AppTheme.themeVino,
   );
 }
