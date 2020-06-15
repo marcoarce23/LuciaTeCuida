@@ -5,6 +5,7 @@ import 'package:luciatecuida/src/Model/Entity.dart';
 import 'package:luciatecuida/src/Model/Generic.dart';
 import 'package:luciatecuida/src/Model/PreferenceUser.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
+import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/Widget/Message/Message.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
@@ -28,7 +29,7 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
   @override
   void initState() {
     prefs.ultimaPagina = CitizenAlertEmergency.routeName;
-     super.initState();
+    super.initState();
   }
 
   @override
@@ -36,19 +37,19 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-
- backgroundColor: Colors.white,
-        toolbarOpacity: 0.7,
-        iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
-        elevation: 0,
-        title:
-            Text("Historial de solicitudes".toUpperCase(), style: kTitleAppBar),           
+              backgroundColor: Colors.white,
+              toolbarOpacity: 0.7,
+              iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
+              elevation: 0,
+              title: Text("Historial de solicitudes".toUpperCase(),
+                  style: kTitleAppBar),
               //backgroundColor: colorCuadro,
             ),
             drawer: DrawerCitizen(),
+            floatingActionButton: generaFloatbuttonHome(context),
             // backgroundColor: Colors.red,
             body: SingleChildScrollView(
-                          child: Column(
+              child: Column(
                 children: <Widget>[
                   cuerpoSolicitudes(),
                   copyRigth(),
@@ -64,7 +65,6 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            
             futureSolicitudes(context),
           ],
         ),
@@ -170,7 +170,7 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
                           Text(
                             "Fecha solicitud:",
                             style: TextStyle(
-                              fontWeight:  FontWeight.w800,
+                              fontWeight: FontWeight.w800,
                               color: Colors.black,
                               fontSize: 14,
                             ),
@@ -188,7 +188,7 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
                               ),
                               SizedBox(
                                 width: 10,
-                              ),                            
+                              ),
                             ],
                           ),
                         ],
@@ -199,7 +199,7 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
                           Text(
                             "Detalle:",
                             style: TextStyle(
-                              fontWeight:  FontWeight.w800,
+                              fontWeight: FontWeight.w800,
                               color: Colors.black,
                               fontSize: 14,
                             ),
@@ -224,7 +224,7 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
                           Text(
                             "Voluntario asignado:",
                             style: TextStyle(
-                              fontWeight:  FontWeight.w800,
+                              fontWeight: FontWeight.w800,
                               color: Colors.black,
                               fontSize: 14,
                             ),
@@ -238,7 +238,7 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
                                 (solicitudAyuda.nombrePersonalAtendio.length <=
                                         0)
                                     ? "En curso de atención"
-                                    : solicitudAyuda.nombrePersonalAtendio   ,
+                                    : solicitudAyuda.nombrePersonalAtendio,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14,
@@ -249,7 +249,7 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
                           Text(
                             "Institución:",
                             style: TextStyle(
-                              fontWeight:  FontWeight.w800,
+                              fontWeight: FontWeight.w800,
                               color: Colors.black,
                               fontSize: 14,
                             ),
@@ -275,7 +275,7 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
                           Text(
                             "Fecha de asignación con voluntario:",
                             style: TextStyle(
-                              fontWeight:  FontWeight.w800,
+                              fontWeight: FontWeight.w800,
                               color: Colors.black,
                               fontSize: 14,
                             ),
@@ -349,16 +349,10 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
     }
   }
 
-
-  
-
-
-
-
   _submitConcluirAtencionr(
       BuildContext context, SolicitudAyuda solicitudAyuda) async {
     registrarAyuda.idaBotonPanico = solicitudAyuda.idaBotonPanico;
-    registrarAyuda.idaPersonal = int.parse( prefs.idPersonal);
+    registrarAyuda.idaPersonal = int.parse(prefs.idPersonal);
     registrarAyuda.fecha =
         DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now());
     registrarAyuda.idaEstado = 79; // en cursoF

@@ -61,7 +61,7 @@ class _ListCitizenHelpModuleState extends State<ListCitizenHelpModule> {
   Widget futureItemsEntity(BuildContext context) {
     return FutureBuilder(
         future: generic.getAll(
-            new RegistroAmigo(), urlGetDevuelveAyuda, primaryKeyGetAyudaAmigo),
+            new RegistroAmigo(), urlGetDevuelveAyuda+'/'+ prefs.correoElectronico , primaryKeyGetAyudaAmigo),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             switch (snapshot.connectionState) {

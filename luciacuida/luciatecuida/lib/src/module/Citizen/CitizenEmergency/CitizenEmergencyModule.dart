@@ -58,7 +58,7 @@ class _CitizenEmergencyModuleState extends State<CitizenEmergencyModule> {
             ), //backgroundColor: colorCuadro,
 
             drawer: DrawerCitizen(),
-            // backgroundColor: Colors.red,
+            floatingActionButton: generaFloatbuttonHome(context),
             body: optionPage[page],
             bottomNavigationBar: BottomNavigationBar(
               backgroundColor: AppTheme.themeVino,
