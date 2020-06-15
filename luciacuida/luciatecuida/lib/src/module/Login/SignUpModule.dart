@@ -93,115 +93,98 @@ class _SignUpModuleState extends State<SignUpModule> {
   Future<void> handleSignIn() async {
     try {
       await _googleSignIn.signIn();
-       _crearInformacion();
+      _crearInformacion();
     } catch (error) {
       scaffoldKey.currentState
           .showSnackBar(messageNOk('Se produjo un error: ${error.toString()}'));
     }
   }
 
-     _crearInformacion() async 
-      {
+  _crearInformacion() async {
+    await _googleSignIn.signIn().then((value) {
+      final dataMap1 = generic.getAll(
+          entity, getLogin + '${currentUser.email}', primaryKeyGetLogin);
 
-       await _googleSignIn.signIn().then((value)
-        {
+      dataMap1.then((value) {
+        print('SE SETEOOOO 1111');
+        if (value.length > 0) {
+          print('SE SETEOOOO 222');
+          for (int i = 0; i < value.length; i++) {
+            entity = value[i];
+            print('SE SETEOOOO 333');
+          }
 
-              final dataMap1 =  generic.getAll(
-                  entity, getLogin + '${currentUser.email}', primaryKeyGetLogin);
+          print('SE SETEOOOO 444 ${entity.idCreacionInstitucion}');
+          prefs.imei = _platformImei;
+          prefs.nombreUsuario = entity.nombrePersona;
+          prefs.correoElectronico = entity.correo;
+          prefs.avatarImagen = entity.avatar;
+          prefs.nombreInstitucion = entity.nombreInstitucion;
+          prefs.idInsitucion = entity.idInstitucion;
+          prefs.idPersonal = entity.idPersonal;
+          prefs.userId = entity.idUsuario;
+          prefs.idCreacionInsitucion = entity.idCreacionInstitucion;
+          prefs.nombreCreacionInstitucion = entity.nombreCreacionInstitucion;
 
-                dataMap1.then((value) {
-                print('SE SETEOOOO 1111');
-                if (value.length > 0) {
-                    print('SE SETEOOOO 222');
-                  for (int i = 0; i < value.length; i++) {
-                    entity = value[i];
-                      print('SE SETEOOOO 333');
-                  }
+          print('SE SETEOOOO EL VALOR DEL prefs.userId: ${prefs.userId}');
+          Navigator.push(
+              context,
+              PageTransition(
+                curve: Curves.bounceOut,
+                type: PageTransitionType.rotate,
+                alignment: Alignment.topCenter,
+                child: IntroScreenModule(),
+              ));
+        } else {
+          _crearNuevo();
+        }
+      });
+    });
+  }
 
-                    print('SE SETEOOOO 444 ${entity.idCreacionInstitucion}');
-                  prefs.imei = _platformImei;
-                  prefs.nombreUsuario = entity.nombrePersona;
-                  prefs.correoElectronico = entity.correo;
-                  prefs.avatarImagen = entity.avatar;
-                  prefs.nombreInstitucion = entity.nombreInstitucion;
-                  prefs.idInsitucion = entity.idInstitucion;
-                  prefs.idPersonal = entity.idPersonal;
-                  prefs.userId = entity.idUsuario;
-                prefs.idCreacionInsitucion = entity.idCreacionInstitucion;
-                prefs.nombreCreacionInstitucion = entity.nombreCreacionInstitucion;
+  _crearNuevo() async {
+    prefs.imei = _platformImei;
+    prefs.nombreUsuario = currentUser.displayName;
+    prefs.correoElectronico = currentUser.email;
+    prefs.avatarImagen = currentUser.photoUrl;
+    prefs.userId = currentUser.displayName;
+    prefs.idInsitucion = "0";
+    prefs.idPersonal = "-1";
+    prefs.userId = currentUser.email;
 
+    print('SE SETEOOOO cuadno es priemra Vez pref.userId: ${prefs.userId}');
 
-                  print('SE SETEOOOO EL VALOR DEL prefs.userId: ${prefs.userId}');
-                  Navigator.push(
-                      context,
-                      PageTransition(
-                        curve: Curves.bounceOut,
-                        type: PageTransitionType.rotate,
-                        alignment: Alignment.topCenter,
-                        child: HomePageModule(),
-                      ));
-                } 
-                else 
-                {
-                      
+    entity.idUsuario = currentUser.id;
+    entity.idInstitucion = '-1';
+    entity.nombrePersona = currentUser.displayName;
+    entity.nombreInstitucion = '-1';
+    entity.usuario = currentUser.email;
+    entity.correo = currentUser.email;
+    entity.avatar = (currentUser.photoUrl == null)
+        ? 'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg'
+        : currentUser.photoUrl;
+    entity.password = '-1';
+    entity.tokenDispositivo = prefs.token;
+    entity.imei = _platformImei;
+    entity.primeraVez = '-1';
+    entity.idCreacionInstitucion = 0;
+    entity.idPersonal = '0';
+    entity.nombreCreacionInstitucion = '';
 
-                      _crearNuevo();
+    await generic.add(entity, urlAddSignIn).then((respuesta) {
+      prefs.userId = respuesta["TIPO_RESPUESTA"];
+      print('USER ID LOGIN RRRRRRRRRRRR ${prefs.userId}');
 
-                
-                }
-              });
-        });
-          
-      }
-
-_crearNuevo() async
-{
-  prefs.imei = _platformImei;
-                      prefs.nombreUsuario = currentUser.displayName;
-                      prefs.correoElectronico = currentUser.email;
-                      prefs.avatarImagen = currentUser.photoUrl;
-                      prefs.userId = currentUser.displayName;
-                      prefs.idInsitucion = "0";
-                      prefs.idPersonal = "-1";
-                      prefs.userId = currentUser.email;
-
-                      print(
-                          'SE SETEOOOO cuadno es priemra Vez pref.userId: ${prefs.userId}');
-
-                      entity.idUsuario = currentUser.id;
-                      entity.idInstitucion = '-1';
-                      entity.nombrePersona = currentUser.displayName;
-                      entity.nombreInstitucion = '-1';
-                      entity.usuario = currentUser.email;
-                      entity.correo = currentUser.email;
-                      entity.avatar = (currentUser.photoUrl == null)
-                          ? 'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg'
-                          : currentUser.photoUrl;
-                      entity.password = '-1';
-                      entity.tokenDispositivo = prefs.token;
-                      entity.imei = _platformImei;
-                      entity.primeraVez = '-1';
-                      entity.idCreacionInstitucion =  0;
-                      entity.idPersonal = '0';
-                      entity.nombreCreacionInstitucion = '';
-
-await generic.add(entity, urlAddSignIn).then((respuesta) {
-                        prefs.userId = respuesta["TIPO_RESPUESTA"];
-                        print('USER ID LOGIN RRRRRRRRRRRR ${prefs.userId}');
-
-                          Navigator.push(
-                          context,
-                          PageTransition(
-                            curve: Curves.bounceOut,
-                            type: PageTransitionType.rotate,
-                            alignment: Alignment.topCenter,
-                            child: IntroScreenModule(), //AgreeLoginModule(),
-                          ));
-
-                      });
-
-}
-
+      Navigator.push(
+          context,
+          PageTransition(
+            curve: Curves.bounceOut,
+            type: PageTransitionType.rotate,
+            alignment: Alignment.topCenter,
+            child: IntroScreenModule(), //AgreeLoginModule(),
+          ));
+    });
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -379,7 +362,7 @@ await generic.add(entity, urlAddSignIn).then((respuesta) {
                 curve: Curves.bounceOut,
                 type: PageTransitionType.rotate,
                 alignment: Alignment.topCenter,
-                child: IntroScreenModule(),
+                child: HomePageModule(),
               ));
         },
       ),

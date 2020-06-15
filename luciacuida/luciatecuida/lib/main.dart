@@ -115,9 +115,9 @@ class _MyAppState extends State<MyApp> {
       ],
 
 
-      initialRoute: prefs.ultimaPagina,
+     // initialRoute: prefs.ultimaPagina,
     //  home: new FilePickerDemo(),//MapAdressModule(),
-     //   home: new SplashScreenModule(),//FilePickerDemo(),
+        home: new SplashScreenModule(),//FilePickerDemo(),
 
         routes: <String, WidgetBuilder>{
           'Splash': (BuildContext context) => new SplashScreenModule(),

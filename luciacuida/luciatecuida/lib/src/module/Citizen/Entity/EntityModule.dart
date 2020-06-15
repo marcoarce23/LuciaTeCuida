@@ -53,7 +53,7 @@ class _EntityModuleState extends State<EntityModule> {
   bool esSucursal = false;
 
   String imagen =
-      'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg';
+      'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg';
   var result;
 
   final formKey = GlobalKey<FormState>();
@@ -280,7 +280,7 @@ class _EntityModuleState extends State<EntityModule> {
                     Text('Departamento'),
                     SizedBox(width: 15.0),
                     DropdownButton(
-                      icon: FaIcon(FontAwesomeIcons.map,
+                      icon: FaIcon(FontAwesomeIcons.sort,
                           color: AppTheme.themeVino),
                       value: valorDepartamento.toString(),
                       items: getDropDownDpto(snapshot),
@@ -327,7 +327,7 @@ class _EntityModuleState extends State<EntityModule> {
                     Text('Especialidad'),
                     SizedBox(width: 15.0),
                     DropdownButton(
-                      icon: FaIcon(FontAwesomeIcons.peopleArrows,
+                      icon: FaIcon(FontAwesomeIcons.sort,
                           color: AppTheme.themeVino),
                       value: valorInstitucion.toString(),
                       items: getDropDown(snapshot),

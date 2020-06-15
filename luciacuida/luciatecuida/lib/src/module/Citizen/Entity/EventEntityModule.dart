@@ -69,13 +69,13 @@ class _EventAllModuleState extends State<EventAllModule> {
         items: [
           BottomNavigationBarItem(
               icon: FaIcon(
-                FontAwesomeIcons.userCircle,
+                FontAwesomeIcons.chalkboardTeacher,
                 size: 25,
               ),
               title: Text('Eventos')),
           BottomNavigationBarItem(
               icon: FaIcon(
-                FontAwesomeIcons.calendarCheck,
+                FontAwesomeIcons.calendarAlt,
                 size: 25,
               ),
               title: Text('Listado eventos')),
@@ -104,7 +104,7 @@ class _EventEntityModuleState extends State<EventEntityModule> {
   TimeOfDay _time;
   var result;
   String imagen =
-      'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80';
+      'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg';
   File foto;
 
   TextEditingController _inputFieldDateController = new TextEditingController();

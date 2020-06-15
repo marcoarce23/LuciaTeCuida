@@ -23,6 +23,7 @@ import 'package:luciatecuida/src/module/Citizen/Voluntary/InformationVoluntary.d
 import 'package:luciatecuida/src/module/Contactos/ContactAppModule.dart';
 import 'package:luciatecuida/src/module/Contactos/ContatGeneralModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
+import 'package:luciatecuida/src/module/SplashScreen/Acerca.dart';
 import 'package:luciatecuida/src/module/SplashScreen/IntroScreenModule.dart';
 import 'package:luciatecuida/src/module/Login/SiginDemo.dart';
 import 'package:luciatecuida/src/module/UtilModule/PageViewModule.dart';
@@ -67,7 +68,7 @@ class _HomePageModuleState extends State<HomePageModule> {
               Text("PANTALLA PRINCIPAL.", style: kTitleAppBar),
               SizedBox(width: 10.0),
               FaIcon(
-                FontAwesomeIcons.fistRaised,
+                FontAwesomeIcons.handshake,
                 color: AppTheme.themeVino,
                 size: 18,
               ),
@@ -395,7 +396,7 @@ class DrawerCitizen extends StatelessWidget {
               () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => IntroScreenModule()),
+                        builder: (context) => AcercaModule()),
                   )),
           CustomListTile(Icons.exit_to_app, '    Cerrar Sesión', () {
             Navigator.push(
@@ -472,7 +473,7 @@ class DrawerCitizen extends StatelessWidget {
               () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => IntroScreenModule()),
+                        builder: (context) => AcercaModule()),
                   )),
           CustomListTile(
               Icons.exit_to_app,
