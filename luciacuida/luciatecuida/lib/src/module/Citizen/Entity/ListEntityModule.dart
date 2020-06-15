@@ -61,7 +61,7 @@ class _ListEntityModuleState extends State<ListEntityModule> {
   Widget futureItemsEntity(BuildContext context) {
     return FutureBuilder(
         future: generic.getAll(
-            new Institucion(), urlGetInstitucion + '-1', primaryKeyGetInsitucion),
+            new Institucion(), urlGetInstitucionCreacion + prefs.correoElectronico, primaryKeyGetInstitucionCreacion),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
           switch (snapshot.connectionState) {
