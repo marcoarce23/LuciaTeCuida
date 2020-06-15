@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -42,7 +43,7 @@ class _HomePageModuleState extends State<HomePageModule> {
   int _selectedIndex = 0;
   int valorExpedido = 60;
 
-   @override
+  @override
   void initState() {
     generic.add(
         new TokenImei(
@@ -145,15 +146,17 @@ class _HomePageModuleState extends State<HomePageModule> {
   Widget _crearExpedido() {
     return Center(
         child: FutureBuilder(
-            future: generic.getAll(new GetClasificador(),
-                urlGetDepartamento, primaryKeyGetDepartamento),
+            future: generic.getAll(new GetClasificador(), urlGetDepartamento,
+                primaryKeyGetDepartamento),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return Row(
                   children: <Widget>[
-                    
                     SizedBox(width: 15.0),
-                    Text('DEPARTAMENTOS :', style: kSigssTitleStyle,),
+                    Text(
+                      'DEPARTAMENTOS :',
+                      style: kSigssTitleStyle,
+                    ),
                     SizedBox(width: 15.0),
                     DropdownButton(
                       icon: FaIcon(FontAwesomeIcons.angleDown,
@@ -190,7 +193,8 @@ class _HomePageModuleState extends State<HomePageModule> {
               icon: Icon(Icons.contact_phone, size: 20.0),
               title: Text('Contactenos')),
           BottomNavigationBarItem(
-              icon: Icon(Icons.event_available, size: 20.0), title: Text('Eventos')),
+              icon: Icon(Icons.event_available, size: 20.0),
+              title: Text('Eventos')),
           BottomNavigationBarItem(
               icon: Icon(Icons.ondemand_video, size: 20.0),
               title: Text('Multimedia')),
@@ -204,22 +208,79 @@ class _HomePageModuleState extends State<HomePageModule> {
 
   Widget _botonesRedondeados() {
     return Wrap(children: <Widget>[
-      _crearBotonRedondeado(Colors.purpleAccent,  FaIcon(FontAwesomeIcons.procedures, color: Colors.white, size:35.0), 'Ayuda Urgente',
-          '2', 16.0, CitizenPanicButtonModule(), 0, ""),
-      _crearBotonRedondeado(Colors.blue,  FaIcon(FontAwesomeIcons.userMd, color: Colors.white, size:35.0),
-          'Consulta a voluntarios', '1', 14.0, FoundVoluntaryModule(), 0, ""),
-      _crearBotonRedondeado(Colors.pinkAccent,  FaIcon(FontAwesomeIcons.userInjured, color: Colors.white, size:35.0),
-          'Ayuda a una persona', '3', 14.0, HelpFriendAllModule(), 0, ""),
-      _crearBotonRedondeado(Colors.deepPurple,  FaIcon(FontAwesomeIcons.viber, color: Colors.white, size:40.0),
-          'Números de urgencia', '5', 15.0, ContactGeneralModule(), 0, ""),
-      _crearBotonRedondeado(   Colors.orangeAccent,    FaIcon(FontAwesomeIcons.laptopMedical, color: Colors.white, size:35.0),
-          'Prueba de control',    '6',  16.0,  HomePageModule(), 1, "https://omi.app/covid-19/welcome"),
-      _crearBotonRedondeado(Colors.cyan,  FaIcon(FontAwesomeIcons.tty, color: Colors.white, size:38.0),
-          'Violencia IntraFamiliar', '6', 14.0, ContactGeneralModule(), 0, ""),
-      _crearBotonRedondeado(Colors.green,  FaIcon(FontAwesomeIcons.school, color: Colors.white, size:35.0),
-          'Organizaciones', '6', 16.0, CitizenListInstitucionModule(), 0, ""),
-      _crearBotonRedondeado(Colors.indigoAccent, FaIcon(FontAwesomeIcons.users, color: Colors.white, size:35.0),
-          'Voluntarios', '4', 18.0, CitizenListInstitucionModule(), 0, ""),
+      _crearBotonRedondeado(
+          Colors.purpleAccent,
+          FaIcon(FontAwesomeIcons.procedures, color: Colors.white, size: 35.0),
+          'Ayuda Urgente',
+          '2',
+          16.0,
+          CitizenPanicButtonModule(),
+          0,
+          ""),
+      _crearBotonRedondeado(
+          Colors.blue,
+          FaIcon(FontAwesomeIcons.userMd, color: Colors.white, size: 35.0),
+          'Consulta a voluntarios',
+          '1',
+          14.0,
+          FoundVoluntaryModule(),
+          0,
+          ""),
+      _crearBotonRedondeado(
+          Colors.pinkAccent,
+          FaIcon(FontAwesomeIcons.userInjured, color: Colors.white, size: 35.0),
+          'Ayuda a una persona',
+          '3',
+          14.0,
+          HelpFriendAllModule(),
+          0,
+          ""),
+      _crearBotonRedondeado(
+          Colors.deepPurple,
+          FaIcon(FontAwesomeIcons.viber, color: Colors.white, size: 40.0),
+          'Números de urgencia',
+          '5',
+          15.0,
+          ContactGeneralModule(),
+          0,
+          ""),
+      _crearBotonRedondeado(
+          Colors.orangeAccent,
+          FaIcon(FontAwesomeIcons.laptopMedical,
+              color: Colors.white, size: 35.0),
+          'Prueba de control',
+          '6',
+          16.0,
+          HomePageModule(),
+          1,
+          "https://omi.app/covid-19/welcome"),
+      _crearBotonRedondeado(
+          Colors.cyan,
+          FaIcon(FontAwesomeIcons.tty, color: Colors.white, size: 38.0),
+          'Violencia IntraFamiliar',
+          '6',
+          14.0,
+          ContactGeneralModule(),
+          0,
+          ""),
+      _crearBotonRedondeado(
+          Colors.green,
+          FaIcon(FontAwesomeIcons.school, color: Colors.white, size: 35.0),
+          'Organizaciones',
+          '6',
+          16.0,
+          CitizenListInstitucionModule(),
+          0,
+          ""),
+      _crearBotonRedondeado(
+          Colors.indigoAccent,
+          FaIcon(FontAwesomeIcons.users, color: Colors.white, size: 35.0),
+          'Voluntarios',
+          '4',
+          18.0,
+          FoundVoluntaryModule(),
+          0,
+          ""),
     ]);
   }
 
@@ -267,7 +328,7 @@ class _HomePageModuleState extends State<HomePageModule> {
                 CircleAvatar(
                   backgroundColor: color,
                   radius: 30.0,
-                  child:  icono,
+                  child: icono,
                   //Icon(icono, color: Colors.white, size: 42.0),
                 ),
                 Text(texto,
@@ -279,7 +340,7 @@ class _HomePageModuleState extends State<HomePageModule> {
       ),
     );
   }
- }
+}
 
 class DrawerCitizen extends StatelessWidget {
   final prefs = new PreferensUser();
@@ -315,14 +376,11 @@ class DrawerCitizen extends StatelessWidget {
                           overflow: TextOverflow.clip,
                         ),
                       ),
-                      Expanded(
-                        child: Text(
-                          prefs.correoElectronico,
-                          style: TextStyle(
-                              color: AppTheme.themePlomo, fontSize: 16.0),
-                          softWrap: true,
-                          overflow: TextOverflow.clip,
-                        ),
+                      AutoSizeText(
+                         prefs.correoElectronico,
+                        style: TextStyle(
+                            color: AppTheme.themePlomo, fontSize: 16.0),
+                        maxLines: 2,
                       ),
                     ],
                   ),
@@ -330,7 +388,6 @@ class DrawerCitizen extends StatelessWidget {
               ],
             )),
           ),
-       
           CustomListTile(
               Icons.add_call,
               '    Atiende las solicitudes',
@@ -395,8 +452,7 @@ class DrawerCitizen extends StatelessWidget {
               '   Acerca de la aplicación',
               () => Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => AcercaModule()),
+                    MaterialPageRoute(builder: (context) => AcercaModule()),
                   )),
           CustomListTile(Icons.exit_to_app, '    Cerrar Sesión', () {
             Navigator.push(
@@ -444,7 +500,6 @@ class DrawerCitizen extends StatelessWidget {
               ],
             )),
           ),
-        
           CustomListTile(
               Icons.business,
               '    Registra tu Organización',
@@ -472,8 +527,7 @@ class DrawerCitizen extends StatelessWidget {
               '    Acerca de la aplicación',
               () => Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => AcercaModule()),
+                    MaterialPageRoute(builder: (context) => AcercaModule()),
                   )),
           CustomListTile(
               Icons.exit_to_app,
