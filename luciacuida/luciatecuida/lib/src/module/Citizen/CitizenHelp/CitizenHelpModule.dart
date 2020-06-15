@@ -70,13 +70,13 @@ class _HelpFriendAllModuleState extends State<HelpFriendAllModule> {
         items: [
           BottomNavigationBarItem(
               icon: FaIcon(
-                FontAwesomeIcons.userCircle,
+                FontAwesomeIcons.userMd,
                 size: 25,
               ),
               title: Text('Ayudalo')),
           BottomNavigationBarItem(
               icon: FaIcon(
-                FontAwesomeIcons.calendarCheck,
+                FontAwesomeIcons.users,
                 size: 25,
               ),
               title: Text('Solicitudes')),
@@ -207,7 +207,7 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
               context,
               40.0,
               'REGISTRO DE DATOS',
-              FaIcon(FontAwesomeIcons.userMd, color: AppTheme.themeVino),
+              FaIcon(FontAwesomeIcons.plusSquare, color: AppTheme.themeVino),
             ),
             SizedBox(height: 5.0),
             Container(
@@ -225,14 +225,14 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
 
   Widget _crearCampos(BuildContext context) {
     nombre = InputTextField(
-        FaIcon(FontAwesomeIcons.accessibleIcon,
+        FaIcon(FontAwesomeIcons.userInjured,
             color: AppTheme.themeVino),
         'Persona a ayudar',
         registroAmigo.regPersona,
         'Ingrese el nombre de la persona',
         true);
     telefono = InputPhoneField(
-        FaIcon(FontAwesomeIcons.phoneVolume,
+        FaIcon(FontAwesomeIcons.viber,
             color: AppTheme.themeVino),
         'Telefono de referencia',
         registroAmigo.regTelefono,
@@ -310,7 +310,7 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
         SizedBox(width: 15.0),
         DropdownButton(
           value: _opcionSeleccionadaPrioridad,
-          icon: FaIcon(FontAwesomeIcons.longArrowAltDown,
+          icon: FaIcon(FontAwesomeIcons.sort,
               color: AppTheme.themeVino),
           items: getOpcionesPrioridad(),
           onChanged: (opt) {

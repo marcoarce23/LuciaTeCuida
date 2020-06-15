@@ -13,7 +13,7 @@ Widget copyRigth() {
         children: <Widget>[
           Text('EstamosContigo@2020. ', style: kTitleCursive4Style),
           FaIcon(
-            FontAwesomeIcons.fistRaised,
+            FontAwesomeIcons.handshake,
             color: AppTheme.themeVino,
             size: 18,
           ),

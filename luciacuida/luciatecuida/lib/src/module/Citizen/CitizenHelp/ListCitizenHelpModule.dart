@@ -249,7 +249,7 @@ class _ListCitizenHelpModuleState extends State<ListCitizenHelpModule> {
       children: <Widget>[
         ImageOvalNetwork(
             imageNetworkUrl:
-                'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg',
+                'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg',
             sizeImage: Size.fromWidth(40)),
         SizedBox(
           height: 1.5,

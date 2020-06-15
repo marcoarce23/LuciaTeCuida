@@ -122,7 +122,7 @@ get nombreCreacionInstitucion {
 
     // GET y SET de la última página
     get ultimaPagina {
-      return _prefs.getString('ultimaPagina') ?? 'Splash';
+      return _prefs.getString('ultimaPagina') ?? 'login';
     }
 
     set ultimaPagina( String value ) {
@@ -130,7 +130,7 @@ get nombreCreacionInstitucion {
     }
 
     get avatarImagen {
-      return _prefs.getString('avatarImagen') ?? 'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg';
+      return _prefs.getString('avatarImagen') ?? 'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg';
     }
 
     set avatarImagen( String value ) {

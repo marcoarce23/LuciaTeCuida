@@ -13,13 +13,13 @@ class SplashScreenModuleState extends State<SplashScreenModule> {
   Widget build(BuildContext context) {
     return SafeArea(
           child: SplashScreen(
-            backgroundColor: AppTheme.themeVino,
-        seconds: 3,
+            backgroundColor: Colors.white, //AppTheme.themeVino,
+        seconds: 4,
         navigateAfterSeconds: new SignUpModule(),
        
         photoSize: 200,
         image: Image(
-          image: AssetImage('assets/splash.jpeg') ,       
+          image: AssetImage('assets/icon.png') ,       
           fit: BoxFit.cover,
         ),
       

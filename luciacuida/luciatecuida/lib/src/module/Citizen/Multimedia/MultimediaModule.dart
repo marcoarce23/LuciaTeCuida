@@ -73,13 +73,13 @@ class _MultimediaAllModuleState extends State<MultimediaAllModule> {
         items: [
           BottomNavigationBarItem(
               icon: FaIcon(
-                FontAwesomeIcons.userCircle,
+                FontAwesomeIcons.playCircle,
                 size: 25,
               ),
               title: Text('Multimedia')),
           BottomNavigationBarItem(
               icon: FaIcon(
-                FontAwesomeIcons.calendarCheck,
+                FontAwesomeIcons.photoVideo,
                 size: 25,
               ),
               title: Text('Publicaciones')),
@@ -122,9 +122,9 @@ class _MultimediaModuleState extends State<MultimediaModule> {
   String imagenVideo =
       'https://res.cloudinary.com/propia/image/upload/v1590680880/lmbkvadzzymfcfwqosj9.webp';
   String imagen =
-      'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg';
+      'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg';
   String imagenDefault =
-      'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg';
+      'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg';
   TextEditingController _inputFieldDateInicioController =
       new TextEditingController();
   TextEditingController _inputFieldDateFinController =
@@ -329,7 +329,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
                     Text('Tipo de Material'),
                     SizedBox(width: 15.0),
                     DropdownButton(
-                      icon: FaIcon(FontAwesomeIcons.angleDown,
+                      icon: FaIcon(FontAwesomeIcons.sort,
                           color: AppTheme.themeVino),
                       value: valorTipoMaterial.toString(), //valor
                       items: getDropDownMaterial(snapshot),
@@ -374,7 +374,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
                     Text('Especialidad'),
                     SizedBox(width: 15.0),
                     DropdownButton(
-                      icon: FaIcon(FontAwesomeIcons.angleDown,
+                      icon: FaIcon(FontAwesomeIcons.sort,
                           color: AppTheme.themeVino),
                       value: valorTipoEspecialidad.toString(), //valor
                       items: getDropDown(snapshot),
