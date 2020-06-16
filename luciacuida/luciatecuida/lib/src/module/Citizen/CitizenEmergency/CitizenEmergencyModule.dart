@@ -286,7 +286,7 @@ class _PageMedicinaState extends State<PageMedicina> {
                               width: 10,
                             ),
                             Text(
-                              new DateFormat("HH:mm").format(tempDate),
+                              solicitudAyuda.hora,
                               style: TextStyle(
                                 fontSize: 14,
                               ),
@@ -638,8 +638,7 @@ class _PageCovidState extends State<PageCovid> {
                             SizedBox(
                               width: 10,
                             ),
-                            Text(
-                              new DateFormat("HH:mm").format(tempDate),
+                            Text( solicitudAyuda.hora ,                              
                               style: TextStyle(
                                 fontSize: 14,
                               ),
@@ -968,7 +967,7 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
                               width: 10,
                             ),
                             Text(
-                              new DateFormat("HH:mm").format(tempDate),
+                              solicitudAyuda.hora,
                               style: TextStyle(
                                 fontSize: 14,
                               ),
@@ -1296,7 +1295,7 @@ class _PageBonosState extends State<PageBonos> {
                               width: 10,
                             ),
                             Text(
-                              new DateFormat("HH:mm").format(tempDate),
+                              solicitudAyuda.hora,
                               style: TextStyle(
                                 fontSize: 14,
                               ),
@@ -1626,7 +1625,7 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
                               width: 10,
                             ),
                             Text(
-                              new DateFormat("HH:mm").format(tempDate),
+                              solicitudAyuda.hora,
                               style: TextStyle(
                                 fontSize: 14,
                               ),

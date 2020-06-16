@@ -1432,6 +1432,7 @@ class SolicitudAyuda extends Entity {
   String detalle;
   String nombrePrioridad;
   String fecha;
+  String hora;
   String nombreSolicitud;
   int telefono;
 
@@ -1453,6 +1454,7 @@ class SolicitudAyuda extends Entity {
       this.nombrePersonalAtendio,
       this.nombreInstitucionAtencion,
       this.fecha,
+      this.hora,
       this.telefono,
       this.nombreSolicitud});
 
@@ -1465,6 +1467,9 @@ class SolicitudAyuda extends Entity {
       idaBotonPanico: json["IDCOV_BOTONPANICO"],
       nombreCatalogo: json["NOMBRE_CATALOGO"],
       detalle: json["BOT_DETALLE"],
+
+   hora: json["HORA"],
+
       fechaAtencion: json["FECHA_ATENCION"],
       nombrePersonalAtendio: json["PER_NOMBREPERSONAL"],
       nombreInstitucionAtencion: json["INS_NOMBREINSTITUCION"],
@@ -1481,6 +1486,10 @@ class SolicitudAyuda extends Entity {
         "IDCOV_BOTONPANICO": idaBotonPanico,
         "BOT_CORDENADALON": longitud,
         "FECHA_ATENCION": fechaAtencion,
+
+"HORA": hora,
+
+
         "PER_NOMBREPERSONAL": nombrePersonalAtendio,
         "INS_NOMBREINSTITUCION": nombreInstitucionAtencion,
         "NOMBRE_CATALOGO": nombreCatalogo,
