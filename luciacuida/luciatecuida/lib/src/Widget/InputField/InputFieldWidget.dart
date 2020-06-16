@@ -230,8 +230,9 @@ class InputPhoneField extends StatefulWidget {
   final FaIcon icon;
   final String hint;
   final bool valida;
+  final int tamanio;
 
-  InputPhoneField(this.icon, this.text, this.objectValue, this.hint, this.valida);
+  InputPhoneField(this.icon, this.text, this.objectValue, this.hint, this.valida, this.tamanio);
 
   @override
   _InputPhoneFieldState createState() => _InputPhoneFieldState();
@@ -252,7 +253,7 @@ class _InputPhoneFieldState extends State<InputPhoneField> {
         enableSuggestions: true,
         autocorrect: true,
         autovalidate: false,
-        maxLength: 10,
+        maxLength: widget.tamanio,
         toolbarOptions: ToolbarOptions(copy: true, cut:true, paste: true, selectAll: true),
         keyboardType: TextInputType.phone,
         decoration: InputDecoration(

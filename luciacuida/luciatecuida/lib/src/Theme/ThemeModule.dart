@@ -176,7 +176,7 @@ Widget crearFondo(BuildContext context, String imagen) {
         fondoModaro,
   
 ImageOpaqueNetworkCustomize(
-                'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg',
+                'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg',
                 AppTheme.themeVino,
                 Size(MediaQuery.of(context).size.width, 310),
                 0.58,

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
@@ -7,6 +8,7 @@ import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/Util/SearchDelegate/DataSearch.dart';
 import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
+import 'package:luciatecuida/src/module/Citizen/CitizenInstitution/CitizenListInstitucionModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/ListEntityConsult.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/ListVoluntary.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
@@ -29,6 +31,7 @@ class _VoluntaryAllModuleState extends State<VoluntaryAllModule> {
     InformationVoluntary(),
     ListVoluntaryModule(),
     ListEntityConsult()
+  
   ];
 
   void _onItemTapped(int index) {
@@ -47,7 +50,7 @@ class _VoluntaryAllModuleState extends State<VoluntaryAllModule> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-          child: Scaffold(
+      child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
           toolbarOpacity: 0.7,
@@ -103,7 +106,6 @@ class InformationVoluntary extends StatefulWidget {
 }
 
 class _InformationVoluntaryState extends State<InformationVoluntary> {
-
   final generic = new Generic();
   final prefs = new PreferensUser();
   var result;
@@ -121,7 +123,7 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
       print('prefs.idPersonalXXXX: ${prefs.idPersonal}');
 
       return SafeArea(
-              child: Scaffold(
+        child: Scaffold(
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -136,6 +138,52 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
                   FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
                 ),
               ),
+
+               SizedBox(height: 10.0),
+              AutoSizeText(
+                'INFORMACIÓN IMPORTANTE',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 20.0),
+              AutoSizeText(
+                '1. Token = Ingresar el número proporcionado por el voluntariado.',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
+              AutoSizeText(
+                '2. Ingresar la cuenta de Facebook (Si tuviera).',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
+              AutoSizeText(
+                '3. Ingresar la cuenta de Twitter (Si tuviera).',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
+            
+              AutoSizeText(
+                '4. Ingresar su página Web/Bloc (Si tuviera).',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
+              SizedBox(height: 10.0),
+
               Row(
                 children: <Widget>[
                   _crearBotonOrganizacion('Crear Voluntario', context),
@@ -149,11 +197,10 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
       );
     }
 
-    if (prefs.idPersonal != '-1' && prefs.idInsitucion != '0') 
-    {
+    if (prefs.idPersonal != '-1' && prefs.idInsitucion != '0') {
       print('prefs.idInsiTArget: ${prefs.idPersonal}');
       return SafeArea(
-              child: Scaffold(
+        child: Scaffold(
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -279,7 +326,7 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
                     child: Row(
                   children: <Widget>[
                     Icon(
-                      Icons.gamepad,
+                      Icons.account_circle,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -296,13 +343,13 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.place,
+                      Icons.assignment,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
                     Expanded(
                       child: Text(
-                          'DOcumento: ${entityItem.perCI} exp.${entityItem.desExpedido} ',
+                          'Documento: ${entityItem.perCI} exp.${entityItem.desExpedido} ',
                           style: kSubTitleCardStyle,
                           overflow: TextOverflow.clip,
                           softWrap: true),
@@ -312,7 +359,7 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.place,
+                      Icons.ac_unit,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -327,7 +374,7 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.place,
+                      Icons.business_center,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -342,7 +389,7 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.place,
+                      Icons.phone,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -357,7 +404,7 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.place,
+                      Icons.business,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -372,7 +419,7 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.place,
+                      Icons.email,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -387,52 +434,7 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.place,
-                      color: AppTheme.themeVino,
-                      size: 15,
-                    ),
-                    Expanded(
-                      child: Text('Página Web: ${entityItem.perPaginaWeb}',
-                          style: kSubTitleCardStyle,
-                          overflow: TextOverflow.clip,
-                          softWrap: true),
-                    )
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.place,
-                      color: AppTheme.themeVino,
-                      size: 15,
-                    ),
-                    Expanded(
-                      child: Text('Facebook: ${entityItem.perFacebbok}',
-                          style: kSubTitleCardStyle,
-                          overflow: TextOverflow.clip,
-                          softWrap: true),
-                    )
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.place,
-                      color: AppTheme.themeVino,
-                      size: 15,
-                    ),
-                    Expanded(
-                      child: Text('Twitter: ${entityItem.perTwitter}',
-                          style: kSubTitleCardStyle,
-                          overflow: TextOverflow.clip,
-                          softWrap: true),
-                    )
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.place,
+                      Icons.account_box,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -440,14 +442,72 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
                       'Información Complementaria:',
                       style: kSubTitleCardStyle,
                     ),
-                    Expanded(
-                      child: Text('${entityItem.perInformacionComplementaria}',
-                          style: kSubTitleCardStyle,
-                          overflow: TextOverflow.clip,
-                          softWrap: true),
-                    )
+                     AutoSizeText(
+                         entityItem.perInformacionComplementaria,
+                        style: TextStyle(
+                            color: AppTheme.themePlomo, fontSize: 16.0),
+                        maxLines: 2,
+                        minFontSize: 15.0,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+
                   ],
                 ),
+
+               
+
+                Row(
+                  children: <Widget>[
+                     Column(
+                       children: <Widget>[
+                         Text(
+                          'Tus RRSS :',
+                          style: kSubTitleCardStyle,
+                    ),
+                       ],
+                     ),SizedBox(width:10.0),
+                    Column(
+                      children: <Widget>[
+                        generaHTTP_ICON(
+                          entityItem.perPaginaWeb,
+                          FaIcon(
+                            FontAwesomeIcons.chrome,
+                            size: 25,
+                            color: AppTheme.themeVino,
+                          ),
+                        ),
+                      ],
+                    ),SizedBox(width:10.0),
+                    Column(
+                      children: <Widget>[
+                        generaHTTP_ICON(
+                          entityItem.perFacebbok,
+                          FaIcon(
+                            FontAwesomeIcons.facebook,
+                            size: 25,
+                            color: AppTheme.themeVino,
+                          ),
+                        ),
+                      ],
+                    ),SizedBox(width:10.0),
+                    Column(
+                      children: <Widget>[
+                        generaHTTP_ICON(
+                          entityItem.perTwitter,
+                          FaIcon(
+                            FontAwesomeIcons.twitter,
+                            size: 25,
+                            color: AppTheme.themeVino,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+
+
+
+                
               ],
             ),
           ),
@@ -460,37 +520,37 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
     return Column(
       children: <Widget>[
         Row(children: <Widget>[
-          Column(
-            children: <Widget>[
-              Text(
-                'Lunes : ${entityItem.lunes == 0 ? '(NO)' : '(SI)'}',
-                style: kTitleWelcomeStyle,
-              ),
-            ],
-          ),
-          SizedBox(
-            width: 35.0,
-          ),
-          Column(
-            children: <Widget>[
-              Text(
-                'Martes : ${entityItem.martes == 0 ? '(NO)' : '(SI)'}',
-                style: kTitleWelcomeStyle,
-              ),
-            ],
-          ),
-          SizedBox(
-            width: 40.0,
-          ),
-          Column(
-            children: <Widget>[
-              Text(
-                'Miércoles : ${entityItem.miercoles == 0 ? '(NO)' : '(SI)'}',
-                style: kTitleWelcomeStyle,
-              ),
-            ],
-          ),
-        ]),
+            Column(
+              children: <Widget>[
+                Text(
+        'Lunes   : ${entityItem.lunes == 0 ? '(NO)' : '(SI)'}',
+        style: kTitleWelcomeStyle,
+                ),
+              ],
+            ),
+            SizedBox(
+              width: 35.0,
+            ),
+            Column(
+              children: <Widget>[
+                Text(
+        'Martes : ${entityItem.martes == 0 ? '(NO)' : '(SI)'}',
+        style: kTitleWelcomeStyle,
+                ),
+              ],
+            ),
+            SizedBox(
+              width: 40.0,
+            ),
+            Column(
+              children: <Widget>[
+                Text(
+        'Miércoles: ${entityItem.miercoles == 0 ? '(NO)' : '(SI)'}',
+        style: kTitleWelcomeStyle,
+                ),
+              ],
+            ),
+          ]),
         SizedBox(height: 10.0),
         Row(children: <Widget>[
           Column(
@@ -507,7 +567,7 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
           Column(
             children: <Widget>[
               Text(
-                'Viernes : ${entityItem.viernes == 0 ? '(NO)' : '(SI)'}',
+                '  Viernes : ${entityItem.viernes == 0 ? '(NO)' : '(SI)'}',
                 style: kTitleWelcomeStyle,
               ),
             ],
@@ -518,7 +578,7 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
           Column(
             children: <Widget>[
               Text(
-                'Sábado : ${entityItem.sabado == 0 ? '(NO)' : '(SI)'}',
+                ' Sábado   : ${entityItem.sabado == 0 ? '(NO)' : '(SI)'}',
                 style: kTitleWelcomeStyle,
               ),
             ],
@@ -541,7 +601,7 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
 
   Widget _crearBotonOrganizacion(String text, BuildContext context) {
     return Expanded(
-          child: Container(
+      child: Container(
         padding: EdgeInsets.symmetric(horizontal: 90.0),
         width: MediaQuery.of(context).size.width,
         child: RaisedButton.icon(

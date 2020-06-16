@@ -163,7 +163,7 @@ class _EntityModuleState extends State<EntityModule> {
         'Ingrese el número de token:',
         entity.token,
         'Ej: 214213 - solo números',
-        true);
+        true, 6);
     direccion = InputMultilineField(
         FaIcon(FontAwesomeIcons.dotCircle, color: AppTheme.themeVino),
         'Dirección/ubicacion:',
@@ -175,7 +175,7 @@ class _EntityModuleState extends State<EntityModule> {
         'Telefono de referencia',
         entity.telefono,
         'Ingrese el número de referencia',
-        true);
+        true, 10);
     informacion = InputMultilineField(
         FaIcon(FontAwesomeIcons.listAlt, color: AppTheme.themeVino),
         'Información complementaria:',

@@ -47,7 +47,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
   int _selectedRadio = 1;
   bool _save = false;
   bool esCovid = false;
-    bool readOnly = false;
+  bool readOnly = false;
   File foto;
   String imagen =
       'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg';
@@ -69,7 +69,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
 
   @override
   Widget build(BuildContext context) {
-     print('prefs.userId es: ${prefs.userId}');
+    print('prefs.userId es: ${prefs.userId}');
 
     final Voluntary entityData = ModalRoute.of(context).settings.arguments;
 
@@ -84,9 +84,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
       key: scaffoldKey,
       body: Stack(
         children: <Widget>[
-          
           fondoApp(),
-          
           crearFondo(context, imagen),
           _crearForm(context),
         ],
@@ -171,7 +169,8 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
         'Ingrese solo números para el token:',
         '0000',
         'Ej: 023431',
-        true, readOnly);
+        true,
+        readOnly);
 
     nombre = InputTextField(
         FaIcon(FontAwesomeIcons.userFriends, color: AppTheme.themeVino),
@@ -190,7 +189,8 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
         'Telefono de referencia',
         entity.perTelefono,
         'Ingrese teléfono',
-        true);
+        true,
+        10);
     complmementario = InputMultilineField(
         FaIcon(FontAwesomeIcons.commentAlt, color: AppTheme.themeVino),
         'Información complementaria:',
@@ -406,9 +406,10 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
 
   _submit() async {
     print('prefs.userId es: ${prefs.userId}');
+    int _token;
 
     entity.foto = imagen;
-    entity.idaEstado =81;
+    entity.idaEstado = 81;
     if (!formKey.currentState.validate()) return;
 
     formKey.currentState.save();
@@ -416,10 +417,16 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
       _save = true;
     });
 
-print('TOKENNN : ${token.objectValue}');
-print('prefs.userId : ${prefs.userId}');
+    print('TOKENNN : ${token.objectValue}');
+    print('prefs.userId : ${prefs.userId}');
     entity.idcovPersonal = _valorId;
-    entity.idcovInstitucion = int.parse(token.objectValue);
+
+    if(token.objectValue.length > 6 ) 
+        _token = int.parse(token.objectValue.substring(0, 6));
+    else
+        _token = int.parse(token.objectValue);
+
+    entity.idcovInstitucion = _token;
     entity.idcovLogin = int.parse(prefs.userId);
     entity.idaTipopersonal = valorTipoEspecialidad;
     entity.perNombrepersonal = nombre.objectValue;
@@ -440,42 +447,39 @@ print('prefs.userId : ${prefs.userId}');
     entity.usuario = prefs.correoElectronico;
     entity.estadoUsuario = 81;
 
-    final dataMap = generic.add(entity, urlAddPersonal);
+    await generic.add(entity, urlAddPersonal).then((respuesta) {
+      result = respuesta["TIPO_RESPUESTA"];
 
-    await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+      if (result != "-1" || result != '-2') {
+        print('VLARO DEL LSIT: $result');
+        final list = result.split('|');
+        prefs.idInsitucion = list[0];
+        prefs.idPersonal = list[1];
 
-    if (result != "-1" || result != '-2') {
-      print('VLARO DEL LSIT: $result');
-      final list = result.split('|');
-      prefs.idInsitucion = list[0];
-      prefs.idPersonal = list[1];
+        if (estado == 0) {
+          enviarNotificaciones(
+              urlGetToken + '2/${prefs.idInsitucion}',
+              'Voluntario',
+              'Nuevo voluntario',
+              nombre.objectValue,
+              'Bienvenido al Grupo',
+              prefs.nombreInstitucion);
+        }
+        Navigator.of(context).push(CupertinoPageRoute(
+            builder: (BuildContext context) => InformationVoluntary()));
 
-      if (estado == 0) {
-        enviarNotificaciones(
-            urlGetToken + '2/${prefs.idInsitucion}',
-            'Voluntario',
-            'Nuevo voluntario',
-            nombre.objectValue,
-            'Bienvenido al Grupo',
-            prefs.nombreInstitucion);
+        if (result == "-1")
+          scaffoldKey.currentState
+              .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
+        if (result == "2")
+          scaffoldKey.currentState
+              .showSnackBar(messageNOk("Error, TOKEN INVALIDO"));
+
+        setState(() {
+          _save = false;
+        });
       }
-             Navigator.of(context).push(CupertinoPageRoute(
-          builder: (BuildContext context) => InformationVoluntary()));
-      
-
-     
-
-      if (result == "-1")
-        scaffoldKey.currentState
-            .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
-      if (result == "2")
-        scaffoldKey.currentState
-            .showSnackBar(messageNOk("Error, TOKEN INVALIDO"));
-
-      setState(() {
-        _save = false;
-      });
-    }
+    });
   }
 
   _seleccionarFoto() async => _procesarImagen(ImageSource.gallery);

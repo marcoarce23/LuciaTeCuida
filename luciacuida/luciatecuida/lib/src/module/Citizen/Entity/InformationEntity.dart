@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
@@ -41,7 +42,6 @@ class _EntityAllModuleState extends State<EntityAllModule> {
     page = 0;
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -105,65 +105,62 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
 
   @override
   void initState() {
-      prefs.ultimaPagina = ListEntityModule.routeName;
+    prefs.ultimaPagina = ListEntityModule.routeName;
     super.initState();
   }
 
-
   Widget _crearTexto() {
-
-    return  Container(
-        padding: EdgeInsets.symmetric( horizontal: 10.0 ),
-        child: Flexible(
-          child: Column(
-            children: <Widget>[
-              Text(
-                'sssssss',
-                textAlign: TextAlign.justify,
-              ),
-              // SizedBox(height:10.0),
-              // Expanded(
-              //                 child: Text(
-              //     'Sit minim rcet eu.',
-              //     textAlign: TextAlign.justify,
-              //   ),
-              // ),
-              // SizedBox(height:10.0),
-              //   Expanded(
-              //   child:Text(
-              //   'Sit mco. Deserunt  amet eu.',
-              //   textAlign: TextAlign.justify,
-              // ),
-              //   ),
-              // SizedBox(height:10.0),
-              //   Expanded(
-              //  child:Text(
-              //   'Sit llamco.  amet eu.',
-              //   textAlign: TextAlign.justify,
-              // ),
-              //   ),
-              // SizedBox(height:10.0),
-              //   Expanded(
-              //                     child: Text(
-              //     'ion adipisicing nostrud amet eu.',
-              //     textAlign: TextAlign.justify,
-              // ),
-              //  ),
-            ],
-          ),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      child: Flexible(
+        child: Column(
+          children: <Widget>[
+            Text(
+              'sssssss',
+              textAlign: TextAlign.justify,
+            ),
+            // SizedBox(height:10.0),
+            // Expanded(
+            //                 child: Text(
+            //     'Sit minim rcet eu.',
+            //     textAlign: TextAlign.justify,
+            //   ),
+            // ),
+            // SizedBox(height:10.0),
+            //   Expanded(
+            //   child:Text(
+            //   'Sit mco. Deserunt  amet eu.',
+            //   textAlign: TextAlign.justify,
+            // ),
+            //   ),
+            // SizedBox(height:10.0),
+            //   Expanded(
+            //  child:Text(
+            //   'Sit llamco.  amet eu.',
+            //   textAlign: TextAlign.justify,
+            // ),
+            //   ),
+            // SizedBox(height:10.0),
+            //   Expanded(
+            //                     child: Text(
+            //     'ion adipisicing nostrud amet eu.',
+            //     textAlign: TextAlign.justify,
+            // ),
+            //  ),
+          ],
         ),
-
+      ),
     );
-
   }
 
   Widget _crearImagen(BuildContext context) {
     return Container(
       width: double.infinity,
       child: GestureDetector(
-        onTap: (){},
+        onTap: () {},
         child: Image(
-          image: NetworkImage('https://images.pexels.com/photos/814499/pexels-photo-814499.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+          image: NetworkImage(
+              'https://images.pexels.com/photos/814499/pexels-photo-814499.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
           height: 160.0,
           fit: BoxFit.cover,
         ),
@@ -171,57 +168,92 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
     );
   }
 
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
-    print('prefs.idCreacionInsitucion para crear: ${prefs.idCreacionInsitucion.toString()}');
+    print(
+        'prefs.idCreacionInsitucion para crear: ${prefs.idCreacionInsitucion.toString()}');
     final size = MediaQuery.of(context).size;
 
-    if (prefs.idCreacionInsitucion == 0) 
-    {
-      print('prefs.idCreacionInsitucion: ${prefs.idCreacionInsitucion.toString()}');
-
-      return Scaffold(
-        body: Container(
-          child: Column(
+    if (prefs.idCreacionInsitucion == 0) {
+      return SafeArea(
+        child: Scaffold(
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              _crearBotonOrganizacion('Crear Organización'),
+              SizedBox(height: 5.0),
+              Container(
+                width: size.width * 0.96,
+                margin: EdgeInsets.symmetric(vertical: 0.0),
+                child: contenedorTitulo(
+                  context,
+                  40.0,
+                  'INFORMACIÓN DE TU PERFIL',
+                  FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
+                ),
+              ),
+              SizedBox(height: 10.0),
+              AutoSizeText(
+                'INFORMACIÓN IMPORTANTE',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 20.0),
+              AutoSizeText(
+                '1. Token = Un número de seis (6) caracteres.',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
+              AutoSizeText(
+                '2. Ingresar la cuenta de Facebook (Si tuviera).',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
+              AutoSizeText(
+                '3. Ingresar la cuenta de Twitter (Si tuviera).',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
+              AutoSizeText(
+                '4. Ingresar su cuenta YouTube (Si tuviera).',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
+              AutoSizeText(
+                '5. Ingresar su página Web/Bloc (Si tuviera).',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
+              SizedBox(height: 10.0),
+              Row(
+                children: <Widget>[
+                  _crearBotonOrganizacion('Crear Organización'),
+                ],
+              ),
+              copyRigth(),
             ],
-          )),
-          //  copyRigth(),
-           // SizedBox(height: 5.0),
-            // Container(
-            //   width: size.width * 0.96,
-            //   margin: EdgeInsets.symmetric(vertical: 0.0),
-            //   child: contenedorTitulo(
-            //     context,
-            //     40.0,
-            //     'INFORMACIÓN DE TU ORGANIZACIÓN',
-            //     FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
-            //   ),
-            // ),
-           
-           
-                 
-//_crearBotonOrganizacion('Crear Organización'),
-          //    _crearImagen(context) ,
-            //  SizedBox(height: 10.0,),
-              //_crearTexto(),                
-              //  divider(),
-              //  _crearBotonOrganizacion('Crear Organización'),
-         
-          
-           
-    
-        floatingActionButton: generaFloatbuttonHome(context),
+          ),
+          floatingActionButton: generaFloatbuttonHome(context),
+        ),
       );
-    } 
-
-   else  {
+    } else {
       print('prefs.idCreacionInsitucion ELSEE: ${prefs.idCreacionInsitucion}');
       return Scaffold(
         body: Column(
@@ -229,7 +261,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
           children: <Widget>[
             SizedBox(height: 5.0),
             Container(
-             // width: size.width * 0.96,
+              // width: size.width * 0.96,
               margin: EdgeInsets.symmetric(vertical: 0.0),
               child: contenedorTitulo(
                 context,
@@ -305,7 +337,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                     SizedBox(
                       height: 5.0,
                     ),
-                    Text('INFORMACIÓN DE LA ORGANIZACIÓN',
+                    Text('ANTES DE CREAR TU ORGANIZACIÓN',
                         style: kSigsTitleStyle),
                     divider(),
                     listEntity(context, entityItem),
@@ -355,7 +387,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                     child: Row(
                   children: <Widget>[
                     Icon(
-                      Icons.gamepad,
+                      Icons.business,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -370,7 +402,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.place,
+                      Icons.calendar_view_day,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -387,7 +419,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.place,
+                      Icons.map,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -404,7 +436,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.place,
+                      Icons.adjust,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -421,7 +453,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.place,
+                      Icons.chat,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -438,7 +470,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.place,
+                      Icons.phone_android,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -472,7 +504,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.place,
+                      Icons.mail,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -489,75 +521,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.place,
-                      color: AppTheme.themeVino,
-                      size: 15,
-                    ),
-                    Expanded(
-                      child: Text(
-                        'Página Web: ${entityItem.perPaginaWeb}',
-                        style: kSubTitleCardStyle,
-                        overflow: TextOverflow.clip,
-                        softWrap: true,
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.place,
-                      color: AppTheme.themeVino,
-                      size: 15,
-                    ),
-                    Expanded(
-                      child: Text(
-                        'Facebook: ${entityItem.perFacebbok}',
-                        style: kSubTitleCardStyle,
-                        overflow: TextOverflow.clip,
-                        softWrap: true,
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.place,
-                      color: AppTheme.themeVino,
-                      size: 15,
-                    ),
-                    Expanded(
-                      child: Text(
-                        'Twitter: ${entityItem.perTwitter}',
-                        style: kSubTitleCardStyle,
-                        overflow: TextOverflow.clip,
-                        softWrap: true,
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.place,
-                      color: AppTheme.themeVino,
-                      size: 15,
-                    ),
-                    Expanded(
-                      child: Text(
-                        'Youtube: ${entityItem.perYouTube}',
-                        style: kSubTitleCardStyle,
-                        overflow: TextOverflow.clip,
-                        softWrap: true,
-                      ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.place,
+                      Icons.featured_play_list,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -565,14 +529,94 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                       'Información Complementaria:',
                       style: kSubTitleCardStyle,
                     ),
-                    Expanded(
-                      child: Text(
-                        '${entityItem.perInformacionComp}',
-                        style: kSubTitleCardStyle,
-                        overflow: TextOverflow.clip,
-                        softWrap: true,
-                      ),
-                    )
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    AutoSizeText(
+                      entityItem.perInformacionComp,
+                      style: kSubTitleCardStyle,
+                      maxLines: 2,
+                      minFontSize: 15.0,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Column(
+                      children: <Widget>[
+                        Text(
+                          'Tus RRSS :',
+                          style: kSubTitleCardStyle,
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: 10.0),
+                    Column(
+                      children: <Widget>[
+                        generaHTTP_ICON(
+                          entityItem.perPaginaWeb,
+                          FaIcon(
+                            FontAwesomeIcons.chrome,
+                            size: 25,
+                            color: AppTheme.themeVino,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: 10.0),
+                    Column(
+                      children: <Widget>[
+                        generaHTTP_ICON(
+                          entityItem.perFacebbok,
+                          FaIcon(
+                            FontAwesomeIcons.facebook,
+                            size: 25,
+                            color: AppTheme.themeVino,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: 10.0),
+                    Column(
+                      children: <Widget>[
+                        generaHTTP_ICON(
+                          entityItem.perTwitter,
+                          FaIcon(
+                            FontAwesomeIcons.twitter,
+                            size: 25,
+                            color: AppTheme.themeVino,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: 10.0),
+                    Column(
+                      children: <Widget>[
+                        generaHTTP_ICON(
+                          entityItem.perYouTube,
+                          FaIcon(
+                            FontAwesomeIcons.youtube,
+                            size: 25,
+                            color: AppTheme.themeVino,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: 10.0),
+                    Column(
+                      children: <Widget>[
+                        generaHTTP_ICON(
+                          entityItem.perPaginaWeb,
+                          FaIcon(
+                            FontAwesomeIcons.edge,
+                            size: 25,
+                            color: AppTheme.themeVino,
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ],

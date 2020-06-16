@@ -34,6 +34,16 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+       appBar: AppBar(
+          backgroundColor: Colors.white,
+          toolbarOpacity: 0.7,
+          iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
+          elevation: 0,
+          title: Text("CONTACTOS DE EMERGENCIA", style: kTitleAppBar),
+        
+            ),
+    
+        drawer: DrawerCitizen(),
       body: SafeArea(
         child: Container(
           decoration: boxDecorationFondo(),
@@ -58,7 +68,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
           ),
         ),
       ),
-      drawer: DrawerCitizen(),
+    
       floatingActionButton: generaFloatbuttonHome(context),
     );
   }

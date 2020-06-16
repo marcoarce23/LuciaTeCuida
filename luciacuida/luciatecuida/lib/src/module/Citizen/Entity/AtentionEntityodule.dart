@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -86,6 +87,8 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
      if(entity.sabado == 1) selectSabado = true; 
      if(entity.domingo == 1) selectDomingo = true; 
  
+     
+
     }
 
     return Scaffold(
@@ -187,11 +190,15 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
                 SizedBox(
                   width: 10,
                 ),
-                Text(
-                  'Seleccionar los días de atención',
-                  style: kSubTitleCardStyle,
-                  textAlign: TextAlign.center,
-                ),
+                 AutoSizeText(
+                         'Seleccionar los días de atención',
+                        style: TextStyle(
+                            color: AppTheme.themePlomo, fontSize: 16.0),
+                        maxLines: 2,
+                        minFontSize: 15.0,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                
                 SizedBox(width: 15.0),
                 FaIcon(
                   FontAwesomeIcons.calendarCheck,
@@ -206,11 +213,15 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
                 SizedBox(
                   width: 10,
                 ),
-                Text(
-                  'Definir si la atención se realizará el fin de semana.',
-                  style: kSubTitleCardStyle,
-                  textAlign: TextAlign.center,
-                ),
+                 AutoSizeText(
+                         'Definir si la atención se realizará el fin de semana.',
+                        style: TextStyle(
+                            color: AppTheme.themePlomo, fontSize: 16.0),
+                        maxLines: 2,
+                        minFontSize: 15.0,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+               
                 SizedBox(width: 15.0),
                 FaIcon(
                   FontAwesomeIcons.calendarCheck,
@@ -225,11 +236,15 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
                 SizedBox(
                   width: 10,
                 ),
-                Text(
-                  'Se recomienda que los días asignados sean \n cumplidos  por el voluntario.',
-                  style: kSubTitleCardStyle,
-                  textAlign: TextAlign.center,
-                ),
+                 AutoSizeText(
+                         'Se recomienda que los días asignados sean cumplidos  por el voluntario.',
+                        style: TextStyle(
+                            color: AppTheme.themePlomo, fontSize: 16.0),
+                        maxLines: 2,
+                        minFontSize: 15.0,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+               
                 SizedBox(width: 15.0),
                 FaIcon(
                   FontAwesomeIcons.calendarCheck,

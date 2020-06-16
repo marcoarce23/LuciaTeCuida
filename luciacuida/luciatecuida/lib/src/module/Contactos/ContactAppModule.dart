@@ -6,6 +6,7 @@ import 'package:luciatecuida/src/Model/PreferenceUser.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
+import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 
 class ContactAppModule extends StatefulWidget {
@@ -32,6 +33,16 @@ class _ContactAppModuleState extends State<ContactAppModule> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+       appBar: AppBar(
+          backgroundColor: Colors.white,
+          toolbarOpacity: 0.7,
+          iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
+          elevation: 0,
+          title: Text("ACERCA DE LOS CONTACTOS", style: kTitleAppBar),
+        
+            ),
+    
+        drawer: DrawerCitizen(),
       body: SafeArea(
         child: Container(
           decoration: boxDecorationFondo(),
@@ -57,6 +68,7 @@ class _ContactAppModuleState extends State<ContactAppModule> {
           ),
         ),
       ),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 
@@ -87,24 +99,26 @@ class _ContactAppModuleState extends State<ContactAppModule> {
         itemBuilder: (context, index) {
           Contactos entityItem = snapshot.data[index];
 
-          return Column(
-            children: <Widget>[
-              Container(
-                width: size.width * 0.97,
-                margin: EdgeInsets.symmetric(vertical: 0.0),
-                decoration: boxDecorationList(),
-                child: Column(
-                  children: <Widget>[
-                    ListTile(
-                      leading: iconEntity(entityItem),
-                      title: listEntity(context, entityItem),
-                    ),
-                  ],
+          return Flexible(
+                      child: Column(
+              children: <Widget>[
+                Container(
+                  width: size.width * 0.97,
+                  margin: EdgeInsets.symmetric(vertical: 0.0),
+                  decoration: boxDecorationList(),
+                  child: Column(
+                    children: <Widget>[
+                      ListTile(
+                        leading: iconEntity(entityItem),
+                        title: listEntity(context, entityItem),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 8.0),
-              //  divider(),
-            ],
+                SizedBox(height: 8.0),
+                //  divider(),
+              ],
+            ),
           );
         },
       ),
@@ -114,112 +128,114 @@ class _ContactAppModuleState extends State<ContactAppModule> {
   Widget listEntity(BuildContext context, Contactos entityItem) {
     return Row(
       children: <Widget>[
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-                width: MediaQuery.of(context).size.width - 110,
-                child: Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.person,
-                      color: AppTheme.themeVino,
-                      size: 15,
-                    ),
-                    Text('${entityItem.nombre} ', style: kTitleCardStyle),
-                  ],
-                )),
+        Flexible(
+                  child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                  width: MediaQuery.of(context).size.width - 110,
+                  child: Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.person,
+                        color: AppTheme.themeVino,
+                        size: 15,
+                      ),
+                      Text('${entityItem.nombre} ', style: kTitleCardStyle),
+                    ],
+                  )),
 
-            Container(
-                child: Row(
-              children: <Widget>[
-                Icon(
-                  Icons.phone_android,
-                  color: AppTheme.themeVino,
-                  size: 15,
-                ),
-                Text(
-                  'Telefono: ${entityItem.telefono}',
-                  style: kSubTitleCardStyle,
-                ),
-              ],
-            )),
-            Container(
-              width: MediaQuery.of(context).size.width - 80,
-              child: Row(
+              Container(
+                  child: Row(
                 children: <Widget>[
                   Icon(
-                    Icons.mail_outline,
+                    Icons.phone_android,
                     color: AppTheme.themeVino,
                     size: 15,
                   ),
-                  RichText(
-                    overflow: TextOverflow.clip,
-                    text: TextSpan(
-                      text: 'Correo: ${entityItem.correo}',
-                      style: TextStyle(fontSize: 14, color: Colors.black),
-                    ),
+                  Text(
+                    'Telefono: ${entityItem.telefono}',
+                    style: kSubTitleCardStyle,
                   ),
                 ],
+              )),
+              Container(
+                width: MediaQuery.of(context).size.width - 80,
+                child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.mail_outline,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    RichText(
+                      overflow: TextOverflow.clip,
+                      text: TextSpan(
+                        text: 'Correo: ${entityItem.correo}',
+                        style: TextStyle(fontSize: 14, color: Colors.black),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          //  Text('Puedes contactactarte por aca',
-          //             style: TextStyle(fontSize: 15, color: Colors.black87),
-          //           ),
-            SizedBox(height:7.0),
-           
-              Wrap(
-                children: <Widget>[
-                     InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.phoneVolume,
-                      color: AppTheme.themeVino,
-                      size: 25,
+            //  Text('Puedes contactactarte por aca',
+            //             style: TextStyle(fontSize: 15, color: Colors.black87),
+            //           ),
+              SizedBox(height:7.0),
+             
+                Wrap(
+                  children: <Widget>[
+                       InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.phoneVolume,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        callNumber(entityItem.telefono);
+                      },
                     ),
-                    onTap: () {
-                      callNumber(entityItem.telefono);
-                    },
-                  ),
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.comment,
-                      color: AppTheme.themeVino,
-                      size: 25,
+                    SizedBox(width: 20.0),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.comment,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        sendSMS(entityItem.telefono);
+                      },
                     ),
-                    onTap: () {
-                      sendSMS(entityItem.telefono);
-                    },
-                  ),
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.mailBulk,
-                      color: AppTheme.themeVino,
-                      size: 25,
+                    SizedBox(width: 20.0),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.mailBulk,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        sendEmailAdvanced(
+                            entityItem.correo,
+                            "Colaboración ${entityItem.telefono}",
+                            "Estimad@:  ${entityItem.telefono}, favor su colaboración en: ");
+                      },
                     ),
-                    onTap: () {
-                      sendEmailAdvanced(
-                          entityItem.correo,
-                          "Colaboración ${entityItem.telefono}",
-                          "Estimad@:  ${entityItem.telefono}, favor su colaboración en: ");
-                    },
-                  ),
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.whatsapp,
-                      color: AppTheme.themeVino,
-                      size: 25,
-                    ),
-                    onTap: () {
-                      callWhatsAppText(entityItem.telefono, 'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.' );
-                    },
-                  )
-                ],
-              ),
-          ],
+                    SizedBox(width: 20.0),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.whatsapp,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        callWhatsAppText(entityItem.telefono, 'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.' );
+                      },
+                    )
+                  ],
+                ),
+            ],
+          ),
         ),
       ],
     );

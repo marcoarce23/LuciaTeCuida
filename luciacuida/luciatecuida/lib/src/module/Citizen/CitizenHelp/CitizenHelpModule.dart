@@ -237,7 +237,7 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
         'Telefono de referencia',
         registroAmigo.regTelefono,
         'Registre un numero telefónico de referencia',
-        true);
+        true, 10);
     ubicacion = InputMultilineField(
         FaIcon(FontAwesomeIcons.home, color: AppTheme.themeVino),
         'Donde la encuentro',

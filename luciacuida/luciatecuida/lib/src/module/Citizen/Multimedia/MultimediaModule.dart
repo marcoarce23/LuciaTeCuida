@@ -103,8 +103,8 @@ class MultimediaModule extends StatefulWidget {
 }
 
 class _MultimediaModuleState extends State<MultimediaModule> {
-  InputTextField titulo;
-  InputTextField resumen;
+  InputMultilineField titulo;
+  InputMultilineField resumen;
   InputTextField detalle;
   InputDropDown especialidad;
   InputDropDown tipoMaterial;
@@ -261,13 +261,13 @@ class _MultimediaModuleState extends State<MultimediaModule> {
   }
 
   Widget _crearCampos() {
-    titulo = InputTextField(
+    titulo = InputMultilineField(
         FaIcon(FontAwesomeIcons.chalkboardTeacher, color: AppTheme.themeVino),
         'Nombre del material',
         entity.mulTitulo,
         'Ingrese el nombre del material',
         true);
-    resumen = InputTextField(
+    resumen = InputMultilineField(
         FaIcon(FontAwesomeIcons.clipboardList, color: AppTheme.themeVino),
         'Resumen sobre material',
         entity.mulResumen,

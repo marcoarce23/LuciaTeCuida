@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
@@ -32,7 +33,7 @@ class _ListEntityModuleState extends State<ListEntityModule> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SafeArea(
-          child: Scaffold(
+      child: Scaffold(
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -48,7 +49,6 @@ class _ListEntityModuleState extends State<ListEntityModule> {
               ),
             ),
             divider(),
-            
             futureItemsEntity(context),
             copyRigth(),
           ],
@@ -61,17 +61,19 @@ class _ListEntityModuleState extends State<ListEntityModule> {
   Widget futureItemsEntity(BuildContext context) {
     return FutureBuilder(
         future: generic.getAll(
-            new Institucion(), urlGetInstitucionCreacion + prefs.correoElectronico, primaryKeyGetInstitucionCreacion),
+            new Institucion(),
+            urlGetInstitucionCreacion + prefs.correoElectronico,
+            primaryKeyGetInstitucionCreacion),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-              return Center(child: CircularProgressIndicator());
-              break;
-            default:
-              return listItemsEntity(context, snapshot);
-          }
-           } else {
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return Center(child: CircularProgressIndicator());
+                break;
+              default:
+                return listItemsEntity(context, snapshot);
+            }
+          } else {
             return Center(child: CircularProgressIndicator());
           }
         });
@@ -100,12 +102,11 @@ class _ListEntityModuleState extends State<ListEntityModule> {
                     ListTile(
                       leading: iconEntity(entityItem),
                       title: listEntity(context, entityItem),
-       
                     ),
                   ],
                 ),
               ),
-              SizedBox(height:7.0),
+              SizedBox(height: 7.0),
               //divider(),
             ],
           );
@@ -124,11 +125,11 @@ class _ListEntityModuleState extends State<ListEntityModule> {
         padding: EdgeInsets.only(left: 20.0),
         child: Row(
           children: <Widget>[
-             Icon(
-                      Icons.delete_forever,
-                      color: Colors.white,
-                      size: 15,
-                    ),
+            Icon(
+              Icons.delete_forever,
+              color: Colors.white,
+              size: 15,
+            ),
             Text(
               'Desea eliminar la Organiz.?',
               style: TextStyle(color: Colors.white),
@@ -138,136 +139,159 @@ class _ListEntityModuleState extends State<ListEntityModule> {
       ),
       onDismissed: (value) {
         setState(() {
-          final dataMap = generic.delete(
-              '$urlDeleteInstitucion${item.toString()}/${prefs.userId}');
-
-          dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-          print('resultado:$result');
+          _submit(value, item, entityItem);
         });
-
-        if (result != null || result != '-1')
-          Scaffold.of(context)
-              .showSnackBar(messageOk("Se elimino la Organización. ${entityItem.desInsitucion}"));
-        else
-          Scaffold.of(context).showSnackBar(
-              messageNOk("Se  produjo un error. Vuelva a intentarlo."));
       },
 
       child: Row(
         children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                  width: MediaQuery.of(context).size.width - 160,
-                  child: Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.business,
+          Flexible(
+                      child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                    width: MediaQuery.of(context).size.width - 160,
+                    child: Row(
+                      children: <Widget>[
+                        Icon(
+                          Icons.business,
+                          color: AppTheme.themeVino,
+                          size: 15,
+                        ),
+                        Text(
+                          '${entityItem.nombreInstitucion} ',
+                          style: kSubTitleCardStyle,
+                        ),
+                      ],
+                    )),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Text(
+                      'Departamento: ${entityItem.desUbicacion}',
+                      style: kSubTitleCardStyle,
+                    )
+                  ],
+                ),
+                Container(
+                    child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.phone_android,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Text(
+                      'Telefono: ${entityItem.telefono}',
+                      style: kSubTitleCardStyle,
+                    ),
+                  ],
+                )),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.adjust,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    AutoSizeText(
+                      'Ubicacion:',
+                      style: kSubTitleCardStyle,
+                      maxLines: 2,
+                      minFontSize: 14.0,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    AutoSizeText(
+                      entityItem.direccion,
+                      style: kSubTitleCardStyle,
+                      maxLines: 2,
+                      minFontSize: 15.0,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+                Wrap(
+                  children: <Widget>[
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.phoneVolume,
                         color: AppTheme.themeVino,
-                        size: 15,
+                        size: 25,
                       ),
-                      Text('${entityItem.nombreInstitucion} ',
-                          style: kSubTitleCardStyle,),
-                    ],
-                  )),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text('Departamento: ${entityItem.desUbicacion}',
-                      style: kSubTitleCardStyle,)
-                ],
-              ),
-              Container(
-                  child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.phone_android,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Telefono: ${entityItem.telefono}',
-                    style: kSubTitleCardStyle,
-                  ),
-                ],
-              )),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.adjust,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Ubicacion: ${entityItem.desUbicacion}',
-                    style: kSubTitleCardStyle,
-                  )
-                ],
-              ),
-              Wrap(
-                children: <Widget>[
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.phoneVolume,
-                      color: AppTheme.themeVino,
-                      size: 25,
+                      onTap: () {
+                        callNumber(int.parse(entityItem.telefono));
+                      },
                     ),
-                    onTap: () {
-                      callNumber(int.parse(entityItem.telefono));
-                    },
-                  ),
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.comment,
-                      color: AppTheme.themeVino,
-                      size: 25,
+                    SizedBox(width: 20.0),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.comment,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        sendSMS(int.parse(entityItem.telefono));
+                      },
                     ),
-                    onTap: () {
-                      sendSMS(int.parse(entityItem.telefono));
-                    },
-                  ),
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.mailBulk,
-                      color: AppTheme.themeVino,
-                      size: 25,
+                    SizedBox(width: 20.0),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.mailBulk,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        sendEmailAdvanced(
+                            entityItem.perCorreoElectronico,
+                            "Colaboración ${entityItem.desInsitucion}",
+                            "Estimad@:  ${entityItem.nombreInstitucion}, favor su colaboración en: ");
+                      },
                     ),
-                    onTap: () {
-                      sendEmailAdvanced(
-                          entityItem.perCorreoElectronico,
-                          "Colaboración ${entityItem.desInsitucion}",
-                          "Estimad@:  ${entityItem.nombreInstitucion}, favor su colaboración en: ");
-                    },
-                  ),
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.whatsapp,
-                      color: AppTheme.themeVino,
-                      size: 25,
-                    ),
-                    onTap: () {
-                      callWhatsAppText(int.parse(entityItem.telefono), 
-                      
-                      'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.'
-                       );
-                    },
-                  )
-                ],
-              ),
-            ],
+                    SizedBox(width: 20.0),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.whatsapp,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        callWhatsAppText(int.parse(entityItem.telefono),
+                            'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
+                      },
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
     );
+  }
+
+  _submit(dynamic value, int item, Institucion entityItem) async {
+    await generic
+        .delete('$urlDeleteInstitucion${item.toString()}/${prefs.userId}')
+        .then((respuesta) {
+      result = respuesta["TIPO_RESPUESTA"];
+      print('resultado:$result');
+
+      if (result != null || result != '-1')
+        Scaffold.of(context).showSnackBar(messageOk(
+            "Se elimino la Organización. ${entityItem.nombreInstitucion}"));
+      else
+        Scaffold.of(context).showSnackBar(
+            messageNOk("Se  produjo un error. Vuelva a intentarlo."));
+    });
   }
 
   Container iconEntity(Institucion entityItem) {

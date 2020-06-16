@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
@@ -118,114 +119,130 @@ class _ListEntityConsultState extends State<ListEntityConsult> {
    
   return Row(
         children: <Widget>[
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                  width: MediaQuery.of(context).size.width - 160,
-                  child: Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.business,
+          Flexible(
+                      child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                    width: MediaQuery.of(context).size.width - 160,
+                    child: Row(
+                      children: <Widget>[
+                        Icon(
+                          Icons.business,
+                          color: AppTheme.themeVino,
+                          size: 15,
+                        ),
+                        Text('${entityItem.nombreInstitucion} ',
+                            style: kSubTitleCardStyle,),
+                      ],
+                    )),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.place,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Text('Departamento: ${entityItem.desUbicacion}',
+                        style: kSubTitleCardStyle,)
+                  ],
+                ),
+                Container(
+                    child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.phone_android,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Text(
+                      'Telefono: ${entityItem.telefono}',
+                      style: kSubTitleCardStyle,
+                    ),
+                  ],
+                )),
+                 Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.adjust,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    AutoSizeText(
+                      'Ubicacion:',
+                      style: kSubTitleCardStyle,
+                      maxLines: 2,
+                      minFontSize: 14.0,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    AutoSizeText(
+                      entityItem.direccion,
+                      style: kSubTitleCardStyle,
+                      maxLines: 2,
+                      minFontSize: 15.0,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+                Wrap(
+                  children: <Widget>[
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.phoneVolume,
                         color: AppTheme.themeVino,
-                        size: 15,
+                        size: 25,
                       ),
-                      Text('${entityItem.nombreInstitucion} ',
-                          style: kSubTitleCardStyle,),
-                    ],
-                  )),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.place,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text('Departamento: ${entityItem.desUbicacion}',
-                      style: kSubTitleCardStyle,)
-                ],
-              ),
-              Container(
-                  child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.phone_android,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Telefono: ${entityItem.telefono}',
-                    style: kSubTitleCardStyle,
-                  ),
-                ],
-              )),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.adjust,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Ubicacion: ${entityItem.desUbicacion}',
-                    style: kSubTitleCardStyle,
-                  )
-                ],
-              ),
-              Wrap(
-                children: <Widget>[
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.phoneVolume,
-                      color: AppTheme.themeVino,
-                      size: 25,
+                      onTap: () {
+                        callNumber(int.parse(entityItem.telefono));
+                      },
                     ),
-                    onTap: () {
-                      callNumber(int.parse(entityItem.telefono));
-                    },
-                  ),
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.comment,
-                      color: AppTheme.themeVino,
-                      size: 25,
+                    SizedBox(width: 20.0),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.comment,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        sendSMS(int.parse(entityItem.telefono));
+                      },
                     ),
-                    onTap: () {
-                      sendSMS(int.parse(entityItem.telefono));
-                    },
-                  ),
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.mailBulk,
-                      color: AppTheme.themeVino,
-                      size: 25,
+                    SizedBox(width: 20.0),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.mailBulk,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        sendEmailAdvanced(
+                            entityItem.perCorreoElectronico,
+                            "Colaboración ${entityItem.desInsitucion}",
+                            "Estimad@:  ${entityItem.nombreInstitucion}, favor su colaboración en: ");
+                      },
                     ),
-                    onTap: () {
-                      sendEmailAdvanced(
-                          entityItem.perCorreoElectronico,
-                          "Colaboración ${entityItem.desInsitucion}",
-                          "Estimad@:  ${entityItem.nombreInstitucion}, favor su colaboración en: ");
-                    },
-                  ),
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.whatsapp,
-                      color: AppTheme.themeVino,
-                      size: 25,
-                    ),
-                    onTap: () {
-                      callWhatsAppText(int.parse(entityItem.telefono),
-                      'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.'
-                        );
-                    },
-                  )
-                ],
-              ),
-            ],
+                    SizedBox(width: 20.0),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.whatsapp,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        callWhatsAppText(int.parse(entityItem.telefono),
+                        'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.'
+                          );
+                      },
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       );

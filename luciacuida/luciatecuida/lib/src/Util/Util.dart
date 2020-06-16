@@ -159,16 +159,28 @@ Widget generaFloatbuttonHome(BuildContext context) {
   );
 }
 
-Widget generaHTTP_TEXT(String cadena) {
+Widget generaHTTP_TEXT(String cadena, String text) {
   if (cadena.contains("http") ||
       cadena.contains("https") ||
       cadena.contains("www")) {
     return InkWell(
-      child: FaIcon(
-        FontAwesomeIcons.link,
-        size: 25,
-        color: AppTheme.themeVino,
-      ),
+      child: Text(text),
+      onTap: () {
+        openWeb(cadena);
+      },
+    );
+  } else {
+    return Text(cadena,
+        style: kSubTitleCardStyle, overflow: TextOverflow.clip, softWrap: true);
+  }
+}
+
+Widget generaHTTP_ICON(String cadena, FaIcon icon) {
+  if (cadena.contains("http") ||
+      cadena.contains("https") ||
+      cadena.contains("www")) {
+    return InkWell(
+      child: icon,
       onTap: () {
         openWeb(cadena);
       },

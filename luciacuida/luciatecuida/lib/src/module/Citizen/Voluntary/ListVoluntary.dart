@@ -151,11 +151,11 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
         padding: EdgeInsets.only(left: 20.0),
         child: Row(
           children: <Widget>[
-             Icon(
-                      Icons.delete_forever,
-                      color: Colors.white,
-                      size: 15,
-                    ),
+            Icon(
+              Icons.delete_forever,
+              color: Colors.white,
+              size: 15,
+            ),
             Text(
               'Desea eliminar al voluntario?',
               style: TextStyle(color: Colors.white),
@@ -173,8 +173,8 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
         });
 
         if (result != null || result != '-1')
-          Scaffold.of(context)
-              .showSnackBar(messageOk("Se elimino al voluntario: ${entityItem.perNombrepersonal}"));
+          Scaffold.of(context).showSnackBar(messageOk(
+              "Se elimino al voluntario: ${entityItem.perNombrepersonal}"));
         else
           Scaffold.of(context).showSnackBar(
               messageNOk("Se  produjo un error. Vuelva a intentarlo."));
@@ -219,22 +219,20 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                     ),
                   ),
                 ]),
-
-                 Row(children: <Widget>[
+                Row(children: <Widget>[
                   Icon(
-                    Icons.add_to_home_screen,
+                    Icons.ac_unit,
                     color: AppTheme.themeVino,
                     size: 15,
                   ),
                   Expanded(
                     child: Text(
-                      'Asistencia Covid: ${entityItem.idCovAtencion == 1 ? 'SI' : 'NO' }',
+                      'Asistencia Covid: ${entityItem.idCovAtencion == 1 ? 'SI' : 'NO'}',
                       style: kSubTitleCardStyle,
                       softWrap: true,
                     ),
                   ),
                 ]),
-
                 Row(children: <Widget>[
                   Icon(
                     Icons.add_to_home_screen,
@@ -259,10 +257,8 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                     Expanded(
                       child: Row(
                         children: <Widget>[
+                          Text('Correo: ', style: kTitleCardStyle),
                           Text(
-                            'Correo: ', style: kTitleCardStyle),
-                      
-                           Text(
                             '${entityItem.perCorreo}',
                             style: kSubTitleCardStyle,
                             softWrap: true,
@@ -411,50 +407,59 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
   }
 
   _submitAlta(Voluntary entityItem) async {
-    final dataMap = generic.add(new Voluntary(),
-        urlAprobar + entityItem.idcovPersonal.toString() + '/82');
+    final dataMap = generic.add(
+        new Voluntary(),
+        urlAprobar +
+            entityItem.idcovPersonal.toString() +
+            '/82' +
+            '/${prefs.correoElectronico}');
 
-    dataMap.then((respuesta) 
-    {
+    dataMap.then((respuesta) {
       result = respuesta["TIPO_RESPUESTA"];
-    print('resultado de entro a la alta icono verde:$result');
+      print('resultado de entro a la alta icono verde:$result');
 
-    if (result == "0") {
-      Scaffold.of(context)
-          .showSnackBar(messageOk("Se dio de alta al voluntario"));
+      if (result == "0") {
+        Scaffold.of(context)
+            .showSnackBar(messageOk("Se dio de alta al voluntario"));
 
-      enviarNotificaciones(
-          urlGetToken + '2/${prefs.idInsitucion}',
-          'Voluntario',
-          'Nuevo voluntario',
-          entityItem.perNombrepersonal,
-          'Bienvenido al Grupo',
-          prefs.nombreInstitucion);
-    } else
-      Scaffold.of(context)
-          .showSnackBar(messageNOk("Se produjo un error. Vuelva a intentarlo"));
-  }
-    );
+        enviarNotificaciones(
+            urlGetToken + '2/${prefs.idInsitucion}',
+            'Voluntario',
+            'Nuevo voluntario',
+            entityItem.perNombrepersonal,
+            'Bienvenido al Grupo',
+            prefs.nombreInstitucion);
+      } else if (result == "1") {
+        Scaffold.of(context)
+            .showSnackBar(messageWarning(respuesta["MENSAJE"].toString()));
+      } else
+        Scaffold.of(context).showSnackBar(
+            messageNOk("Se produjo un error. Vuelva a intentarlo"));
+    });
   }
 
   _submitBaja(Voluntary entityItem) async {
-    final dataMap = generic.add(new Voluntary(),
-        urlAprobar + entityItem.idcovPersonal.toString() + '/83');
+    final dataMap = generic.add(
+        new Voluntary(),
+        urlAprobar +
+            entityItem.idcovPersonal.toString() +
+            '/83' +
+            '/${prefs.correoElectronico}');
 
-    await dataMap.then((respuesta) 
-    {
-
+    await dataMap.then((respuesta) {
       result = respuesta["TIPO_RESPUESTA"];
-    print('resultado de la baja entro icono rojo:$result');
+      print('resultado de la baja entro icono rojo:$result');
 
-    if (result == "0")
-      Scaffold.of(context)
-          .showSnackBar(messageOk("Se dio de baja al voluntario"));
-    else
-      Scaffold.of(context)
-          .showSnackBar(messageNOk("Se produjo un error. Vuelva a intentarlo"));
-  }
-    );
+      if (result == "0")
+        Scaffold.of(context)
+            .showSnackBar(messageOk("Se dio de baja al voluntario"));
+      else if (result == "1") {
+        Scaffold.of(context)
+            .showSnackBar(messageWarning(respuesta["MENSAJE"].toString()));
+      } else
+        Scaffold.of(context).showSnackBar(
+            messageNOk("Se produjo un error. Vuelva a intentarlo"));
+    });
   }
 
   Container iconEntity(Voluntary entityItem) {

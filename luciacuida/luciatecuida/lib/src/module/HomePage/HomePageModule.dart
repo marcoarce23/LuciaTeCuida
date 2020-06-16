@@ -426,14 +426,14 @@ class DrawerCitizen extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => MultimediaAllModule()),
                   )),
-          CustomListTile(
-              Icons.assignment,
-              '    Registrar Atención Realizada',
-              () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => ListMaterialModule()),
-                  )),
+          // CustomListTile(
+          //     Icons.assignment,
+          //     '    Registrar Atención Realizada',
+          //     () => Navigator.push(
+          //           context,
+          //           MaterialPageRoute(
+          //               builder: (context) => ListMaterialModule()),
+          //         )),
           CustomListTile(
               Icons.person_add,
               '    Registrate como voluntario',
