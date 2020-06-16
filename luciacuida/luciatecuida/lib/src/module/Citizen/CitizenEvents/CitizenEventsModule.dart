@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -36,30 +37,31 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             toolbarOpacity: 0.7,
-            iconTheme:
-                IconThemeData(color: AppTheme.themeVino, size: 12),
+            iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
             elevation: 0,
             title: Text("EVENTOS", style: kTitleAppBar),
 
             //backgroundColor: AppTheme.themeColorNaranja,
           ),
-          drawer: DrawerCitizen(),  
-         floatingActionButton: generaFloatbuttonHome(context),        
-
+          drawer: DrawerCitizen(),
+          floatingActionButton: generaFloatbuttonHome(context),
           body: SingleChildScrollView(
               child: Column(
-                children: <Widget>[
-                  contenedorTitulo(
-                  context,
-                  40.0,
-                  "Eventos disponibles".toUpperCase(),
-                  FaIcon(FontAwesomeIcons.newspaper, color: AppTheme.themeVino),
-                ),
-                Text("Presione sobre el evento para ver el detalle", style: kSubSubTitleCardStyle,),
-                  listadoDeNoticias(),
-                  copyRigth(),
-                ],
-              )) //CollapsingList(),
+            children: <Widget>[
+              contenedorTitulo(
+                context,
+                40.0,
+                "Eventos disponibles".toUpperCase(),
+                FaIcon(FontAwesomeIcons.newspaper, color: AppTheme.themeVino),
+              ),
+              Text(
+                "Presione sobre el evento para ver el detalle",
+                style: kSubSubTitleCardStyle,
+              ),
+              listadoDeNoticias(),
+              copyRigth(),
+            ],
+          )) //CollapsingList(),
 
           //ejemploNoticias(),
           ),
@@ -157,10 +159,9 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
         mes = "Dic";
         break;
     }
-print(eventoItem.url);
+    print(eventoItem.url);
 
     return InkWell(
-      
       onTap: () {
         Navigator.push(
             context,
@@ -205,7 +206,7 @@ print(eventoItem.url);
                           fontWeight: FontWeight.w900),
                     ),
                     Text(
-                      eventoItem.hora.substring(1, 5),
+                      eventoItem.hora,
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ],
@@ -219,29 +220,26 @@ print(eventoItem.url);
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Expanded(
-                          child: RichText(
+                          child: Text(
+                            eventoItem.titulo.toUpperCase(),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w800),
+                            softWrap: true,
                             overflow: TextOverflow.clip,
-                            text: TextSpan(
-                              text: eventoItem.titulo.toUpperCase(),
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w800),
-                            ),
                           ),
                         ),
-                        Expanded(
-                          child: RichText(
-                            overflow: TextOverflow.clip,
-                            text: TextSpan(
-                              text: eventoItem.objetivo,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 14),
-                            ),
-                          ),
+                        AutoSizeText(
+                          eventoItem.objetivo,
+                          style: TextStyle(
+                              color: AppTheme.themePlomo, fontSize: 16.0),
+                          maxLines: 2,
+                          minFontSize: 15.0,
+                          overflow: TextOverflow.ellipsis,
                         ),
                         SizedBox(
-                          height: 8,
+                          height: 2,
                         ),
                         Expanded(
                           child: RichText(
