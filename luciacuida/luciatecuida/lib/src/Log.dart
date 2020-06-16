@@ -39,12 +39,12 @@ class SignIn1DemoState extends State<SignInDemo1> {
       if (_pdfPath == '') {
         return;
       }
-      print("File path: " + _pdfPath);
+      //print("File path: " + _pdfPath);
       setState(() {
         _isLoading = true;
       });
     } on PlatformException catch (e) {
-      print("Error while picking the file: " + e.toString());
+      //print("Error while picking the file: " + e.toString());
     }
 
     _previewPath = await PdfPreviewer.getPagePreview(filePath: _pdfPath, pageNumber: _pageNumber);
@@ -132,7 +132,7 @@ class SignIn1DemoState extends State<SignInDemo1> {
 //         _contactText = "People API gave a ${response.statusCode} "
 //             "response. Check logs for details.";
 //       });
-//       print('People API ${response.statusCode} response: ${response.body}');
+//       //print('People API ${response.statusCode} response: ${response.body}');
 //       return;
 //     }
 //     final Map<String, dynamic> data = json.decode(response.body);
@@ -168,7 +168,7 @@ class SignIn1DemoState extends State<SignInDemo1> {
 //     try {
 //       await _googleSignIn.signIn();
 //     } catch (error) {
-//       print(error);
+//       //print(error);
 //     }
 //   }
 

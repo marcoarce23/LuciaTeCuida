@@ -372,6 +372,6 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
 
     setState(() {});
 
-    print('resultado:$result');
+    //print('resultado:$result');
   }
 }

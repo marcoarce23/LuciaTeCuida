@@ -26,7 +26,7 @@ Widget getWidget2(String objectValue,
   final FaIcon icon,
   final String hint,
   final bool valida) {
-print('objectValueXXXXXXXXXXXXXXX   $objectValue');  
+//print('objectValueXXXXXXXXXXXXXXX   $objectValue');  
 
 return Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
@@ -394,7 +394,7 @@ class _InputMultilineFieldState extends State<InputMultilineField> {
   }
 
   Widget getWidget() {
-    print('widget multiglied ${widget.objectValue}');
+    //print('widget multiglied ${widget.objectValue}');
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
       child: TextFormField(
@@ -456,7 +456,7 @@ class _InputSexoState extends State<InputSexo> {
             activeColor: AppTheme.themeVino,
             groupValue: _selectedRadio,
             onChanged: (value) {
-              print(value);
+              //print(value);
               setSelectedRadio(value, false);
             },
           ),
@@ -468,7 +468,7 @@ class _InputSexoState extends State<InputSexo> {
             activeColor: AppTheme.themeVino,
             groupValue: _selectedRadio,
             onChanged: (value) {
-              print(value);
+              //print(value);
               setSelectedRadio(false, value);
             },
           ),
@@ -478,7 +478,7 @@ class _InputSexoState extends State<InputSexo> {
   }
 
   setSelectedRadio(bool masculino, femenino) {
-    print('masculino $masculino femenino $femenino');
+    //print('masculino $masculino femenino $femenino');
     setState(() {
       _selectedM = masculino;
       _selectedF = femenino;
@@ -573,7 +573,7 @@ class _InputDropDownState extends State<InputDropDown> {
                         setState(() {
                           valor = value;
                           widget.objectValue = value; 
-                          print('valor combo ingresado widget.objectValue: ${widget.objectValue} y valueeee: $value');
+                          //print('valor combo ingresado widget.objectValue: ${widget.objectValue} y valueeee: $value');
                         });
                       },
                     ),

@@ -183,7 +183,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
         Navigator.of(context).push(CupertinoPageRoute(
             builder: (BuildContext context) => ForgetPassword()));
     } else {
-      print('las contraseñas no coinciden');
+      //print('las contraseñas no coinciden');
     }
     setState(() {
       _save = false;

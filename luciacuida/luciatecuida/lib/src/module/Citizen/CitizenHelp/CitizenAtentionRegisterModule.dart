@@ -461,10 +461,10 @@ class _CitizenAtentionRegisterModuleState
 
     if (hospital.nombre == null) {
       // generic.add(citizen);
-      print("INSERTOOOO");
+      //print("INSERTOOOO");
     } else {
       //  generic.update(citizen);
-      print("MODIFICO");
+      //print("MODIFICO");
     }
 
     setState(() {

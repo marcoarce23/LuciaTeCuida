@@ -290,7 +290,7 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
                         setState(() {
                            valorTipoAyuda = int.parse(value); 
           
-                          print('valor combo ingresado ENTITY MEDICINA: $valorTipoAyuda y valueeee: $value');
+                          //print('valor combo ingresado ENTITY MEDICINA: $valorTipoAyuda y valueeee: $value');
                         });
                       },
                     ),

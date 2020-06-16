@@ -109,49 +109,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
     super.initState();
   }
 
-  Widget _crearTexto() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10.0),
-      child: Flexible(
-        child: Column(
-          children: <Widget>[
-            Text(
-              'sssssss',
-              textAlign: TextAlign.justify,
-            ),
-            // SizedBox(height:10.0),
-            // Expanded(
-            //                 child: Text(
-            //     'Sit minim rcet eu.',
-            //     textAlign: TextAlign.justify,
-            //   ),
-            // ),
-            // SizedBox(height:10.0),
-            //   Expanded(
-            //   child:Text(
-            //   'Sit mco. Deserunt  amet eu.',
-            //   textAlign: TextAlign.justify,
-            // ),
-            //   ),
-            // SizedBox(height:10.0),
-            //   Expanded(
-            //  child:Text(
-            //   'Sit llamco.  amet eu.',
-            //   textAlign: TextAlign.justify,
-            // ),
-            //   ),
-            // SizedBox(height:10.0),
-            //   Expanded(
-            //                     child: Text(
-            //     'ion adipisicing nostrud amet eu.',
-            //     textAlign: TextAlign.justify,
-            // ),
-            //  ),
-          ],
-        ),
-      ),
-    );
-  }
+ 
 
   Widget _crearImagen(BuildContext context) {
     return Container(
@@ -170,8 +128,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
 
   @override
   Widget build(BuildContext context) {
-    print(
-        'prefs.idCreacionInsitucion para crear: ${prefs.idCreacionInsitucion.toString()}');
+    //print(        'prefs.idCreacionInsitucion para crear: ${prefs.idCreacionInsitucion}');
     final size = MediaQuery.of(context).size;
 
     if (prefs.idCreacionInsitucion == 0) {
@@ -254,7 +211,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
         ),
       );
     } else {
-      print('prefs.idCreacionInsitucion ELSEE: ${prefs.idCreacionInsitucion}');
+      //print('prefs.idCreacionInsitucion ELSEE: ${prefs.idCreacionInsitucion}');
       return Scaffold(
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -283,7 +240,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
   Widget futureItemsEntity(BuildContext context) {
     return FutureBuilder(
         future: generic.getAll(new Institucion(),
-            urlGetInstitucion + prefs.idInsitucion, primaryKeyGetInsitucion),
+            urlGetInstitucion + prefs.idCreacionInsitucion.toString(), primaryKeyGetInsitucion),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:

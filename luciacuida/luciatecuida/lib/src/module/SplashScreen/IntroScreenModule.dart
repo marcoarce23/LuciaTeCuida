@@ -116,6 +116,8 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                 width: 150.0,
                               ),
                             ),
+
+                            SizedBox(height: 15.0),
                             AutoSizeText(
                               'SomosUnoBolivia, es una APP social de voluntariados.',
                               style: kTitleStyleBlack,
@@ -127,61 +129,95 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
 
                             SizedBox(height: 15.0),
 
-                            Column(
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    SizedBox(width: 11.0),
-                                    FaIcon(FontAwesomeIcons.handHoldingMedical,
-                                        color: AppTheme.themeVino, size: 35.0),
-                                    SizedBox(width: 11.0),
-                                    AutoSizeText(
-                                      'Para todas las personas que requieren de una ayuda médica gratuita.',
-                                      style: kSubtitleStyleBlack,
-                                      maxLines: 2,
-                                      minFontSize: 15.0,
-                                      overflow: TextOverflow.ellipsis,
-                                      // softWrap: true,
-                                      textAlign: TextAlign.justify,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 10.0),
-                                Row(
-                                  children: <Widget>[
-                                    SizedBox(width: 11.0),
-                                    FaIcon(FontAwesomeIcons.handHoldingHeart,
-                                        color: AppTheme.themeVino, size: 35.0),
-                                    SizedBox(width: 11.0),
-                                    AutoSizeText(
-                                      'Personas que requieren de apoyo espiritual, de motivacional y emocional.',
-                                      style: kSubtitleStyleBlack,
-                                      maxLines: 2,
-                                      minFontSize: 15.0,
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.justify,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 11.0),
-                                Row(
-                                  children: <Widget>[
-                                    SizedBox(width: 11.0),
-                                    FaIcon(FontAwesomeIcons.handHoldingWater,
-                                        color: AppTheme.themeVino, size: 35.0),
-                                    SizedBox(width: 10.0),
-                                    AutoSizeText(
-                                      'Es una aplicación tan humana que pretende dar una esperanza a las personas.',
-                                      style: kSubtitleStyleBlack,
-                                      maxLines: 2,
-                                      minFontSize: 15.0,
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.justify,
-                                    ),
-                                  ],
-                                ),
-                              ],
+                            Flexible(
+                              child: Column(
+                                children: <Widget>[
+                                  Row(
+                                    children: <Widget>[
+                                      Column(
+                                        children: <Widget>[
+                                          SizedBox(width: 11.0),
+                                          FaIcon(
+                                              FontAwesomeIcons
+                                                  .handHoldingMedical,
+                                              color: AppTheme.themeVino,
+                                              size: 35.0),
+                                        ],
+                                      ),
+                                      
+                                          AutoSizeText(
+                                            'Para todas las personas que requieren\n de una ayuda médica gratuita.',
+                                            style: kSubtitleStyleBlack,
+                                            maxLines: 2,
+                                            minFontSize: 17.0,
+                                            overflow: TextOverflow.clip,
+                                             softWrap: true,
+                                            textAlign: TextAlign.justify,
+                                          ),
+                                      
+                                    ],
+                                  ),
+                                  SizedBox(height: 20.0),
+
+                                  Row(
+                                    children: <Widget>[
+                                      Column(
+                                        children: <Widget>[
+                                          SizedBox(width: 11.0),
+                                          FaIcon(
+                                              FontAwesomeIcons
+                                                  .handHoldingHeart,
+                                              color: AppTheme.themeVino,
+                                              size: 35.0),
+                                        ],
+                                      ),
+                                      
+                                          AutoSizeText(
+                                            'Una alternativa para recibir asistencia\n telefónica, on-line o audiovisual.',
+                                            style: kSubtitleStyleBlack,
+                                            maxLines: 2,
+                                            minFontSize: 17.0,
+                                            overflow: TextOverflow.clip,
+                                             softWrap: true,
+                                            textAlign: TextAlign.justify,
+                                          ),
+                                      
+                                      
+                                    ],
+                                  ),
+
+SizedBox(height: 20.0),
+                                  Row(
+                                    children: <Widget>[
+                                      Column(
+                                        children: <Widget>[
+                                          SizedBox(width: 11.0),
+                                          FaIcon(
+                                              FontAwesomeIcons.handHoldingWater
+                                                  ,
+                                              color: AppTheme.themeVino,
+                                              size: 35.0),
+                                        ],
+                                      ),
+                                      
+                                          AutoSizeText(
+                                            'Es un lugar donde podras encontrar\n material multimedia y eventos del \nvoluntariado para tu aprendizaje.',
+                                            style: kSubtitleStyleBlack,
+                                            maxLines: 3,
+                                            minFontSize: 17.0,
+                                            overflow: TextOverflow.clip,
+                                             softWrap: true,
+                                            textAlign: TextAlign.justify,
+                                          ),
+                                      
+                                      
+                                    ],
+                                  ),
+
+                                ],
+                              ),
                             ),
+
                             //  ),
                           ],
                         ),
@@ -209,78 +245,95 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.center,
                             ),
-                            SizedBox(height: 13.0),
+                            SizedBox(height: 15.0),
 
-                            Column(
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    SizedBox(width: 10.0),
-                                    FaIcon(FontAwesomeIcons.peopleCarry,
-                                        color: AppTheme.themeVino, size: 35.0),
-                                    SizedBox(width: 10.0),
-                                    AutoSizeText(
-                                      'Grupo de voluntarios comprometidos y dedicados a brindarte un apoyo.',
-                                      style: kSubtitleStyleBlack,
-                                      maxLines: 2,
-                                      minFontSize: 15.0,
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.justify,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 13.0),
-                                Row(
-                                  children: <Widget>[
-                                    SizedBox(width: 10.0),
-                                    FaIcon(FontAwesomeIcons.peopleArrows,
-                                        color: AppTheme.themeVino, size: 35.0),
-                                    SizedBox(width: 13.0),
-                                    AutoSizeText(
-                                      'Personas que nos preocupa tu salud, nos preocupa tu bienestar.',
-                                      style: kSubtitleStyleBlack,
-                                      maxLines: 2,
-                                      minFontSize: 15.0,
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.justify,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 13.0),
-                                Row(
-                                  children: <Widget>[
-                                    SizedBox(width: 10.0),
-                                    FaIcon(FontAwesomeIcons.diagnoses,
-                                        color: AppTheme.themeVino, size: 35.0),
-                                    SizedBox(width: 10.0),
-                                    AutoSizeText(
-                                      'Grupo de ciudadanos bolivianos que convecidos con nuestro trabajo podemos hacer a diferencia en tu vida.',
-                                      style: kSubtitleStyleBlack,
-                                      maxLines: 2,
-                                      minFontSize: 15.0,
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.justify,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 13.0),
-                                Row(
-                                  children: <Widget>[
-                                    SizedBox(width: 10.0),
-                                    FaIcon(FontAwesomeIcons.diagnoses,
-                                        color: AppTheme.themeVino, size: 35.0),
-                                    SizedBox(width: 10.0),
-                                    AutoSizeText(
-                                      'COnisderar que el traajo de la gente es de voluntariado en funcion',
-                                      style: kSubtitleStyleBlack,
-                                      maxLines: 2,
-                                      minFontSize: 15.0,
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.justify,
-                                    ),
-                                  ],
-                                ),
-                              ],
+                            Flexible(
+                              child: Column(
+                                children: <Widget>[
+                                  Row(
+                                    children: <Widget>[
+                                      Column(
+                                        children: <Widget>[
+                                          SizedBox(width: 7.0),
+                                          FaIcon(
+                                              FontAwesomeIcons.peopleCarry
+                                                  ,
+                                              color: AppTheme.themeVino,
+                                              size: 35.0),
+                                        ],
+                                      ),
+                                      SizedBox(width: 7.0),
+                                          AutoSizeText(
+                                            'Grupo de personas que de forma\n voluntaria y dedicación brindan\n apoyo a las personas que estan\nbuscando ayuda.',
+                                            style: kSubtitleStyleBlack,
+                                            maxLines: 4,
+                                            minFontSize: 16,
+                                            overflow: TextOverflow.clip,
+                                             softWrap: true,
+                                            textAlign: TextAlign.justify,
+                                          ),
+                                      
+                                    ],
+                                  ),
+                                  SizedBox(height: 20.0),
+
+                                  Row(
+                                    children: <Widget>[
+                                      Column(
+                                        children: <Widget>[
+                                          SizedBox(width: 11.0),
+                                          FaIcon(
+                                              FontAwesomeIcons
+                                                  .peopleArrows,
+                                              color: AppTheme.themeVino,
+                                              size: 35.0),
+                                        ],
+                                      ),
+                                      
+                                          AutoSizeText(
+                                            'Personas que se preocupan por \n tu salud y bienestar.',
+                                            style: kSubtitleStyleBlack,
+                                            maxLines: 2,
+                                            minFontSize: 17.0,
+                                            overflow: TextOverflow.clip,
+                                             softWrap: true,
+                                            textAlign: TextAlign.justify,
+                                          ),
+                                      
+                                      
+                                    ],
+                                  ),
+
+SizedBox(height: 20.0),
+                                  Row(
+                                    children: <Widget>[
+                                      Column(
+                                        children: <Widget>[
+                                          SizedBox(width: 11.0),
+                                          FaIcon(
+                                              FontAwesomeIcons.diagnoses
+                                                  ,
+                                              color: AppTheme.themeVino,
+                                              size: 35.0),
+                                        ],
+                                      ),
+                                      
+                                          AutoSizeText(
+                                            'Grupo de personas interesadas\nen bridnarte material de apoyo y\n eventos para tu aprendizaje.',
+                                            style: kSubtitleStyleBlack,
+                                            maxLines: 3,
+                                            minFontSize: 17.0,
+                                            overflow: TextOverflow.clip,
+                                             softWrap: true,
+                                            textAlign: TextAlign.justify,
+                                          ),
+                                      
+                                      
+                                    ],
+                                  ),
+
+                                ],
+                              ),
                             ),
                             // ),
                           ],
@@ -311,7 +364,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 12.0),
+                            SizedBox(height: 18.0),
                             Column(
                               children: <Widget>[
                                 Row(
@@ -321,10 +374,10 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                         color: AppTheme.themeVino, size: 30.0),
                                     SizedBox(width: 10.0),
                                     AutoSizeText(
-                                      'Hacer buen uso de la aplicación, el tiempo tuyo y el nuestro es valioso.',
+                                      'Hacer buen uso de la aplicación, en \ntu tiempo y cuando lo necesites.',
                                       style: kSubtitleStyleBlack,
                                       maxLines: 2,
-                                      minFontSize: 15.0,
+                                      minFontSize: 16.0,
                                       overflow: TextOverflow.ellipsis,
                                       textAlign: TextAlign.justify,
                                     ),
@@ -338,10 +391,10 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                         color: AppTheme.themeVino, size: 30.0),
                                     SizedBox(width: 10.0),
                                     AutoSizeText(
-                                      'Brindar información real y veridica a las personas con las que tengas un contacto a traves de la aplicación LuciaTeCuida.',
+                                      'Brindar información real y veridica \n a las personas con las que te \ncomuniques a través de la APP \nSomosUnoBolivia.',
                                       style: kSubtitleStyleBlack,
-                                      maxLines: 2,
-                                      minFontSize: 15.0,
+                                      maxLines: 4,
+                                      minFontSize: 16.0,
                                       overflow: TextOverflow.ellipsis,
                                       textAlign: TextAlign.justify,
                                     ),
@@ -355,32 +408,16 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                         color: AppTheme.themeVino, size: 30.0),
                                     SizedBox(width: 10.0),
                                     AutoSizeText(
-                                      'Difunde el uso de la aplicación con tus amig@s, familiares y personas para que podamos llegar a mas personas.',
+                                      'Comparte la aplicación con tus \namig@s, familiares y personas\n para que podamos llegar a mas\n familias bolvianas.',
                                       style: kSubtitleStyleBlack,
-                                      maxLines: 2,
-                                      minFontSize: 15.0,
+                                      maxLines: 4,
+                                      minFontSize: 16.0,
                                       overflow: TextOverflow.ellipsis,
                                       textAlign: TextAlign.justify,
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 12.0),
-                                Row(
-                                  children: <Widget>[
-                                    SizedBox(width: 10.0),
-                                    FaIcon(FontAwesomeIcons.diagnoses,
-                                        color: AppTheme.themeVino, size: 35.0),
-                                    SizedBox(width: 10.0),
-                                    AutoSizeText(
-                                      'COnisderar que el trabajo de la gente es de voluntariado en funcion.',
-                                      style: kSubtitleStyleBlack,
-                                      maxLines: 2,
-                                      minFontSize: 15.0,
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.justify,
-                                    ),
-                                  ],
-                                ),
+                               
                               ],
                             ),
                           ],

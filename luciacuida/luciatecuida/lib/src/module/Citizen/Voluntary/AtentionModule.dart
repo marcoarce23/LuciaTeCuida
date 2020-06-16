@@ -286,7 +286,7 @@ SizedBox(height: 15.0),
   }
 
   _submit() async {
-     print('valor del prefsss. ${prefs.userId}');
+     //print('valor del prefsss. ${prefs.userId}');
     if (prefs.userId == '-1')
       scaffoldKey.currentState.showSnackBar(messageNOk(
           "Para registrar una Atención debe registrar su Institución"));
@@ -327,7 +327,7 @@ SizedBox(height: 15.0),
       selectDomingo = true;
     }
 
-print(' intLunes; $intLunes intMartes $intMartes');
+//print(' intLunes; $intLunes intMartes $intMartes');
 
     entityAtencion.idCovAtencion = _valorId;
     entityAtencion.idCovEntityPersonal = int.parse(prefs.idPersonal);

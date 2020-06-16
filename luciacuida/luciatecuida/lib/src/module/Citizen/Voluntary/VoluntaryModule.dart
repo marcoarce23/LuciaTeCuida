@@ -69,7 +69,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
 
   @override
   Widget build(BuildContext context) {
-    print('prefs.userId es: ${prefs.userId}');
+    //print('prefs.userId es: ${prefs.userId}');
 
     final Voluntary entityData = ModalRoute.of(context).settings.arguments;
 
@@ -405,7 +405,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
   }
 
   _submit() async {
-    print('prefs.userId es: ${prefs.userId}');
+    //print('prefs.userId es: ${prefs.userId}');
     int _token;
 
     entity.foto = imagen;
@@ -417,8 +417,8 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
       _save = true;
     });
 
-    print('TOKENNN : ${token.objectValue}');
-    print('prefs.userId : ${prefs.userId}');
+    //print('TOKENNN : ${token.objectValue}');
+    //print('prefs.userId : ${prefs.userId}');
     entity.idcovPersonal = _valorId;
 
     if(token.objectValue.length > 6 ) 
@@ -451,7 +451,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
       result = respuesta["TIPO_RESPUESTA"];
 
       if (result != "-1" || result != '-2') {
-        print('VLARO DEL LSIT: $result');
+        //print('VLARO DEL LSIT: $result');
         final list = result.split('|');
         prefs.idInsitucion = list[0];
         prefs.idPersonal = list[1];
@@ -494,7 +494,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
 
     setState(() {
       entity.foto = imagen;
-      print('cargadod e iagen ${entity.foto}');
+      //print('cargadod e iagen ${entity.foto}');
     });
   }
 }

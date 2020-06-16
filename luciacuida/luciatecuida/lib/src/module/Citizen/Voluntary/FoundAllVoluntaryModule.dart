@@ -331,8 +331,8 @@ class FormaRecorte extends CustomClipper<Path> {
   Path getClip(Size size) {
     var path = Path();
     //path.lineTo(0,size.height-80);
-    print(size.width);
-    print(size.height);
+    //print(size.width);
+    //print(size.height);
     path.lineTo(0, size.height);
     path.lineTo((size.width / 2) - 30, size.height);
     path.quadraticBezierTo(size.width - 20, size.height - 20, size.width, 0);

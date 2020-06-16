@@ -432,12 +432,12 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
 
   _submit() async {
 
-    print('valor del prefsss. ${prefs.userId}');
+    //print('valor del prefsss. ${prefs.userId}');
 
-print('lunes ${lunes.objectValue}');
-print('martes ${martes.objectValue}');
-print('miercoles ${miercoles.objectValue}');
-print('jueves ${jueves.objectValue}');
+//print('lunes ${lunes.objectValue}');
+//print('martes ${martes.objectValue}');
+//print('miercoles ${miercoles.objectValue}');
+//print('jueves ${jueves.objectValue}');
 
     if (prefs.userId == '-1' || prefs.userId == '0')
       scaffoldKey.currentState.showSnackBar(messageNOk(

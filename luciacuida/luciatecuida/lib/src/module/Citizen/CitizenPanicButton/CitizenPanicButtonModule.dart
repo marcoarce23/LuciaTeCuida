@@ -186,7 +186,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                               value: 65,
                               groupValue: _group,
                               onChanged: (T) {
-                                print(T);
+                                //print(T);
                                 _selectedRadio = T;
                                 setState(() {
                                   _group = T;
@@ -199,7 +199,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                               value: 66,
                               groupValue: _group,
                               onChanged: (T) {
-                                print(T);
+                                //print(T);
                                 _selectedRadio = T;
                                 setState(() {
                                   _group = T;
@@ -216,7 +216,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                               value: 64,
                               groupValue: _group,
                               onChanged: (T) {
-                                print(T);
+                                //print(T);
                                 _selectedRadio = T;
                                 setState(() {
                                   _group = T;
@@ -229,7 +229,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                               value: 77,
                               groupValue: _group,
                               onChanged: (T) {
-                                print(T);
+                                //print(T);
                                 _selectedRadio = T;
                                 setState(() {
                                   _group = T;
@@ -257,10 +257,10 @@ class _ButtonPanic extends State<ButtonPanic> {
                                 value: checkMuyAlto,
                                 onChanged: (bool value) {
                                   setState(() {
-                                    print(value);
+                                    //print(value);
 
                                     botonPanico.idaPrioridad = 68;
-                                    print(botonPanico.idaPrioridad);
+                                    //print(botonPanico.idaPrioridad);
                                     checkMuyAlto = true;
                                     checkAlto = false;
                                     checkMedio = false;
@@ -273,9 +273,9 @@ class _ButtonPanic extends State<ButtonPanic> {
                                 value: checkAlto,
                                 onChanged: (bool value) {
                                   setState(() {
-                                    print(value);
+                                    //print(value);
                                     botonPanico.idaPrioridad = 69;
-                                    print(botonPanico.idaPrioridad);
+                                    //print(botonPanico.idaPrioridad);
 
                                     checkMuyAlto = false;
                                     checkAlto = true;
@@ -289,9 +289,9 @@ class _ButtonPanic extends State<ButtonPanic> {
                                 value: checkMedio,
                                 onChanged: (bool value) {
                                   setState(() {
-                                    print(value);
+                                    //print(value);
                                     botonPanico.idaPrioridad = 70;
-                                    print(botonPanico.idaPrioridad);
+                                    //print(botonPanico.idaPrioridad);
 
                                     checkMuyAlto = false;
                                     checkAlto = false;
@@ -367,11 +367,11 @@ class _ButtonPanic extends State<ButtonPanic> {
   }
 
   _submit() async {
-    print(botonPanico);
+    //print(botonPanico);
     LatLng latLng;
     latLng = await getLocation().then((onvalue) => latLng = onvalue);
 
-    print(' el valorrr.... ${prefs.userId}');
+    //print(' el valorrr.... ${prefs.userId}');
     botonPanico.idLogin = int.parse(prefs.userId);
     botonPanico.botCordenadalat = latLng.latitude;
     botonPanico.botCordenadalon = latLng.longitude;
@@ -405,7 +405,7 @@ class _ButtonPanic extends State<ButtonPanic> {
             .showSnackBar(messageNOk("Ocurrio un error inseperado"));
       }
 
-      print('resultado:$result');
+      //print('resultado:$result');
     }
   }
 }

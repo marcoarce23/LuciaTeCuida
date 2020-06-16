@@ -70,7 +70,7 @@ class _EntityModuleState extends State<EntityModule> {
 
   @override
   Widget build(BuildContext context) {
-    print('entro EntityModule Build: ${ModalRoute.of(context).settings.arguments}');
+    //print('entro EntityModule Build: ${ModalRoute.of(context).settings.arguments}');
     final Institucion entityData = ModalRoute.of(context).settings.arguments;
 
     if (entityData != null) {
@@ -419,13 +419,12 @@ class _EntityModuleState extends State<EntityModule> {
     entity.perCorreoElectronico = email.objectValue;
     entity.usuario = prefs.correoElectronico;
 
-    print(
-        'EL VALOR DE EL ID DE LA INSTITUCION:${entity.idInstitucion.toString()}');
+    //print(        'EL VALOR DE EL ID DE LA INSTITUCION:${entity.idInstitucion.toString()}');
 
     final dataMap = generic.add(entity, urlAddInstitucion);
     await dataMap.then((respuesta) {
       result = respuesta["TIPO_RESPUESTA"];
-      print('resultado de la oepracio:$result');
+      //print('resultado de la oepracio:$result');
     
 
       if (result != "-1" || result != "-2") {

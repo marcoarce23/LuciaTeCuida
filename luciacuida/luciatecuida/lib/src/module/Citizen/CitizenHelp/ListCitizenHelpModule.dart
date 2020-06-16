@@ -132,7 +132,7 @@ class _ListCitizenHelpModuleState extends State<ListCitizenHelpModule> {
               '$urlDeleteAyudaAmigo${item.toString()}/${prefs.userId}');
 
           dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-          print('resultado:$result');
+          //print('resultado:$result');
         });
 
         if (result != null || result != '-1')

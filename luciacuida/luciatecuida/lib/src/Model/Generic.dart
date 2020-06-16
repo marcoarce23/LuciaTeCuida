@@ -15,14 +15,14 @@ class Generic {
 
       final List<Entity> list = new List();
       Map<String, dynamic> decodeData;
-       print(_url);
-      // print(_primaryKey);
+       //print(_url);
+      // //print(_primaryKey);
       final response = await http.get(_url);
 
       if (response.statusCode == 200) {
           Map dataMap = json.decode(response.body);
           List<dynamic> listDynamic = dataMap[_primaryKey];
-     //      print(listDynamic);
+     //      //print(listDynamic);
           for (int i = 0; i < listDynamic.length; i++) {
             decodeData = listDynamic[i];
             list.add(objeto.fromJson(decodeData));
@@ -37,9 +37,9 @@ class Generic {
 
 Future<Map<String, dynamic>> add(Entity objeto, String urlService) async {
       String _body = json.encode(objeto.toJson());
-      print('body: $_body');
+      //print('body: $_body');
       final url = urlService;
-      print('url: $url');
+      //print('url: $url');
       final response = await http.post(url, headers: {"Content-Type": "application/json"}, body: _body);
 
       return dataMap(response);
@@ -54,7 +54,7 @@ Future<Map<String, dynamic>> add(Entity objeto, String urlService) async {
   }
 
   Future<Map<String, dynamic>> delete(String url) async {
-    print('Eliminarrrr: $url');
+    //print('Eliminarrrr: $url');
        final response = await http.post(url);
       dataMap(response);
       return dataMap(response);
@@ -73,21 +73,21 @@ Future<Map<String, dynamic>> sebnFCM(String token, String body, String data ) as
  {
      String sJSON='{"to": "$token","notification": {"title": "Lucia Te Cuida", "body": "$body"}, "data":{"data": "$data"}}';
       String _body = sJSON;
-      print('body: $_body');
+      //print('body: $_body');
       final url = 'https://fcm.googleapis.com/fcm/send';
-      print('url: $url');
+      //print('url: $url');
       final response = await http.post(url, headers: {"Authorization": "key=AAAAxotDu0w:APA91bGSP8HuiwfdXoSb7cN0-U6WTW4eU_-Qj_c9Hd0msRD7becPLVV5rI0Ihj12KWeKYCc7pUuBTPr-R4Uq2oHgumcrj2ADS3_-rzKwTsT_567-1QFJ1NJjLmhNAa3Qt3Z3XG1rv3ol",
                                                       "Content-Type": "application/json"}, 
                                                       body: _body);
         if (response.statusCode == 200) 
         {
-print('MI REPSNSE: $response');
+//print('MI REPSNSE: $response');
         } 
        else 
        {
-         print('Error: Status 400');
+         //print('Error: Status 400');
        }
-      print('ENvio FCM ------: ${response.headers} ---- ${response.body} ----  ${response.statusCode} ---- ${response.request}');
+      //print('ENvio FCM ------: ${response.headers} ---- ${response.body} ----  ${response.statusCode} ---- ${response.request}');
       return dataMap(response);
   }
 
@@ -105,12 +105,12 @@ print('MI REPSNSE: $response');
     final resp = await http.Response.fromStream(streamResponse);
 
     if ( resp.statusCode != 200 && resp.statusCode != 201 ) {
-      print('Algo salio mal ${resp.body}');
+      //print('Algo salio mal ${resp.body}');
       return null;
     }
 
     final respData = json.decode(resp.body);
-    print( respData);
+    //print( respData);
     return respData['secure_url'];
   }
 
@@ -127,12 +127,12 @@ Future<String> subirImagenFile( String imagen ) async {
     final resp = await http.Response.fromStream(streamResponse);
 
     if ( resp.statusCode != 200 && resp.statusCode != 201 ) {
-      print('Algo salio mal ${resp.body}');
+      //print('Algo salio mal ${resp.body}');
       return null;
     }
 
     final respData = json.decode(resp.body);
-    print( respData);
+    //print( respData);
     return respData['secure_url'];
   }
 
@@ -149,12 +149,12 @@ Future<String> subirImagenFile( String imagen ) async {
     final resp = await http.Response.fromStream(streamResponse);
 
     if ( resp.statusCode != 200 && resp.statusCode != 201 ) {
-      print('Algo salio mal ${resp.body}');
+      //print('Algo salio mal ${resp.body}');
       return null;
     }
 
     final respData = json.decode(resp.body);
-    print( respData);
+    //print( respData);
     return respData['secure_url'];
   }
 
@@ -166,8 +166,8 @@ Future<String> subirImagenFile( String imagen ) async {
 
   //   var result = await FlutterImageCompress.compressAndGetFile(imagen.absolute.path, targetPath, quality: 88, rotate: 180,);
 
-  //   print(imagen.lengthSync());
-  //   print(result.lengthSync());
+  //   //print(imagen.lengthSync());
+  //   //print(result.lengthSync());
 
   //   final imageUploadRequest = http.MultipartRequest(
   //     'POST',
@@ -187,13 +187,13 @@ Future<String> subirImagenFile( String imagen ) async {
   //   final resp = await http.Response.fromStream(streamResponse);
 
   //   if ( resp.statusCode != 200 && resp.statusCode != 201 ) {
-  //     print('Algo salio mal');
-  //     print( resp.body );
+  //     //print('Algo salio mal');
+  //     //print( resp.body );
   //     return null;
   //   }
 
   //   final respData = json.decode(resp.body);
-  //   print( respData);
+  //   //print( respData);
 
   //   return respData['secure_url'];
   // }  
@@ -205,8 +205,8 @@ Future<String> subirImagenFile( String imagen ) async {
   //       rotate: 180,
   //     );
 
-  //   print(file.lengthSync());
-  //   print(result.lengthSync());
+  //   //print(file.lengthSync());
+  //   //print(result.lengthSync());
 
   //   return result;
   // }

@@ -124,13 +124,13 @@ class _ListEventEntityState extends State<ListEventEntity> {
       ),
       onDismissed: (value) {
         setState(() {
-          //    print('El registro:$urlDeleteAyudaAmigo${item.toString()}/marcoarce23');
+          //    //print('El registro:$urlDeleteAyudaAmigo${item.toString()}/marcoarce23');
 
           final dataMap =
               generic.delete('$urlDeleteEvento${item.toString()}/-1');
 
           dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-          print('resultado:$result');
+          //print('resultado:$result');
         });
 
         if (result != null || result != '-1')

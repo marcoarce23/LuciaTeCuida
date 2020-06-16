@@ -106,15 +106,15 @@ class _SignUpModuleState extends State<SignUpModule> {
           entity, getLogin + '${currentUser.email}', primaryKeyGetLogin);
 
       dataMap1.then((value) {
-        print('SE SETEOOOO 1111');
+        //print('SE SETEOOOO 1111');
         if (value.length > 0) {
-          print('SE SETEOOOO 222');
+          //print('SE SETEOOOO 222');
           for (int i = 0; i < value.length; i++) {
             entity = value[i];
-            print('SE SETEOOOO 333');
+            //print('SE SETEOOOO 333');
           }
 
-          print('SE SETEOOOO 444 ${entity.idCreacionInstitucion}');
+          //print('SE SETEOOOO 444 ${entity.idCreacionInstitucion}');
           prefs.imei = _platformImei;
           prefs.nombreUsuario = entity.nombrePersona;
           prefs.correoElectronico = entity.correo;
@@ -126,14 +126,13 @@ class _SignUpModuleState extends State<SignUpModule> {
           prefs.idCreacionInsitucion = entity.idCreacionInstitucion;
           prefs.nombreCreacionInstitucion = entity.nombreCreacionInstitucion;
 
-          print('SE SETEOOOO EL VALOR DEL prefs.userId: ${prefs.userId}');
           Navigator.push(
               context,
               PageTransition(
                 curve: Curves.bounceOut,
                 type: PageTransitionType.rotate,
                 alignment: Alignment.topCenter,
-                child: IntroScreenModule(),
+                child: HomePageModule(),
               ));
         } else {
           _crearNuevo();
@@ -152,7 +151,7 @@ class _SignUpModuleState extends State<SignUpModule> {
     prefs.idPersonal = "-1";
     prefs.userId = currentUser.email;
 
-    print('SE SETEOOOO cuadno es priemra Vez pref.userId: ${prefs.userId}');
+    //print('SE SETEOOOO cuadno es priemra Vez pref.userId: ${prefs.userId}');
 
     entity.idUsuario = currentUser.id;
     entity.idInstitucion = '-1';
@@ -173,8 +172,7 @@ class _SignUpModuleState extends State<SignUpModule> {
 
     await generic.add(entity, urlAddSignIn).then((respuesta) {
       prefs.userId = respuesta["TIPO_RESPUESTA"];
-      print('USER ID LOGIN RRRRRRRRRRRR ${prefs.userId}');
-
+ 
       Navigator.push(
           context,
           PageTransition(

@@ -336,7 +336,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
                       onChanged: (value) {
                         setState(() {
                           valorTipoMaterial = int.parse(value);
-                          print('valorTipoMaterial $valorTipoMaterial');
+                          //print('valorTipoMaterial $valorTipoMaterial');
                         });
                       },
                     ),
@@ -381,7 +381,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
                       onChanged: (value) {
                         setState(() {
                           valorTipoEspecialidad = int.parse(value);
-                          print('valorTipoEspecialidad $valorTipoEspecialidad');
+                          //print('valorTipoEspecialidad $valorTipoEspecialidad');
                         });
                       },
                     ),
@@ -511,11 +511,11 @@ class _MultimediaModuleState extends State<MultimediaModule> {
     entity.detFechaInicio = _inputFieldDateInicioController.text;
     entity.usuario = prefs.correoElectronico;
 
-    print('IMPRIMIR ENTITY MULENLACE: ${entity.mulEnlace}');
+    //print('IMPRIMIR ENTITY MULENLACE: ${entity.mulEnlace}');
     final dataMap = generic.add(entity, urlAddMultimedia);
 
     await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-    print('resultado:$result');
+    //print('resultado:$result');
 
     if (result == "0") {
       scaffoldKey.currentState
@@ -564,8 +564,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
     }
     setState(() {
       entity.mulEnlace = imagen;
-      print(
-          'cargadodefecto PDF ${entity.mulEnlace} y enlace defecto $imagenPDF y el valor de pdf es: $imagen');
+      //print(          'cargadodefecto PDF ${entity.mulEnlace} y enlace defecto $imagenPDF y el valor de pdf es: $imagen');
     });
   }
 
@@ -577,7 +576,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
     }
     setState(() {
       entity.mulEnlace = imagen;
-      print('cargadod e iagen ${entity.mulEnlace}');
+      //print('cargadod e iagen ${entity.mulEnlace}');
     });
   }
 
@@ -616,7 +615,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
       if (_pdfPath == '') {
         return;
       }
-      print("File path11: " + _pdfPath);
+      //print("File path11: " + _pdfPath);
       _procesarVideo2(_pdfPath);
       // setState(() {
       //   _isLoading = true;

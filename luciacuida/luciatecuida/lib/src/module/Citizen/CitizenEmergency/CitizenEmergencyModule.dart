@@ -410,7 +410,7 @@ class _PageMedicinaState extends State<PageMedicina> {
           .showSnackBar(messageNOk("Ocurrio un error inseperado"));
     }
 
-    print('resultado:$result');
+    //print('resultado:$result');
   }
 }
 
@@ -560,7 +560,7 @@ class _PageCovidState extends State<PageCovid> {
   //         .showSnackBar(messageNOk("Ocurrio un error inseperado"));
   //   }
 
-  //   print('resultado:$result');
+  //   //print('resultado:$result');
   // }
 
   _submitCovidAtender(
@@ -585,7 +585,7 @@ class _PageCovidState extends State<PageCovid> {
           .showSnackBar(messageNOk("Ocurrio un error inseperado"));
     }
 
-    print('resultado:$result');
+    //print('resultado:$result');
   }
 
   Widget contenidoAtencionSolicitudes(
@@ -889,7 +889,7 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
   //         .showSnackBar(messageNOk("Ocurrio un error inseperado"));
   //   }
 
-  //   print('resultado:$result');
+  //   //print('resultado:$result');
   // }
 
   _submitAtender(BuildContext context, SolicitudAyuda solicitudAyuda) async {
@@ -913,7 +913,7 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
           .showSnackBar(messageNOk("Ocurrio un error inseperado"));
     }
 
-    print('resultado:$result');
+    //print('resultado:$result');
   }
 
   Widget contenidoAtencionSolicitudes(
@@ -1216,7 +1216,7 @@ class _PageBonosState extends State<PageBonos> {
   //         .showSnackBar(messageNOk("Ocurrio un error inseperado"));
   //   }
 
-  //   print('resultado:$result');
+  //   //print('resultado:$result');
   // }
 
   _submitMedicamentosAtender(
@@ -1241,7 +1241,7 @@ class _PageBonosState extends State<PageBonos> {
           .showSnackBar(messageNOk("Ocurrio un error inseperado"));
     }
 
-    print('resultado:$result');
+    //print('resultado:$result');
   }
 
   Widget contenidoAtencionSolicitudes(
@@ -1547,7 +1547,7 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
   //         .showSnackBar(messageNOk("Ocurrio un error inseperado"));
   //   }
 
-  //   print('resultado:$result');
+  //   //print('resultado:$result');
   // }
 
   _submitAyudaAmigo(BuildContext context, SolicitudAyuda solicitudAyuda) async {
@@ -1571,7 +1571,7 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
           .showSnackBar(messageNOk("Ocurrio un error inseperado"));
     }
 
-    print('resultado:$result');
+    //print('resultado:$result');
   }
 
   Widget contenidoAtencionSolicitudes(

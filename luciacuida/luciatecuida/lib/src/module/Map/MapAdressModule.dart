@@ -59,7 +59,7 @@ class _MapAdressModuleState extends State<MapAdressModule> {
           markers: markers,
             mapType: MapType.hybrid,
               onTap: (pos) {
-                print(pos);
+                //print(pos);
                 Marker m = Marker(
                   markerId: MarkerId('1'),
                   draggable: true,
@@ -71,7 +71,7 @@ class _MapAdressModuleState extends State<MapAdressModule> {
                   ),
                 );
                 setState(() {
-                  print('valor mmm: $m');
+                  //print('valor mmm: $m');
                   markers.add(m);
                 
                  //   Navigator.of(context).pop();

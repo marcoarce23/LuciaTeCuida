@@ -111,7 +111,7 @@ final scaffoldKey = GlobalKey<ScaffoldState>();
         label: Text(text),
         icon: Icon(Icons.save),
         onPressed: () {
-print(selectAgree);
+//print(selectAgree);
           if(selectAgree ==true)
         Navigator.push(
         context,
@@ -124,7 +124,7 @@ print(selectAgree);
       );
       else
       {
-  print("No ha aceptado los acuerdos.");
+  //print("No ha aceptado los acuerdos.");
      scaffoldKey.currentState.showSnackBar(messageNOk("No ha aceptado los acuerdos."));
         }
         }

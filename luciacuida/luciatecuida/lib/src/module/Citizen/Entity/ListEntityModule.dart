@@ -283,7 +283,7 @@ class _ListEntityModuleState extends State<ListEntityModule> {
         .delete('$urlDeleteInstitucion${item.toString()}/${prefs.userId}')
         .then((respuesta) {
       result = respuesta["TIPO_RESPUESTA"];
-      print('resultado:$result');
+      //print('resultado:$result');
 
       if (result != null || result != '-1')
         Scaffold.of(context).showSnackBar(messageOk(

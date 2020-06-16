@@ -29,7 +29,7 @@ class MapModuleState extends State<MapModule> {
 
         draggable: true,
         onTap: () {
-          //  print('Es mica saaa: ${_location.latitude} -- ${_location.longitude}');
+          //  //print('Es mica saaa: ${_location.latitude} -- ${_location.longitude}');
           Text('Es pararaaa');
         },
         position: LatLng(-18.5115,
@@ -47,7 +47,7 @@ class MapModuleState extends State<MapModule> {
 
         draggable: false,
         onTap: () {
-          //  print('Es mica saaa: ${_location.latitude} -- ${_location.longitude}');
+          //  //print('Es mica saaa: ${_location.latitude} -- ${_location.longitude}');
           Text('Es pararaaaa');
         },
         position: LatLng(-18.5115,
@@ -141,7 +141,7 @@ class MapModuleState extends State<MapModule> {
 //       final LocationData _locationResult = await location.getLocation();
 //       setState(() {
 //         _location = _locationResult;
-//         print('Es mica saaa: ${_location.latitude} -- ${_location.longitude}');
+//         //print('Es mica saaa: ${_location.latitude} -- ${_location.longitude}');
 //         latlng = LatLng(_location.latitude, _location.longitude);
 //       });
 //     }  catch (err) {

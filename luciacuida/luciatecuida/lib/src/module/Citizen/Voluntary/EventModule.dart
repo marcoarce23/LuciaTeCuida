@@ -275,7 +275,7 @@ class _EventModuleState extends State<EventModule> {
       setState(() {
         _fecha = DateFormat("dd/MM/yyyy").format(picked);
         _inputFieldDateController.text = _fecha;
-        print(_inputFieldDateController.text);
+        //print(_inputFieldDateController.text);
       });
     }
   }
@@ -394,7 +394,7 @@ class _EventModuleState extends State<EventModule> {
     final dataMap = generic.add(entity, urlAddEvento);
 
     await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-    print('resultado:$result');
+    //print('resultado:$result');
 
     if (result == "0"){
       scaffoldKey.currentState
@@ -428,7 +428,7 @@ class _EventModuleState extends State<EventModule> {
 
     setState(() {
       entity.eveFoto = imagen;
-      print('cargadod e iagen ${entity.eveFoto}');
+      //print('cargadod e iagen ${entity.eveFoto}');
     });
   }
 }

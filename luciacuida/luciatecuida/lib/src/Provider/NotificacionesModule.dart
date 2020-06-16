@@ -8,7 +8,7 @@ class NotificacionesModule extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final arg = ModalRoute.of(context).settings.arguments;
-    print('valro obtenido: $arg');
+    //print('valro obtenido: $arg');
      
    
 

@@ -159,7 +159,7 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
         mes = "Dic";
         break;
     }
-    print(eventoItem.url);
+    //print(eventoItem.url);
 
     return InkWell(
       onTap: () {

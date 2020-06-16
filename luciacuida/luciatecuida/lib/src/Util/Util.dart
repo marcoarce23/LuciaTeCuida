@@ -33,7 +33,7 @@ enviarNotificaciones(String urlGetToken, String clave, String titulo,
     if (value.length > 0) {
       for (int i = 0; i < value.length; i++) {
         entityToken = value[i];
-        //    print('entrooo las veces de: $entityToken');
+        //    //print('entrooo las veces de: $entityToken');
         new Generic().sebnFCM(entityToken.llaveToken, clave,
             '$titulo - $valorTitulo - $subTitulo $subTituloValor - Fecha - ${DateTime.now()}');
       }

@@ -131,7 +131,7 @@ class _ListEventModuleState extends State<ListEventModule> {
               .delete('$urlDeleteEvento${item.toString()}/${prefs.userId}');
 
           dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-          print('resultado:$result');
+          //print('resultado:$result');
         });
 
         if (result != null || result != '-1')

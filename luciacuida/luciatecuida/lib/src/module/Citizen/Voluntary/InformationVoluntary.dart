@@ -114,13 +114,13 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
 
   @override
   Widget build(BuildContext context) {
-    print('prefs.idInstitucion para crear: ${prefs.idInsitucion}');
-    print('prefs.idPersonal para crear: ${prefs.idPersonal}');
+    //print('prefs.idInstitucion para crear: ${prefs.idInsitucion}');
+    //print('prefs.idPersonal para crear: ${prefs.idPersonal}');
 
     final size = MediaQuery.of(context).size;
 
     if (prefs.idPersonal == '-1' && prefs.idInsitucion != '-1') {
-      print('prefs.idPersonalXXXX: ${prefs.idPersonal}');
+      //print('prefs.idPersonalXXXX: ${prefs.idPersonal}');
 
       return SafeArea(
         child: Scaffold(
@@ -198,7 +198,7 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
     }
 
     if (prefs.idPersonal != '-1' && prefs.idInsitucion != '0') {
-      print('prefs.idInsiTArget: ${prefs.idPersonal}');
+      //print('prefs.idInsiTArget: ${prefs.idPersonal}');
       return SafeArea(
         child: Scaffold(
           body: Column(

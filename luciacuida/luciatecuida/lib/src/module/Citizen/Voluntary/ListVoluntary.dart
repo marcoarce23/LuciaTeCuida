@@ -53,7 +53,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
 
     setState(() {
       _platformVersion = platformVersion;
-      print('Running on: $_platformVersion');
+      //print('Running on: $_platformVersion');
     });
   }
 
@@ -169,7 +169,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
               '$urlDeleteVoluntario${item.toString()}/${prefs.userId}');
 
           dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-          print('resultado:$result');
+          //print('resultado:$result');
         });
 
         if (result != null || result != '-1')
@@ -416,7 +416,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
 
     dataMap.then((respuesta) {
       result = respuesta["TIPO_RESPUESTA"];
-      print('resultado de entro a la alta icono verde:$result');
+      //print('resultado de entro a la alta icono verde:$result');
 
       if (result == "0") {
         Scaffold.of(context)
@@ -448,7 +448,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
 
     await dataMap.then((respuesta) {
       result = respuesta["TIPO_RESPUESTA"];
-      print('resultado de la baja entro icono rojo:$result');
+      //print('resultado de la baja entro icono rojo:$result');
 
       if (result == "0")
         Scaffold.of(context)

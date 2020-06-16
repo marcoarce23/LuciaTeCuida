@@ -54,7 +54,7 @@ class SignInDemoState extends State<SignInDemo> {
         _contactText = "People API gave a ${response.statusCode} "
             "response. Check logs for details.";
       });
-      print('People API ${response.statusCode} response: ${response.body}');
+      //print('People API ${response.statusCode} response: ${response.body}');
       return;
     }
     final Map<String, dynamic> data = json.decode(response.body);
@@ -92,7 +92,7 @@ class SignInDemoState extends State<SignInDemo> {
 
       _googleSignIn.signIn();
     } catch (error) {
-      print(error);
+      //print(error);
     }
   }
 

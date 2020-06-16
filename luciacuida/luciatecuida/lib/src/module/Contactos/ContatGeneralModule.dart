@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
@@ -34,16 +35,14 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-       appBar: AppBar(
-          backgroundColor: Colors.white,
-          toolbarOpacity: 0.7,
-          iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
-          elevation: 0,
-          title: Text("CONTACTOS DE EMERGENCIA", style: kTitleAppBar),
-        
-            ),
-    
-        drawer: DrawerCitizen(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        toolbarOpacity: 0.7,
+        iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
+        elevation: 0,
+        title: Text("CONTACTOS DE EMERGENCIA", style: kTitleAppBar),
+      ),
+      drawer: DrawerCitizen(),
       body: SafeArea(
         child: Container(
           decoration: boxDecorationFondo(),
@@ -68,7 +67,6 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
           ),
         ),
       ),
-    
       floatingActionButton: generaFloatbuttonHome(context),
     );
   }
@@ -90,7 +88,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
 
   Widget listItemsEntity(BuildContext context, AsyncSnapshot snapshot) {
     final size = MediaQuery.of(context).size;
-    print('tamanio: ${snapshot.hasData}');
+    //print('tamanio: ${snapshot.hasData}');
     return Expanded(
       child: ListView.builder(
         shrinkWrap: true,
@@ -125,120 +123,148 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
   }
 
   Widget listEntity(BuildContext context, Emergencia entityItem) {
-    print('tamanio: ${entityItem.correo}');
+    //print('tamanio: ${entityItem.correo}');
     return Row(
       children: <Widget>[
+       
         Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-                width: MediaQuery.of(context).size.width - 110,
-                child: Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.person,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                  width: MediaQuery.of(context).size.width - 110,
+                  child: Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.person,
+                        color: AppTheme.themeVino,
+                        size: 15,
+                      ),
+                      Text('${entityItem.nombre} ', style: kTitleCardStyle),
+                    ],
+                  )),
+              Container(
+                  child: Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.assignment,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Sigla: ${entityItem.abreviacion}',
+                    style: kSubTitleCardStyle,
+                  ),
+                ],
+              )),
+              Container(
+                  child: Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.phone_android,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Telefono: ${entityItem.telefono}',
+                    style: kSubTitleCardStyle,
+                  ),
+                ],
+              )),
+              Container(
+                  child: Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.phone_in_talk,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Call- Center: ${entityItem.callCenter}',
+                    style: kSubTitleCardStyle,
+                  ),
+                ],
+              )),
+              Container(
+                  child: Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.add_comment,
+                    color: AppTheme.themeVino,
+                    size: 15,
+                  ),
+                  Text(
+                    'Descripción:',
+                    style: kSubTitleCardStyle,
+                  ),
+                ],
+              )),
+              AutoSizeText(
+                entityItem.descripcion,
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+              ),
+              SizedBox(height: 6.0),
+              Wrap(
+                children: <Widget>[
+                  InkWell(
+                    child: FaIcon(
+                      FontAwesomeIcons.phoneVolume,
                       color: AppTheme.themeVino,
-                      size: 15,
+                      size: 25,
                     ),
-                    Text('${entityItem.nombre} ', style: kTitleCardStyle),
-                  ],
-                )),
-
-            Container(
-                child: Row(
-              children: <Widget>[
-                Icon(
-                  Icons.phone_android,
-                  color: AppTheme.themeVino,
-                  size: 15,
-                ),
-                Text(
-                  'Telefono: ${entityItem.telefono}',
-                  style: kSubTitleCardStyle,
-                ),
-              ],
-            )),
-            // Container(
-            //   width: MediaQuery.of(context).size.width - 80,
-            //   child: Row(
-            //     children: <Widget>[
-            //       Icon(
-            //         Icons.mail_outline,
-            //         color: AppTheme.themeVino,
-            //         size: 15,
-            //       ),
-            //       RichText(
-            //         overflow: TextOverflow.clip,
-            //         text: TextSpan(
-            //           text: 'Correo: ${entityItem.regUbicacion}',
-            //           style: TextStyle(fontSize: 14, color: Colors.black),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            //  Text('Puedes contactactarte por aca',
-            //             style: TextStyle(fontSize: 15, color: Colors.black87),
-            //           ),
-            SizedBox(height: 7.0),
-
-            Wrap(
-              children: <Widget>[
-                InkWell(
-                  child: FaIcon(
-                    FontAwesomeIcons.phoneVolume,
-                    color: AppTheme.themeVino,
-                    size: 25,
+                    onTap: () {
+                      callNumber(entityItem.telefono);
+                    },
                   ),
-                  onTap: () {
-                    callNumber(entityItem.telefono);
-                  },
-                ),
-                SizedBox(width: 20.0),
-                InkWell(
-                  child: FaIcon(
-                    FontAwesomeIcons.comment,
-                    color: AppTheme.themeVino,
-                    size: 25,
+                  SizedBox(width: 20.0),
+                  InkWell(
+                    child: FaIcon(
+                      FontAwesomeIcons.comment,
+                      color: AppTheme.themeVino,
+                      size: 25,
+                    ),
+                    onTap: () {
+                      sendSMS(entityItem.telefono);
+                    },
                   ),
-                  onTap: () {
-                    sendSMS(entityItem.telefono);
-                  },
-                ),
-                SizedBox(width: 20.0),
-                InkWell(
-                  child: FaIcon(
-                    FontAwesomeIcons.whatsapp,
-                    color: AppTheme.themeVino,
-                    size: 25,
+                  SizedBox(width: 20.0),
+                  InkWell(
+                    child: FaIcon(
+                      FontAwesomeIcons.whatsapp,
+                      color: AppTheme.themeVino,
+                      size: 25,
+                    ),
+                    onTap: () {
+                      callWhatsAppText(entityItem.telefono,
+                          'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
+                    },
                   ),
-                  onTap: () {
-                    callWhatsAppText(entityItem.telefono, 'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.' );
-                  },
-                ),
-                SizedBox(width: 20.0),
-                InkWell(
-                  child: FaIcon(
-                    FontAwesomeIcons.internetExplorer,
-                    color: AppTheme.themeVino,
-                    size: 25,
+                  SizedBox(width: 20.0),
+                  InkWell(
+                    child: FaIcon(
+                      FontAwesomeIcons.internetExplorer,
+                      color: AppTheme.themeVino,
+                      size: 25,
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => PageViewModule(
+                                  title: 'Pagina emergencia',
+                                  selectedUrl: entityItem.correo,
+                                )),
+                      );
+                    },
                   ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => PageViewModule(
-                                title: 'Pagina emergencia',
-                                selectedUrl: entityItem.correo,
-                              )),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
+                ],
+              ),
+            ],
+          ),
+    
       ],
     );
   }
@@ -251,14 +277,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
             imageNetworkUrl:
                 'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg',
             sizeImage: Size.fromWidth(50)),
-        // SizedBox(
-        //   height: 1.5,
-        // ),
-        // Text(
-        //   '${entityItem.regPrioridad}',
-        //   style: TextStyle(
-        //       fontSize: 12, color: Colors.black87, fontWeight: FontWeight.w400),
-        // ),
+
       ],
     ));
   }
