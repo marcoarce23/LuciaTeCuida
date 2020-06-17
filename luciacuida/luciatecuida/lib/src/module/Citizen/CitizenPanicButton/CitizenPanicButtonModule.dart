@@ -394,7 +394,7 @@ class _ButtonPanic extends State<ButtonPanic> {
             "Se registro correctamente, a las ${DateFormat("HH:mm").format(DateTime.now())} del ${DateFormat("dd/MM/yyyy").format(DateTime.now())}"));
 
         enviarNotificaciones(
-            urlGetToken + '4/.',
+            urlGetToken + '4/-',
             'ayudaPersona',
             'Solicitud de atención a una persona',
             'Usuario: ${prefs.correoElectronico} solicita ayuda',

@@ -1,4 +1,4 @@
-package bo.luciaTeCuida.luciaTeCuida
+package bo.SomosUnoBolivia
 
 import io.flutter.embedding.android.FlutterActivity
 

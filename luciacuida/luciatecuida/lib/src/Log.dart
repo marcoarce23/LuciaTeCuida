@@ -44,7 +44,7 @@ class SignIn1DemoState extends State<SignInDemo1> {
         _isLoading = true;
       });
     } on PlatformException catch (e) {
-      //print("Error while picking the file: " + e.toString());
+      print("Error while picking the file: " + e.toString());
     }
 
     _previewPath = await PdfPreviewer.getPagePreview(filePath: _pdfPath, pageNumber: _pageNumber);

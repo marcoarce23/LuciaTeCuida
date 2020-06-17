@@ -372,7 +372,7 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
       scaffoldKey.currentState
           .showSnackBar(messageOk("Se registro correctamente."));
      
-      enviarNotificaciones(urlGetToken+'2/${prefs.idInsitucion}', 
+      enviarNotificaciones(urlGetToken+'4/${prefs.idInsitucion}', 
                             'ayudaPersona',
                              'ayudaPersona', 
                              nombre.objectValue, 

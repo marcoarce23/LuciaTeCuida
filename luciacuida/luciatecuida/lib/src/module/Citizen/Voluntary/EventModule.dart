@@ -400,7 +400,7 @@ class _EventModuleState extends State<EventModule> {
       scaffoldKey.currentState
           .showSnackBar(messageOk("Se inserto correctamente"));
 
-    enviarNotificaciones(urlGetToken+'2/${prefs.idInsitucion}', 
+    enviarNotificaciones(urlGetToken+'4/${prefs.idInsitucion}', 
                             'eventos',
                              'Evento voluntario', 
                              titulo.objectValue, 

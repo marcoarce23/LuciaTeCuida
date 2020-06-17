@@ -8,34 +8,26 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:852739996492:android:ffa9db5791990d3646ade9",
+        "mobilesdk_app_id": "1:852739996492:android:01744d565a1c14f646ade9",
         "android_client_info": {
-          "package_name": "bo.luciaTeCuida.luciaTeCuida"
+          "package_name": "bo.SomosUnoBolivia"
         }
       },
       "oauth_client": [
         {
-          "client_id": "852739996492-7eplld51u203e63flb7mud8lmjvbjs95.apps.googleusercontent.com",
+          "client_id": "852739996492-0al5nmo8eopekkoik21c5to3lc5b6t7b.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "bo.luciaTeCuida.luciaTeCuida",
-            "certificate_hash": "1d4dfd9d569cea6996cfa989312e3111c7662c3a"
-          }
-        },
-        {
-          "client_id": "852739996492-j6f2dtffbduln4v6ivfnaltjhph41oo8.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "bo.luciaTeCuida.luciaTeCuida",
-            "certificate_hash": "77074b839fa411f10175949670c471498fa8908b"
-          }
-        },
-        {
-          "client_id": "852739996492-2snrfsfsc2f0lb98n159iti8rapsdmc8.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "bo.luciaTeCuida.luciaTeCuida",
+            "package_name": "bo.SomosUnoBolivia",
             "certificate_hash": "12c2c8a8fbf187f061344c929af498d39b287073"
+          }
+        },
+        {
+          "client_id": "852739996492-3fgq3ektped53baqce94ifokrosj1lgq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bo.SomosUnoBolivia",
+            "certificate_hash": "77074b839fa411f10175949670c471498fa8908b"
           }
         },
         {

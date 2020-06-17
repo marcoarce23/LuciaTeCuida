@@ -401,7 +401,7 @@ class _EventEntityModuleState extends State<EventEntityModule> {
       scaffoldKey.currentState
           .showSnackBar(messageOk("Se inserto correctamente"));
       
-      enviarNotificaciones(urlGetToken+'2/${prefs.idInsitucion}', 
+      enviarNotificaciones(urlGetToken+'4/${prefs.idInsitucion}', 
                             'eventos',
                              'Evento Organizacional', 
                              titulo.objectValue, 
