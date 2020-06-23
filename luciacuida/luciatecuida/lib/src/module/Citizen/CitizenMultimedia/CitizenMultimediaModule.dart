@@ -179,13 +179,13 @@ class PagePicture extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.all(15),
+            padding: EdgeInsets.all(10),
             child: FadeInImage.assetNetwork(
               placeholder: "assets/loading/loadingImage.gif",
               placeholderScale: 0.2,
               image: multimediaImagen.mulEnlace,
-              width: 150,
-              height: 150,
+              width: 130,
+              height: 130,
               fit: BoxFit.cover,
             ),
           ),
@@ -196,18 +196,21 @@ class PagePicture extends StatelessWidget {
                 height: 140,
               ),
               Container(
-                  width: 165,
+                  width: 130,
                   color: Colors.white70,
-                  padding: EdgeInsets.only(left: 18),
+                  padding: EdgeInsets.only(left: 15),
                   child: Text(
                     multimediaImagen.mulTitulo,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
                   )),
               Container(
-                  width: 165,
+                  width: 130,
                   color: Colors.white70,
-                  padding: EdgeInsets.only(left: 18),
+                  padding: EdgeInsets.only(left: 15),
                   child: Text(
                     multimediaImagen.mulResumen,
                     overflow: TextOverflow.ellipsis,
@@ -326,11 +329,15 @@ class _PageVideoState extends State<PageVideo> {
           trailing: Icon(Icons.navigate_next),
         ),
         onTap: () {
+          openWeb(multimediaVideo.mulEnlace);
+
+/*
           Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => PageViewModule(
                     title: multimediaVideo.mulTitulo,
                     selectedUrl: multimediaVideo.mulEnlace,
                   )));
+                  */
         });
   }
 }
@@ -432,10 +439,8 @@ class PageDocuments extends StatelessWidget {
           trailing: Icon(Icons.navigate_next),
         ),
         onTap: () {
-
+          openWeb(multimediaDocumento.mulEnlace);
 //PdfPagePreview pdf = new PdfPagePreview(imgPath: multimediaDocumento.mulEnlace,);
-
-
 
 //          loadPDF(multimediaDocumento.mulEnlace);
           //print(multimediaDocumento.mulEnlace);
