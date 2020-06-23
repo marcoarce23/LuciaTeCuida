@@ -202,7 +202,10 @@ class PagePicture extends StatelessWidget {
                   child: Text(
                     multimediaImagen.mulTitulo,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500,),
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
                   )),
               Container(
                   width: 130,
@@ -326,11 +329,15 @@ class _PageVideoState extends State<PageVideo> {
           trailing: Icon(Icons.navigate_next),
         ),
         onTap: () {
+          openWeb(multimediaVideo.mulEnlace);
+
+/*
           Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => PageViewModule(
                     title: multimediaVideo.mulTitulo,
                     selectedUrl: multimediaVideo.mulEnlace,
                   )));
+                  */
         });
   }
 }
@@ -432,10 +439,8 @@ class PageDocuments extends StatelessWidget {
           trailing: Icon(Icons.navigate_next),
         ),
         onTap: () {
-
+          openWeb(multimediaDocumento.mulEnlace);
 //PdfPagePreview pdf = new PdfPagePreview(imgPath: multimediaDocumento.mulEnlace,);
-
-
 
 //          loadPDF(multimediaDocumento.mulEnlace);
           //print(multimediaDocumento.mulEnlace);
