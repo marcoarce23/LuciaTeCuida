@@ -56,7 +56,7 @@ class _CitizenImageDetailModuleState extends State<CitizenImageDetailModule> {
                 children: <Widget>[
                   Text(
                     "Titulo:".toUpperCase(),
-                    style: TextStyle(fontWeight: FontWeight.w700),
+                    style: TextStyle(fontWeight: FontWeight.w700,color:  AppTheme.themeVino),
                   ),
                   Text(widget.multimediaImagen.mulTitulo),
                 ],
@@ -68,7 +68,7 @@ class _CitizenImageDetailModuleState extends State<CitizenImageDetailModule> {
                 children: <Widget>[
                   Text(
                     "Tipo material:".toUpperCase(),
-                    style: TextStyle(fontWeight: FontWeight.w700),
+                    style: TextStyle(fontWeight: FontWeight.w700,color:  AppTheme.themeVino),
                   ),
                   Text(widget.multimediaImagen.mulTipoMaterial),
                 ],
@@ -80,7 +80,7 @@ class _CitizenImageDetailModuleState extends State<CitizenImageDetailModule> {
                 children: <Widget>[
                   Text(
                     "Descripción:".toUpperCase(),
-                    style: TextStyle(fontWeight: FontWeight.w700),
+                    style: TextStyle(fontWeight: FontWeight.w700,color:  AppTheme.themeVino),
                   ),
                   Text(widget.multimediaImagen.mulResumen),
                 ],
