@@ -445,8 +445,9 @@ class DrawerCitizen extends StatelessWidget {
           CustomListTile(
               Icons.share,
               '    Comparte la aplicación',
-              () => sharedText('Comparte la aplicación LuciaTeCuida',
-                  'Comparte la app http://bit.ly/mrPlayStore', 'text/html')),
+              () => sharedText('Comparte la App - SomosUnoBolivia',
+                              '🔺*SomosUnoBolivia*🔺 \n Una aplicación de voluntarios que apoyan a personas que requieren apoyo en COVID-19, médicina en general.\n💬Atención *GRATUITA* personalizada de manera virtual. \n 📲 Puede descargar la app desde: https://play.google.com/store/apps/details?id=bo.SomosUnoBolivia',
+                              'text/html' )),
           CustomListTile(
               Icons.add_to_home_screen,
               '   Acerca de la aplicación',
@@ -518,12 +519,11 @@ class DrawerCitizen extends StatelessWidget {
           CustomListTile(
               Icons.share,
               '    Comparte la aplicación',
-              () => sharedText(
-                  'Te contamos que existe una aplicación de grupos de voluntariados de diversas áreas. Queremos compartir la aplicación "_*EstamosContigo*_" y que nos ayudes a compartirla.\n Ayudemos a las personas que requieren de nosotros.\n',
-                  'Comparte la app en playStore: http://bit.ly/mrPlayStore \n. Muchas gracias por tu tiempo.',
-                  'text/html')),
+              () => sharedText('Comparte la App - SomosUnoBolivia',
+                              '🔺*SomosUnoBolivia*🔺 \n Una aplicación de voluntarios que apoyan a personas que requieren apoyo en COVID-19, médicina en general.\n💬Atención *GRATUITA* personalizada de manera virtual. \n 📲 Puede descargar la app desde: https://play.google.com/store/apps/details?id=bo.SomosUnoBolivia',
+                              'text/html' )),
           CustomListTile(
-              Icons.add_to_home_screen,
+            Icons.phone_android,
               '    Acerca de la aplicación',
               () => Navigator.push(
                     context,

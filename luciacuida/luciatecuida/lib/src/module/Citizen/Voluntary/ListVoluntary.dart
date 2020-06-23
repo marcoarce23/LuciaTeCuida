@@ -9,7 +9,7 @@ import 'package:luciatecuida/src/Util/Util.dart';
 import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/Widget/Message/Message.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
-
+import 'package:auto_size_text/auto_size_text.dart';
 import 'dart:async';
 
 import 'package:flutter/services.dart';
@@ -254,20 +254,26 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
-                    Expanded(
-                      child: Row(
+                    Row(
                         children: <Widget>[
                           Text('Correo: ', style: kTitleCardStyle),
-                          Text(
-                            '${entityItem.perCorreo}',
-                            style: kSubTitleCardStyle,
-                            softWrap: true,
-                          ),
+                         
                         ],
                       ),
-                    )
+                  
+
+                   
                   ],
                 ),
+
+                   AutoSizeText(
+                         entityItem.perCorreo,
+                       style: kTitleCardStyle,
+                        maxLines: 2,
+                        minFontSize: 15.0,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+
                 SizedBox(height: 5.0),
                 Row(
                   children: <Widget>[
