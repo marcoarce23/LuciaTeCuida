@@ -43,28 +43,30 @@ class _ContactAppModuleState extends State<ContactAppModule> {
             ),
     
         drawer: DrawerCitizen(),
-      body: SafeArea(
-        child: Container(
-          decoration: boxDecorationFondo(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(height: 10.0),
-              Container(
-                width: size.width * 0.96,
-                margin: EdgeInsets.symmetric(vertical: 0.0),
-                child: contenedorTitulo(
-                  context,
-                  40.0,
-                  'ENCUENTRANOS AQUÍ',
-                  FaIcon(FontAwesomeIcons.handHoldingHeart,
-                      color: AppTheme.themeVino),
+      body: SingleChildScrollView(
+              child: SafeArea(
+          child: Container(
+            decoration: boxDecorationFondo(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 10.0),
+                Container(
+                  width: size.width * 0.96,
+                  margin: EdgeInsets.symmetric(vertical: 0.0),
+                  child: contenedorTitulo(
+                    context,
+                    40.0,
+                    'ENCUENTRANOS AQUÍ',
+                    FaIcon(FontAwesomeIcons.handHoldingHeart,
+                        color: AppTheme.themeVino),
+                  ),
                 ),
-              ),
-              divider(),
-              futureItemsEntity(context),
-              copyRigth(),
-            ],
+                divider(),
+                futureItemsEntity(context),
+                copyRigth(),
+              ],
+            ),
           ),
         ),
       ),
@@ -90,38 +92,34 @@ class _ContactAppModuleState extends State<ContactAppModule> {
   Widget listItemsEntity(BuildContext context, AsyncSnapshot snapshot) {
     final size = MediaQuery.of(context).size;
 
-    return Expanded(
-      child: ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        physics: ClampingScrollPhysics(),
-        itemCount: snapshot.data.length,
-        itemBuilder: (context, index) {
-          Contactos entityItem = snapshot.data[index];
+    return ListView.builder(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      physics: ClampingScrollPhysics(),
+      itemCount: snapshot.data.length,
+      itemBuilder: (context, index) {
+        Contactos entityItem = snapshot.data[index];
 
-          return Flexible(
-                      child: Column(
-              children: <Widget>[
-                Container(
-                  width: size.width * 0.97,
-                  margin: EdgeInsets.symmetric(vertical: 0.0),
-                  decoration: boxDecorationList(),
-                  child: Column(
-                    children: <Widget>[
-                      ListTile(
-                        leading: iconEntity(entityItem),
-                        title: listEntity(context, entityItem),
-                      ),
-                    ],
-                  ),
+        return Column(
+            children: <Widget>[
+              Container(
+                width: size.width * 0.97,
+                margin: EdgeInsets.symmetric(vertical: 0.0),
+                decoration: boxDecorationList(),
+                child: Column(
+                  children: <Widget>[
+        ListTile(
+          leading: iconEntity(entityItem),
+          title: listEntity(context, entityItem),
+        ),
+                  ],
                 ),
-                SizedBox(height: 8.0),
-                //  divider(),
-              ],
-            ),
+              ),
+              SizedBox(height: 8.0),
+              //  divider(),
+            ],
           );
-        },
-      ),
+      },
     );
   }
 

@@ -43,27 +43,29 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
         title: Text("CONTACTOS DE EMERGENCIA", style: kTitleAppBar),
       ),
       drawer: DrawerCitizen(),
-      body: SafeArea(
-        child: Container(
-          decoration: boxDecorationFondo(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(height: 10.0),
-              Container(
-                width: size.width * 0.96,
-                margin: EdgeInsets.symmetric(vertical: 0.0),
-                child: contenedorTitulo(
-                  context,
-                  40.0,
-                  'NÚMEROS PILOTOS DE URGENCIA',
-                  FaIcon(FontAwesomeIcons.headset, color: AppTheme.themeVino),
+      body: SingleChildScrollView(
+              child: SafeArea(
+          child: Container(
+            decoration: boxDecorationFondo(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 10.0),
+                Container(
+                  width: size.width * 0.96,
+                  margin: EdgeInsets.symmetric(vertical: 0.0),
+                  child: contenedorTitulo(
+                    context,
+                    40.0,
+                    'NÚMEROS PILOTOS DE URGENCIA',
+                    FaIcon(FontAwesomeIcons.headset, color: AppTheme.themeVino),
+                  ),
                 ),
-              ),
-              divider(),
-              futureItemsEntity(context),
-              copyRigth(),
-            ],
+                divider(),
+                futureItemsEntity(context),
+                copyRigth(),
+              ],
+            ),
           ),
         ),
       ),
@@ -89,16 +91,15 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
   Widget listItemsEntity(BuildContext context, AsyncSnapshot snapshot) {
     final size = MediaQuery.of(context).size;
     //print('tamanio: ${snapshot.hasData}');
-    return Expanded(
-      child: ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        physics: ClampingScrollPhysics(),
-        itemCount: snapshot.data.length,
-        itemBuilder: (context, index) {
-          Emergencia entityItem = snapshot.data[index];
+    return ListView.builder(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      physics: ClampingScrollPhysics(),
+      itemCount: snapshot.data.length,
+      itemBuilder: (context, index) {
+        Emergencia entityItem = snapshot.data[index];
 
-          return Column(
+        return Column(
             children: <Widget>[
               Container(
                 width: size.width * 0.97,
@@ -106,10 +107,10 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
                 decoration: boxDecorationList(),
                 child: Column(
                   children: <Widget>[
-                    ListTile(
-                      leading: iconEntity(entityItem),
-                      title: listEntity(context, entityItem),
-                    ),
+        ListTile(
+          leading: iconEntity(entityItem),
+          title: listEntity(context, entityItem),
+        ),
                   ],
                 ),
               ),
@@ -117,8 +118,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
               //  divider(),
             ],
           );
-        },
-      ),
+      },
     );
   }
 
@@ -127,143 +127,160 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
     return Row(
       children: <Widget>[
        
-        Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                  width: MediaQuery.of(context).size.width - 110,
-                  child: Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.person,
-                        color: AppTheme.themeVino,
-                        size: 15,
+        Flexible(
+                  child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Container(
+                    width: MediaQuery.of(context).size.width - 110,
+                    child: Row(
+                      children: <Widget>[
+                        Icon(
+                          Icons.person,
+                          color: AppTheme.themeVino,
+                          size: 15,
+                        ),
+                        Expanded(child: Text('${entityItem.nombre} ', style: kTitleCardStyle, softWrap: true,
+                        overflow: TextOverflow.clip,)),
+                      ],
+                    )),
+                Container(
+                    child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.assignment,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                                          child: Text(
+                        'Sigla: ${entityItem.abreviacion}',
+                        style: kSubTitleCardStyle, softWrap: true,
+                      overflow: TextOverflow.clip,
                       ),
-                      Text('${entityItem.nombre} ', style: kTitleCardStyle),
-                    ],
-                  )),
-              Container(
-                  child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.assignment,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Sigla: ${entityItem.abreviacion}',
-                    style: kSubTitleCardStyle,
-                  ),
-                ],
-              )),
-              Container(
-                  child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.phone_android,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Telefono: ${entityItem.telefono}',
-                    style: kSubTitleCardStyle,
-                  ),
-                ],
-              )),
-              Container(
-                  child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.phone_in_talk,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Call- Center: ${entityItem.callCenter}',
-                    style: kSubTitleCardStyle,
-                  ),
-                ],
-              )),
-              Container(
-                  child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.add_comment,
-                    color: AppTheme.themeVino,
-                    size: 15,
-                  ),
-                  Text(
-                    'Descripción:',
-                    style: kSubTitleCardStyle,
-                  ),
-                ],
-              )),
-              AutoSizeText(
-                entityItem.descripcion,
-                style: kSubTitleCardStyle,
-                maxLines: 2,
-                minFontSize: 15.0,
-                overflow: TextOverflow.ellipsis,
-              ),
-              SizedBox(height: 6.0),
-              Wrap(
-                children: <Widget>[
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.phoneVolume,
-                      color: AppTheme.themeVino,
-                      size: 25,
                     ),
-                    onTap: () {
-                      callNumber(entityItem.telefono);
-                    },
-                  ),
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.comment,
+                  ],
+                )),
+                Container(
+                    child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.phone_android,
                       color: AppTheme.themeVino,
-                      size: 25,
+                      size: 15,
                     ),
-                    onTap: () {
-                      sendSMS(entityItem.telefono);
-                    },
-                  ),
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.whatsapp,
+                    Expanded(
+                                          child: Text(
+                        'Telefono: ${entityItem.telefono}',
+                        style: kSubTitleCardStyle,
+                         softWrap: true,
+                      overflow: TextOverflow.clip,
+                      ),
+                    ),
+                  ],
+                )),
+                Container(
+                    child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.phone_in_talk,
                       color: AppTheme.themeVino,
-                      size: 25,
+                      size: 15,
                     ),
-                    onTap: () {
-                      callWhatsAppText(entityItem.telefono,
-                          'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
-                    },
-                  ),
-                  SizedBox(width: 20.0),
-                  InkWell(
-                    child: FaIcon(
-                      FontAwesomeIcons.internetExplorer,
+                    Expanded(
+                                          child: Text(
+                        'Call- Center: ${entityItem.callCenter}',
+                        style: kSubTitleCardStyle, softWrap: true,
+                      overflow: TextOverflow.clip,
+                      ),
+                    ),
+                  ],
+                )),
+                Container(
+                    child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.add_comment,
                       color: AppTheme.themeVino,
-                      size: 25,
+                      size: 15,
                     ),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PageViewModule(
-                                  title: 'Pagina emergencia',
-                                  selectedUrl: entityItem.correo,
-                                )),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ],
-          ),
+                    Expanded(
+                                          child: Text(
+                        'Descripción:',
+                        style: kSubTitleCardStyle,
+                         softWrap: true,
+                      overflow: TextOverflow.clip,
+                      ),
+                    ),
+                  ],
+                )),
+                AutoSizeText(
+                  entityItem.descripcion,
+                  style: kSubTitleCardStyle,
+                  maxLines: 2,
+                  minFontSize: 15.0,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(height: 6.0),
+                Wrap(
+                  children: <Widget>[
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.phoneVolume,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        callNumber(entityItem.telefono);
+                      },
+                    ),
+                    SizedBox(width: 20.0),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.comment,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        sendSMS(entityItem.telefono);
+                      },
+                    ),
+                    SizedBox(width: 20.0),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.whatsapp,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        callWhatsAppText(entityItem.telefono, 
+                            'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
+                      },
+                    ),
+                    SizedBox(width: 20.0),
+                    InkWell(
+                      child: FaIcon(
+                        FontAwesomeIcons.internetExplorer,
+                        color: AppTheme.themeVino,
+                        size: 25,
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PageViewModule(
+                                    title: 'Pagina emergencia',
+                                    selectedUrl: entityItem.correo,
+                                  )),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+        ),
     
       ],
     );
