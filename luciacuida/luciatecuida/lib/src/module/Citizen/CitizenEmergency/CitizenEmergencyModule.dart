@@ -1510,10 +1510,10 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
     Color colorCuadro;
     String detallePrioridad;
 
-    if (solicitudAyuda.idaPrioridad.toString() == "Muy Alta") {
+    if (solicitudAyuda.nombrePrioridad.toString() == "Muy Alta") {
       colorCuadro = AppTheme.themeColorRojo;
       detallePrioridad = "Muy alta";
-    } else if (solicitudAyuda.idaPrioridad.toString() == "Alta") {
+    } else if (solicitudAyuda.nombrePrioridad.toString() == "Alta") {
       colorCuadro = AppTheme.themeVino;
       detallePrioridad = "Alta";
     } else {
