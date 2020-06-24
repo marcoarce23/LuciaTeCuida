@@ -11,7 +11,6 @@ import 'package:luciatecuida/src/module/Citizen/CitizenEmergency/CitizenAlertEme
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 
-
 class CitizenEmergencyModule extends StatefulWidget {
   static final String routeName = 'CiudadanoEmergencia';
 
@@ -113,9 +112,8 @@ class _PageMedicinaState extends State<PageMedicina> {
 
   @override
   Widget build(BuildContext context) {
-
     final _valor = ModalRoute.of(context).settings.arguments;
-    if(_valor != null) _notificacion = _valor; 
+    if (_valor != null) _notificacion = _valor;
 
     return SingleChildScrollView(
       child: Container(
@@ -131,9 +129,8 @@ class _PageMedicinaState extends State<PageMedicina> {
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
               Opacity(
-                opacity: _notificacion.length > 1 ? 1.0 : 0.0,
-                child: Text('Pantalla redireccionado por una noticicaón: $_notificacion')
-                ),
+                  opacity: _notificacion.length > 1 ? 1.0 : 0.0,
+                  child: Text('Pantalla redireccionado por una notificación')),
               Align(
                   alignment: Alignment.topRight,
                   child: Padding(
@@ -347,7 +344,8 @@ class _PageMedicinaState extends State<PageMedicina> {
                                 color: AppTheme.themeVino,
                               ),
                               onTap: () {
-                                callWhatsAppText(solicitudAyuda.telefono,'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
+                                callWhatsAppText(solicitudAyuda.telefono,
+                                    'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
                               },
                             ),
                           ],
@@ -422,10 +420,14 @@ class PageCovid extends StatefulWidget {
 class _PageCovidState extends State<PageCovid> {
   final generic = new Generic();
   final prefs = new PreferensUser();
+  String _notificacion = '';
   RegistrarAyuda registrarAyuda = new RegistrarAyuda();
 
   @override
   Widget build(BuildContext context) {
+    final _valor = ModalRoute.of(context).settings.arguments;
+    if (_valor != null) _notificacion = _valor;
+
     return SingleChildScrollView(
       child: Container(
         child: Padding(
@@ -439,14 +441,17 @@ class _PageCovidState extends State<PageCovid> {
                 "Consulta Covid".toUpperCase(),
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
+              Opacity(
+                  opacity: _notificacion.length > 1 ? 1.0 : 0.0,
+                  child: Text('Pantalla redireccionado por una notificación')),
               Align(
                   alignment: Alignment.topRight,
                   child: Padding(
                       padding: EdgeInsets.only(right: 20),
                       child: Row(
-                        mainAxisAlignment:  MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                             FlatButton(
+                          FlatButton(
                             color: AppTheme.themeVino,
                             textColor: Colors.white,
                             disabledColor: Colors.grey,
@@ -638,7 +643,8 @@ class _PageCovidState extends State<PageCovid> {
                             SizedBox(
                               width: 10,
                             ),
-                            Text( solicitudAyuda.hora ,                              
+                            Text(
+                              solicitudAyuda.hora,
                               style: TextStyle(
                                 fontSize: 14,
                               ),
@@ -700,9 +706,7 @@ class _PageCovidState extends State<PageCovid> {
                               ),
                               onTap: () {
                                 callWhatsAppText(solicitudAyuda.telefono,
-                                
-                                'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.'
-                                );
+                                    'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
                               },
                             ),
                           ],
@@ -752,10 +756,14 @@ class PageMedicmanetos extends StatefulWidget {
 class _PageMedicmanetosState extends State<PageMedicmanetos> {
   final generic = new Generic();
   final prefs = new PreferensUser();
+  String _notificacion = '';
   RegistrarAyuda registrarAyuda = new RegistrarAyuda();
 
   @override
   Widget build(BuildContext context) {
+    final _valor = ModalRoute.of(context).settings.arguments;
+    if (_valor != null) _notificacion = _valor;
+
     return SingleChildScrollView(
       child: Container(
         child: Padding(
@@ -769,6 +777,9 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
                 "Medicamentos y abastecimientos".toUpperCase(),
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
+              Opacity(
+                  opacity: _notificacion.length > 1 ? 1.0 : 0.0,
+                  child: Text('Pantalla redireccionado por una notificación')),
               Align(
                   alignment: Alignment.topRight,
                   child: Padding(
@@ -776,7 +787,7 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                           FlatButton(
+                          FlatButton(
                             color: AppTheme.themeVino,
                             textColor: Colors.white,
                             disabledColor: Colors.grey,
@@ -1028,7 +1039,8 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
                                 color: AppTheme.themeVino,
                               ),
                               onTap: () {
-                                callWhatsAppText(solicitudAyuda.telefono,'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
+                                callWhatsAppText(solicitudAyuda.telefono,
+                                    'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
                               },
                             ),
                           ],
@@ -1078,10 +1090,14 @@ class PageBonos extends StatefulWidget {
 class _PageBonosState extends State<PageBonos> {
   final generic = new Generic();
   final prefs = new PreferensUser();
+  String _notificacion = '';
   RegistrarAyuda registrarAyuda = new RegistrarAyuda();
 
   @override
   Widget build(BuildContext context) {
+    final _valor = ModalRoute.of(context).settings.arguments;
+    if (_valor != null) _notificacion = _valor;
+
     return SingleChildScrollView(
       child: Container(
         child: Padding(
@@ -1095,14 +1111,17 @@ class _PageBonosState extends State<PageBonos> {
                 "Bonos y otros servicios".toUpperCase(),
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
+              Opacity(
+                  opacity: _notificacion.length > 1 ? 1.0 : 0.0,
+                  child: Text('Pantalla redireccionado por una notificación')),
               Align(
                   alignment: Alignment.topRight,
                   child: Padding(
                       padding: EdgeInsets.only(right: 20),
                       child: Row(
-                        mainAxisAlignment:  MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                           FlatButton(
+                          FlatButton(
                             color: AppTheme.themeVino,
                             textColor: Colors.white,
                             disabledColor: Colors.grey,
@@ -1356,7 +1375,8 @@ class _PageBonosState extends State<PageBonos> {
                                 color: AppTheme.themeVino,
                               ),
                               onTap: () {
-                                callWhatsAppText(solicitudAyuda.telefono,'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
+                                callWhatsAppText(solicitudAyuda.telefono,
+                                    'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
                               },
                             ),
                           ],
@@ -1408,10 +1428,14 @@ class PageAyudaAmigo extends StatefulWidget {
 class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
   final generic = new Generic();
   final prefs = new PreferensUser();
+  String _notificacion = '';
   RegistrarAyuda registrarAyuda = new RegistrarAyuda();
 
   @override
   Widget build(BuildContext context) {
+    final _valor = ModalRoute.of(context).settings.arguments;
+    if (_valor != null) _notificacion = _valor;
+
     return SingleChildScrollView(
       child: Container(
         child: Padding(
@@ -1425,6 +1449,9 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
                 "Ayuda a un amig@".toUpperCase(),
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
+              Opacity(
+                  opacity: _notificacion.length > 1 ? 1.0 : 0.0,
+                  child: Text('Pantalla redireccionado por una notificación')),
               Align(
                   alignment: Alignment.topRight,
                   child: Padding(
@@ -1432,7 +1459,7 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                           FlatButton(
+                          FlatButton(
                             color: AppTheme.themeVino,
                             textColor: Colors.white,
                             disabledColor: Colors.grey,
@@ -1686,10 +1713,8 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
                                 color: AppTheme.themeVino,
                               ),
                               onTap: () {
-                                callWhatsAppText(solicitudAyuda.telefono, 
-                                'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.'
-                                
-                                 );
+                                callWhatsAppText(solicitudAyuda.telefono,
+                                    'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
                               },
                             ),
                           ],
