@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
@@ -174,7 +175,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Text("Selecciona el tipo de ayuda",
+                            Text("Selecciona tipo de ayuda".toUpperCase(),
                                 style: textStyle),
                           ],
                         ),
@@ -241,7 +242,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                         divider(),
                         Align(
                           alignment: Alignment.topLeft,
-                          child: Text("Selecciona la prioridad:",
+                          child: Text("Selecciona la prioridad:".toUpperCase(),
                               style: TextStyle(
                                   fontSize: 14, fontWeight: FontWeight.w700)),
                         ),
@@ -305,14 +306,16 @@ class _ButtonPanic extends State<ButtonPanic> {
                          // textCapitalization: TextCapitalization.sentences,
                           //enableSuggestions: true,
                           maxLength: 100,
-                          //autocorrect: true,
-                          //autovalidate: false,
-                          keyboardType: TextInputType.text,
+                          maxLines: 3,
+                          minLines: 1,
+                          autocorrect: true,
+                          autovalidate: false,
+                          keyboardType: TextInputType.multiline,
                           decoration: InputDecoration(
                             focusColor: Colors.blue,
                             labelStyle:
                                 TextStyle(fontSize: 14, color: Colors.black),
-                            labelText: "Ingrese Detalle/Inquietud",
+                            labelText: "Ingrese sus síntomas y/o ayuda:",
                             border: InputBorder.none,
                             hintText: 'Ingrese su inquietud',
                             hintStyle:
@@ -327,15 +330,16 @@ class _ButtonPanic extends State<ButtonPanic> {
                           keyboardType: TextInputType.phone,
                           textCapitalization: TextCapitalization.sentences,
                           enableSuggestions: true,
-                          maxLength: 15,
+                          maxLength: 10,
                           style: TextStyle(color: Colors.black, fontSize: 13),
                           decoration: InputDecoration(
                             labelStyle:
                                 TextStyle(fontSize: 14, color: Colors.black),
-                            labelText: "Nro  telefono",
+                            labelText: "Ingrese su número de teléfono:",
                             border: InputBorder.none,
+                            helperText: 'Ejemplo: 72038234',
                             hintText:
-                                'Ingrese el número de telefono para comunicarnos',
+                                'Ingrese el número de telefono para comunicarnos con ud.',
                             hintStyle:
                                 TextStyle(fontSize: 14, color: Colors.black),
                           ),
@@ -357,7 +361,17 @@ class _ButtonPanic extends State<ButtonPanic> {
                             },
                             child: Icon(Icons.pan_tool, color: Colors.white),
                           ),
-                        )
+                        ),
+divider(),
+                         AutoSizeText(
+                'Importante. El registro de los síntomas y nro. de teléfono son necesarios para que el voluntario se pongan en contacto con su persona.',
+                style: kSubTitleCardStyle,
+                maxLines: 3,
+                minFontSize: 14.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+                
+              ),
                       ],
                     ),
                   ),

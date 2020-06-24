@@ -11,7 +11,7 @@ Widget copyRigth() {
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text('EstamosContigo@2020. ', style: kTitleCursive4Style),
+          Text('SomosUnoBolivia@2020. ', style: kTitleCursive4Style),
           FaIcon(
             FontAwesomeIcons.handshake,
             color: AppTheme.themeVino,

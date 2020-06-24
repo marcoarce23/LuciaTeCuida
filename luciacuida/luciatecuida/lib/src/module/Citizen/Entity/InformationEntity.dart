@@ -111,20 +111,20 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
 
  
 
-  Widget _crearImagen(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      child: GestureDetector(
-        onTap: () {},
-        child: Image(
-          image: NetworkImage(
-              'https://images.pexels.com/photos/814499/pexels-photo-814499.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
-          height: 160.0,
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
+  // Widget _crearImagen(BuildContext context) {
+  //   return Container(
+  //     width: double.infinity,
+  //     child: GestureDetector(
+  //       onTap: () {},
+  //       child: Image(
+  //         image: NetworkImage(
+  //             'https://images.pexels.com/photos/814499/pexels-photo-814499.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'),
+  //         height: 160.0,
+  //         fit: BoxFit.cover,
+  //       ),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

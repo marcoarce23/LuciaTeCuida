@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
@@ -18,8 +19,10 @@ class ContactAppModule extends StatefulWidget {
 }
 
 class _ContactAppModuleState extends State<ContactAppModule> {
-  final generic = new Generic();
+final generic = new Generic();
   final prefs = new PreferensUser();
+
+   int departamento = 60;
   var result;
 
   @override
@@ -61,6 +64,21 @@ class _ContactAppModuleState extends State<ContactAppModule> {
                       color: AppTheme.themeVino),
                 ),
               ),
+
+             Padding(
+               padding: const EdgeInsets.all(18.0),
+               child: AutoSizeText(
+                  'Importante. Selecciona el departamento para que puedas conocer a las personas que pueden guiarte sobre la Apliación u otros temas e inquietudes.',
+                  style: kSubTitleCardStyle,
+                  maxLines: 4,
+                  minFontSize: 14.0,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.justify,
+                  
+                ),
+             ),
+              
+              _crearDepartamento(),
               divider(),
               futureItemsEntity(context),
               copyRigth(),
@@ -218,7 +236,7 @@ class _ContactAppModuleState extends State<ContactAppModule> {
                         sendEmailAdvanced(
                             entityItem.correo,
                             "Colaboración ${entityItem.telefono}",
-                            "Estimad@:  ${entityItem.telefono}, favor su colaboración en: ");
+                            "Estimad@:  ${entityItem.telefono}, favor su colaboración sobre la aplicación ");
                       },
                     ),
                     SizedBox(width: 20.0),
@@ -246,8 +264,8 @@ class _ContactAppModuleState extends State<ContactAppModule> {
         child: Column(
       children: <Widget>[
         ImageOvalNetwork(
-            imageNetworkUrl:
-                'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg',
+         //   imageNetworkUrl:entityItem.foto.length > 0 ? entityItem.foto : 'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg',
+         imageNetworkUrl: 'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg',
             sizeImage: Size.fromWidth(50)),
         // SizedBox(
         //   height: 1.5,
@@ -260,4 +278,49 @@ class _ContactAppModuleState extends State<ContactAppModule> {
       ],
     ));
   }
+
+ _crearDepartamento() {
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(), urlGetDepartamento,
+                primaryKeyGetDepartamento),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Departamento:'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.sort,
+                          color: AppTheme.themeVino),
+                      value: departamento.toString(),
+                      items: getDropDown(snapshot),
+                      onChanged: (value)  {
+                        setState(() {
+                          departamento = int.parse(value);
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
+  }
+
+    List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> listaE = new List();
+
+    for (var i = 0; i < snapshot.data.length; i++) {
+      GetClasificador item = snapshot.data[i];
+      listaE.add(DropdownMenuItem(
+        child: Text(item.detalle),
+        value: item.id.toString(),
+      ));
+    }
+    return listaE;
+  }
+
 }

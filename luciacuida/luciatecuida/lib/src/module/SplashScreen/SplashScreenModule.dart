@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/module/Login/SignUpModule.dart';
 import 'package:splashscreen/splashscreen.dart';
 

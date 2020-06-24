@@ -118,9 +118,9 @@ class _MultimediaModuleState extends State<MultimediaModule> {
   File foto;
   var result;
   String imagenPDF =
-      'https://res.cloudinary.com/propia/image/upload/v1590680683/mbzeu6fr44aizrr9dl0f.jpg';
+      'https://res.cloudinary.com/propia/image/upload/v1592950093/rohprekln9plcyolgw0d.jpg';
   String imagenVideo =
-      'https://res.cloudinary.com/propia/image/upload/v1590680880/lmbkvadzzymfcfwqosj9.webp';
+      'https://res.cloudinary.com/propia/image/upload/v1592950136/hy2vrcig1hwdikhjzx2b.jpg';
   String imagen =
       'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg';
   String imagenDefault =
@@ -222,7 +222,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
             ),
             SafeArea(
               child: Container(
-                height: 125.0,
+                height: 135.0,
               ),
             ),
             Container(
@@ -493,7 +493,9 @@ class _MultimediaModuleState extends State<MultimediaModule> {
   }
 
   _submit() async {
-  
+
+
+    
     if (!formKey.currentState.validate()) return;
 
     formKey.currentState.save();
@@ -512,27 +514,28 @@ class _MultimediaModuleState extends State<MultimediaModule> {
     entity.usuario = prefs.correoElectronico;
 
     //print('IMPRIMIR ENTITY MULENLACE: ${entity.mulEnlace}');
-    final dataMap = generic.add(entity, urlAddMultimedia);
+    await generic.add(entity, urlAddMultimedia).then((respuesta) {
+      result = respuesta["TIPO_RESPUESTA"];
+      //print('resultado:$result');
 
-    await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-    //print('resultado:$result');
+      if (result == "0") {
+        scaffoldKey.currentState
+            .showSnackBar(messageOk("Se insertó correctamente"));
 
-    if (result == "0") {
-      scaffoldKey.currentState
-          .showSnackBar(messageOk("Se insertó correctamente"));
-     
-      enviarNotificaciones(urlGetToken+'2/${prefs.idInsitucion}', 
-                            'multimedia',
-                             'Nuevo Material', 
-                             titulo.objectValue, 
-                             'Fecha del evento',
-                             _inputFieldDateInicioController.text); 
-    } else
-      scaffoldKey.currentState
-          .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
+        enviarNotificaciones(
+            urlGetToken + '2/${prefs.idInsitucion}',
+            'multimedia',
+            'Nuevo Material',
+            titulo.objectValue,
+            'Fecha del evento',
+            _inputFieldDateInicioController.text);
+      } else
+        scaffoldKey.currentState
+            .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
 
-    setState(() {
-      _save = false;
+      setState(() {
+        _save = false;
+      });
     });
   }
 
@@ -549,6 +552,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
 
   _procesarImagen(ImageSource origen) async {
     foto = await ImagePicker.pickImage(source: origen);
+
     if (foto != null) {
       imagen = await generic.subirImagen(foto);
     }
@@ -559,6 +563,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
 
   _procesarFile(String file) async {
     valor = 1;
+
     if (file != null) {
       imagen = await generic.subirImagenFile(file);
     }
@@ -621,8 +626,8 @@ class _MultimediaModuleState extends State<MultimediaModule> {
       //   _isLoading = true;
       // });
     } on PlatformException catch (exception) {
-      scaffoldKey.currentState
-          .showSnackBar(messageNOk("Error: ${exception.toString()}, vuelta a intentarlo"));
+      scaffoldKey.currentState.showSnackBar(
+          messageNOk("Error: ${exception.toString()}, vuelta a intentarlo"));
     }
   }
 }

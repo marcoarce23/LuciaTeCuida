@@ -22,6 +22,8 @@ class ContactGeneralModule extends StatefulWidget {
 class _ContactGeneralModuleState extends State<ContactGeneralModule> {
   final generic = new Generic();
   final prefs = new PreferensUser();
+
+   int departamento = 60;
   var result;
 
   @override
@@ -49,17 +51,31 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: 10.0),
-              Container(
-                width: size.width * 0.96,
-                margin: EdgeInsets.symmetric(vertical: 0.0),
-                child: contenedorTitulo(
-                  context,
-                  40.0,
-                  'NÚMEROS PILOTOS DE URGENCIA',
-                  FaIcon(FontAwesomeIcons.headset, color: AppTheme.themeVino),
+             // SizedBox(height: 10.0),
+              // Container(
+              //   width: size.width * 0.96,
+              //   margin: EdgeInsets.symmetric(vertical: 0.0),
+              //   child: contenedorTitulo(
+              //     context,
+              //     40.0,
+              //     'NÚMEROS PILOTOS DE URGENCIA',
+              //     FaIcon(FontAwesomeIcons.headset, color: AppTheme.themeVino),
+              //   ),
+              // ),
+               Padding(
+               padding: const EdgeInsets.all(18.0),
+               child: AutoSizeText(
+                  'Importante. Selecciona el departamento para que puedas conocer los números de urgencia e información de las Organziaciones que pueden ayudarte de forma directa.',
+                  style: kSubTitleCardStyle,
+                  maxLines: 4,
+                  minFontSize: 14.0,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.justify,
+                  
                 ),
-              ),
+             ),
+
+               _crearDepartamento(),
               divider(),
               futureItemsEntity(context),
               copyRigth(),
@@ -275,10 +291,54 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
       children: <Widget>[
         ImageOvalNetwork(
             imageNetworkUrl:
-                'https://res.cloudinary.com/propia/image/upload/v1590675803/xxxykvu7m2d4nwk4gaf6.jpg',
+                'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg',
             sizeImage: Size.fromWidth(50)),
 
       ],
     ));
+  }
+
+  _crearDepartamento() {
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(), urlGetDepartamento,
+                primaryKeyGetDepartamento),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Departamento:'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.sort,
+                          color: AppTheme.themeVino),
+                      value: departamento.toString(),
+                      items: getDropDown(snapshot),
+                      onChanged: (value)  {
+                        setState(() {
+                          departamento = int.parse(value);
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
+  }
+
+    List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> listaE = new List();
+
+    for (var i = 0; i < snapshot.data.length; i++) {
+      GetClasificador item = snapshot.data[i];
+      listaE.add(DropdownMenuItem(
+        child: Text(item.detalle),
+        value: item.id.toString(),
+      ));
+    }
+    return listaE;
   }
 }

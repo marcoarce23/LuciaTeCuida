@@ -1,5 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:luciatecuida/src/Image/ImageDefault.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
 import 'package:luciatecuida/src/Model/Generic.dart';
 import 'package:luciatecuida/src/Model/PreferenceUser.dart';
@@ -50,6 +52,20 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
             ),
+
+             Padding(
+               padding: const EdgeInsets.all(18.0),
+               child: AutoSizeText(
+                  'Nota. Si desea eliminar un registro deslize el dedo a la (<<---) izquierda o a la derecha (--->>).',
+                  style: kSubTitleCardStyle,
+                  maxLines: 2,
+                  minFontSize: 14.0,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.justify,
+                  
+                ),
+             ),
+ divider(),            
             Row(
               children: <Widget>[
                 SizedBox(width: 10.0),
@@ -93,7 +109,7 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
                 ),
               ],
             ),
-            divider(),
+         //   divider(),
             futureItemsEntity(context),
             copyRigth(),
           ],
@@ -151,7 +167,7 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
                 ],
               ),
             ),
-            //   divider(),
+            sizedBox(0.0, 8.0),
           ],
         );
       },
@@ -260,15 +276,27 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
         child: Column(
       children: <Widget>[
         ImageOvalNetwork(
-            imageNetworkUrl: entityItem.mulEnlace,
+            imageNetworkUrl: _getImages(entityItem),
             sizeImage: Size.fromWidth(40)),
         SizedBox(height: 3.0),
-        Text(
-          '${entityItem.tipoMaterial}',
-          style: TextStyle(
-              fontSize: 11, color: Colors.black87, fontWeight: FontWeight.w400),
-        ),
+        // Text(
+        //   '${entityItem.tipoMaterial}',
+        //   style: TextStyle(
+        //       fontSize: 11, color: Colors.black, fontWeight: FontWeight.w400),
+        // ),
       ],
     ));
+  }
+  String _getImages(Multimedia entityItem){
+    String _image;
+
+    if(_selectedRadio == 74)
+         _image = entityItem.mulEnlace;
+    if(_selectedRadio == 75)
+         _image = new ImageDefault().getImage();
+    if(_selectedRadio == 76)
+         _image = new ImageDefault().getImage();
+     
+     return _image;
   }
 }

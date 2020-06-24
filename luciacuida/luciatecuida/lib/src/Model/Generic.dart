@@ -105,12 +105,12 @@ Future<Map<String, dynamic>> sebnFCM(String token, String body, String data ) as
     final resp = await http.Response.fromStream(streamResponse);
 
     if ( resp.statusCode != 200 && resp.statusCode != 201 ) {
-      //print('Algo salio mal ${resp.body}');
+      print('Algo salio mal IMAGENNNN ${resp.body}');
       return null;
     }
 
     final respData = json.decode(resp.body);
-    //print( respData);
+    print( respData);
     return respData['secure_url'];
   }
 
@@ -127,12 +127,12 @@ Future<String> subirImagenFile( String imagen ) async {
     final resp = await http.Response.fromStream(streamResponse);
 
     if ( resp.statusCode != 200 && resp.statusCode != 201 ) {
-      //print('Algo salio mal ${resp.body}');
+      print('Algo salio mal PDF ${resp.body}');
       return null;
     }
 
     final respData = json.decode(resp.body);
-    //print( respData);
+    print( respData);
     return respData['secure_url'];
   }
 
@@ -149,12 +149,12 @@ Future<String> subirImagenFile( String imagen ) async {
     final resp = await http.Response.fromStream(streamResponse);
 
     if ( resp.statusCode != 200 && resp.statusCode != 201 ) {
-      //print('Algo salio mal ${resp.body}');
+      print('Algo salio mal videooo ${resp.body}');
       return null;
     }
 
     final respData = json.decode(resp.body);
-    //print( respData);
+    print( respData);
     return respData['secure_url'];
   }
 

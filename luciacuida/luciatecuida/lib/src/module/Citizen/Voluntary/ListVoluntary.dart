@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_open_whatsapp/flutter_open_whatsapp.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
 import 'package:luciatecuida/src/Model/Generic.dart';
@@ -10,9 +9,6 @@ import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/Widget/Message/Message.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 
 class ListVoluntaryModule extends StatefulWidget {
   static final String routeName = 'lisVoluntary';
@@ -28,34 +24,34 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
   final generic = new Generic();
   final prefs = new PreferensUser();
   var result;
-  String _platformVersion = 'Unknown';
+  //String _platformVersion = 'Unknown';
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    //initPlatformState();
     prefs.ultimaPagina = ListVoluntaryModule.routeName;
   }
 
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      platformVersion = await FlutterOpenWhatsapp.platformVersion;
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
+  // Future<void> initPlatformState() async {
+  //   String platformVersion;
+  //   // Platform messages may fail, so we use a try/catch PlatformException.
+  //   try {
+  //     platformVersion = await FlutterOpenWhatsapp.platformVersion;
+  //   } on PlatformException {
+  //     platformVersion = 'Failed to get platform version.';
+  //   }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
+  //   // If the widget was removed from the tree while the asynchronous platform
+  //   // message was in flight, we want to discard the reply rather than calling
+  //   // setState to update our non-existent appearance.
+  //   if (!mounted) return;
 
-    setState(() {
-      _platformVersion = platformVersion;
-      //print('Running on: $_platformVersion');
-    });
-  }
+  //   setState(() {
+  //     _platformVersion = platformVersion;
+  //     //print('Running on: $_platformVersion');
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -255,25 +251,19 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                       size: 15,
                     ),
                     Row(
-                        children: <Widget>[
-                          Text('Correo: ', style: kTitleCardStyle),
-                         
-                        ],
-                      ),
-                  
-
-                   
+                      children: <Widget>[
+                        Text('Correo: ', style: kTitleCardStyle),
+                      ],
+                    ),
                   ],
                 ),
-
-                   AutoSizeText(
-                         entityItem.perCorreo,
-                       style: kTitleCardStyle,
-                        maxLines: 2,
-                        minFontSize: 15.0,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-
+                AutoSizeText(
+                  entityItem.perCorreo,
+                  style: kTitleCardStyle,
+                  maxLines: 2,
+                  minFontSize: 15.0,
+                  overflow: TextOverflow.ellipsis,
+                ),
                 SizedBox(height: 5.0),
                 Row(
                   children: <Widget>[

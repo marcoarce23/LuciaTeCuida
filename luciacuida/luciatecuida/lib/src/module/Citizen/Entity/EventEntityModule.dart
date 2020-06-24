@@ -394,7 +394,8 @@ class _EventEntityModuleState extends State<EventEntityModule> {
 
     final dataMap = generic.add(entity, urlAddEvento);
 
-    await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+    await dataMap.then((respuesta) {
+      result = respuesta["TIPO_RESPUESTA"];
     //print('resultado:$result');
 
     if (result == "0") {
@@ -413,6 +414,7 @@ class _EventEntityModuleState extends State<EventEntityModule> {
 
     setState(() {
       _save = false;
+    });
     });
 
     //Navigator.of(context).push(CupertinoPageRoute(builder: (BuildContext context) => SliderShowModule()));

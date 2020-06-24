@@ -303,6 +303,8 @@ class _InputUrlState extends State<InputUrlField> {
         autocorrect: true,
         autovalidate: false,
         maxLength: 140,
+        maxLines: 2,
+        minLines: 2,
         toolbarOptions: ToolbarOptions(copy: true, cut:true, paste: true, selectAll: true),
         keyboardType: TextInputType.url,
         decoration: InputDecoration(

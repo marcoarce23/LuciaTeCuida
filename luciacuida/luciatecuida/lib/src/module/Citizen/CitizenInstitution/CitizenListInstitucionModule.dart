@@ -23,6 +23,7 @@ class _CitizenListInstitucionModuleState
     extends State<CitizenListInstitucionModule> {
   final generic = new Generic();
   final prefs = new PreferensUser();
+   int departamento = 60;
 
   @override
   void initState() {
@@ -61,9 +62,10 @@ class _CitizenListInstitucionModuleState
                   FaIcon(FontAwesomeIcons.calendarAlt, color: AppTheme.themeVino),
                 ),
               ),
+              _crearDepartamento(),
               Center(
                   child: Text(
-                "Presione sobre la institución para ver el detalle",
+                "NOTA: Presione sobre la institución para ver el detalle",
                 style: kSubSubTitleCardStyle,
               )), // colcoamos las cajas de instituciones
               divider(),
@@ -299,4 +301,49 @@ class _CitizenListInstitucionModuleState
     return Container(
         height: 20, child: VerticalDivider(color: AppTheme.themeColorNaranja));
   }
+
+  _crearDepartamento() {
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(), urlGetDepartamento,
+                primaryKeyGetDepartamento),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Departamento:'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.sort,
+                          color: AppTheme.themeVino),
+                      value: departamento.toString(),
+                      items: getDropDown(snapshot),
+                      onChanged: (value)  {
+                        setState(() {
+                          departamento = int.parse(value);
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
+  }
+
+    List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> listaE = new List();
+
+    for (var i = 0; i < snapshot.data.length; i++) {
+      GetClasificador item = snapshot.data[i];
+      listaE.add(DropdownMenuItem(
+        child: Text(item.detalle),
+        value: item.id.toString(),
+      ));
+    }
+    return listaE;
+  }
+
 }

@@ -23,7 +23,12 @@ class CitizenEventsModule extends StatefulWidget {
 }
 
 class _CitizenEventsModuleState extends State<CitizenEventsModule> {
+  int valorTipoMaterial = 74;
+  int valorTipoEspecialidad = 11;
+
+  final generic = new Generic();
   final prefs = new PreferensUser();
+  
   @override
   void initState() {
     prefs.ultimaPagina = CitizenEventsModule.routeName;
@@ -54,8 +59,11 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
                 "Eventos disponibles".toUpperCase(),
                 FaIcon(FontAwesomeIcons.newspaper, color: AppTheme.themeVino),
               ),
+              _crearOrganizacion(),
+             // _crearEspecialidad(),
+
               Text(
-                "Presione sobre el evento para ver el detalle",
+                "Nota: Presione sobre el evento para ver el detalle",
                 style: kSubSubTitleCardStyle,
               ),
               listadoDeNoticias(),
@@ -272,4 +280,85 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
       ),
     );
   }
+
+
+
+
+  Widget _crearOrganizacion() {
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(),
+                urlGetClasificador + '73', primaryKeyGetClasifidor),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Organización:'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.sort,
+                          color: AppTheme.themeVino),
+                      value: valorTipoMaterial.toString(), 
+                      items: getDropDown(snapshot),
+                      onChanged: (value) {
+                        setState(() {
+                          valorTipoMaterial = int.parse(value);
+                          //print('valorTipoMaterial $valorTipoMaterial');
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
+  }
+
+  // Widget _crearEspecialidad() {
+  //   return Center(
+  //       child: FutureBuilder(
+  //           future: generic.getAll(new GetClasificador(),
+  //               urlGetClasificador + '10', primaryKeyGetClasifidor),
+  //           builder: (context, AsyncSnapshot snapshot) {
+  //             if (snapshot.hasData) {
+  //               return Row(
+  //                 children: <Widget>[
+  //                   SizedBox(width: 35.0),
+  //                   Text('Tipo Material:'),
+  //                   SizedBox(width: 15.0),
+  //                   DropdownButton(
+  //                     icon: FaIcon(FontAwesomeIcons.sort,
+  //                         color: AppTheme.themeVino),
+  //                     value: valorTipoEspecialidad.toString(),
+  //                     items: getDropDown(snapshot),
+  //                     onChanged: (value) {
+  //                       setState(() {
+  //                         valorTipoEspecialidad = int.parse(value);
+  //                         //print('valorTipoEspecialidad $valorTipoEspecialidad');
+  //                       });
+  //                     },
+  //                   ),
+  //                 ],
+  //               );
+  //             } else {
+  //               return CircularProgressIndicator();
+  //             }
+  //           }));
+  // }
+
+    List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> listaE = new List();
+
+    for (var i = 0; i < snapshot.data.length; i++) {
+      GetClasificador item = snapshot.data[i];
+      listaE.add(DropdownMenuItem(
+        child: Text(item.nombre),
+        value: item.id.toString(),
+      ));
+    }
+    return listaE;
+  }
+
 }

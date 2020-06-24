@@ -184,75 +184,31 @@ class _AtentionEntityModuleState extends State<AtentionEntityModule> {
               style: kTitleCardStyle,
               textAlign: TextAlign.left,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(
-                  width: 10,
-                ),
-                 AutoSizeText(
-                         'Seleccionar los días de atención',
-                        style: TextStyle(
-                            color: AppTheme.themePlomo, fontSize: 16.0),
-                        maxLines: 2,
-                        minFontSize: 15.0,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                
-                SizedBox(width: 15.0),
-                FaIcon(
-                  FontAwesomeIcons.calendarCheck,
-                  color: AppTheme.themeVino,
-                  size: 15,
-                ),
-              ],
+           
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: AutoSizeText(
+                '1. Seleccionar los días de atención y definir si la atención se realizará los fines de semana.',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 14.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(
-                  width: 10,
-                ),
-                 AutoSizeText(
-                         'Definir si la atención se realizará el fin de semana.',
-                        style: TextStyle(
-                            color: AppTheme.themePlomo, fontSize: 16.0),
-                        maxLines: 2,
-                        minFontSize: 15.0,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-               
-                SizedBox(width: 15.0),
-                FaIcon(
-                  FontAwesomeIcons.calendarCheck,
-                  color: AppTheme.themeVino,
-                  size: 15,
-                ),
-              ],
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 18.0, vertical: 0.0),
+              child: AutoSizeText(
+                '2. Se recomienda que los días de atención registrados sean cumplidos por la organización.',
+                style: kSubTitleCardStyle,
+                maxLines: 3,
+                minFontSize: 14.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(
-                  width: 10,
-                ),
-                 AutoSizeText(
-                         'Se recomienda que los días asignados sean cumplidos  por el voluntario.',
-                        style: TextStyle(
-                            color: AppTheme.themePlomo, fontSize: 16.0),
-                        maxLines: 2,
-                        minFontSize: 15.0,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-               
-                SizedBox(width: 15.0),
-                FaIcon(
-                  FontAwesomeIcons.calendarCheck,
-                  color: AppTheme.themeVino,
-                  size: 15,
-                ),
-              ],
-            ),
+
             copyRigth(),
           ],
         ),

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
@@ -46,6 +47,18 @@ class _ListEventModuleState extends State<ListEventModule> {
               FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
             ),
           ),
+           Padding(
+               padding: const EdgeInsets.all(18.0),
+               child: AutoSizeText(
+                  'Nota. Si desea eliminar un registro deslize el dedo a la (<<---) izquierda o a la derecha (--->>).',
+                  style: kSubTitleCardStyle,
+                  maxLines: 2,
+                  minFontSize: 14.0,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.justify,
+                  
+                ),
+             ),
           divider(),
           futureItemsEntity(context),
           copyRigth(),

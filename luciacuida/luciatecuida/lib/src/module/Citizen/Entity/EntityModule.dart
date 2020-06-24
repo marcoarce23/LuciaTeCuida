@@ -33,10 +33,10 @@ class _EntityModuleState extends State<EntityModule> {
   InputMultilineField direccion;
   InputPhoneField telefono;
   InputMultilineField informacion;
-  InputTextField facebook;
-  InputTextField twitter;
+  InputUrlField facebook;
+  InputUrlField twitter;
   InputUrlField paginaWeb;
-  InputTextField youtube;
+  InputUrlField youtube;
   InputEmailField email;
 
   bool _save = false;
@@ -182,13 +182,13 @@ class _EntityModuleState extends State<EntityModule> {
         entity.perInformacionComp,
         'Informacióm complementaria',
         false);
-    facebook = InputTextField(
+    facebook = InputUrlField(
         FaIcon(FontAwesomeIcons.facebook, color: AppTheme.themeVino),
         'Cuenta Facebook:',
         entity.perFacebbok,
         'Ingrese la cuenta Facebook',
         false);
-    twitter = InputTextField(
+    twitter = InputUrlField(
         FaIcon(FontAwesomeIcons.twitter, color: AppTheme.themeVino),
         'Cuenta Twitter:',
         entity.perTwitter,
@@ -200,7 +200,7 @@ class _EntityModuleState extends State<EntityModule> {
         entity.perPaginaWeb,
         'Página/block oficial',
         false);
-    youtube = InputTextField(
+    youtube = InputUrlField(
         FaIcon(FontAwesomeIcons.youtube, color: AppTheme.themeVino),
         'Cuenta YouTube:',
         entity.perYouTube,
@@ -259,7 +259,7 @@ class _EntityModuleState extends State<EntityModule> {
     for (var i = 0; i < snapshot.data.length; i++) {
       GetClasificador item = snapshot.data[i];
       lista.add(DropdownMenuItem(
-        child: Text(item.nombre),
+        child: Text(item.detalle),
         value: item.id.toString(),
       ));
     }
@@ -324,7 +324,7 @@ class _EntityModuleState extends State<EntityModule> {
                 return Row(
                   children: <Widget>[
                     SizedBox(width: 35.0),
-                    Text('Especialidad'),
+                    Text('Organización'),
                     SizedBox(width: 15.0),
                     DropdownButton(
                       icon: FaIcon(FontAwesomeIcons.sort,

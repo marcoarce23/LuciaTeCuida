@@ -158,7 +158,7 @@ Widget crearFondo(BuildContext context, String imagen) {
     final size = MediaQuery.of(context).size;
 
     final fondoModaro = Container(
-      height: size.height * 0.450,
+      height: size.height * 0.40,
       width: double.infinity,
       decoration: BoxDecoration(
       gradient: LinearGradient(
@@ -179,7 +179,7 @@ ImageOpaqueNetworkCustomize(
                 'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg',
                 AppTheme.themeVino,
                 Size(MediaQuery.of(context).size.width, 310),
-                0.58,
+                0.68,
                 BoxFit.cover),
 
 
@@ -212,8 +212,8 @@ cabeceraInformativa() {
   
   Flexible( flex: 1,  child: Column(
     children: <Widget>[
-      Text( 'Voluntario(a): ${prefs.idPersonal}' ,  style: kTitleCardStyle ,softWrap: true,    ),
-      Text(  'Institución: ${prefs.idInsitucion}' , style:  kTitleCardStyle,softWrap: true,    ),
+      Text( 'Voluntario(a): ${prefs.nombreUsuario}' ,  style: kTitleCardStyle ,softWrap: true,    ),
+      Text(  'Institución: ${prefs.nombreInstitucion}' , style:  kTitleCardStyle,softWrap: true,    ),
     ],
   ));
   
@@ -421,6 +421,14 @@ Divider divider() {
     color: AppTheme.themeVino,
     endIndent: 20.0,
     indent: 20.0,
+  );
+}
+
+SizedBox sizedBox(double ancho, double alto)
+{
+  return SizedBox(
+    width: ancho,
+    height: alto,
   );
 }
 

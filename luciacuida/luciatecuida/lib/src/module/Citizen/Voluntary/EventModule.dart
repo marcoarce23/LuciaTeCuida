@@ -363,7 +363,7 @@ class _EventModuleState extends State<EventModule> {
           text,
           style: kSubtitleStyle,
         ),
-        icon: FaIcon(FontAwesomeIcons.save, color: Colors.white),
+        icon: FaIcon(FontAwesomeIcons.checkCircle, color: Colors.white),
         onPressed: (_save) ? null : _submit,
       ),
     );
@@ -393,7 +393,9 @@ class _EventModuleState extends State<EventModule> {
 
     final dataMap = generic.add(entity, urlAddEvento);
 
-    await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+    await dataMap.then((respuesta) 
+    {
+      result = respuesta["TIPO_RESPUESTA"];
     //print('resultado:$result');
 
     if (result == "0"){
@@ -413,6 +415,7 @@ class _EventModuleState extends State<EventModule> {
 
     setState(() {
       _save = false;
+    });
     });
   }
 

@@ -6,8 +6,8 @@ import 'package:luciatecuida/src/Model/PreferenceUser.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/Util/SearchDelegate/DataSearch.dart';
 import 'package:luciatecuida/src/Util/Util.dart';
+import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
-import 'package:luciatecuida/src/module/UtilModule/PageViewModule.dart';
 import 'CitizenImageDetailModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 
@@ -68,7 +68,7 @@ class _CitizenMultimediaModuleState extends State<CitizenMultimediaModule> {
               title: Text('Imagenes'),
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.videocam),
+              icon: Icon(Icons.ondemand_video),
               title: Text('Videos'),
             ),
             BottomNavigationBarItem(
@@ -87,8 +87,20 @@ class _CitizenMultimediaModuleState extends State<CitizenMultimediaModule> {
   }
 }
 
-class PagePicture extends StatelessWidget {
+class PagePicture extends StatefulWidget {
+
   const PagePicture({Key key}) : super(key: key);
+
+  @override
+  _PagePictureState createState() => _PagePictureState();
+}
+
+class _PagePictureState extends State<PagePicture> {
+  int valorTipoMaterial = 74;
+
+  int valorTipoEspecialidad = 11;  
+
+  final generic = new Generic();
 
   @override
   Widget build(BuildContext context) {
@@ -108,12 +120,17 @@ class PagePicture extends StatelessWidget {
                   FaIcon(FontAwesomeIcons.image, color: AppTheme.themeVino),
                 ),
               ),
+
+              _crearOrganizacion(),
+              _crearEspecialidad(),
+              
               Center(
                   child: Text(
-                "Presione sobre la imagen para ver el detalle",
+                "Nota: Presione sobre la imagen para ver el detalle",
                 style: kSubSubTitleCardStyle,
               )),
               futureImagenes(context),
+              copyRigth(),
             ],
           ),
         ),
@@ -222,6 +239,83 @@ class PagePicture extends StatelessWidget {
       ),
     );
   }
+
+  Widget _crearOrganizacion() {
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(),
+                urlGetClasificador + '73', primaryKeyGetClasifidor),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Organización:'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.sort,
+                          color: AppTheme.themeVino),
+                      value: valorTipoMaterial.toString(), 
+                      items: getDropDown(snapshot),
+                      onChanged: (value) {
+                        setState(() {
+                          valorTipoMaterial = int.parse(value);
+                          //print('valorTipoMaterial $valorTipoMaterial');
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
+  }
+
+  Widget _crearEspecialidad() {
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(),
+                urlGetClasificador + '10', primaryKeyGetClasifidor),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Tipo Material:'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.sort,
+                          color: AppTheme.themeVino),
+                      value: valorTipoEspecialidad.toString(),
+                      items: getDropDown(snapshot),
+                      onChanged: (value) {
+                        setState(() {
+                          valorTipoEspecialidad = int.parse(value);
+                          //print('valorTipoEspecialidad $valorTipoEspecialidad');
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
+  }
+
+    List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> listaE = new List();
+
+    for (var i = 0; i < snapshot.data.length; i++) {
+      GetClasificador item = snapshot.data[i];
+      listaE.add(DropdownMenuItem(
+        child: Text(item.nombre),
+        value: item.id.toString(),
+      ));
+    }
+    return listaE;
+  }
 }
 
 class PageVideo extends StatefulWidget {
@@ -232,6 +326,10 @@ class PageVideo extends StatefulWidget {
 }
 
 class _PageVideoState extends State<PageVideo> {
+  int valorTipoMaterial = 74;
+  int valorTipoEspecialidad = 11;  
+  final generic = new Generic();
+
   @override
   void initState() {
     super.initState();
@@ -252,15 +350,20 @@ class _PageVideoState extends State<PageVideo> {
                 context,
                 40.0,
                 "Lista de videos".toUpperCase(),
-                FaIcon(FontAwesomeIcons.video, color: AppTheme.themeVino),
+                FaIcon(FontAwesomeIcons.youtube, color: AppTheme.themeVino),
               ),
             ),
+
+            _crearOrganizacion(),
+              _crearEspecialidad(),
+
             Center(
                 child: Text(
-              "Presione sobre el video para ver el detalle",
+              "Nota: Presione sobre el video para ver el detalle",
               style: kSubSubTitleCardStyle,
             )),
             futureVideo(context),
+            copyRigth(),
           ],
         ),
       ),
@@ -340,10 +443,98 @@ class _PageVideoState extends State<PageVideo> {
                   */
         });
   }
+
+  Widget _crearOrganizacion() {
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(),
+                urlGetClasificador + '73', primaryKeyGetClasifidor),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Organización:'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.sort,
+                          color: AppTheme.themeVino),
+                      value: valorTipoMaterial.toString(), 
+                      items: getDropDown(snapshot),
+                      onChanged: (value) {
+                        setState(() {
+                          valorTipoMaterial = int.parse(value);
+                          //print('valorTipoMaterial $valorTipoMaterial');
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
+  }
+
+  Widget _crearEspecialidad() {
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(),
+                urlGetClasificador + '10', primaryKeyGetClasifidor),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Tipo Material:'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.sort,
+                          color: AppTheme.themeVino),
+                      value: valorTipoEspecialidad.toString(),
+                      items: getDropDown(snapshot),
+                      onChanged: (value) {
+                        setState(() {
+                          valorTipoEspecialidad = int.parse(value);
+                          //print('valorTipoEspecialidad $valorTipoEspecialidad');
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
+  }
+
+    List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> listaE = new List();
+
+    for (var i = 0; i < snapshot.data.length; i++) {
+      GetClasificador item = snapshot.data[i];
+      listaE.add(DropdownMenuItem(
+        child: Text(item.nombre),
+        value: item.id.toString(),
+      ));
+    }
+    return listaE;
+  }
+
 }
 
-class PageDocuments extends StatelessWidget {
+class PageDocuments extends StatefulWidget {
+
   const PageDocuments({Key key}) : super(key: key);
+
+  @override
+  _PageDocumentsState createState() => _PageDocumentsState();
+}
+
+class _PageDocumentsState extends State<PageDocuments> {
+  int valorTipoMaterial = 74;
+  int valorTipoEspecialidad = 11;  
+  final generic = new Generic();
 
   @override
   Widget build(BuildContext context) {
@@ -363,15 +554,22 @@ class PageDocuments extends StatelessWidget {
                   FaIcon(FontAwesomeIcons.filePdf, color: AppTheme.themeVino),
                 ),
               ),
+
+              _crearOrganizacion(),
+              _crearEspecialidad(),
               Center(
                   child: Text(
-                "Presione sobre el video para ver el detalle",
+                "Nota: Presione sobre el video para ver el detalle",
                 style: kSubSubTitleCardStyle,
               )),
               futureDocumentos(context),
+              copyRigth(),
+              
             ],
           ),
+          
         ),
+        
       ),
     );
   }
@@ -453,4 +651,83 @@ class PageDocuments extends StatelessWidget {
                   */
         });
   }
+
+
+  Widget _crearOrganizacion() {
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(),
+                urlGetClasificador + '73', primaryKeyGetClasifidor),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Organización:'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.sort,
+                          color: AppTheme.themeVino),
+                      value: valorTipoMaterial.toString(), 
+                      items: getDropDown(snapshot),
+                      onChanged: (value) {
+                        setState(() {
+                          valorTipoMaterial = int.parse(value);
+                          //print('valorTipoMaterial $valorTipoMaterial');
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
+  }
+
+  Widget _crearEspecialidad() {
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(),
+                urlGetClasificador + '10', primaryKeyGetClasifidor),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Tipo Material:'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.sort,
+                          color: AppTheme.themeVino),
+                      value: valorTipoEspecialidad.toString(),
+                      items: getDropDown(snapshot),
+                      onChanged: (value) {
+                        setState(() {
+                          valorTipoEspecialidad = int.parse(value);
+                          //print('valorTipoEspecialidad $valorTipoEspecialidad');
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
+  }
+
+    List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> listaE = new List();
+
+    for (var i = 0; i < snapshot.data.length; i++) {
+      GetClasificador item = snapshot.data[i];
+      listaE.add(DropdownMenuItem(
+        child: Text(item.nombre),
+        value: item.id.toString(),
+      ));
+    }
+    return listaE;
+  }
+
 }

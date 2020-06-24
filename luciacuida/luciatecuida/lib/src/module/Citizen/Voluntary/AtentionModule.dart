@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -53,9 +54,9 @@ class _AtentionModuleState extends State<AtentionModule> {
   final generic = new Generic();
   final prefs = new PreferensUser();
   Voluntary entity = new Voluntary();
-  VoluntarioAtencion entityAtencion = new  VoluntarioAtencion();
+  VoluntarioAtencion entityAtencion = new VoluntarioAtencion();
 
-int _valorId = 0;
+  int _valorId = 0;
   bool bandera = false;
 
   @override
@@ -66,26 +67,27 @@ int _valorId = 0;
 
   @override
   Widget build(BuildContext context) {
-
-     final Voluntary entityData = ModalRoute.of(context).settings.arguments;
+    final Voluntary entityData = ModalRoute.of(context).settings.arguments;
 
     if (entityData != null) {
-       entity = entityData;
-       if(entity.lunes == 1) selectLunes = true; 
-     if(entity.martes == 1) selectMartes = true; 
-     if(entity.miercoles == 1) selectMiercoles = true; 
-     if(entity.jueves == 1) selectJueves= true; 
-     if(entity.viernes == 1) selectViernes = true; 
-     if(entity.sabado == 1) selectSabado = true; 
-     if(entity.domingo == 1) selectDomingo = true; 
- 
+      entity = entityData;
+      if (entity.lunes == 1) selectLunes = true;
+      if (entity.martes == 1) selectMartes = true;
+      if (entity.miercoles == 1) selectMiercoles = true;
+      if (entity.jueves == 1) selectJueves = true;
+      if (entity.viernes == 1) selectViernes = true;
+      if (entity.sabado == 1) selectSabado = true;
+      if (entity.domingo == 1) selectDomingo = true;
     }
 
     return Scaffold(
       key: scaffoldKey,
       drawer: DrawerCitizen(),
       body: Stack(
-        children: <Widget>[ fondoApp(),_crearForm(context),],
+        children: <Widget>[
+          fondoApp(),
+          _crearForm(context),
+        ],
       ),
       floatingActionButton: generaFloatButtonInformationVoluntary(context),
     );
@@ -97,7 +99,7 @@ int _valorId = 0;
         margin: EdgeInsets.symmetric(vertical: 4),
         padding: EdgeInsets.all(15.0),
         width: MediaQuery.of(context).size.width - 20,
-        decoration: boxDecorationList(),//contenedorCabecera(),
+        decoration: boxDecorationList(), //contenedorCabecera(),
         child: Column(
           children: <Widget>[
             Row(
@@ -130,7 +132,7 @@ int _valorId = 0;
         child: Column(
           children: <Widget>[
             SizedBox(height: 20.0),
-             contenedorTitulo(
+            contenedorTitulo(
               context,
               40.0,
               'REGISTRO DE ATENCIÓN',
@@ -139,80 +141,45 @@ int _valorId = 0;
             SizedBox(height: 7.0),
             informacionProfesional(context),
             SizedBox(height: 5.0),
-
             Container(
               width: size.width * 0.98,
               margin: EdgeInsets.symmetric(vertical: 0.0),
               decoration: contenedorCampos(),
               child: _crearCampos(),
             ),
-SizedBox(height: 15.0),
+            SizedBox(height: 15.0),
             Row(
-              
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'IMPORTANTE:',
+                  'IMPORTANTE',
                   style: kTitleCardStyle,
                   textAlign: TextAlign.left,
                 ),
               ],
             ),
-            SizedBox(height: 15.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(
-                  width: 10,
-                ),
-                Text(
-                  'Seleccionar los días de atención',
-                  style: kSubTitleCardStyle,
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(width: 15.0),
-                FaIcon(
-                  FontAwesomeIcons.calendarCheck,
-                  color: AppTheme.themeVino,
-                  size: 15,
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: AutoSizeText(
+                '1. Seleccionar los días de atención y definir si la atención se realizará los fines de semana.',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 14.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(
-                  width: 10,
-                ),
-                Text('Definir si la atención se realizará fin de semana.',
-                  style: kSubTitleCardStyle,
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(width: 10.0),
-                FaIcon(
-                  FontAwesomeIcons.calendarCheck,
-                  color: AppTheme.themeVino,
-                  size: 15,
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(
-                  width: 10,
-                ),
-                Text('Se recomienda que los días asignados sean \n cumplidos  por el voluntario.',
-                  style: kSubTitleCardStyle,
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(width: 15.0),
-                FaIcon(
-                  FontAwesomeIcons.calendarCheck,
-                  color: AppTheme.themeVino,
-                  size: 15,
-                ),
-              ],
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 18.0, vertical: 0.0),
+              child: AutoSizeText(
+                '2. Se recomienda que los días de atención registrados sean cumplidos por el voluntario.',
+                style: kSubTitleCardStyle,
+                maxLines: 3,
+                minFontSize: 14.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
             ),
             copyRigth(),
           ],
@@ -286,88 +253,83 @@ SizedBox(height: 15.0),
   }
 
   _submit() async {
-     //print('valor del prefsss. ${prefs.userId}');
+    //print('valor del prefsss. ${prefs.userId}');
     if (prefs.userId == '-1')
       scaffoldKey.currentState.showSnackBar(messageNOk(
           "Para registrar una Atención debe registrar su Institución"));
     else {
-    if (!formKey.currentState.validate()) return;
+      if (!formKey.currentState.validate()) return;
 
-    formKey.currentState.save();
-    setState(() {
-      _save = true;
-    });
+      formKey.currentState.save();
+      setState(() {
+        _save = true;
+      });
 
-    if (lunes.objectValue == true) {
-      intLunes = 1;
-      selectLunes = true;
-    }
-    if (martes.objectValue == true) {
-      intMartes = 1;
-      selectMartes = true;
-    }
-    if (miercoles.objectValue == true) {
-      intMiercoles = 1;
-      selectMiercoles = true;
-    }
-    if (jueves.objectValue == true) {
-      intJueves = 1;
-      selectJueves = true;
-    }
-    if (viernes.objectValue == true) {
-      intViernes = 1;
-      selectViernes = true;
-    }
-    if (sabado.objectValue == true) {
-      intaSabado = 1;
-      selectSabado = true;
-    }
-    if (domingo.objectValue == true) {
-      intDomingo = 1;
-      selectDomingo = true;
-    }
+      if (lunes.objectValue == true) {
+        intLunes = 1;
+        selectLunes = true;
+      }
+      if (martes.objectValue == true) {
+        intMartes = 1;
+        selectMartes = true;
+      }
+      if (miercoles.objectValue == true) {
+        intMiercoles = 1;
+        selectMiercoles = true;
+      }
+      if (jueves.objectValue == true) {
+        intJueves = 1;
+        selectJueves = true;
+      }
+      if (viernes.objectValue == true) {
+        intViernes = 1;
+        selectViernes = true;
+      }
+      if (sabado.objectValue == true) {
+        intaSabado = 1;
+        selectSabado = true;
+      }
+      if (domingo.objectValue == true) {
+        intDomingo = 1;
+        selectDomingo = true;
+      }
 
 //print(' intLunes; $intLunes intMartes $intMartes');
 
-    entityAtencion.idCovAtencion = _valorId;
-    entityAtencion.idCovEntityPersonal = int.parse(prefs.idPersonal);
-    entityAtencion.perLunes = intLunes;
-    entityAtencion.perMartes = intMartes;
-    entityAtencion.perMiercoles = intMiercoles;
-    entityAtencion.perJueves = intJueves;
-    entityAtencion.perViernes = intViernes;
-    entityAtencion.perSabado = intaSabado;
-    entityAtencion.perDomingo = intDomingo;
-    // entityAtencion.perLunesH = '-1';
-    // entityAtencion.perMartesH = '-1';
-    // entityAtencion.perMiercolesH = '-1';
-    // entityAtencion.perJuevesH = '-1';
-    // entityAtencion.perViernesH = '-1';
-    // entityAtencion.perSabadoH = '-1';
-    // entityAtencion.perDomingoH = '-1';
-    entityAtencion.usuario = prefs.correoElectronico;
+      entityAtencion.idCovAtencion = _valorId;
+      entityAtencion.idCovEntityPersonal = int.parse(prefs.idPersonal);
+      entityAtencion.perLunes = intLunes;
+      entityAtencion.perMartes = intMartes;
+      entityAtencion.perMiercoles = intMiercoles;
+      entityAtencion.perJueves = intJueves;
+      entityAtencion.perViernes = intViernes;
+      entityAtencion.perSabado = intaSabado;
+      entityAtencion.perDomingo = intDomingo;
+      // entityAtencion.perLunesH = '-1';
+      // entityAtencion.perMartesH = '-1';
+      // entityAtencion.perMiercolesH = '-1';
+      // entityAtencion.perJuevesH = '-1';
+      // entityAtencion.perViernesH = '-1';
+      // entityAtencion.perSabadoH = '-1';
+      // entityAtencion.perDomingoH = '-1';
+      entityAtencion.usuario = prefs.correoElectronico;
 
+      final dataMap = generic.add(entityAtencion, urlAddAtencion);
 
-    final dataMap = generic.add(entityAtencion, urlAddAtencion);
+      await dataMap.then((respuesta) {
+        result = respuesta["TIPO_RESPUESTA"];
 
-    await dataMap.then((respuesta) 
-    {
-      result = respuesta["TIPO_RESPUESTA"];
+        if (result == "0") {
+          Navigator.of(context).push(CupertinoPageRoute(
+              builder: (BuildContext context) => InformationVoluntary()));
+        } else
+          scaffoldKey.currentState
+              .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
 
-    if (result == "0"){
-     
-    
-    Navigator.of(context).push(CupertinoPageRoute(
-            builder: (BuildContext context) => InformationVoluntary()));
+        setState(() {
+          _save = false;
+        });
+      });
     }
-    else
-      scaffoldKey.currentState
-          .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
-
-    setState(() {
-      _save = false;
-    });
-  });
   }
-}
 }

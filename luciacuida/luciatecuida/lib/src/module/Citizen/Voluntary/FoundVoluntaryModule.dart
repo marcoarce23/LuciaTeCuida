@@ -19,6 +19,8 @@ class FoundVoluntaryModule extends StatefulWidget {
 
 class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
   final prefs = new PreferensUser();
+  final generic = new Generic();
+  int departamento = 60;
 
   @override
   void initState() {
@@ -64,6 +66,7 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
                   "Voluntarios".toUpperCase(),
                   FaIcon(FontAwesomeIcons.peopleCarry, color: AppTheme.themeVino),
                 ),
+                _crearDepartamento(),
                 SizedBox(
                   height: 15,
                 ),
@@ -168,4 +171,50 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
       ),
     );
   }
+
+    _crearDepartamento() {
+    return Center(
+        child: FutureBuilder(
+            future: generic.getAll(new GetClasificador(), urlGetDepartamento,
+                primaryKeyGetDepartamento),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(width: 35.0),
+                    Text('Departamento:'),
+                    SizedBox(width: 15.0),
+                    DropdownButton(
+                      icon: FaIcon(FontAwesomeIcons.sort,
+                          color: AppTheme.themeVino),
+                      value: departamento.toString(),
+                      items: getDropDown(snapshot),
+                      onChanged: (value)  {
+                        setState(() {
+                          departamento = int.parse(value);
+                        });
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
+  }
+
+    List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> listaE = new List();
+
+    for (var i = 0; i < snapshot.data.length; i++) {
+      GetClasificador item = snapshot.data[i];
+      listaE.add(DropdownMenuItem(
+        child: Text(item.detalle),
+        value: item.id.toString(),
+      ));
+    }
+    return listaE;
+  }
+
 }

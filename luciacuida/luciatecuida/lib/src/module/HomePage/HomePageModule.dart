@@ -16,7 +16,6 @@ import 'package:luciatecuida/src/module/Citizen/CitizenMultimedia/CitizenMultime
 import 'package:luciatecuida/src/module/Citizen/CitizenPanicButton/CitizenPanicButtonModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/EventEntityModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/InformationEntity.dart';
-import 'package:luciatecuida/src/module/Citizen/Multimedia/ListDetailModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Multimedia/MultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/EventModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/FoundVoluntaryModule.dart';
