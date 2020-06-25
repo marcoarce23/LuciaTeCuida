@@ -186,16 +186,24 @@ class _ListEventModuleState extends State<ListEventModule> {
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
-                    Expanded(
-                      child: Text(
-                        'Objetivo: ${entityItem.eveObjetivo}',
+                   Text(
+                        'Objetivo:',
                         style: kSubTitleCardStyle,
                         softWrap: true,
                         overflow: TextOverflow.clip,
-                      ),
-                    )
+                      ), 
                   ],
                 ),
+
+                 AutoSizeText(
+                      entityItem.eveObjetivo,
+                      style: kSubTitleCardStyle,
+                      maxLines: 4,
+                      minFontSize: 15.0,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.justify,
+                    ),
+
                 Row(
                   children: <Widget>[
                     Icon(
@@ -203,16 +211,20 @@ class _ListEventModuleState extends State<ListEventModule> {
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
+                    Text('Lugar:'),
                     Expanded(
                       child: 
                       
+                       generaHTTP_ICON(
+                          entityItem.eveUbicacion,
+                          FaIcon(
+                            FontAwesomeIcons.facebook,
+                            size: 25,
+                            color: AppTheme.themeVino,
+                          ),
+                        ),
                       
-                      Text(
-                        'Lugar: ${entityItem.eveUbicacion}',
-                        style: kSubTitleCardStyle,
-                        softWrap: true,
-                        overflow: TextOverflow.clip,
-                      ),
+                    
                     ),
                   ],
                 ),
