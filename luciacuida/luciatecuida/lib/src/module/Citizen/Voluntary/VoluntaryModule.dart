@@ -55,6 +55,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
   var result;
   int valorExpedido = 60;
   int valorTipoEspecialidad = 11;
+   bool bandera = false;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final generic = new Generic();
@@ -75,11 +76,17 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
 
     if (entityData != null) {
       entity = entityData;
-      imagen= entity.foto;
-      _selectedRadio = entity.idaSexo;
-      _valorId = entity.idcovPersonal;
-      estado = 1;
-      readOnly = true;
+
+       if(bandera ==false)
+      {
+        imagen= entity.foto;
+        _selectedRadio = entity.idaSexo;
+        _valorId = entity.idcovPersonal;
+        valorTipoEspecialidad = entity.idaTipopersonal;
+        valorExpedido = entity.idaExtension;
+        estado = 1;
+        readOnly = true;
+      }
     }
 
     return Scaffold(
@@ -320,6 +327,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
                       onChanged: (value) {
                         setState(() {
                           valorExpedido = int.parse(value);
+                          bandera = true;
                         });
                       },
                     ),
@@ -330,6 +338,8 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
               }
             }));
   }
+
+
 
   List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
     List<DropdownMenuItem<String>> lista = new List();
@@ -363,7 +373,9 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
                       items: getDropDown(snapshot),
                       onChanged: (value) {
                         setState(() {
-                          valorTipoEspecialidad = int.parse(value);
+                             valorTipoEspecialidad = int.parse(value);
+                             print(valorTipoEspecialidad);
+                             bandera = true;
                         });
                       },
                     ),
@@ -412,6 +424,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
 
     entity.foto = imagen;
     entity.idaEstado = 81;
+   
     if (!formKey.currentState.validate()) return;
 
     formKey.currentState.save();
@@ -453,7 +466,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
       result = respuesta["TIPO_RESPUESTA"];
 
       if (result != "-1" || result != '-2') {
-        //print('VLARO DEL LSIT: $result');
+        print('VLARO DEL LSIT: $result');
         final list = result.split('|');
         prefs.idInsitucion = list[0];
         prefs.idPersonal = list[1];

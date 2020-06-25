@@ -247,7 +247,7 @@ final generic = new Generic();
                         size: 25,
                       ),
                       onTap: () {
-                        callWhatsAppText(entityItem.telefono, 'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.' );
+                        callWhatsAppText(entityItem.telefono, 'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *SomosUnoBolivia*.' );
                       },
                     )
                   ],

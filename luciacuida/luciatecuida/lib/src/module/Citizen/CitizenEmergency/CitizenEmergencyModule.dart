@@ -345,7 +345,7 @@ class _PageMedicinaState extends State<PageMedicina> {
                               ),
                               onTap: () {
                                 callWhatsAppText(solicitudAyuda.telefono,
-                                    'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
+                                    'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *SomosUnoBolivia*.');
                               },
                             ),
                           ],
@@ -706,7 +706,7 @@ class _PageCovidState extends State<PageCovid> {
                               ),
                               onTap: () {
                                 callWhatsAppText(solicitudAyuda.telefono,
-                                    'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
+                                    'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *SomosUnoBolivia*.');
                               },
                             ),
                           ],
@@ -1040,7 +1040,7 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
                               ),
                               onTap: () {
                                 callWhatsAppText(solicitudAyuda.telefono,
-                                    'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
+                                    'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *SomosUnoBolivia*.');
                               },
                             ),
                           ],
@@ -1376,7 +1376,7 @@ class _PageBonosState extends State<PageBonos> {
                               ),
                               onTap: () {
                                 callWhatsAppText(solicitudAyuda.telefono,
-                                    'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
+                                    'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *SomosUnoBolivia*.');
                               },
                             ),
                           ],
@@ -1714,7 +1714,7 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
                               ),
                               onTap: () {
                                 callWhatsAppText(solicitudAyuda.telefono,
-                                    'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
+                                    'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *SomosUnoBolivia*.');
                               },
                             ),
                           ],

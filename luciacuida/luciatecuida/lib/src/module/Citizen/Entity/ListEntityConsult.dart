@@ -233,7 +233,7 @@ class _ListEntityConsultState extends State<ListEntityConsult> {
                       ),
                       onTap: () {
                         callWhatsAppText(int.parse(entityItem.telefono),
-                        'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.'
+                        'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *SomosUnoBolivia*.'
                           );
                       },
                     )

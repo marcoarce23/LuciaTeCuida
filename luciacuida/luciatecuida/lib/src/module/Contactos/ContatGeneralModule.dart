@@ -269,7 +269,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
                       ),
                       onTap: () {
                         callWhatsAppText(entityItem.telefono, 
-                            'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
+                            'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *SomosUnoBolivia*.');
                       },
                     ),
                     SizedBox(width: 20.0),

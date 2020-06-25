@@ -81,7 +81,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
   }
 
   Widget futureItemsEntity(BuildContext context) {
-    print('$urlGetVoluntario1${prefs.idInsitucion} /-1$primaryKeyGetVoluntario1');
+    print('$urlGetVoluntario1${prefs.idInsitucion} /-1');
     return FutureBuilder(
         future: generic.getAll(
             new Voluntary(),
@@ -265,7 +265,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                   minFontSize: 15.0,
                   overflow: TextOverflow.ellipsis,
                 ),
-                SizedBox(height: 5.0),
+   
                 Row(
                   children: <Widget>[
                     Icon(
@@ -273,11 +273,22 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
+
+                    Row(
+                      children: <Widget>[
+                        Text(
+                                'Estado:',
+                                style: kSubTitleCardStyle,
+                                softWrap: true,
+                              ),
+                      ],
+                    ),
+
                     Expanded(
-                      child: Row(
+                      child: Wrap(
                         children: <Widget>[
                           Text(
-                            'Estado: ${entityItem.estadoUsuario == 81 ? '(Por Confirmar)' : entityItem.estadoUsuario == 82 ? '(Activo)' : '(Baja)'}',
+                            '${entityItem.estadoUsuario == 81 ? '(Por Confirmar)' : entityItem.estadoUsuario == 82 ? '(Activo)' : '(Baja)'}',
                             style: kSubTitleCardStyle,
                             softWrap: true,
                           ),
@@ -309,6 +320,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                               ),
                             ),
                           ),
+
                           Opacity(
                             opacity: (entityItem.estadoUsuario == 81)
                                 ? 1
@@ -390,7 +402,7 @@ class _ListVoluntaryModuleState extends State<ListVoluntaryModule> {
                       ),
                       onTap: () {
                         callWhatsAppText(int.parse(entityItem.perTelefono),
-                            'Estimado *${entityItem.perNombrepersonal.trim()}*: \nSoy un _voluntario_ y deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosConTigo*.');
+                            'Colega *${entityItem.perNombrepersonal.trim()}*: \nSoy un _voluntario_ , me gustaría ponerme en contacto con ud. \nEnviado desde la aplicación *SomosUnoBolivia*.');
                       },
                     )
                   ],

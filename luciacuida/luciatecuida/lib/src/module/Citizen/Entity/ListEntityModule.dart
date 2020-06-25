@@ -208,17 +208,14 @@ class _ListEntityModuleState extends State<ListEntityModule> {
                     ),
                   ],
                 ),
-                Row(
-                  children: <Widget>[
+               
                     AutoSizeText(
                       entityItem.direccion,
                       style: kSubTitleCardStyle,
-                      maxLines: 2,
-                      minFontSize: 15.0,
+                      maxLines: 3,
+                      minFontSize: 14.0,
                       overflow: TextOverflow.ellipsis,
                     ),
-                  ],
-                ),
                 Wrap(
                   children: <Widget>[
                     InkWell(
@@ -265,7 +262,7 @@ class _ListEntityModuleState extends State<ListEntityModule> {
                       ),
                       onTap: () {
                         callWhatsAppText(int.parse(entityItem.telefono),
-                            'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
+                            'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *SomosUnoBolivia*.');
                       },
                     )
                   ],

@@ -254,7 +254,7 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
                       onTap: () {
                         callWhatsAppText(
                             int.parse(profesionalesDeInstitucion.telefono),
-                            'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.'
+                            'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *SomosUnoBolivia*.'
                             );
                       },
                     )
