@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
@@ -46,35 +47,14 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
             //backgroundColor: AppTheme.themeColorNaranja,
           ),
           drawer: DrawerCitizen(),
-         floatingActionButton: generaFloatbuttonHome(context),         
-    
+          floatingActionButton: generaFloatbuttonHome(context),
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
                 ButtonPanic(
                   titulo: "CONSULTA",
                 ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    margin: EdgeInsets.only(right: 15),
-                    child: FlatButton(
-                      color: AppTheme.themeVino,
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  CitizenAlertEmergency(prefs.userId, "-1")),
-                        );
-                      },
-                      child: Text(
-                        "Mi Historial",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
+
                 // ButtonPanic(
                 //   titulo: "CONSULTA MÉDICA",
                 //   tipoBoton: "64",
@@ -135,8 +115,6 @@ class _ButtonPanic extends State<ButtonPanic> {
 
   Widget buttonPanic() {
     //botonPanico.botFecha=DateTime.now();
-
-    
 
     botonPanico.botFecha =
         DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now());
@@ -303,7 +281,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                         ),
                         TextFormField(
                           style: TextStyle(color: Colors.black, fontSize: 13),
-                         // textCapitalization: TextCapitalization.sentences,
+                          // textCapitalization: TextCapitalization.sentences,
                           //enableSuggestions: true,
                           maxLength: 100,
                           maxLines: 3,
@@ -324,7 +302,6 @@ class _ButtonPanic extends State<ButtonPanic> {
                           onChanged: (value) {
                             botonPanico.botDetalle = value;
                           },
-                           
                         ),
                         TextFormField(
                           keyboardType: TextInputType.phone,
@@ -347,31 +324,76 @@ class _ButtonPanic extends State<ButtonPanic> {
                             botonPanico.botTelefono = value;
                           },
                         ),
-                        Center(
-                          child: FlatButton(
-                            color: AppTheme.themeVino,
-                            onPressed: () {
-                              botonPanico.idaCatalogo = _selectedRadio;
-                              _submit();
-                              setState(() {
-                                fechaNotificacion =
-                                    DateFormat("dd/MM/yyyy HH:mm")
-                                        .format(DateTime.now());
-                              });
-                            },
-                            child: Icon(Icons.pan_tool, color: Colors.white),
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            FlatButton(
+                              color: AppTheme.themeVino,
+                              onPressed: () {
+                                botonPanico.idaCatalogo = _selectedRadio;
+                                _submit();
+                                setState(() {
+                                  fechaNotificacion =
+                                      DateFormat("dd/MM/yyyy HH:mm")
+                                          .format(DateTime.now());
+                                });
+                              },
+                              child: Row(
+                                children: <Widget>[
+                                  FaIcon(
+                                    FontAwesomeIcons.checkCircle,
+                                    size: 25,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    "Enviar ayuda",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            FlatButton(
+                              color: AppTheme.themeVino,
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          CitizenAlertEmergency(
+                                              prefs.userId, "-1")),
+                                );
+                              },
+                              child: Row(
+                                children: <Widget>[
+                                     FaIcon(
+                                    FontAwesomeIcons.history,
+                                    size: 25,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Text(
+                                    "Mi Historial",
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-divider(),
-                         AutoSizeText(
-                'Importante. El registro de los síntomas y nro. de teléfono son necesarios para que el voluntario se pongan en contacto con su persona.',
-                style: kSubTitleCardStyle,
-                maxLines: 3,
-                minFontSize: 14.0,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.justify,
-                
-              ),
+                        divider(),
+                        AutoSizeText(
+                          'Importante. El registro de los síntomas y nro. de teléfono son necesarios para que el voluntario se pongan en contacto con su persona.',
+                          style: kSubTitleCardStyle,
+                          maxLines: 3,
+                          minFontSize: 14.0,
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.justify,
+                        ),
                       ],
                     ),
                   ),
