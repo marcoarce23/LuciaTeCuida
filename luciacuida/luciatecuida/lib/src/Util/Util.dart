@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
@@ -186,8 +187,12 @@ Widget generaHTTP_ICON(String cadena, FaIcon icon) {
       },
     );
   } else {
-    return Text(cadena,
-        style: kSubTitleCardStyle, overflow: TextOverflow.clip, softWrap: true);
+    return AutoSizeText(cadena,
+        style: kSubTitleCardStyle,
+        overflow: TextOverflow.clip,
+        softWrap: true,
+        maxLines: 2,
+        minFontSize: 15.0);
   }
 }
 
