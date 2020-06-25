@@ -25,10 +25,11 @@ class CitizenEventsModule extends StatefulWidget {
 class _CitizenEventsModuleState extends State<CitizenEventsModule> {
   int valorOrganizacion = 1042;
   int valorTipoEspecialidad = 11;
+  String _notificacion = '';
 
   final generic = new Generic();
   final prefs = new PreferensUser();
-  
+
   @override
   void initState() {
     prefs.ultimaPagina = CitizenEventsModule.routeName;
@@ -37,6 +38,9 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
 
   @override
   Widget build(BuildContext context) {
+    final _valor = ModalRoute.of(context).settings.arguments;
+    if (_valor != null) _notificacion = _valor;
+
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
@@ -59,8 +63,21 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
                 "Eventos disponibles".toUpperCase(),
                 FaIcon(FontAwesomeIcons.newspaper, color: AppTheme.themeVino),
               ),
+              Opacity(
+                  opacity: _notificacion.length > 1 ? 1.0 : 0.0,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    child: AutoSizeText(
+                      'Evento: Nuevo evento registrado.',
+                      style: kSubTitleCardStyle,
+                      maxLines: 1,
+                      minFontSize: 13.0,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.justify,
+                    ),
+                  )),
               _crearOrganizacion(),
-             // _crearEspecialidad(),
+              // _crearEspecialidad(),
 
               Text(
                 "Nota: Presione sobre el evento para ver el detalle",
@@ -98,7 +115,9 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
   Widget futureEvento(BuildContext context) {
     return FutureBuilder(
         future: Generic().getAll(
-            new EventosItem(), urlGetListaEventos, primaryKeyListaEventos),
+            new EventosItem(),
+            urlGetListaEventos + '/' + valorOrganizacion.toString(),
+            primaryKeyListaEventos),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
@@ -281,14 +300,15 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
     );
   }
 
-
-
-
   Widget _crearOrganizacion() {
     return Center(
         child: FutureBuilder(
-            future: generic.getAll(new InstitucionesItems(),
-                urlGetListaInstituciones+'/'+ prefs.idDepartamento.toString() , primaryKeyGetListaInstituciones),
+            future: generic.getAll(
+                new InstitucionesItems(),
+                urlGetListaInstituciones +
+                    '/' +
+                    prefs.idDepartamento.toString(),
+                primaryKeyGetListaInstituciones),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return Row(
@@ -299,7 +319,7 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
                     DropdownButton(
                       icon: FaIcon(FontAwesomeIcons.sort,
                           color: AppTheme.themeVino),
-                      value: valorOrganizacion.toString(), 
+                      value: valorOrganizacion.toString(),
                       items: getDropDown(snapshot),
                       onChanged: (value) {
                         setState(() {
@@ -348,7 +368,7 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
   //           }));
   // }
 
-    List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+  List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
     List<DropdownMenuItem<String>> listaE = new List();
 
     for (var i = 0; i < snapshot.data.length; i++) {
@@ -360,5 +380,4 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
     }
     return listaE;
   }
-
 }
