@@ -21,6 +21,7 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
   final prefs = new PreferensUser();
   final generic = new Generic();
   int departamento = 60;
+  String _notificacion = '';
 
   @override
   void initState() {
@@ -30,6 +31,9 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
 
   @override
   Widget build(BuildContext context) {
+    final _valor = ModalRoute.of(context).settings.arguments;
+    if (_valor != null) _notificacion = _valor;
+
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
@@ -45,7 +49,10 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
                   showSearch(
                       context: context, delegate: DataSearchEncuentraUnAmigo());
                 },
-              )
+              ),
+              Opacity(
+                  opacity: _notificacion.length > 1 ? 1.0 : 0.0,
+                  child: Text('Pantalla redireccionado por una notificación')),
             ],
           ),
           drawer: DrawerCitizen(),
