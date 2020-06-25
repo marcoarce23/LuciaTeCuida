@@ -178,17 +178,15 @@ class _ListEntityConsultState extends State<ListEntityConsult> {
                     ),
                   ],
                 ),
-                Row(
-                  children: <Widget>[
+               
                     AutoSizeText(
                       entityItem.direccion,
                       style: kSubTitleCardStyle,
-                      maxLines: 2,
-                      minFontSize: 15.0,
+                      maxLines: 3,
+                      minFontSize: 14.0,
                       overflow: TextOverflow.ellipsis,
                     ),
-                  ],
-                ),
+        
                 Wrap(
                   children: <Widget>[
                     InkWell(

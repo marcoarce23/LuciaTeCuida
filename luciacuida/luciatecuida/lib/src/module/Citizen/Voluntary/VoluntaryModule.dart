@@ -75,6 +75,8 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
 
     if (entityData != null) {
       entity = entityData;
+      imagen= entity.foto;
+      _selectedRadio = entity.idaSexo;
       _valorId = entity.idcovPersonal;
       estado = 1;
       readOnly = true;
@@ -466,7 +468,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
               prefs.nombreInstitucion);
         }
         Navigator.of(context).push(CupertinoPageRoute(
-            builder: (BuildContext context) => InformationVoluntary()));
+            builder: (BuildContext context) => VoluntaryAllModule()));
 
         if (result == "-1")
           scaffoldKey.currentState

@@ -321,7 +321,7 @@ class _AtentionModuleState extends State<AtentionModule> {
 
         if (result == "0") {
           Navigator.of(context).push(CupertinoPageRoute(
-              builder: (BuildContext context) => InformationVoluntary()));
+              builder: (BuildContext context) => VoluntaryAllModule()));
         } else
           scaffoldKey.currentState
               .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
