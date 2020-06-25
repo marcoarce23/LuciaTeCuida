@@ -160,12 +160,12 @@ class _CitizenEventsDetailModuleState extends State<CitizenEventsDetailModule> {
               Text(
                 "DIRIGIDO A:",
                 style: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 14,
-                    color: AppTheme.themeVino,
-                    ),
-                      softWrap: true,
-                      overflow: TextOverflow.clip,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 14,
+                  color: AppTheme.themeVino,
+                ),
+                softWrap: true,
+                overflow: TextOverflow.clip,
               ),
               Row(
                 children: <Widget>[
@@ -190,9 +190,9 @@ class _CitizenEventsDetailModuleState extends State<CitizenEventsDetailModule> {
                 style: TextStyle(
                     fontWeight: FontWeight.w800,
                     fontSize: 14,
-                    color: AppTheme.themeVino),              
-              softWrap: true,
-                      overflow: TextOverflow.clip,
+                    color: AppTheme.themeVino),
+                softWrap: true,
+                overflow: TextOverflow.clip,
               ),
               Row(
                 children: <Widget>[
@@ -200,7 +200,7 @@ class _CitizenEventsDetailModuleState extends State<CitizenEventsDetailModule> {
                     width: 15,
                   ),
                   Expanded(
-                                      child: generaHTTP_ICON(
+                    child: generaHTTP_ICON(
                         widget.eventosItem.ubicacion,
                         FaIcon(
                           FontAwesomeIcons.internetExplorer,
@@ -216,7 +216,7 @@ class _CitizenEventsDetailModuleState extends State<CitizenEventsDetailModule> {
         ),
       ),
       drawer: DrawerCitizen(),
-      floatingActionButton: generaFloatbuttonHome(context),
+      floatingActionButton: generaFloatButtonEvent(context),
     );
   }
 }

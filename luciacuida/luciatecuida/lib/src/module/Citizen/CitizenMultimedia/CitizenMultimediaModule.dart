@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
@@ -88,7 +89,6 @@ class _CitizenMultimediaModuleState extends State<CitizenMultimediaModule> {
 }
 
 class PagePicture extends StatefulWidget {
-
   const PagePicture({Key key}) : super(key: key);
 
   @override
@@ -97,13 +97,17 @@ class PagePicture extends StatefulWidget {
 
 class _PagePictureState extends State<PagePicture> {
   int valorTipoMaterial = 74;
-
-  int valorTipoEspecialidad = 11;  
+  int valorOrganizacion = 1042;
+  int valorTipoEspecialidad = 11;
 
   final generic = new Generic();
+  String _notificacion = '';
 
   @override
   Widget build(BuildContext context) {
+    final _valor = ModalRoute.of(context).settings.arguments;
+    if (_valor != null) _notificacion = _valor;
+
     return SingleChildScrollView(
       child: Container(
         child: Padding(
@@ -120,10 +124,22 @@ class _PagePictureState extends State<PagePicture> {
                   FaIcon(FontAwesomeIcons.image, color: AppTheme.themeVino),
                 ),
               ),
+              Opacity(
+                  opacity: _notificacion.length > 1 ? 1.0 : 0.0,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    child: AutoSizeText(
+                      'Imagen: Nuevo imagen registrada.',
+                      style: kSubTitleCardStyle,
+                      maxLines: 1,
+                      minFontSize: 13.0,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.justify,
+                    ),
+                  )),
+              //_crearOrganizacion(),
+              //_crearEspecialidad(),
 
-              _crearOrganizacion(),
-              _crearEspecialidad(),
-              
               Center(
                   child: Text(
                 "Nota: Presione sobre la imagen para ver el detalle",
@@ -243,8 +259,12 @@ class _PagePictureState extends State<PagePicture> {
   Widget _crearOrganizacion() {
     return Center(
         child: FutureBuilder(
-            future: generic.getAll(new GetClasificador(),
-                urlGetClasificador + '73', primaryKeyGetClasifidor),
+            future: generic.getAll(
+                new InstitucionesItems(),
+                urlGetListaInstituciones +
+                    '/' +
+                    prefs.idDepartamento.toString(),
+                primaryKeyGetListaInstituciones),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return Row(
@@ -255,11 +275,11 @@ class _PagePictureState extends State<PagePicture> {
                     DropdownButton(
                       icon: FaIcon(FontAwesomeIcons.sort,
                           color: AppTheme.themeVino),
-                      value: valorTipoMaterial.toString(), 
+                      value: valorOrganizacion.toString(),
                       items: getDropDown(snapshot),
                       onChanged: (value) {
                         setState(() {
-                          valorTipoMaterial = int.parse(value);
+                          valorOrganizacion = int.parse(value);
                           //print('valorTipoMaterial $valorTipoMaterial');
                         });
                       },
@@ -288,7 +308,7 @@ class _PagePictureState extends State<PagePicture> {
                       icon: FaIcon(FontAwesomeIcons.sort,
                           color: AppTheme.themeVino),
                       value: valorTipoEspecialidad.toString(),
-                      items: getDropDown(snapshot),
+                      items: getDropDownE(snapshot),
                       onChanged: (value) {
                         setState(() {
                           valorTipoEspecialidad = int.parse(value);
@@ -304,7 +324,7 @@ class _PagePictureState extends State<PagePicture> {
             }));
   }
 
-    List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+  List<DropdownMenuItem<String>> getDropDownE(AsyncSnapshot snapshot) {
     List<DropdownMenuItem<String>> listaE = new List();
 
     for (var i = 0; i < snapshot.data.length; i++) {
@@ -312,6 +332,20 @@ class _PagePictureState extends State<PagePicture> {
       listaE.add(DropdownMenuItem(
         child: Text(item.nombre),
         value: item.id.toString(),
+      ));
+    }
+    return listaE;
+  }
+
+
+  List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> listaE = new List();
+
+    for (var i = 0; i < snapshot.data.length; i++) {
+      InstitucionesItems item = snapshot.data[i];
+      listaE.add(DropdownMenuItem(
+        child: Text(item.nombreInstitucion),
+        value: item.idInstitucion.toString(),
       ));
     }
     return listaE;
@@ -327,9 +361,10 @@ class PageVideo extends StatefulWidget {
 
 class _PageVideoState extends State<PageVideo> {
   int valorTipoMaterial = 74;
-  int valorTipoEspecialidad = 11;  
+  int valorOrganizacion = 1042;
+  int valorTipoEspecialidad = 11;
   final generic = new Generic();
-
+  String _notificacion = '';
   @override
   void initState() {
     super.initState();
@@ -337,6 +372,9 @@ class _PageVideoState extends State<PageVideo> {
 
   @override
   Widget build(BuildContext context) {
+    final _valor = ModalRoute.of(context).settings.arguments;
+    if (_valor != null) _notificacion = _valor;
+
     return SingleChildScrollView(
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 0.0),
@@ -353,9 +391,21 @@ class _PageVideoState extends State<PageVideo> {
                 FaIcon(FontAwesomeIcons.youtube, color: AppTheme.themeVino),
               ),
             ),
-
-            _crearOrganizacion(),
-              _crearEspecialidad(),
+            Opacity(
+                opacity: _notificacion.length > 1 ? 1.0 : 0.0,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: AutoSizeText(
+                    'Imagen: Nuevo imagen registrada.',
+                    style: kSubTitleCardStyle,
+                    maxLines: 1,
+                    minFontSize: 13.0,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.justify,
+                  ),
+                )),
+            //_crearOrganizacion(),
+            //_crearEspecialidad(),
 
             Center(
                 child: Text(
@@ -447,8 +497,12 @@ class _PageVideoState extends State<PageVideo> {
   Widget _crearOrganizacion() {
     return Center(
         child: FutureBuilder(
-            future: generic.getAll(new GetClasificador(),
-                urlGetClasificador + '73', primaryKeyGetClasifidor),
+            future: generic.getAll(
+                new InstitucionesItems(),
+                urlGetListaInstituciones +
+                    '/' +
+                    prefs.idDepartamento.toString(),
+                primaryKeyGetListaInstituciones),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return Row(
@@ -459,11 +513,11 @@ class _PageVideoState extends State<PageVideo> {
                     DropdownButton(
                       icon: FaIcon(FontAwesomeIcons.sort,
                           color: AppTheme.themeVino),
-                      value: valorTipoMaterial.toString(), 
+                      value: valorOrganizacion.toString(),
                       items: getDropDown(snapshot),
                       onChanged: (value) {
                         setState(() {
-                          valorTipoMaterial = int.parse(value);
+                          valorOrganizacion = int.parse(value);
                           //print('valorTipoMaterial $valorTipoMaterial');
                         });
                       },
@@ -492,7 +546,7 @@ class _PageVideoState extends State<PageVideo> {
                       icon: FaIcon(FontAwesomeIcons.sort,
                           color: AppTheme.themeVino),
                       value: valorTipoEspecialidad.toString(),
-                      items: getDropDown(snapshot),
+                      items: getDropDownE(snapshot),
                       onChanged: (value) {
                         setState(() {
                           valorTipoEspecialidad = int.parse(value);
@@ -508,7 +562,7 @@ class _PageVideoState extends State<PageVideo> {
             }));
   }
 
-    List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> getDropDownE(AsyncSnapshot snapshot) {
     List<DropdownMenuItem<String>> listaE = new List();
 
     for (var i = 0; i < snapshot.data.length; i++) {
@@ -521,10 +575,22 @@ class _PageVideoState extends State<PageVideo> {
     return listaE;
   }
 
+
+  List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> listaE = new List();
+
+    for (var i = 0; i < snapshot.data.length; i++) {
+      InstitucionesItems item = snapshot.data[i];
+      listaE.add(DropdownMenuItem(
+        child: Text(item.nombreInstitucion),
+        value: item.idInstitucion.toString(),
+      ));
+    }
+    return listaE;
+  }
 }
 
 class PageDocuments extends StatefulWidget {
-
   const PageDocuments({Key key}) : super(key: key);
 
   @override
@@ -533,11 +599,16 @@ class PageDocuments extends StatefulWidget {
 
 class _PageDocumentsState extends State<PageDocuments> {
   int valorTipoMaterial = 74;
-  int valorTipoEspecialidad = 11;  
+  int valorTipoEspecialidad = 11;
+  int valorOrganizacion = 1042;
   final generic = new Generic();
+  String _notificacion = '';
 
   @override
   Widget build(BuildContext context) {
+    final _valor = ModalRoute.of(context).settings.arguments;
+    if (_valor != null) _notificacion = _valor;
+
     return SingleChildScrollView(
       child: Container(
         child: Padding(
@@ -554,9 +625,21 @@ class _PageDocumentsState extends State<PageDocuments> {
                   FaIcon(FontAwesomeIcons.filePdf, color: AppTheme.themeVino),
                 ),
               ),
-
-              _crearOrganizacion(),
-              _crearEspecialidad(),
+              Opacity(
+                  opacity: _notificacion.length > 1 ? 1.0 : 0.0,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                    child: AutoSizeText(
+                      'Imagen: Nuevo imagen registrada.',
+                      style: kSubTitleCardStyle,
+                      maxLines: 1,
+                      minFontSize: 13.0,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.justify,
+                    ),
+                  )),
+              //_crearOrganizacion(),
+              //_crearEspecialidad(),
               Center(
                   child: Text(
                 "Nota: Presione sobre el video para ver el detalle",
@@ -564,12 +647,9 @@ class _PageDocumentsState extends State<PageDocuments> {
               )),
               futureDocumentos(context),
               copyRigth(),
-              
             ],
           ),
-          
         ),
-        
       ),
     );
   }
@@ -652,12 +732,15 @@ class _PageDocumentsState extends State<PageDocuments> {
         });
   }
 
-
   Widget _crearOrganizacion() {
     return Center(
         child: FutureBuilder(
-            future: generic.getAll(new GetClasificador(),
-                urlGetClasificador + '73', primaryKeyGetClasifidor),
+            future: generic.getAll(
+                new InstitucionesItems(),
+                urlGetListaInstituciones +
+                    '/' +
+                    prefs.idDepartamento.toString(),
+                primaryKeyGetListaInstituciones),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return Row(
@@ -668,11 +751,11 @@ class _PageDocumentsState extends State<PageDocuments> {
                     DropdownButton(
                       icon: FaIcon(FontAwesomeIcons.sort,
                           color: AppTheme.themeVino),
-                      value: valorTipoMaterial.toString(), 
+                      value: valorOrganizacion.toString(),
                       items: getDropDown(snapshot),
                       onChanged: (value) {
                         setState(() {
-                          valorTipoMaterial = int.parse(value);
+                          valorOrganizacion = int.parse(value);
                           //print('valorTipoMaterial $valorTipoMaterial');
                         });
                       },
@@ -701,7 +784,7 @@ class _PageDocumentsState extends State<PageDocuments> {
                       icon: FaIcon(FontAwesomeIcons.sort,
                           color: AppTheme.themeVino),
                       value: valorTipoEspecialidad.toString(),
-                      items: getDropDown(snapshot),
+                      items: getDropDownE(snapshot),
                       onChanged: (value) {
                         setState(() {
                           valorTipoEspecialidad = int.parse(value);
@@ -717,7 +800,7 @@ class _PageDocumentsState extends State<PageDocuments> {
             }));
   }
 
-    List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+  List<DropdownMenuItem<String>> getDropDownE(AsyncSnapshot snapshot) {
     List<DropdownMenuItem<String>> listaE = new List();
 
     for (var i = 0; i < snapshot.data.length; i++) {
@@ -730,4 +813,17 @@ class _PageDocumentsState extends State<PageDocuments> {
     return listaE;
   }
 
+
+  List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+    List<DropdownMenuItem<String>> listaE = new List();
+
+    for (var i = 0; i < snapshot.data.length; i++) {
+      InstitucionesItems item = snapshot.data[i];
+      listaE.add(DropdownMenuItem(
+        child: Text(item.nombreInstitucion),
+        value: item.idInstitucion.toString(),
+      ));
+    }
+    return listaE;
+  }
 }
