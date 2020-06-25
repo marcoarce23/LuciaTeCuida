@@ -50,7 +50,7 @@ class _ListEventEntityState extends State<ListEventEntity> {
            Padding(
                padding: const EdgeInsets.all(18.0),
                child: AutoSizeText(
-                  'Nota. Si desea eliminar un registro deslize el dedo a la (<<---) izquierda o a la derecha (--->>).',
+                  'Nota. Si desea eliminar un registro deslize a la (<<---) izquierda o a la derecha (--->>).',
                   style: kSubTitleCardStyle,
                   maxLines: 2,
                   minFontSize: 14.0,

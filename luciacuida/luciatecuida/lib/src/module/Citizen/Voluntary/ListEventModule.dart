@@ -204,7 +204,10 @@ class _ListEventModuleState extends State<ListEventModule> {
                       size: 15,
                     ),
                     Expanded(
-                      child: Text(
+                      child: 
+                      
+                      
+                      Text(
                         'Lugar: ${entityItem.eveUbicacion}',
                         style: kSubTitleCardStyle,
                         softWrap: true,
