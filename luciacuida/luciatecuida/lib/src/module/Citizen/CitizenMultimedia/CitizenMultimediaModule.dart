@@ -396,7 +396,7 @@ class _PageVideoState extends State<PageVideo> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
                   child: AutoSizeText(
-                    'Imagen: Nuevo imagen registrada.',
+                    'Video: Nuevo video registrado.',
                     style: kSubTitleCardStyle,
                     maxLines: 1,
                     minFontSize: 13.0,
@@ -630,7 +630,7 @@ class _PageDocumentsState extends State<PageDocuments> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: AutoSizeText(
-                      'Imagen: Nuevo imagen registrada.',
+                      'Documento: Nuevo documento registrado.',
                       style: kSubTitleCardStyle,
                       maxLines: 1,
                       minFontSize: 13.0,
