@@ -35,8 +35,7 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             toolbarOpacity: 0.7,
-            iconTheme:
-                IconThemeData(color: AppTheme.themeVino, size: 12),
+            iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
             elevation: 0,
             title: Text("BUSCA UN VOLUNTARIO", style: kTitleAppBar),
             actions: <Widget>[
@@ -50,7 +49,7 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
             ],
           ),
           drawer: DrawerCitizen(),
-          floatingActionButton: generaFloatbuttonHome(context),         
+          floatingActionButton: generaFloatbuttonHome(context),
           body: SingleChildScrollView(
               child: Padding(
             padding: const EdgeInsets.only(left: 10.0),
@@ -64,7 +63,8 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
                   context,
                   40.0,
                   "Voluntarios".toUpperCase(),
-                  FaIcon(FontAwesomeIcons.peopleCarry, color: AppTheme.themeVino),
+                  FaIcon(FontAwesomeIcons.peopleCarry,
+                      color: AppTheme.themeVino),
                 ),
                 _crearDepartamento(),
                 SizedBox(
@@ -82,8 +82,10 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
 
   Widget futureCuerpoProfesionales(BuildContext context) {
     return FutureBuilder(
-        future: Generic().getAll(new ProfesionalesAgrupados(),
-            urlGetTodosGruposProfesionales, primaryKeyTodosGruposProfesionales),
+        future: Generic().getAll(
+            new ProfesionalesAgrupados(),
+            urlGetTodosGruposProfesionales + '/' + departamento.toString(),
+            primaryKeyTodosGruposProfesionales),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
@@ -172,7 +174,7 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
     );
   }
 
-    _crearDepartamento() {
+  _crearDepartamento() {
     return Center(
         child: FutureBuilder(
             future: generic.getAll(new GetClasificador(), urlGetDepartamento,
@@ -190,7 +192,7 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
                           color: AppTheme.themeVino),
                       value: departamento.toString(),
                       items: getDropDown(snapshot),
-                      onChanged: (value)  {
+                      onChanged: (value) {
                         setState(() {
                           departamento = int.parse(value);
                         });
@@ -204,7 +206,7 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
             }));
   }
 
-    List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+  List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
     List<DropdownMenuItem<String>> listaE = new List();
 
     for (var i = 0; i < snapshot.data.length; i++) {
@@ -216,5 +218,4 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
     }
     return listaE;
   }
-
 }

@@ -23,7 +23,7 @@ class CitizenEventsModule extends StatefulWidget {
 }
 
 class _CitizenEventsModuleState extends State<CitizenEventsModule> {
-  int valorTipoMaterial = 74;
+  int valorTipoMaterial = 0;
   int valorTipoEspecialidad = 11;
 
   final generic = new Generic();
@@ -287,8 +287,8 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
   Widget _crearOrganizacion() {
     return Center(
         child: FutureBuilder(
-            future: generic.getAll(new GetClasificador(),
-                urlGetClasificador + '73', primaryKeyGetClasifidor),
+            future: generic.getAll(new InstitucionesItems(),
+                urlGetListaInstituciones+'/'+ prefs.idDepartamento , primaryKeyGetListaInstituciones),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return Row(
