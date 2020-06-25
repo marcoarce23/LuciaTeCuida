@@ -23,7 +23,7 @@ class CitizenEventsModule extends StatefulWidget {
 }
 
 class _CitizenEventsModuleState extends State<CitizenEventsModule> {
-  int valorTipoMaterial = 0;
+  int valorOrganizacion = 1042;
   int valorTipoEspecialidad = 11;
 
   final generic = new Generic();
@@ -288,7 +288,7 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
     return Center(
         child: FutureBuilder(
             future: generic.getAll(new InstitucionesItems(),
-                urlGetListaInstituciones+'/'+ prefs.idDepartamento , primaryKeyGetListaInstituciones),
+                urlGetListaInstituciones+'/'+ prefs.idDepartamento.toString() , primaryKeyGetListaInstituciones),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return Row(
@@ -299,11 +299,11 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
                     DropdownButton(
                       icon: FaIcon(FontAwesomeIcons.sort,
                           color: AppTheme.themeVino),
-                      value: valorTipoMaterial.toString(), 
+                      value: valorOrganizacion.toString(), 
                       items: getDropDown(snapshot),
                       onChanged: (value) {
                         setState(() {
-                          valorTipoMaterial = int.parse(value);
+                          valorOrganizacion = int.parse(value);
                           //print('valorTipoMaterial $valorTipoMaterial');
                         });
                       },
@@ -352,10 +352,10 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
     List<DropdownMenuItem<String>> listaE = new List();
 
     for (var i = 0; i < snapshot.data.length; i++) {
-      GetClasificador item = snapshot.data[i];
+      InstitucionesItems item = snapshot.data[i];
       listaE.add(DropdownMenuItem(
-        child: Text(item.nombre),
-        value: item.id.toString(),
+        child: Text(item.nombreInstitucion),
+        value: item.idInstitucion.toString(),
       ));
     }
     return listaE;

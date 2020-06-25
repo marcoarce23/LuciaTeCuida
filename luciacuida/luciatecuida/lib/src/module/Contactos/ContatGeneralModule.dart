@@ -76,7 +76,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
                   ),
                ),
 
-                 _crearDepartamento(),
+              //   _crearDepartamento(),
                 divider(),
                 futureItemsEntity(context),
                 copyRigth(),
