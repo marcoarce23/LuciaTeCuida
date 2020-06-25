@@ -221,10 +221,10 @@ class _PageMedicinaState extends State<PageMedicina> {
       colorCuadro = AppTheme.themeColorRojo;
       detallePrioridad = "Muy alta";
     } else if (solicitudAyuda.idaPrioridad == 69) {
-      colorCuadro = AppTheme.themeVino;
+      colorCuadro = AppTheme.themeColorNaranja;
       detallePrioridad = "Alta";
     } else {
-      colorCuadro = AppTheme.themeColorVerde;
+      colorCuadro = AppTheme.themeAmarillo;
       detallePrioridad = "Media";
     }
 
@@ -533,10 +533,10 @@ class _PageCovidState extends State<PageCovid> {
       colorCuadro = AppTheme.themeColorRojo;
       detallePrioridad = "Muy alta";
     } else if (solicitudAyuda.idaPrioridad == 69) {
-      colorCuadro = AppTheme.themeVino;
+      colorCuadro = AppTheme.themeColorNaranja;
       detallePrioridad = "Alta";
     } else {
-      colorCuadro = AppTheme.themeColorVerde;
+      colorCuadro = AppTheme.themeAmarillo;
       detallePrioridad = "Media";
     }
     return contenidoAtencionSolicitudes(
@@ -869,10 +869,10 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
       colorCuadro = AppTheme.themeColorRojo;
       detallePrioridad = "Muy alta";
     } else if (solicitudAyuda.idaPrioridad == 69) {
-      colorCuadro = AppTheme.themeVino;
+      colorCuadro = AppTheme.themeColorNaranja;
       detallePrioridad = "Alta";
     } else {
-      colorCuadro = AppTheme.themeColorVerde;
+      colorCuadro = AppTheme.themeAmarillo;
       detallePrioridad = "Media";
     }
     return contenidoAtencionSolicitudes(
@@ -1203,10 +1203,10 @@ class _PageBonosState extends State<PageBonos> {
       colorCuadro = AppTheme.themeColorRojo;
       detallePrioridad = "Muy alta";
     } else if (solicitudAyuda.idaPrioridad == 69) {
-      colorCuadro = AppTheme.themeVino;
+      colorCuadro = AppTheme.themeColorNaranja;
       detallePrioridad = "Alta";
     } else {
-      colorCuadro = AppTheme.themeColorVerde;
+      colorCuadro = AppTheme.themeAmarillo;
       detallePrioridad = "Media";
     }
     return contenidoAtencionSolicitudes(

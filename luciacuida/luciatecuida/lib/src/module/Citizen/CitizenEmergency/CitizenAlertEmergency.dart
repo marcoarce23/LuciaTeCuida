@@ -119,7 +119,7 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
       colorCuadro = AppTheme.themeColorNaranja;
       detallePrioridad = "Alta";
     } else {
-      colorCuadro = AppTheme.themeColorVerde;
+      colorCuadro = AppTheme.themeAmarillo;
       detallePrioridad = "Media";
     }
 
