@@ -47,18 +47,17 @@ class _ListEventEntityState extends State<ListEventEntity> {
               FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
             ),
           ),
-           Padding(
-               padding: const EdgeInsets.all(18.0),
-               child: AutoSizeText(
-                  'Nota. Si desea eliminar un registro deslize a la (<<---) izquierda o a la derecha (--->>).',
-                  style: kSubTitleCardStyle,
-                  maxLines: 2,
-                  minFontSize: 14.0,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.justify,
-                  
-                ),
-             ),
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: AutoSizeText(
+              'Nota. Si desea eliminar un registro deslize a la (<<---) izquierda o a la derecha (--->>).',
+              style: kSubTitleCardStyle,
+              maxLines: 2,
+              minFontSize: 14.0,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.justify,
+            ),
+          ),
           divider(),
           futureItemsEntity(context),
           copyRigth(),
@@ -74,15 +73,15 @@ class _ListEventEntityState extends State<ListEventEntity> {
             urlGetEvento + prefs.idInsitucion + '/-1', primaryKeyGetEvento),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-              return Center(child: CircularProgressIndicator());
-              break;
-            default:
-              //mostramos los datos
-              return listItemsEntity(context, snapshot);
-          }
-           } else {
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return Center(child: CircularProgressIndicator());
+                break;
+              default:
+                //mostramos los datos
+                return listItemsEntity(context, snapshot);
+            }
+          } else {
             return Center(child: CircularProgressIndicator());
           }
         });
@@ -185,15 +184,21 @@ class _ListEventEntityState extends State<ListEventEntity> {
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
-                    Expanded(
-                      child: Text(
-                        'Objetivo: ${entityItem.eveObjetivo}',
-                        style: kSubTitleCardStyle,
-                        softWrap: true,
-                        overflow: TextOverflow.clip,
-                      ),
-                    )
+                    Text(
+                      'Objetivo:',
+                      style: kSubTitleCardStyle,
+                      softWrap: true,
+                      overflow: TextOverflow.clip,
+                    ),
                   ],
+                ),
+                AutoSizeText(
+                  entityItem.eveObjetivo,
+                  style: kSubTitleCardStyle,
+                  maxLines: 4,
+                  minFontSize: 15.0,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.justify,
                 ),
                 Row(
                   children: <Widget>[
@@ -202,12 +207,15 @@ class _ListEventEntityState extends State<ListEventEntity> {
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
+                    Text('Lugar:'),
                     Expanded(
-                      child: Text(
-                        'Lugar: ${entityItem.eveUbicacion}',
-                        style: kSubTitleCardStyle,
-                        softWrap: true,
-                        overflow: TextOverflow.clip,
+                      child: generaHTTP_ICON(
+                        entityItem.eveUbicacion,
+                        FaIcon(
+                          FontAwesomeIcons.facebook,
+                          size: 25,
+                          color: AppTheme.themeVino,
+                        ),
                       ),
                     ),
                   ],
