@@ -45,41 +45,43 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
         title: Text("CONTACTOS DE EMERGENCIA", style: kTitleAppBar),
       ),
       drawer: DrawerCitizen(),
-      body: SafeArea(
-        child: Container(
-          decoration: boxDecorationFondo(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-             // SizedBox(height: 10.0),
-              // Container(
-              //   width: size.width * 0.96,
-              //   margin: EdgeInsets.symmetric(vertical: 0.0),
-              //   child: contenedorTitulo(
-              //     context,
-              //     40.0,
-              //     'NÚMEROS PILOTOS DE URGENCIA',
-              //     FaIcon(FontAwesomeIcons.headset, color: AppTheme.themeVino),
-              //   ),
-              // ),
-               Padding(
-               padding: const EdgeInsets.all(18.0),
-               child: AutoSizeText(
-                  'Importante. Selecciona el departamento para que puedas conocer los números de urgencia e información de las Organziaciones que pueden ayudarte de forma directa.',
-                  style: kSubTitleCardStyle,
-                  maxLines: 4,
-                  minFontSize: 14.0,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.justify,
-                  
-                ),
-             ),
+      body: SingleChildScrollView(
+              child: SafeArea(
+          child: Container(
+            decoration: boxDecorationFondo(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+               // SizedBox(height: 10.0),
+                // Container(
+                //   width: size.width * 0.96,
+                //   margin: EdgeInsets.symmetric(vertical: 0.0),
+                //   child: contenedorTitulo(
+                //     context,
+                //     40.0,
+                //     'NÚMEROS PILOTOS DE URGENCIA',
+                //     FaIcon(FontAwesomeIcons.headset, color: AppTheme.themeVino),
+                //   ),
+                // ),
+                 Padding(
+                 padding: const EdgeInsets.all(18.0),
+                 child: AutoSizeText(
+                    'Importante. Selecciona el departamento para que puedas conocer los números de urgencia e información de las Organziaciones que pueden ayudarte de forma directa.',
+                    style: kSubTitleCardStyle,
+                    maxLines: 4,
+                    minFontSize: 14.0,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.justify,
+                    
+                  ),
+               ),
 
-               _crearDepartamento(),
-              divider(),
-              futureItemsEntity(context),
-              copyRigth(),
-            ],
+                 _crearDepartamento(),
+                divider(),
+                futureItemsEntity(context),
+                copyRigth(),
+              ],
+            ),
           ),
         ),
       ),

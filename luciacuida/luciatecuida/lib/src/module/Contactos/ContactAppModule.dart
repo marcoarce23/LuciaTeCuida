@@ -19,10 +19,10 @@ class ContactAppModule extends StatefulWidget {
 }
 
 class _ContactAppModuleState extends State<ContactAppModule> {
-final generic = new Generic();
+  final generic = new Generic();
   final prefs = new PreferensUser();
 
-   int departamento = 60;
+  int departamento = 60;
   var result;
 
   @override
@@ -36,53 +36,50 @@ final generic = new Generic();
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-       appBar: AppBar(
-          backgroundColor: Colors.white,
-          toolbarOpacity: 0.7,
-          iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
-          elevation: 0,
-          title: Text("ACERCA DE LOS CONTACTOS", style: kTitleAppBar),
-        
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        toolbarOpacity: 0.7,
+        iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
+        elevation: 0,
+        title: Text("ACERCA DE LOS CONTACTOS", style: kTitleAppBar),
+      ),
+      drawer: DrawerCitizen(),
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Container(
+            decoration: boxDecorationFondo(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 10.0),
+                Container(
+                  width: size.width * 0.96,
+                  margin: EdgeInsets.symmetric(vertical: 0.0),
+                  child: contenedorTitulo(
+                    context,
+                    40.0,
+                    'ENCUENTRANOS AQUÍ',
+                    FaIcon(FontAwesomeIcons.handHoldingHeart,
+                        color: AppTheme.themeVino),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: AutoSizeText(
+                    'Importante. Selecciona el departamento para que puedas conocer a las personas que pueden guiarte sobre la Apliación u otros temas e inquietudes',
+                    style: kSubTitleCardStyle,
+                    maxLines: 3,
+                    minFontSize: 14.0,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.justify,
+                  ),
+                ),
+                //_crearDepartamento(),
+                divider(),
+                futureItemsEntity(context),
+                copyRigth(),
+              ],
             ),
-    
-        drawer: DrawerCitizen(),
-      body: SafeArea(
-        child: Container(
-          decoration: boxDecorationFondo(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(height: 10.0),
-              Container(
-                width: size.width * 0.96,
-                margin: EdgeInsets.symmetric(vertical: 0.0),
-                child: contenedorTitulo(
-                  context,
-                  40.0,
-                  'ENCUENTRANOS AQUÍ',
-                  FaIcon(FontAwesomeIcons.handHoldingHeart,
-                      color: AppTheme.themeVino),
-                ),
-              ),
-
-             Padding(
-               padding: const EdgeInsets.all(18.0),
-               child: AutoSizeText(
-                  'Importante. Selecciona el departamento para que puedas conocer a las personas que pueden guiarte sobre la Apliación u otros temas e inquietudes',
-                  style: kSubTitleCardStyle,
-                  maxLines: 3,
-                  minFontSize: 14.0,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.justify,
-                  
-                ),
-             ),
-              
-              _crearDepartamento(),
-              divider(),
-              futureItemsEntity(context),
-              copyRigth(),
-            ],
           ),
         ),
       ),
@@ -108,38 +105,34 @@ final generic = new Generic();
   Widget listItemsEntity(BuildContext context, AsyncSnapshot snapshot) {
     final size = MediaQuery.of(context).size;
 
-    return Expanded(
-      child: ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        physics: ClampingScrollPhysics(),
-        itemCount: snapshot.data.length,
-        itemBuilder: (context, index) {
-          Contactos entityItem = snapshot.data[index];
+    return ListView.builder(
+      shrinkWrap: true,
+      scrollDirection: Axis.vertical,
+      physics: ClampingScrollPhysics(),
+      itemCount: snapshot.data.length,
+      itemBuilder: (context, index) {
+        Contactos entityItem = snapshot.data[index];
 
-          return Flexible(
-                      child: Column(
-              children: <Widget>[
-                Container(
-                  width: size.width * 0.97,
-                  margin: EdgeInsets.symmetric(vertical: 0.0),
-                  decoration: boxDecorationList(),
-                  child: Column(
-                    children: <Widget>[
-                      ListTile(
-                        leading: iconEntity(entityItem),
-                        title: listEntity(context, entityItem),
-                      ),
-                    ],
+        return Column(
+          children: <Widget>[
+            Container(
+              width: size.width * 0.97,
+              margin: EdgeInsets.symmetric(vertical: 0.0),
+              decoration: boxDecorationList(),
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    leading: iconEntity(entityItem),
+                    title: listEntity(context, entityItem),
                   ),
-                ),
-                SizedBox(height: 8.0),
-                //  divider(),
-              ],
+                ],
+              ),
             ),
-          );
-        },
-      ),
+            SizedBox(height: 8.0),
+            //  divider(),
+          ],
+        );
+      },
     );
   }
 
@@ -147,7 +140,7 @@ final generic = new Generic();
     return Row(
       children: <Widget>[
         Flexible(
-                  child: Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -160,7 +153,14 @@ final generic = new Generic();
                         color: AppTheme.themeVino,
                         size: 15,
                       ),
-                      Text('${entityItem.nombre} ', style: kTitleCardStyle),
+                      Expanded(
+                        child: Text(
+                          entityItem.nombre,
+                          style: kSubTitleCardStyle,
+                          softWrap: true,
+                          overflow: TextOverflow.clip,
+                        ),
+                      ),
                     ],
                   )),
 
@@ -187,71 +187,73 @@ final generic = new Generic();
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
-                    RichText(
-                      overflow: TextOverflow.clip,
-                      text: TextSpan(
-                        text: 'Correo: ${entityItem.correo}',
-                        style: TextStyle(fontSize: 14, color: Colors.black),
+                    Expanded(
+                      child: Text(
+                        'Correo: ${entityItem.correo}',
+                        style: kSubTitleCardStyle,
+                        softWrap: true,
+                        overflow: TextOverflow.clip,
                       ),
                     ),
                   ],
                 ),
               ),
-            //  Text('Puedes contactactarte por aca',
-            //             style: TextStyle(fontSize: 15, color: Colors.black87),
-            //           ),
-              SizedBox(height:7.0),
-             
-                Wrap(
-                  children: <Widget>[
-                       InkWell(
-                      child: FaIcon(
-                        FontAwesomeIcons.phoneVolume,
-                        color: AppTheme.themeVino,
-                        size: 25,
-                      ),
-                      onTap: () {
-                        callNumber(entityItem.telefono);
-                      },
+              //  Text('Puedes contactactarte por aca',
+              //             style: TextStyle(fontSize: 15, color: Colors.black87),
+              //           ),
+              SizedBox(height: 7.0),
+
+              Wrap(
+                children: <Widget>[
+                  InkWell(
+                    child: FaIcon(
+                      FontAwesomeIcons.phoneVolume,
+                      color: AppTheme.themeVino,
+                      size: 25,
                     ),
-                    SizedBox(width: 20.0),
-                    InkWell(
-                      child: FaIcon(
-                        FontAwesomeIcons.comment,
-                        color: AppTheme.themeVino,
-                        size: 25,
-                      ),
-                      onTap: () {
-                        sendSMS(entityItem.telefono);
-                      },
+                    onTap: () {
+                      callNumber(entityItem.telefono);
+                    },
+                  ),
+                  SizedBox(width: 20.0),
+                  InkWell(
+                    child: FaIcon(
+                      FontAwesomeIcons.comment,
+                      color: AppTheme.themeVino,
+                      size: 25,
                     ),
-                    SizedBox(width: 20.0),
-                    InkWell(
-                      child: FaIcon(
-                        FontAwesomeIcons.mailBulk,
-                        color: AppTheme.themeVino,
-                        size: 25,
-                      ),
-                      onTap: () {
-                        sendEmailAdvanced(
-                            entityItem.correo,
-                            "Colaboración ${entityItem.telefono}",
-                            "Estimad@:  ${entityItem.telefono}, favor su colaboración sobre la aplicación ");
-                      },
+                    onTap: () {
+                      sendSMS(entityItem.telefono);
+                    },
+                  ),
+                  SizedBox(width: 20.0),
+                  InkWell(
+                    child: FaIcon(
+                      FontAwesomeIcons.mailBulk,
+                      color: AppTheme.themeVino,
+                      size: 25,
                     ),
-                    SizedBox(width: 20.0),
-                    InkWell(
-                      child: FaIcon(
-                        FontAwesomeIcons.whatsapp,
-                        color: AppTheme.themeVino,
-                        size: 25,
-                      ),
-                      onTap: () {
-                        callWhatsAppText(entityItem.telefono, 'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *SomosUnoBolivia*.' );
-                      },
-                    )
-                  ],
-                ),
+                    onTap: () {
+                      sendEmailAdvanced(
+                          entityItem.correo,
+                          "Colaboración ${entityItem.telefono}",
+                          "Estimad@:  ${entityItem.telefono}, favor su colaboración sobre la aplicación ");
+                    },
+                  ),
+                  SizedBox(width: 20.0),
+                  InkWell(
+                    child: FaIcon(
+                      FontAwesomeIcons.whatsapp,
+                      color: AppTheme.themeVino,
+                      size: 25,
+                    ),
+                    onTap: () {
+                      callWhatsAppText(entityItem.telefono,
+                          'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *EstamosContigo*.');
+                    },
+                  )
+                ],
+              ),
             ],
           ),
         ),
@@ -264,8 +266,9 @@ final generic = new Generic();
         child: Column(
       children: <Widget>[
         ImageOvalNetwork(
-         //   imageNetworkUrl:entityItem.foto.length > 0 ? entityItem.foto : 'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg',
-         imageNetworkUrl: 'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg',
+            //   imageNetworkUrl:entityItem.foto.length > 0 ? entityItem.foto : 'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg',
+            imageNetworkUrl:
+                'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg',
             sizeImage: Size.fromWidth(50)),
         // SizedBox(
         //   height: 1.5,
@@ -279,7 +282,7 @@ final generic = new Generic();
     ));
   }
 
- _crearDepartamento() {
+  _crearDepartamento() {
     return Center(
         child: FutureBuilder(
             future: generic.getAll(new GetClasificador(), urlGetDepartamento,
@@ -296,7 +299,7 @@ final generic = new Generic();
                           color: AppTheme.themeVino),
                       value: departamento.toString(),
                       items: getDropDown(snapshot),
-                      onChanged: (value)  {
+                      onChanged: (value) {
                         setState(() {
                           departamento = int.parse(value);
                         });
@@ -310,7 +313,7 @@ final generic = new Generic();
             }));
   }
 
-    List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
+  List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
     List<DropdownMenuItem<String>> listaE = new List();
 
     for (var i = 0; i < snapshot.data.length; i++) {
@@ -322,5 +325,4 @@ final generic = new Generic();
     }
     return listaE;
   }
-
 }
