@@ -162,7 +162,10 @@ class _CitizenEventsDetailModuleState extends State<CitizenEventsDetailModule> {
                 style: TextStyle(
                     fontWeight: FontWeight.w800,
                     fontSize: 14,
-                    color: AppTheme.themeVino),
+                    color: AppTheme.themeVino,
+                    ),
+                      softWrap: true,
+                      overflow: TextOverflow.clip,
               ),
               Row(
                 children: <Widget>[
@@ -187,20 +190,24 @@ class _CitizenEventsDetailModuleState extends State<CitizenEventsDetailModule> {
                 style: TextStyle(
                     fontWeight: FontWeight.w800,
                     fontSize: 14,
-                    color: AppTheme.themeVino),
+                    color: AppTheme.themeVino),              
+              softWrap: true,
+                      overflow: TextOverflow.clip,
               ),
               Row(
                 children: <Widget>[
                   SizedBox(
                     width: 15,
                   ),
-                  generaHTTP_ICON(
-                      widget.eventosItem.ubicacion,
-                      FaIcon(
-                        FontAwesomeIcons.internetExplorer,
-                        size: 25,
-                        color: AppTheme.themeVino,
-                      )),
+                  Expanded(
+                                      child: generaHTTP_ICON(
+                        widget.eventosItem.ubicacion,
+                        FaIcon(
+                          FontAwesomeIcons.internetExplorer,
+                          size: 25,
+                          color: AppTheme.themeVino,
+                        )),
+                  ),
                 ],
               ),
               copyRigth(),
