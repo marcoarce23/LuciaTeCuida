@@ -294,7 +294,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                     SizedBox(
                       height: 5.0,
                     ),
-                    Text('ANTES DE CREAR TU ORGANIZACIÓN',
+                    Text('INFORMACIÓN DE TU ORGANIZACIÓN',
                         style: kSigsTitleStyle),
                     divider(),
                     listEntity(context, entityItem),
@@ -488,23 +488,24 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                     ),
                   ],
                 ),
-                Row(
-                  children: <Widget>[
+                // Row(
+                //   children: <Widget>[
                     AutoSizeText(
                       entityItem.perInformacionComp,
                       style: kSubTitleCardStyle,
-                      maxLines: 2,
+                      maxLines: 3,
                       minFontSize: 15.0,
                       overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.justify,
                     ),
-                  ],
-                ),
+                //   ],
+                // ),
                 Row(
                   children: <Widget>[
                     Column(
                       children: <Widget>[
                         Text(
-                          'Tus RRSS :',
+                          'TUS RRSS:',
                           style: kSubTitleCardStyle,
                         ),
                       ],
@@ -601,7 +602,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                     size: 15,
                   ),
                   Text(
-                    'Lunes : ${entityItem.lunesH} ',
+                    'Lunes         :     ${entityItem.lunesH} ',
                     style: kTitleWelcomeStyle,
                   ),
                 ],
@@ -614,7 +615,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                     size: 15,
                   ),
                   Text(
-                    'Martes: ${entityItem.martesH}',
+                    'Martes       :     ${entityItem.martesH}',
                     style: kTitleWelcomeStyle,
                   )
                 ],
@@ -628,7 +629,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                     size: 15,
                   ),
                   Text(
-                    'Miercoles: ${entityItem.miercolesH}',
+                    'Miercoles  :     ${entityItem.miercolesH}',
                     style: kTitleWelcomeStyle,
                   ),
                 ],
@@ -641,7 +642,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                     size: 15,
                   ),
                   Text(
-                    'Jueves: ${entityItem.juevesH}',
+                    'Jueves       :     ${entityItem.juevesH}',
                     style: kTitleWelcomeStyle,
                   )
                 ],
@@ -654,7 +655,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                     size: 15,
                   ),
                   Text(
-                    'Viernes: ${entityItem.viernesH}',
+                    'Viernes      :     ${entityItem.viernesH}',
                     style: kTitleWelcomeStyle,
                   )
                 ],
@@ -667,7 +668,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                     size: 15,
                   ),
                   Text(
-                    'Sábado: ${entityItem.sabadoH}',
+                    'Sábado      :    ${entityItem.sabadoH}',
                     style: kTitleWelcomeStyle,
                   )
                 ],
@@ -680,7 +681,7 @@ class _InformationEntityModuleState extends State<InformationEntityModule> {
                     size: 15,
                   ),
                   Text(
-                    'Domingo: ${entityItem.domingoH}',
+                    'Domingo   :    ${entityItem.domingoH}',
                     style: kTitleWelcomeStyle,
                   )
                 ],

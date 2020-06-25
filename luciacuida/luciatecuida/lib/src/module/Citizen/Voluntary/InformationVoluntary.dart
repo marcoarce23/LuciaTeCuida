@@ -434,7 +434,7 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
                 Row(
                   children: <Widget>[
                     Icon(
-                      Icons.account_box,
+                      Icons.featured_play_list,
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
@@ -442,17 +442,20 @@ class _InformationVoluntaryState extends State<InformationVoluntary> {
                       'Información Complementaria:',
                       style: kSubTitleCardStyle,
                     ),
-                     AutoSizeText(
-                         entityItem.perInformacionComplementaria,
-                        style: TextStyle(
-                            color: AppTheme.themePlomo, fontSize: 16.0),
-                        maxLines: 2,
-                        minFontSize: 15.0,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-
                   ],
                 ),
+                // Row(
+                //   children: <Widget>[
+                    AutoSizeText(
+                      entityItem.perInformacionComplementaria,
+                      style: kSubTitleCardStyle,
+                      maxLines: 3,
+                      minFontSize: 15.0,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.justify,
+                    ),
+                //   ],
+                // ),
 
                
 
