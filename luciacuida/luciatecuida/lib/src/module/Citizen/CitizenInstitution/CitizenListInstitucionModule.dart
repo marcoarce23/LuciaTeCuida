@@ -83,7 +83,7 @@ class _CitizenListInstitucionModuleState
   Widget futureItemsInstitution(BuildContext context) {
     return FutureBuilder(
         future: generic.getAll(new InstitucionesItems(),
-            urlGetListaInstituciones, primaryKeyGetListaInstituciones),
+            urlGetListaInstituciones+'/'+ departamento.toString()  , primaryKeyGetListaInstituciones),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:
