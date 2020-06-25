@@ -45,7 +45,6 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
         title: Text("CONTACTOS DE EMERGENCIA", style: kTitleAppBar),
       ),
       drawer: DrawerCitizen(),
-<<<<<<< HEAD
       body: SafeArea(
         child: Container(
           decoration: boxDecorationFondo(),
@@ -81,31 +80,6 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
               futureItemsEntity(context),
               copyRigth(),
             ],
-=======
-      body: SingleChildScrollView(
-              child: SafeArea(
-          child: Container(
-            decoration: boxDecorationFondo(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(height: 10.0),
-                Container(
-                  width: size.width * 0.96,
-                  margin: EdgeInsets.symmetric(vertical: 0.0),
-                  child: contenedorTitulo(
-                    context,
-                    40.0,
-                    'NÚMEROS PILOTOS DE URGENCIA',
-                    FaIcon(FontAwesomeIcons.headset, color: AppTheme.themeVino),
-                  ),
-                ),
-                divider(),
-                futureItemsEntity(context),
-                copyRigth(),
-              ],
-            ),
->>>>>>> developer
           ),
         ),
       ),

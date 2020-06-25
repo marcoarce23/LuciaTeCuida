@@ -46,34 +46,31 @@ final generic = new Generic();
             ),
     
         drawer: DrawerCitizen(),
-      body: SingleChildScrollView(
-              child: SafeArea(
-          child: Container(
-            decoration: boxDecorationFondo(),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(height: 10.0),
-                Container(
-                  width: size.width * 0.96,
-                  margin: EdgeInsets.symmetric(vertical: 0.0),
-                  child: contenedorTitulo(
-                    context,
-                    40.0,
-                    'ENCUENTRANOS AQUÍ',
-                    FaIcon(FontAwesomeIcons.handHoldingHeart,
-                        color: AppTheme.themeVino),
-                  ),
+      body: SafeArea(
+        child: Container(
+          decoration: boxDecorationFondo(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(height: 10.0),
+              Container(
+                width: size.width * 0.96,
+                margin: EdgeInsets.symmetric(vertical: 0.0),
+                child: contenedorTitulo(
+                  context,
+                  40.0,
+                  'ENCUENTRANOS AQUÍ',
+                  FaIcon(FontAwesomeIcons.handHoldingHeart,
+                      color: AppTheme.themeVino),
                 ),
-<<<<<<< HEAD
               ),
 
              Padding(
                padding: const EdgeInsets.all(18.0),
                child: AutoSizeText(
-                  'Importante. Selecciona el departamento para que puedas conocer a las personas que pueden guiarte sobre la Apliación u otros temas e inquietudes.',
+                  'Importante. Selecciona el departamento para que puedas conocer a las personas que pueden guiarte sobre la Apliación u otros temas e inquietudes',
                   style: kSubTitleCardStyle,
-                  maxLines: 4,
+                  maxLines: 3,
                   minFontSize: 14.0,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.justify,
@@ -86,13 +83,6 @@ final generic = new Generic();
               futureItemsEntity(context),
               copyRigth(),
             ],
-=======
-                divider(),
-                futureItemsEntity(context),
-                copyRigth(),
-              ],
-            ),
->>>>>>> developer
           ),
         ),
       ),
@@ -118,34 +108,38 @@ final generic = new Generic();
   Widget listItemsEntity(BuildContext context, AsyncSnapshot snapshot) {
     final size = MediaQuery.of(context).size;
 
-    return ListView.builder(
-      shrinkWrap: true,
-      scrollDirection: Axis.vertical,
-      physics: ClampingScrollPhysics(),
-      itemCount: snapshot.data.length,
-      itemBuilder: (context, index) {
-        Contactos entityItem = snapshot.data[index];
+    return Expanded(
+      child: ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        physics: ClampingScrollPhysics(),
+        itemCount: snapshot.data.length,
+        itemBuilder: (context, index) {
+          Contactos entityItem = snapshot.data[index];
 
-        return Column(
-            children: <Widget>[
-              Container(
-                width: size.width * 0.97,
-                margin: EdgeInsets.symmetric(vertical: 0.0),
-                decoration: boxDecorationList(),
-                child: Column(
-                  children: <Widget>[
-        ListTile(
-          leading: iconEntity(entityItem),
-          title: listEntity(context, entityItem),
-        ),
-                  ],
+          return Flexible(
+                      child: Column(
+              children: <Widget>[
+                Container(
+                  width: size.width * 0.97,
+                  margin: EdgeInsets.symmetric(vertical: 0.0),
+                  decoration: boxDecorationList(),
+                  child: Column(
+                    children: <Widget>[
+                      ListTile(
+                        leading: iconEntity(entityItem),
+                        title: listEntity(context, entityItem),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(height: 8.0),
-              //  divider(),
-            ],
+                SizedBox(height: 8.0),
+                //  divider(),
+              ],
+            ),
           );
-      },
+        },
+      ),
     );
   }
 
