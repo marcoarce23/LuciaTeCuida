@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
@@ -50,9 +51,7 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
                       context: context, delegate: DataSearchEncuentraUnAmigo());
                 },
               ),
-              Opacity(
-                  opacity: _notificacion.length > 1 ? 1.0 : 0.0,
-                  child: Text('Pantalla redireccionado por una notificación')),
+            
             ],
           ),
           drawer: DrawerCitizen(),
@@ -73,6 +72,23 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
                   FaIcon(FontAwesomeIcons.peopleCarry,
                       color: AppTheme.themeVino),
                 ),
+                  Opacity(
+                  opacity: _notificacion.length > 1 ? 1.0 : 0.0,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal:15.0),
+                    child: AutoSizeText(
+                'Atención: Nuevo voluntario registrado.',
+                style: kSubTitleCardStyle,
+                maxLines: 1,
+                minFontSize: 13.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
+                  )),
+                  
+                  
+         
+
                 _crearDepartamento(),
                 SizedBox(
                   height: 15,

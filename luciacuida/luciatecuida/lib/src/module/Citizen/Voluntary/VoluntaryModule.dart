@@ -458,15 +458,15 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
         prefs.idInsitucion = list[0];
         prefs.idPersonal = list[1];
 
-        if (estado == 0) {
-          enviarNotificaciones(
-              urlGetToken + '2/${prefs.idInsitucion}',
-              'Voluntario',
-              'Nuevo voluntario',
-              nombre.objectValue,
-              'Bienvenido al Grupo',
-              prefs.nombreInstitucion);
-        }
+        // if (estado == 0) {
+        //   enviarNotificaciones(
+        //       urlGetToken + '2/${prefs.idInsitucion}',
+        //       'Voluntario',
+        //       'Nuevo voluntario',
+        //       nombre.objectValue,
+        //       'Bienvenido al Grupo',
+        //       prefs.nombreInstitucion);
+        // }
         Navigator.of(context).push(CupertinoPageRoute(
             builder: (BuildContext context) => VoluntaryAllModule()));
 
