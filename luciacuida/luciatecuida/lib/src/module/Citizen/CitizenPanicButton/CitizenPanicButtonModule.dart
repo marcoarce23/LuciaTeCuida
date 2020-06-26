@@ -172,7 +172,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                                 });
                               },
                             ),
-                            Text('Medicamentos-alimentos',
+                            Text('Medicamentos-Víveres',
                                 style: TextStyle(fontSize: 12)),
                             Radio(
                               value: 66,

@@ -130,7 +130,7 @@ class _PageMedicinaState extends State<PageMedicina> {
               ),
               Opacity(
                   opacity: _notificacion.length > 1 ? 1.0 : 0.0,
-                  child: Text('Pantalla redireccionado por una notificación')),
+                  child: Text('Atención: Ayuda urgente activada.')),
               Align(
                   alignment: Alignment.topRight,
                   child: Padding(
@@ -443,7 +443,7 @@ class _PageCovidState extends State<PageCovid> {
               ),
               Opacity(
                   opacity: _notificacion.length > 1 ? 1.0 : 0.0,
-                  child: Text('Pantalla redireccionado por una notificación')),
+                  child: Text('Atención: Ayuda urgente activada.')),
               Align(
                   alignment: Alignment.topRight,
                   child: Padding(
@@ -779,7 +779,7 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
               ),
               Opacity(
                   opacity: _notificacion.length > 1 ? 1.0 : 0.0,
-                  child: Text('Pantalla redireccionado por una notificación')),
+                  child: Text('Atención: Ayuda urgente activada.')),
               Align(
                   alignment: Alignment.topRight,
                   child: Padding(
@@ -1113,7 +1113,7 @@ class _PageBonosState extends State<PageBonos> {
               ),
               Opacity(
                   opacity: _notificacion.length > 1 ? 1.0 : 0.0,
-                  child: Text('Pantalla redireccionado por una notificación')),
+                  child: Text('Atención: Ayuda urgente activada.')),
               Align(
                   alignment: Alignment.topRight,
                   child: Padding(
@@ -1451,7 +1451,7 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
               ),
               Opacity(
                   opacity: _notificacion.length > 1 ? 1.0 : 0.0,
-                  child: Text('Pantalla redireccionado por una notificación')),
+                  child: Text('Atención: Ayuda urgente activada.')),
               Align(
                   alignment: Alignment.topRight,
                   child: Padding(

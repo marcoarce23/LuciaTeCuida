@@ -46,7 +46,7 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
               //backgroundColor: colorCuadro,
             ),
             drawer: DrawerCitizen(),
-            floatingActionButton: generaFloatbuttonHome(context),
+            floatingActionButton: generaFloatButtonAtencion(context),
             // backgroundColor: Colors.red,
             body: SingleChildScrollView(
               child: Column(
@@ -229,23 +229,32 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
                               fontSize: 14,
                             ),
                           ),
+
+
                           Row(
                             children: <Widget>[
                               SizedBox(
                                 width: 15,
                               ),
-                              Text(
-                                (solicitudAyuda.nombrePersonalAtendio.length <=
-                                        0)
-                                    ? "En curso de atención"
-                                    : solicitudAyuda.nombrePersonalAtendio,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 14,
+                              Expanded(
+                                child: Text(
+                                                   (solicitudAyuda.nombrePersonalAtendio.length <=
+                                          0)
+                                      ? "En curso de atención"
+                                      : solicitudAyuda.nombrePersonalAtendio,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14,
+                                  ),
                                 ),
                               ),
                             ],
                           ),
+
+
+
+
+
                           Text(
                             "Institución:",
                             style: TextStyle(

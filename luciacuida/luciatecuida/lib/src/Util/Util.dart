@@ -10,7 +10,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
 import 'package:luciatecuida/src/Model/Generic.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
+import 'package:luciatecuida/src/module/Citizen/CitizenEmergency/CitizenEmergencyModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenEvents/CitizenEventsModule.dart';
+import 'package:luciatecuida/src/module/Citizen/CitizenMultimedia/CitizenMultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/InformationEntity.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/InformationVoluntary.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
@@ -195,6 +197,38 @@ Widget generaHTTP_ICON(String cadena, FaIcon icon) {
         maxLines: 2,
         minFontSize: 15.0);
   }
+}
+
+Widget generaFloatButtonAtencion(BuildContext context) {
+  return FloatingActionButton(
+    onPressed: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CitizenEmergencyModule(),
+          ));
+    },
+    child: FaIcon(
+      FontAwesomeIcons.arrowLeft,
+    ),
+    backgroundColor: AppTheme.themeVino,
+  );
+}
+
+Widget generaFloatButtonMultimedia(BuildContext context) {
+  return FloatingActionButton(
+    onPressed: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CitizenMultimediaModule(),
+          ));
+    },
+    child: FaIcon(
+      FontAwesomeIcons.arrowLeft,
+    ),
+    backgroundColor: AppTheme.themeVino,
+  );
 }
 
 

@@ -1,8 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
 import 'package:luciatecuida/src/Model/PreferenceUser.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/Util/Util.dart';
+import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 
 class CitizenImageDetailModule extends StatefulWidget {
@@ -58,7 +60,7 @@ class _CitizenImageDetailModuleState extends State<CitizenImageDetailModule> {
                     "Titulo:".toUpperCase(),
                     style: TextStyle(fontWeight: FontWeight.w700,color:  AppTheme.themeVino),
                   ),
-                  Text(widget.multimediaImagen.mulTitulo),
+                  Text(widget.multimediaImagen.mulTitulo, style: kSubTitleCardStyle,),
                 ],
               ),
             ),
@@ -70,7 +72,7 @@ class _CitizenImageDetailModuleState extends State<CitizenImageDetailModule> {
                     "Tipo material:".toUpperCase(),
                     style: TextStyle(fontWeight: FontWeight.w700,color:  AppTheme.themeVino),
                   ),
-                  Text(widget.multimediaImagen.mulTipoMaterial),
+                  Text(widget.multimediaImagen.mulTipoMaterial, style: kSubTitleCardStyle,),
                 ],
               ),
             ),
@@ -82,16 +84,32 @@ class _CitizenImageDetailModuleState extends State<CitizenImageDetailModule> {
                     "Descripción:".toUpperCase(),
                     style: TextStyle(fontWeight: FontWeight.w700,color:  AppTheme.themeVino),
                   ),
-                  Text(widget.multimediaImagen.mulResumen),
+               
+                  
                 ],
               ),
-            ),
+),
+               Padding(
+                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                 child: AutoSizeText(
+                        widget.multimediaImagen.mulResumen,
+                        style: kSubTitleCardStyle,
+                        maxLines: 3,
+                        minFontSize: 15.0,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.justify,
+                      ),
+               ),
+
+copyRigth(),
+            
           
           ],
         ),
+        
       ),
       drawer: DrawerCitizen(),
-floatingActionButton: generaFloatbuttonHome(context),        
+floatingActionButton: generaFloatButtonMultimedia(context),        
 
 
     );

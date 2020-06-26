@@ -381,7 +381,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
                       onChanged: (value) {
                         setState(() {
                           valorTipoEspecialidad = int.parse(value);
-                          //print('valorTipoEspecialidad $valorTipoEspecialidad');
+                          print('valorTipoEspecialidad $valorTipoEspecialidad');
                         });
                       },
                     ),
