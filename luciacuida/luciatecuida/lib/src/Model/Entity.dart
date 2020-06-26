@@ -1187,6 +1187,7 @@ class InstitucionesItems extends Entity {
   String correo;
   String informacionComplementaria;
   String telefono;
+   int idUbicacion;
 
   InstitucionesItems(
       {this.idInstitucion,
@@ -1204,6 +1205,7 @@ class InstitucionesItems extends Entity {
       this.urlPaginaYoutube,
       this.urlPaginaTwitter,
       this.url,
+      this.idUbicacion,
       this.miembros});
 
   fromJson(Map<String, dynamic> json) => new InstitucionesItems(
@@ -1222,6 +1224,7 @@ class InstitucionesItems extends Entity {
       urlPaginaYoutube: json["INS_CUENTAYOUTUBE"],
       urlPaginaTwitter: json["INS_CUENTATWITTER"],
       url: json["INS_FOTO"],
+      idUbicacion: json["IDA_UBICACION"],
       miembros: json["CANTIDAD_PROFESIONALES"]);
 
   Map<String, dynamic> toJson() => {
@@ -1239,6 +1242,7 @@ class InstitucionesItems extends Entity {
         "INS_PAGINAWEB": urlPaginaWeb,
         "INS_CUENTACEBOOK": urlPaginaFacebook,
         "INS_CUENTAYOUTUBE": urlPaginaYoutube,
+        "IDA_UBICACION": idUbicacion,
         "INS_CUENTATWITTER": urlPaginaTwitter,
         "CANTIDAD_PROFESIONALES": miembros
       };

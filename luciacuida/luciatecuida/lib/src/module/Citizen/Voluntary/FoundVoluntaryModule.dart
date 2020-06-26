@@ -43,16 +43,17 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
             iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
             elevation: 0,
             title: Text("BUSCA UN VOLUNTARIO", style: kTitleAppBar),
-            actions: <Widget>[
+            /*actions: <Widget>[
               IconButton(
                 icon: Icon(Icons.search),
                 onPressed: () {
                   showSearch(
-                      context: context, delegate: DataSearchEncuentraUnAmigo());
+                      context: context, delegate: DataSearchEncuentraUnAmigo(departamento));
                 },
               ),
             
             ],
+            */
           ),
           drawer: DrawerCitizen(),
           floatingActionButton: generaFloatbuttonHome(context),
@@ -142,7 +143,7 @@ class _FoundVoluntaryModuleState extends State<FoundVoluntaryModule> {
               context,
               MaterialPageRoute(
                   builder: (context) => FoundAllVoluntaryModule(
-                        profesional: profesional,
+                        profesional: profesional, departamento: departamento,
                       )),
             );
           } else {

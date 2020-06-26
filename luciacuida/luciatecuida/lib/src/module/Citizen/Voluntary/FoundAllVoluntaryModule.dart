@@ -11,9 +11,11 @@ import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 
 class FoundAllVoluntaryModule extends StatefulWidget {
   final ProfesionalesAgrupados profesional;
+final int departamento;
+
   static final String routeName = 'EncontrarTodosLosVoluntarios';
 
-  const FoundAllVoluntaryModule({Key key, @required this.profesional})
+  const FoundAllVoluntaryModule({Key key, @required this.profesional, @required this.departamento  })
       : super(key: key);
 
   @override
@@ -295,7 +297,10 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
                 '/' +
                 widget.profesional.idInstitucion.toString() +
                 '/' +
-                widget.profesional.idProfesion.toString(),
+                widget.profesional.idProfesion.toString()+
+                '/' +
+                widget.departamento.toString()
+                ,
             primaryKeyListaProfesionalesInstitucion),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {

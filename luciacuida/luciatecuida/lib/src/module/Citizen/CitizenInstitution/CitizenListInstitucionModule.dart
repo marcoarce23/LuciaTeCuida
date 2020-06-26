@@ -44,7 +44,7 @@ class _CitizenListInstitucionModuleState
           IconButton(
             icon: Icon(Icons.search),
             onPressed: () {
-              showSearch(context: context, delegate: DataSearchInstituciones());
+              showSearch(context: context, delegate: DataSearchInstituciones( departamento ));
             },
           )
         ],

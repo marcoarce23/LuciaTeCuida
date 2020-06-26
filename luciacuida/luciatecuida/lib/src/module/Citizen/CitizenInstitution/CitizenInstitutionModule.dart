@@ -27,6 +27,7 @@ class CitizenInstitutionModule extends StatefulWidget {
 class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
   final generic = new Generic();
   final prefs = new PreferensUser();
+  
 
   @override
   void initState() {
@@ -352,7 +353,7 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
             context,
             MaterialPageRoute(
                 builder: (context) => FoundAllVoluntaryModule(
-                      profesional: profesional,
+                      profesional: profesional, departamento: widget.institutionItem.idUbicacion  ,
                     )),
           );
         },
