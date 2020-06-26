@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
@@ -128,6 +129,14 @@ class _PageMedicinaState extends State<PageMedicina> {
                 "Medicina".toUpperCase(),
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
+              AutoSizeText(
+                'Estamos en el Departamento de : ${obtenerDepartamento(prefs.idDepartamento)} ',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
               Opacity(
                   opacity: _notificacion.length > 1 ? 1.0 : 0.0,
                   child: Text('Atención: Ayuda urgente activada.')),
@@ -183,7 +192,7 @@ class _PageMedicinaState extends State<PageMedicina> {
     return FutureBuilder(
         future: Generic().getAll(
             new SolicitudAyuda(),
-            urlGetListaSolicitudesAyudas + '/64',
+            urlGetListaSolicitudesAyudas + '/64'+'/'+ prefs.idDepartamento.toString() ,
             primaryKeyListaSolicitudesAyudas),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
@@ -441,6 +450,14 @@ class _PageCovidState extends State<PageCovid> {
                 "Consulta Covid".toUpperCase(),
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
+              AutoSizeText(
+                'Estamos en el Departamento de : ${obtenerDepartamento(prefs.idDepartamento)} ',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
               Opacity(
                   opacity: _notificacion.length > 1 ? 1.0 : 0.0,
                   child: Text('Atención: Ayuda urgente activada.')),
@@ -496,7 +513,7 @@ class _PageCovidState extends State<PageCovid> {
     return FutureBuilder(
         future: Generic().getAll(
             new SolicitudAyuda(),
-            urlGetListaSolicitudesAyudas + '/65',
+            urlGetListaSolicitudesAyudas + '/65'+'/'+ prefs.idDepartamento.toString(),
             primaryKeyListaSolicitudesAyudas),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
@@ -777,6 +794,14 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
                 "Medicamentos y abastecimientos".toUpperCase(),
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
+              AutoSizeText(
+                'Estamos en el Departamento de : ${obtenerDepartamento(prefs.idDepartamento)} ',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
               Opacity(
                   opacity: _notificacion.length > 1 ? 1.0 : 0.0,
                   child: Text('Atención: Ayuda urgente activada.')),
@@ -832,7 +857,7 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
     return FutureBuilder(
         future: Generic().getAll(
             new SolicitudAyuda(),
-            urlGetListaSolicitudesAyudas + '/66',
+            urlGetListaSolicitudesAyudas + '/66'+'/'+ prefs.idDepartamento.toString(),
             primaryKeyListaSolicitudesAyudas),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
@@ -1111,6 +1136,14 @@ class _PageBonosState extends State<PageBonos> {
                 "Bonos y otros servicios".toUpperCase(),
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
+              AutoSizeText(
+                'Estamos en el Departamento de : ${obtenerDepartamento(prefs.idDepartamento)} ',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
               Opacity(
                   opacity: _notificacion.length > 1 ? 1.0 : 0.0,
                   child: Text('Atención: Ayuda urgente activada.')),
@@ -1166,7 +1199,7 @@ class _PageBonosState extends State<PageBonos> {
     return FutureBuilder(
         future: Generic().getAll(
             new SolicitudAyuda(),
-            urlGetListaSolicitudesAyudas + '/77',
+            urlGetListaSolicitudesAyudas + '/77'+'/'+ prefs.idDepartamento.toString(),
             primaryKeyListaSolicitudesAyudas),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
@@ -1449,6 +1482,14 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
                 "Ayuda a un amig@".toUpperCase(),
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
+              AutoSizeText(
+                'Estamos en el Departamento de : ${obtenerDepartamento(prefs.idDepartamento)} ',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
               Opacity(
                   opacity: _notificacion.length > 1 ? 1.0 : 0.0,
                   child: Text('Atención: Ayuda urgente activada.')),
@@ -1503,7 +1544,7 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
     return FutureBuilder(
         future: Generic().getAll(
             new SolicitudAyuda(),
-            urlGetListaSolicitudesAyudas + '/-1',
+            urlGetListaSolicitudesAyudas + '/-1'+'/'+ prefs.idDepartamento.toString(),
             primaryKeyListaSolicitudesAyudas),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
