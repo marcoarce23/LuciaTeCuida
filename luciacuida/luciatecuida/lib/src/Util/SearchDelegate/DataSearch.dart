@@ -9,6 +9,12 @@ import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 import 'package:luciatecuida/src/module/UtilModule/PageViewModule.dart';
 
 class DataSearchInstituciones extends SearchDelegate {
+  int departamento = 60;
+
+  DataSearchInstituciones(int departamento) {
+    this.departamento = departamento;
+  }
+
   @override
   List<Widget> buildActions(BuildContext context) {
     //acctiones para limpiar el texto o cancelar la busqueda
@@ -45,12 +51,14 @@ class DataSearchInstituciones extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     //Son las sugerencias cuando la person escribe
-     if (query.isEmpty) {
+    if (query.isEmpty) {
       return Container();
     } else {
       return FutureBuilder(
-          future: Generic().getAll(new InstitucionesItems(),
-              urlGetListaInstituciones, primaryKeyGetListaInstituciones),
+          future: Generic().getAll(
+              new InstitucionesItems(),
+              urlGetListaInstituciones + '/' + departamento.toString(),
+              primaryKeyGetListaInstituciones),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
@@ -101,7 +109,7 @@ class DataSearchMultimedia extends SearchDelegate {
   @override
   List<Widget> buildActions(BuildContext context) {
     //acctiones para limpiar el texto o cancelar la busqueda
-     return [
+    return [
       IconButton(
         icon: Icon(Icons.clear),
         onPressed: () {
@@ -134,12 +142,12 @@ class DataSearchMultimedia extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     //Son las sugerencias cuando la person escribe
-     if (query.isEmpty) {
+    if (query.isEmpty) {
       return Container();
     } else {
       return FutureBuilder(
-          future: Generic().getAll(
-            new Multimedia(), urlGetMultimedia + '74', primaryKeyGetMultimedia),
+          future: Generic().getAll(new Multimedia(), urlGetMultimedia + '74',
+              primaryKeyGetMultimedia),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
@@ -210,10 +218,16 @@ class DataSearchMultimedia extends SearchDelegate {
 }
 
 class DataSearchEncuentraUnAmigo extends SearchDelegate {
+  int departamento = 60;
+
+  DataSearchEncuentraUnAmigo(int departamento) {
+    departamento = departamento;
+  }
+
   @override
   List<Widget> buildActions(BuildContext context) {
     //acctiones para limpiar el texto o cancelar la busqueda
-     return [
+    return [
       IconButton(
         icon: Icon(Icons.clear),
         onPressed: () {
@@ -252,7 +266,7 @@ class DataSearchEncuentraUnAmigo extends SearchDelegate {
       return FutureBuilder(
           future: Generic().getAll(
               new ProfesionalesAgrupados(),
-              urlGetTodosGruposProfesionales,
+              urlGetTodosGruposProfesionales+'/'+departamento.toString(),
               primaryKeyTodosGruposProfesionales),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
@@ -272,7 +286,7 @@ class DataSearchEncuentraUnAmigo extends SearchDelegate {
                         if (profesionalesAgrupados.profesion
                             .toLowerCase()
                             .contains(query.toLowerCase())) {
-                          return InkWell(
+                           InkWell(
                             child: ListTile(
                               title: Text(profesionalesAgrupados.profesion),
                               subtitle: Text("Contamos con " +
@@ -286,7 +300,7 @@ class DataSearchEncuentraUnAmigo extends SearchDelegate {
                                 MaterialPageRoute(
                                     builder: (context) =>
                                         FoundAllVoluntaryModule(
-                                          profesional: profesionalesAgrupados,
+                                          profesional: profesionalesAgrupados, departamento: departamento,
                                         )),
                               );
                             },
@@ -303,7 +317,6 @@ class DataSearchEncuentraUnAmigo extends SearchDelegate {
     }
   }
 }
-
 
 class DataSearchEvento extends SearchDelegate {
   @override
@@ -336,7 +349,7 @@ class DataSearchEvento extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     //Builder que crea los resultados que vamos a mostrar
-     return Container();
+    return Container();
   }
 
   @override
@@ -560,18 +573,18 @@ class DataSearchHelp extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     //Builder que crea los resultados que vamos a mostrar
-     return Container();
+    return Container();
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
     //Son las sugerencias cuando la person escribe
-     if (query.isEmpty) {
+    if (query.isEmpty) {
       return Container();
     } else {
       return FutureBuilder(
           future: Generic().getAll(
-            new Voluntary(), urlGetVoluntario, primaryKeyGetVoluntario),
+              new Voluntary(), urlGetVoluntario, primaryKeyGetVoluntario),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
@@ -595,13 +608,12 @@ class DataSearchHelp extends SearchDelegate {
                               subtitle: Text(list.perNombrepersonal),
                             ),
                             onTap: () {
-                            Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          ListVoluntaryModule(  )),
-                                );
-                             
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ListVoluntaryModule()),
+                              );
                             },
                           );
                         }
