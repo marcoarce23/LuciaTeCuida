@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -209,7 +210,19 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
               'REGISTRO DE DATOS',
               FaIcon(FontAwesomeIcons.plusSquare, color: AppTheme.themeVino),
             ),
-            SizedBox(height: 5.0),
+            SizedBox(height: 7.0),
+
+  AutoSizeText(
+                'Estamos en el Departamento de : ${obtenerDepartamento(prefs.idDepartamento)} ',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
+
+            SizedBox(height: 7.0),
+
             Container(
               width: size.width * 0.93,
               margin: EdgeInsets.symmetric(vertical: 0.0),
@@ -363,6 +376,7 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
     registroAmigo.regTipoAPoyo = valorTipoAyuda;
     registroAmigo.latitud = latLng.latitude;
     registroAmigo.longitud = latLng.longitude;
+    registroAmigo.departamento = prefs.idDepartamento;
     registroAmigo.usuario = prefs.correoElectronico;
 
     final dataMap = generic.add(registroAmigo, urlAddVoluntary);

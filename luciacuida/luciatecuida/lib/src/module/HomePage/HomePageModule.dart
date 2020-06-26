@@ -56,7 +56,6 @@ class _HomePageModuleState extends State<HomePageModule> {
   @override
   Widget build(BuildContext context) {
     prefs.ultimaPagina = HomePageModule.routeName;
-    //  generic.add( new TokenImei (correo1: prefs.correoElectronico, imei: prefs.imei, token:prefs.token), urlAddTokenImei);
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.white,
@@ -94,7 +93,8 @@ class _HomePageModuleState extends State<HomePageModule> {
                   ),
                 ),
                 _crearExpedido(),
-                _botonesRedondeados()
+                _botonesRedondeados(),
+                Text('1.0.4'),
               ],
             ),
           ),
@@ -166,6 +166,9 @@ class _HomePageModuleState extends State<HomePageModule> {
                         setState(() {
                           valorExpedido = int.parse(value);
                           prefs.idDepartamento = valorExpedido;
+                        //  prefs.departamento = child;
+                        
+                        
                         });
                       },
                     ),
