@@ -23,7 +23,7 @@ class CitizenEventsModule extends StatefulWidget {
 }
 
 class _CitizenEventsModuleState extends State<CitizenEventsModule> {
-  int valorOrganizacion = 1042;
+  int valorOrganizacion ;
   int valorTipoEspecialidad = 11;
   String _notificacion = '';
 
@@ -301,6 +301,9 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
   }
 
   Widget _crearOrganizacion() {
+    print(urlGetListaInstituciones +
+                    '/' +
+                    prefs.idDepartamento.toString());
     return Center(
         child: FutureBuilder(
             future: generic.getAll(

@@ -121,6 +121,21 @@ class _ListEventEntityState extends State<ListEventEntity> {
     );
   }
 
+  _submit(int item) async {
+    await generic
+        .delete('$urlDeleteEvento${item.toString()}/-1')
+        .then((respuesta) {
+      result = respuesta["TIPO_RESPUESTA"];
+      //print('resultado:$result');
+
+      if (result != null || result != '-1')
+        Scaffold.of(context).showSnackBar(messageOk("Se elimino el registro."));
+      else
+        Scaffold.of(context).showSnackBar(
+            messageNOk("Se  produjo un error. Vuelva a intentarlo."));
+    });
+  }
+
   Widget listEntity(BuildContext context, Evento entityItem) {
     final item = entityItem.idcovEvento;
 
@@ -136,21 +151,8 @@ class _ListEventEntityState extends State<ListEventEntity> {
       ),
       onDismissed: (value) {
         setState(() {
-          //    //print('El registro:$urlDeleteAyudaAmigo${item.toString()}/marcoarce23');
-
-          final dataMap =
-              generic.delete('$urlDeleteEvento${item.toString()}/-1');
-
-          dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-          //print('resultado:$result');
+            _submit(item);
         });
-
-        if (result != null || result != '-1')
-          Scaffold.of(context)
-              .showSnackBar(messageOk("Se elimino el registro."));
-        else
-          Scaffold.of(context).showSnackBar(
-              messageNOk("Se  produjo un error. Vuelva a intentarlo."));
       },
 
       child: Row(

@@ -37,7 +37,7 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return SafeArea(
-          child: Scaffold(
+      child: Scaffold(
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -53,19 +53,18 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
               ),
             ),
 
-             Padding(
-               padding: const EdgeInsets.all(18.0),
-               child: AutoSizeText(
-                  'Nota. Si desea eliminar un registro deslize a la (<<---) izquierda o a la derecha (--->>).',
-                  style: kSubTitleCardStyle,
-                  maxLines: 2,
-                  minFontSize: 14.0,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.justify,
-                  
-                ),
-             ),
- divider(),            
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: AutoSizeText(
+                'Nota. Si desea eliminar un registro deslize a la (<<---) izquierda o a la derecha (--->>).',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 14.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
+            ),
+            divider(),
             Row(
               children: <Widget>[
                 SizedBox(width: 10.0),
@@ -76,7 +75,6 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
                   value: 0,
                   groupValue: _group,
                   onChanged: (T) {
-              
                     _selectedRadio = 74;
                     setState(() {
                       _group = T;
@@ -88,7 +86,6 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
                   value: 1,
                   groupValue: _group,
                   onChanged: (T) {
-               
                     _selectedRadio = 75;
                     setState(() {
                       _group = T;
@@ -100,7 +97,6 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
                   value: 2,
                   groupValue: _group,
                   onChanged: (T) {
-                   
                     _selectedRadio = 76;
                     setState(() {
                       _group = T;
@@ -109,7 +105,7 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
                 ),
               ],
             ),
-         //   divider(),
+            //   divider(),
             futureItemsEntity(context),
             copyRigth(),
           ],
@@ -126,16 +122,16 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
             urlGetMultimedia + _selectedRadio.toString(),
             primaryKeyGetMultimedia),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-           if (snapshot.hasData) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-              return Center(child: CircularProgressIndicator());
-              break;
-            default:
-              //mostramos los datos
-              return listItemsEntity(context, snapshot);
-          }
-           } else {
+          if (snapshot.hasData) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return Center(child: CircularProgressIndicator());
+                break;
+              default:
+                //mostramos los datos
+                return listItemsEntity(context, snapshot);
+            }
+          } else {
             return Center(child: CircularProgressIndicator());
           }
         });
@@ -182,26 +178,24 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
       background: Container(
         color: Colors.red,
         padding: EdgeInsets.only(left: 5.0),
-        child: Text(
-          'Eliminar registro',
-          style: TextStyle(color: Colors.white),
+         child: Row(
+          children: <Widget>[
+            Icon(
+              Icons.delete_forever,
+              color: Colors.white,
+              size: 15,
+            ),
+            Text(
+              'Desea eliminar material?',
+              style: TextStyle(color: Colors.white),
+            ),
+          ],
         ),
       ),
       onDismissed: (value) {
         setState(() {
-          final dataMap = generic
-              .delete('$urlDeleteMultimedia${item.toString()}/${prefs.userId}');
-
-          dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-
+          _submit(item);
         });
-
-        if (result != null || result != '-1')
-          Scaffold.of(context).showSnackBar(
-              new SnackBar(content: new Text('Registro eliminado')));
-        else
-          Scaffold.of(context).showSnackBar(new SnackBar(
-              content: new Text('Problemas al eliminar el registro!!!')));
       },
 
       child: Row(
@@ -213,55 +207,39 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    Icon(
-                      Icons.gamepad,
-                      color: AppTheme.themeVino,
-                      size: 15,
-                    ),
                     Expanded(
-                      child: Text(
-                        'Material: ${entityItem.mulTitulo} ',
+                      child: AutoSizeText(
+                        'TITULO: ${entityItem.mulTitulo} ',
                         style: kSubTitleCardStyle,
-                        softWrap: true,
-                        overflow: TextOverflow.clip,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.place,
-                      color: AppTheme.themeVino,
-                      size: 15,
-                    ),
-                    Expanded(
-                      child: Text(
-                        'Resumen: ${entityItem.mulResumen}',
-                        style: kSubTitleCardStyle,
-                        softWrap: true,
-                        overflow: TextOverflow.clip,
+                        maxLines: 3,
+                        minFontSize: 14.0,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.justify,
                       ),
                     )
                   ],
                 ),
                 Row(
                   children: <Widget>[
-                    // Icon(
-                    //   Icons.place,
-                    //   color: AppTheme.themeVino,
-                    //   size: 15,
-                    // ),
-
                     Expanded(
-                      child: Text(
-                        'inicio: ${entityItem.detFechaInicio} - Conclusión: ${entityItem.detFechaFin}',
+                      child: AutoSizeText(
+                        'RESUMEN : ${entityItem.mulResumen} ',
                         style: kSubTitleCardStyle,
-                        softWrap: true,
-                        overflow: TextOverflow.clip,
+                        maxLines: 3,
+                        minFontSize: 14.0,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.justify,
                       ),
-                    ),
+                    )
                   ],
+                ),
+                AutoSizeText(
+                  'FECHA INICIO: ${entityItem.detFechaInicio} - FECHA FIN: ${entityItem.detFechaFin}',
+                  style: kSubTitleCardStyle,
+                  maxLines: 2,
+                  minFontSize: 14.0,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.justify,
                 ),
               ],
             ),
@@ -269,6 +247,21 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
         ],
       ),
     );
+  }
+
+  _submit(int item) async {
+    await generic
+        .delete('$urlDeleteMultimedia${item.toString()}/${prefs.userId}')
+        .then((respuesta) {
+      result = respuesta["TIPO_RESPUESTA"];
+
+      if (result != null || result != '-1')
+        Scaffold.of(context).showSnackBar(
+            new SnackBar(content: new Text('Registro eliminado')));
+      else
+        Scaffold.of(context).showSnackBar(new SnackBar(
+            content: new Text('Problemas al eliminar el registro!!!')));
+    });
   }
 
   Container iconEntity(Multimedia entityItem) {
@@ -287,16 +280,14 @@ class _ListMultimediaModuleState extends State<ListMultimediaModule> {
       ],
     ));
   }
-  String _getImages(Multimedia entityItem){
+
+  String _getImages(Multimedia entityItem) {
     String _image;
 
-    if(_selectedRadio == 74)
-         _image = entityItem.mulEnlace;
-    if(_selectedRadio == 75)
-         _image = new ImageDefault().getImage();
-    if(_selectedRadio == 76)
-         _image = new ImageDefault().getImage();
-     
-     return _image;
+    if (_selectedRadio == 74) _image = entityItem.mulEnlace;
+    if (_selectedRadio == 75) _image = new ImageDefault().getImage();
+    if (_selectedRadio == 76) _image = new ImageDefault().getImage();
+
+    return _image;
   }
 }

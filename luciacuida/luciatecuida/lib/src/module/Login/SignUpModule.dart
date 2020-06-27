@@ -351,7 +351,7 @@ class _SignUpModuleState extends State<SignUpModule> {
           prefs.correoElectronico = 'Invitado';
           prefs.nombreInstitucion = 'Invitado';
           prefs.idInsitucion = '0';
-          prefs.idPersonal = '0';
+          prefs.idPersonal = '-2';
           prefs.userId = '0';
 
           Navigator.push(

@@ -94,7 +94,10 @@ class _HomePageModuleState extends State<HomePageModule> {
                 ),
                 _crearExpedido(),
                 _botonesRedondeados(),
-                Text('1.0.4'),
+                Text(
+                  'versión 1.0.4',
+                  textAlign: TextAlign.left,
+                ),
               ],
             ),
           ),
@@ -142,6 +145,34 @@ class _HomePageModuleState extends State<HomePageModule> {
     return lista;
   }
 
+  Widget texto() {
+    if (int.parse(prefs.idPersonal) > 0) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 14.0),
+        child: AutoSizeText(
+          'Ud. esta brindando atención en el Departamento de ${obtenerDepartamento(prefs.idDepartamento)}. Si desea cambiar seleccione nuevamente.',
+          style: kSubTitleCardStyle,
+          maxLines: 3,
+          minFontSize: 15.0,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.justify,
+        ),
+      );
+    } else {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 14.0),
+        child: AutoSizeText(
+          'Si desea brindar ayuda o recibirla seleccione el departamento.',
+          style: kSubTitleCardStyle,
+          maxLines: 2,
+          minFontSize: 15.0,
+          overflow: TextOverflow.ellipsis,
+          textAlign: TextAlign.justify,
+        ),
+      );
+    }
+  }
+
   Widget _crearExpedido() {
     return Center(
         child: FutureBuilder(
@@ -149,29 +180,33 @@ class _HomePageModuleState extends State<HomePageModule> {
                 primaryKeyGetDepartamento),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
-                return Row(
+                return Column(
                   children: <Widget>[
-                    SizedBox(width: 15.0),
-                    Text(
-                      'DEPARTAMENTOS :',
-                      style: kSigssTitleStyle,
+                    texto(),
+
+                    Row(
+                      children: <Widget>[
+                        SizedBox(width: 10.0),
+                        Text(
+                          'Departamentos habilitados:',
+                          style: kSigssTitleStyle,
+                        ),
+                        DropdownButton(
+                          icon: FaIcon(FontAwesomeIcons.angleDown,
+                              color: AppTheme.themeVino),
+                          value: valorExpedido.toString(), //valor
+                          items: getDropDown(snapshot),
+                          onChanged: (value) {
+                            setState(() {
+                              valorExpedido = int.parse(value);
+                              prefs.idDepartamento = valorExpedido;
+                              //  prefs.departamento = child;
+                            });
+                          },
+                        ),
+                      ],
                     ),
-                    SizedBox(width: 15.0),
-                    DropdownButton(
-                      icon: FaIcon(FontAwesomeIcons.angleDown,
-                          color: AppTheme.themeVino),
-                      value: valorExpedido.toString(), //valor
-                      items: getDropDown(snapshot),
-                      onChanged: (value) {
-                        setState(() {
-                          valorExpedido = int.parse(value);
-                          prefs.idDepartamento = valorExpedido;
-                        //  prefs.departamento = child;
-                        
-                        
-                        });
-                      },
-                    ),
+                    // SizedBox(width: 15.0),
                   ],
                 );
               } else {
@@ -209,81 +244,106 @@ class _HomePageModuleState extends State<HomePageModule> {
   }
 
   Widget _botonesRedondeados() {
-    return Wrap(children: <Widget>[
-      _crearBotonRedondeado(
-          Colors.purpleAccent,
-          FaIcon(FontAwesomeIcons.procedures, color: Colors.white, size: 35.0),
-          'Ayuda Urgente',
-          '2',
-          16.0,
-          CitizenPanicButtonModule(),
-          0,
-          ""),
-      _crearBotonRedondeado(
-          Colors.blue,
-          FaIcon(FontAwesomeIcons.userMd, color: Colors.white, size: 35.0),
-          'Consulta a voluntarios',
-          '1',
-          14.0,
-          FoundVoluntaryModule(),
-          0,
-          ""),
-      _crearBotonRedondeado(
-          Colors.pinkAccent,
-          FaIcon(FontAwesomeIcons.userInjured, color: Colors.white, size: 35.0),
-          'Ayuda a una persona',
-          '3',
-          14.0,
-          HelpFriendAllModule(),
-          0,
-          ""),
-      _crearBotonRedondeado(
-          Colors.deepPurple,
-          FaIcon(FontAwesomeIcons.viber, color: Colors.white, size: 40.0),
-          'Números de urgencia',
-          '5',
-          15.0,
-          ContactGeneralModule(),
-          0,
-          ""),
-      _crearBotonRedondeado(
-          Colors.orangeAccent,
-          FaIcon(FontAwesomeIcons.laptopMedical,
-              color: Colors.white, size: 35.0),
-          'Prueba de control',
-          '6',
-          16.0,
-          HomePageModule(),
-          1,
-          "https://omi.app/covid-19/welcome"),
-      _crearBotonRedondeado(
-          Colors.cyan,
-          FaIcon(FontAwesomeIcons.tty, color: Colors.white, size: 38.0),
-          'Violencia IntraFamiliar',
-          '6',
-          14.0,
-          ContactGeneralModule(),
-          0,
-          ""),
-      _crearBotonRedondeado(
-          Colors.green,
-          FaIcon(FontAwesomeIcons.school, color: Colors.white, size: 35.0),
-          'Organizaciones',
-          '6',
-          16.0,
-          CitizenListInstitucionModule(),
-          0,
-          ""),
-      _crearBotonRedondeado(
-          Colors.indigoAccent,
-          FaIcon(FontAwesomeIcons.users, color: Colors.white, size: 35.0),
-          'Voluntarios',
-          '4',
-          18.0,
-          FoundVoluntaryModule(),
-          0,
-          ""),
-    ]);
+    if (prefs.idPersonal != '-2') {
+      return Wrap(children: <Widget>[
+        _crearBotonRedondeado(
+            Colors.purpleAccent,
+            FaIcon(FontAwesomeIcons.procedures,
+                color: Colors.white, size: 35.0),
+            'Ayuda Urgente',
+            '2',
+            16.0,
+            CitizenPanicButtonModule(),
+            0,
+            ""),
+        _crearBotonRedondeado(
+            Colors.blue,
+            FaIcon(FontAwesomeIcons.userMd, color: Colors.white, size: 35.0),
+            'Consulta a voluntarios',
+            '1',
+            14.0,
+            FoundVoluntaryModule(),
+            0,
+            ""),
+        _crearBotonRedondeado(
+            Colors.pinkAccent,
+            FaIcon(FontAwesomeIcons.userInjured,
+                color: Colors.white, size: 35.0),
+            'Ayuda a una persona',
+            '3',
+            14.0,
+            HelpFriendAllModule(),
+            0,
+            ""),
+        _crearBotonRedondeado(
+            Colors.deepPurple,
+            FaIcon(FontAwesomeIcons.viber, color: Colors.white, size: 40.0),
+            'Números de urgencia',
+            '5',
+            15.0,
+            ContactGeneralModule(),
+            0,
+            ""),
+        _crearBotonRedondeado(
+            Colors.orangeAccent,
+            FaIcon(FontAwesomeIcons.laptopMedical,
+                color: Colors.white, size: 35.0),
+            'Prueba de control',
+            '6',
+            16.0,
+            HomePageModule(),
+            1,
+            "https://omi.app/covid-19/welcome"),
+        _crearBotonRedondeado(
+            Colors.cyan,
+            FaIcon(FontAwesomeIcons.tty, color: Colors.white, size: 38.0),
+            'Violencia IntraFamiliar',
+            '6',
+            14.0,
+            ContactGeneralModule(),
+            0,
+            ""),
+        _crearBotonRedondeado(
+            Colors.green,
+            FaIcon(FontAwesomeIcons.school, color: Colors.white, size: 35.0),
+            'Organizaciones',
+            '6',
+            16.0,
+            CitizenListInstitucionModule(),
+            0,
+            ""),
+        _crearBotonRedondeado(
+            Colors.indigoAccent,
+            FaIcon(FontAwesomeIcons.users, color: Colors.white, size: 35.0),
+            'Voluntarios',
+            '4',
+            16.0,
+            FoundVoluntaryModule(),
+            0,
+            ""),
+      ]);
+    } else {
+      return Wrap(children: <Widget>[
+        _crearBotonRedondeado(
+            Colors.deepPurple,
+            FaIcon(FontAwesomeIcons.viber, color: Colors.white, size: 40.0),
+            'Números de urgencia',
+            '5',
+            15.0,
+            ContactGeneralModule(),
+            0,
+            ""),
+        _crearBotonRedondeado(
+            Colors.cyan,
+            FaIcon(FontAwesomeIcons.tty, color: Colors.white, size: 38.0),
+            'Violencia IntraFamiliar',
+            '6',
+            14.0,
+            ContactGeneralModule(),
+            0,
+            ""),
+      ]);
+    }
   }
 
   Widget _crearBotonRedondeado(Color color, FaIcon icono, String texto,
@@ -307,7 +367,7 @@ class _HomePageModuleState extends State<HomePageModule> {
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
           child: Container(
-            height: 100.0,
+            height: 87.0,
             width: 160,
             margin: EdgeInsets.all(9.0),
             decoration: BoxDecoration(
@@ -346,8 +406,71 @@ class _HomePageModuleState extends State<HomePageModule> {
 
 class DrawerCitizen extends StatelessWidget {
   final prefs = new PreferensUser();
+  
   @override
   Widget build(BuildContext context) {
+
+     if (prefs.idPersonal == '-2') {
+      return Drawer(
+          child: ListView(
+        children: <Widget>[
+          DrawerHeader(
+            decoration: boxDecoration(),
+            child: Container(
+                child: Column(
+              children: <Widget>[
+                Material(
+                    borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                    elevation: 60.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: ImageOvalNetwork(
+                          imageNetworkUrl: prefs.avatarImagen,
+                          sizeImage: Size.fromWidth(70)),
+                    )),
+                Flexible(
+                  child: Column(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          prefs.nombreUsuario,
+                          style: TextStyle(
+                              color: AppTheme.themePlomo, fontSize: 18.0),
+                          softWrap: true,
+                          overflow: TextOverflow.clip,
+                        ),
+                      ),
+                      AutoSizeText(
+                        prefs.correoElectronico,
+                        style: TextStyle(
+                            color: AppTheme.themePlomo, fontSize: 16.0),
+                        maxLines: 2,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            )),
+          ),
+         
+          CustomListTile(
+              Icons.add_to_home_screen,
+              '   Acerca de la aplicación',
+              () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AcercaModule()),
+                  )),
+          CustomListTile(Icons.exit_to_app, '    Cerrar Sesión', () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SignInDemo()),
+            );
+          }),
+        ],
+      ));
+    }
+
     if (prefs.idPersonal != '-1') {
       return Drawer(
           child: ListView(
@@ -379,7 +502,7 @@ class DrawerCitizen extends StatelessWidget {
                         ),
                       ),
                       AutoSizeText(
-                         prefs.correoElectronico,
+                        prefs.correoElectronico,
                         style: TextStyle(
                             color: AppTheme.themePlomo, fontSize: 16.0),
                         maxLines: 2,
@@ -428,14 +551,7 @@ class DrawerCitizen extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => MultimediaAllModule()),
                   )),
-          // CustomListTile(
-          //     Icons.assignment,
-          //     '    Registrar Atención Realizada',
-          //     () => Navigator.push(
-          //           context,
-          //           MaterialPageRoute(
-          //               builder: (context) => ListMaterialModule()),
-          //         )),
+
           CustomListTile(
               Icons.person_add,
               '    Registrate como voluntario',
@@ -447,15 +563,17 @@ class DrawerCitizen extends StatelessWidget {
           CustomListTile(
               Icons.share,
               '    Comparte la aplicación',
-              () => sharedText('Comparte la App - SomosUnoBolivia',
-                              '🔺*SomosUnoBolivia*🔺 \n Una aplicación de voluntarios que apoyan a personas que requieren apoyo en COVID-19, médicina en general.\n💬Atención *GRATUITA* personalizada de manera virtual. \n 📲 Puede descargar la app desde: https://play.google.com/store/apps/details?id=bo.SomosUnoBolivia',
-                              'text/html' )),
+              () => sharedText(
+                  'Comparte la App - SomosUnoBolivia',
+                  '🔺*SomosUnoBolivia*🔺 \n Una aplicación de voluntarios que apoyan a personas que requieren apoyo en COVID-19, médicina en general.\n💬Atención *GRATUITA* personalizada de manera virtual. \n 📲 Puede descargar la app desde: https://play.google.com/store/apps/details?id=bo.SomosUnoBolivia',
+                  'text/html')),
           CustomListTile(
               Icons.add_to_home_screen,
               '   Acerca de la aplicación',
               () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => IntroScreenModule()),
+                    MaterialPageRoute(
+                        builder: (context) => AcercaModule()),
                   )),
           CustomListTile(Icons.exit_to_app, '    Cerrar Sesión', () {
             Navigator.push(
@@ -521,11 +639,12 @@ class DrawerCitizen extends StatelessWidget {
           CustomListTile(
               Icons.share,
               '    Comparte la aplicación',
-              () => sharedText('Comparte la App - SomosUnoBolivia',
-                              '🔺*SomosUnoBolivia*🔺 \n Una aplicación de voluntarios que apoyan a personas que requieren apoyo en COVID-19, médicina en general.\n💬Atención *GRATUITA* personalizada de manera virtual. \n 📲 Puede descargar la app desde: https://play.google.com/store/apps/details?id=bo.SomosUnoBolivia',
-                              'text/html' )),
+              () => sharedText(
+                  'Comparte la App - SomosUnoBolivia',
+                  '🔺*SomosUnoBolivia*🔺 \n Una aplicación de voluntarios que apoyan a personas que requieren apoyo en COVID-19, médicina en general.\n💬Atención *GRATUITA* personalizada de manera virtual. \n 📲 Puede descargar la app desde: https://play.google.com/store/apps/details?id=bo.SomosUnoBolivia',
+                  'text/html')),
           CustomListTile(
-            Icons.phone_android,
+              Icons.phone_android,
               '    Acerca de la aplicación',
               () => Navigator.push(
                     context,
