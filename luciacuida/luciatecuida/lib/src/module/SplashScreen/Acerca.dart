@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -15,7 +16,7 @@ class AcercaModule extends StatefulWidget {
 
 class _AcercaModuleState extends State<AcercaModule> {
   final prefs = new PreferensUser();
-  final int _numPages = 3;
+  final int _numPages = 4;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
 
@@ -65,6 +66,7 @@ class _AcercaModuleState extends State<AcercaModule> {
               ],
             ),
           ),
+
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 20.0),
             child: Column(
@@ -90,6 +92,8 @@ class _AcercaModuleState extends State<AcercaModule> {
                     ),
                   ),
                 ),
+
+
                 Container(
                   height: 500.0,
                   child: PageView(
@@ -116,13 +120,15 @@ class _AcercaModuleState extends State<AcercaModule> {
                                   width: 150.0,
                                 ),
                               ),
-                              Text(
-                                'Estamos contigo, es una APP social para los voluntarios.',
-                                style: kTitleStyleBlack,
-                                textAlign: TextAlign.center,
-                                softWrap: true,
-                                overflow: TextOverflow.clip,
-                              ),
+                               AutoSizeText(
+                'SomosUnoBolivia, es una APP social para los voluntarios.',
+                style: kTitleStyleBlack,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+              ),
+                            
                               SizedBox(height: 15.0),
                               //    Expanded(
                               Column(
@@ -136,7 +142,7 @@ class _AcercaModuleState extends State<AcercaModule> {
                                           size: 35.0),
                                       SizedBox(width: 11.0),
                                       Expanded(
-                                        child: Text(
+                                        child: AutoSizeText(
                                           'Para todas las personas que requieren de una ayuda médica gratuita.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
@@ -155,8 +161,8 @@ class _AcercaModuleState extends State<AcercaModule> {
                                           size: 35.0),
                                       SizedBox(width: 11.0),
                                       Expanded(
-                                        child: Text(
-                                          'Personas que requieren de apoyo espiritual, de motivacional y emocional.',
+                                        child: AutoSizeText(
+                                          'Una alternativa para recibir asistencia telefónica, on-line o audiovisual.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
                                           overflow: TextOverflow.clip,
@@ -174,8 +180,8 @@ class _AcercaModuleState extends State<AcercaModule> {
                                           size: 35.0),
                                       SizedBox(width: 10.0),
                                       Expanded(
-                                        child: Text(
-                                          'Es una aplicación tan humana que pretende dar una esperanza a las personas.',
+                                        child: AutoSizeText(
+                                          'Es un lugar donde podras encontrar material multimedia y eventos del voluntariado para tu aprendizaje.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
                                           overflow: TextOverflow.clip,
@@ -191,6 +197,8 @@ class _AcercaModuleState extends State<AcercaModule> {
                           ),
                         ),
                       ),
+
+                      
                       Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Flexible(
@@ -207,7 +215,7 @@ class _AcercaModuleState extends State<AcercaModule> {
                                 ),
                               ),
                               SizedBox(height: 10.0),
-                              Text(
+                              AutoSizeText(
                                 'QUIENES FORMAN PARTE ?',
                                 style: kTitleStyleBlack,
                                 textAlign: TextAlign.center,
@@ -224,8 +232,8 @@ class _AcercaModuleState extends State<AcercaModule> {
                                           size: 35.0),
                                       SizedBox(width: 10.0),
                                       Expanded(
-                                        child: Text(
-                                          'Grupo de voluntarios comprometidos y dedicados a brindarte un apoyo.',
+                                        child: AutoSizeText(
+                                          'Grupo de personas que de forma voluntaria y dedicación brindan apoyo a las personas que estan buscando ayuda.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
                                           overflow: TextOverflow.clip,
@@ -243,8 +251,8 @@ class _AcercaModuleState extends State<AcercaModule> {
                                           size: 35.0),
                                       SizedBox(width: 13.0),
                                       Expanded(
-                                        child: Text(
-                                          'Personas que nos preocupa tu salud, nos preocupa tu bienestar.',
+                                        child: AutoSizeText(
+                                          'Grupo de personas interesadas en bridnarte material de apoyo y eventos para tu aprendizaje.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
                                           overflow: TextOverflow.clip,
@@ -262,7 +270,7 @@ class _AcercaModuleState extends State<AcercaModule> {
                                           size: 35.0),
                                       SizedBox(width: 10.0),
                                       Expanded(
-                                        child: Text(
+                                        child: AutoSizeText(
                                           'Grupo de ciudadanos bolivianos que convecidos con nuestro trabajo podemos hacer a diferencia en tu vida.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
@@ -272,25 +280,7 @@ class _AcercaModuleState extends State<AcercaModule> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 13.0),
-                                  Row(
-                                    children: <Widget>[
-                                      SizedBox(width: 10.0),
-                                      FaIcon(FontAwesomeIcons.diagnoses,
-                                          color: AppTheme.themeVino,
-                                          size: 35.0),
-                                      SizedBox(width: 10.0),
-                                      Expanded(
-                                        child: Text(
-                                          'COnisderar que el traajo de la gente es de voluntariado en funcion........',
-                                          style: kSubtitleStyleBlack,
-                                          softWrap: true,
-                                          overflow: TextOverflow.clip,
-                                          textAlign: TextAlign.justify,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                  
                                 ],
                               ),
                               // ),
@@ -298,6 +288,7 @@ class _AcercaModuleState extends State<AcercaModule> {
                           ),
                         ),
                       ),
+
                       Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Flexible(
@@ -316,7 +307,7 @@ class _AcercaModuleState extends State<AcercaModule> {
                               SizedBox(height: 5.0),
                               Column(
                                 children: <Widget>[
-                                  Text(
+                                  AutoSizeText(
                                     'SOLO TE RECOMENDAMOS.',
                                     style: kTitleStyleBlack,
                                     textAlign: TextAlign.center,
@@ -335,8 +326,8 @@ class _AcercaModuleState extends State<AcercaModule> {
                                             size: 30.0),
                                         SizedBox(width: 10.0),
                                         Expanded(
-                                          child: Text(
-                                            'Hacer buen uso de la aplicación, el tiempo tuyo y el nuestro es valioso.',
+                                          child: AutoSizeText(
+                                            'Hacer buen uso de la aplicación, en tu tiempo y cuando lo necesites.',
                                             style: kSubtitleStyleBlack,
                                             softWrap: true,
                                             overflow: TextOverflow.clip,
@@ -354,8 +345,8 @@ class _AcercaModuleState extends State<AcercaModule> {
                                             size: 30.0),
                                         SizedBox(width: 10.0),
                                         Expanded(
-                                          child: Text(
-                                            'Brindar información real y veridica a las personas con las que tengas un contacto a traves de la aplicación LuciaTeCuida.',
+                                          child: AutoSizeText(
+                                            'Brindar información real y veridica a las personas con las que te comuniques a través de la APP SomosUnoBolivia.',
                                             style: kSubtitleStyleBlack,
                                             softWrap: true,
                                             overflow: TextOverflow.clip,
@@ -373,8 +364,8 @@ class _AcercaModuleState extends State<AcercaModule> {
                                             size: 30.0),
                                         SizedBox(width: 10.0),
                                         Expanded(
-                                          child: Text(
-                                            'Difunde el uso de la aplicación con tus amig@s, familiares y personas para que podamos llegar a mas personas.',
+                                          child: AutoSizeText(
+                                            'Comparte la aplicación con tus amig@s, familiares y personas para que podamos llegar a más familias bolvianas.',
                                             style: kSubtitleStyleBlack,
                                             softWrap: true,
                                             overflow: TextOverflow.clip,
@@ -383,25 +374,25 @@ class _AcercaModuleState extends State<AcercaModule> {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(height: 12.0),
-                                    Row(
-                                      children: <Widget>[
-                                        SizedBox(width: 10.0),
-                                        FaIcon(FontAwesomeIcons.diagnoses,
-                                            color: AppTheme.themeVino,
-                                            size: 35.0),
-                                        SizedBox(width: 10.0),
-                                        Expanded(
-                                          child: Text(
-                                            'COnisderar que el trabajo de la gente es de voluntariado en funcion........',
-                                            style: kSubtitleStyleBlack,
-                                            softWrap: true,
-                                            overflow: TextOverflow.clip,
-                                            textAlign: TextAlign.justify,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                    // SizedBox(height: 12.0),
+                                    // Row(
+                                    //   children: <Widget>[
+                                    //     SizedBox(width: 10.0),
+                                    //     FaIcon(FontAwesomeIcons.diagnoses,
+                                    //         color: AppTheme.themeVino,
+                                    //         size: 35.0),
+                                    //     SizedBox(width: 10.0),
+                                    //     Expanded(
+                                    //       child: AutoSizeText(
+                                    //         'COnisderar que el trabajo de la gente es de voluntariado en funcion........',
+                                    //         style: kSubtitleStyleBlack,
+                                    //         softWrap: true,
+                                    //         overflow: TextOverflow.clip,
+                                    //         textAlign: TextAlign.justify,
+                                    //       ),
+                                    //     ),
+                                    //   ],
+                                    // ),
                                   ],
                                 ),
                               ),
@@ -409,9 +400,22 @@ class _AcercaModuleState extends State<AcercaModule> {
                           ),
                         ),
                       ),
+
+
+
+
+
+
+
+
+
+
                     ],
                   ),
                 ),
+
+
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: _buildPageIndicator(),
@@ -450,11 +454,15 @@ class _AcercaModuleState extends State<AcercaModule> {
                         ),
                       )
                     : Text(''),
+
+
               ],
             ),
           ),
         ),
       ),
+
+      
       bottomSheet: _currentPage == _numPages - 1
           ? Container(
               height: 50.0,

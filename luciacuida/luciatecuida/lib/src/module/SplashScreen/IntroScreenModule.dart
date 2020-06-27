@@ -104,323 +104,293 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Center(
-                              child: Image(
-                                image: AssetImage(
-                                  'assets/image/onboarding0.png',
+                        child: Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Center(
+                                child: Image(
+                                  image: AssetImage(
+                                    'assets/image/onboarding0.png',
+                                  ),
+                                  height: 150.0,
+                                  width: 150.0,
                                 ),
-                                height: 150.0,
-                                width: 150.0,
                               ),
-                            ),
+                              AutoSizeText(
+                                'SomosUnoBolivia, es una APP social para los voluntarios.',
+                                style: kTitleStyleBlack,
+                                maxLines: 2,
+                                minFontSize: 15.0,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                              ),
 
-                            SizedBox(height: 15.0),
-                            AutoSizeText(
-                              'SomosUnoBolivia, es una APP social de voluntariados.',
-                              style: kTitleStyleBlack,
-                              textAlign: TextAlign.center,
-                              maxLines: 2,
-                              minFontSize: 15.0,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-
-                            SizedBox(height: 15.0),
-
-                            Flexible(
-                              child: Column(
+                              SizedBox(height: 15.0),
+                              //    Expanded(
+                              Column(
                                 children: <Widget>[
                                   Row(
                                     children: <Widget>[
-                                      Column(
-                                        children: <Widget>[
-                                          SizedBox(width: 11.0),
-                                          FaIcon(
-                                              FontAwesomeIcons
-                                                  .handHoldingMedical,
-                                              color: AppTheme.themeVino,
-                                              size: 35.0),
-                                        ],
+                                      SizedBox(width: 11.0),
+                                      FaIcon(
+                                          FontAwesomeIcons.handHoldingMedical,
+                                          color: AppTheme.themeVino,
+                                          size: 35.0),
+                                      SizedBox(width: 11.0),
+                                      Expanded(
+                                        child: AutoSizeText(
+                                          'Para todas las personas que requieren de una ayuda médica gratuita.',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
                                       ),
-                                      
-                                          AutoSizeText(
-                                            'Para todas las personas que requieren\n de una ayuda médica gratuita.',
-                                            style: kSubtitleStyleBlack,
-                                            maxLines: 2,
-                                            minFontSize: 17.0,
-                                            overflow: TextOverflow.clip,
-                                             softWrap: true,
-                                            textAlign: TextAlign.justify,
-                                          ),
-                                      
                                     ],
                                   ),
-                                  SizedBox(height: 20.0),
-
+                                  SizedBox(height: 10.0),
                                   Row(
                                     children: <Widget>[
-                                      Column(
-                                        children: <Widget>[
-                                          SizedBox(width: 11.0),
-                                          FaIcon(
-                                              FontAwesomeIcons
-                                                  .handHoldingHeart,
-                                              color: AppTheme.themeVino,
-                                              size: 35.0),
-                                        ],
+                                      SizedBox(width: 11.0),
+                                      FaIcon(FontAwesomeIcons.handHoldingHeart,
+                                          color: AppTheme.themeVino,
+                                          size: 35.0),
+                                      SizedBox(width: 11.0),
+                                      Expanded(
+                                        child: AutoSizeText(
+                                          'Una alternativa para recibir asistencia telefónica, on-line o audiovisual.',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
                                       ),
-                                      
-                                          AutoSizeText(
-                                            'Una alternativa para recibir asistencia\n telefónica, on-line o audiovisual.',
-                                            style: kSubtitleStyleBlack,
-                                            maxLines: 2,
-                                            minFontSize: 17.0,
-                                            overflow: TextOverflow.clip,
-                                             softWrap: true,
-                                            textAlign: TextAlign.justify,
-                                          ),
-                                      
-                                      
                                     ],
                                   ),
-
-SizedBox(height: 20.0),
+                                  SizedBox(height: 11.0),
                                   Row(
                                     children: <Widget>[
-                                      Column(
-                                        children: <Widget>[
-                                          SizedBox(width: 11.0),
-                                          FaIcon(
-                                              FontAwesomeIcons.handHoldingWater
-                                                  ,
-                                              color: AppTheme.themeVino,
-                                              size: 35.0),
-                                        ],
+                                      SizedBox(width: 11.0),
+                                      FaIcon(FontAwesomeIcons.handHoldingWater,
+                                          color: AppTheme.themeVino,
+                                          size: 35.0),
+                                      SizedBox(width: 10.0),
+                                      Expanded(
+                                        child: AutoSizeText(
+                                          'Es un lugar donde podras encontrar material multimedia y eventos del voluntariado para tu aprendizaje.',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
                                       ),
-                                      
-                                          AutoSizeText(
-                                            'Es un lugar donde podras encontrar\n material multimedia y eventos del \nvoluntariado para tu aprendizaje.',
-                                            style: kSubtitleStyleBlack,
-                                            maxLines: 3,
-                                            minFontSize: 17.0,
-                                            overflow: TextOverflow.clip,
-                                             softWrap: true,
-                                            textAlign: TextAlign.justify,
-                                          ),
-                                      
-                                      
                                     ],
                                   ),
-
                                 ],
                               ),
-                            ),
-
-                            //  ),
-                          ],
+                              //  ),
+                            ],
+                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(20.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Center(
-                              child: Image(
-                                image: AssetImage(
-                                  'assets/image/onboarding2.png',
+                        child: Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Center(
+                                child: Image(
+                                  image: AssetImage(
+                                    'assets/image/onboarding2.png',
+                                  ),
+                                  height: 150.0,
+                                  width: 150.0,
                                 ),
-                                height: 150.0,
-                                width: 150.0,
                               ),
-                            ),
-                            SizedBox(height: 10.0),
-                            AutoSizeText(
-                              'QUIENES FORMAN PARTE ?',
-                              style: kTitleStyleBlack,
-                              maxLines: 2,
-                              minFontSize: 15.0,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.center,
-                            ),
-                            SizedBox(height: 15.0),
-
-                            Flexible(
-                              child: Column(
+                              SizedBox(height: 10.0),
+                              AutoSizeText(
+                                'QUIENES FORMAN PARTE ?',
+                                style: kTitleStyleBlack,
+                                textAlign: TextAlign.center,
+                              ),
+                              SizedBox(height: 13.0),
+                              //    Expanded(
+                              Column(
                                 children: <Widget>[
                                   Row(
                                     children: <Widget>[
-                                      Column(
-                                        children: <Widget>[
-                                          SizedBox(width: 7.0),
-                                          FaIcon(
-                                              FontAwesomeIcons.peopleCarry
-                                                  ,
-                                              color: AppTheme.themeVino,
-                                              size: 35.0),
-                                        ],
+                                      SizedBox(width: 10.0),
+                                      FaIcon(FontAwesomeIcons.peopleCarry,
+                                          color: AppTheme.themeVino,
+                                          size: 35.0),
+                                      SizedBox(width: 10.0),
+                                      Expanded(
+                                        child: AutoSizeText(
+                                          'Grupo de personas que de forma voluntaria y dedicación brindan apoyo a las personas que estan buscando ayuda.',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
                                       ),
-                                      SizedBox(width: 7.0),
-                                          AutoSizeText(
-                                            'Grupo de personas que de forma\n voluntaria y dedicación brindan\n apoyo a las personas que estan\nbuscando ayuda.',
-                                            style: kSubtitleStyleBlack,
-                                            maxLines: 4,
-                                            minFontSize: 16,
-                                            overflow: TextOverflow.clip,
-                                             softWrap: true,
-                                            textAlign: TextAlign.justify,
-                                          ),
-                                      
                                     ],
                                   ),
-                                  SizedBox(height: 20.0),
-
+                                  SizedBox(height: 13.0),
                                   Row(
                                     children: <Widget>[
-                                      Column(
-                                        children: <Widget>[
-                                          SizedBox(width: 11.0),
-                                          FaIcon(
-                                              FontAwesomeIcons
-                                                  .peopleArrows,
-                                              color: AppTheme.themeVino,
-                                              size: 35.0),
-                                        ],
+                                      SizedBox(width: 10.0),
+                                      FaIcon(FontAwesomeIcons.peopleArrows,
+                                          color: AppTheme.themeVino,
+                                          size: 35.0),
+                                      SizedBox(width: 13.0),
+                                      Expanded(
+                                        child: AutoSizeText(
+                                          'Grupo de personas interesadas en bridnarte material de apoyo y eventos para tu aprendizaje.',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
                                       ),
-                                      
-                                          AutoSizeText(
-                                            'Personas que se preocupan por \n tu salud y bienestar.',
-                                            style: kSubtitleStyleBlack,
-                                            maxLines: 2,
-                                            minFontSize: 17.0,
-                                            overflow: TextOverflow.clip,
-                                             softWrap: true,
-                                            textAlign: TextAlign.justify,
-                                          ),
-                                      
-                                      
                                     ],
                                   ),
-
-SizedBox(height: 20.0),
+                                  SizedBox(height: 13.0),
                                   Row(
                                     children: <Widget>[
-                                      Column(
-                                        children: <Widget>[
-                                          SizedBox(width: 11.0),
-                                          FaIcon(
-                                              FontAwesomeIcons.diagnoses
-                                                  ,
-                                              color: AppTheme.themeVino,
-                                              size: 35.0),
-                                        ],
+                                      SizedBox(width: 10.0),
+                                      FaIcon(FontAwesomeIcons.diagnoses,
+                                          color: AppTheme.themeVino,
+                                          size: 35.0),
+                                      SizedBox(width: 10.0),
+                                      Expanded(
+                                        child: AutoSizeText(
+                                          'Grupo de ciudadanos bolivianos que convecidos con nuestro trabajo podemos hacer a diferencia en tu vida.',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
                                       ),
-                                      
-                                          AutoSizeText(
-                                            'Grupo de personas interesadas\nen bridnarte material de apoyo y\n eventos para tu aprendizaje.',
-                                            style: kSubtitleStyleBlack,
-                                            maxLines: 3,
-                                            minFontSize: 17.0,
-                                            overflow: TextOverflow.clip,
-                                             softWrap: true,
-                                            textAlign: TextAlign.justify,
-                                          ),
-                                      
-                                      
                                     ],
                                   ),
-
                                 ],
                               ),
-                            ),
-                            // ),
-                          ],
+                              // ),
+                            ],
+                          ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(20.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Center(
-                              child: Image(
-                                image: AssetImage(
-                                  'assets/image/onboarding1.png',
+                        child: Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Center(
+                                child: Image(
+                                  image: AssetImage(
+                                    'assets/image/onboarding1.png',
+                                  ),
+                                  height: 150.0,
+                                  width: 150.0,
                                 ),
-                                height: 150.0,
-                                width: 150.0,
                               ),
-                            ),
-                            SizedBox(height: 5.0),
-                            Column(
-                              children: <Widget>[
-                                AutoSizeText(
-                                  'SOLO TE RECOMENDAMOS',
-                                  style: kTitleStyleBlack,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 18.0),
-                            Column(
-                              children: <Widget>[
-                                Row(
+                              SizedBox(height: 5.0),
+                              Column(
+                                children: <Widget>[
+                                  AutoSizeText(
+                                    'SOLO TE RECOMENDAMOS.',
+                                    style: kTitleStyleBlack,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 12.0),
+                              Expanded(
+                                child: Column(
                                   children: <Widget>[
-                                    SizedBox(width: 10.0),
-                                    FaIcon(FontAwesomeIcons.firstAid,
-                                        color: AppTheme.themeVino, size: 30.0),
-                                    SizedBox(width: 10.0),
-                                    AutoSizeText(
-                                      'Hacer buen uso de la aplicación, en \ntu tiempo y cuando lo necesites.',
-                                      style: kSubtitleStyleBlack,
-                                      maxLines: 2,
-                                      minFontSize: 16.0,
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.justify,
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(width: 10.0),
+                                        FaIcon(FontAwesomeIcons.firstAid,
+                                            color: AppTheme.themeVino,
+                                            size: 30.0),
+                                        SizedBox(width: 10.0),
+                                        Expanded(
+                                          child: AutoSizeText(
+                                            'Hacer buen uso de la aplicación, en tu tiempo y cuando lo necesites.',
+                                            style: kSubtitleStyleBlack,
+                                            softWrap: true,
+                                            overflow: TextOverflow.clip,
+                                            textAlign: TextAlign.justify,
+                                          ),
+                                        ),
+                                      ],
                                     ),
+                                    SizedBox(height: 12.0),
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(width: 10.0),
+                                        FaIcon(FontAwesomeIcons.listUl,
+                                            color: AppTheme.themeVino,
+                                            size: 30.0),
+                                        SizedBox(width: 10.0),
+                                        Expanded(
+                                          child: AutoSizeText(
+                                            'Brindar información real y veridica a las personas con las que te comuniques a través de la APP SomosUnoBolivia.',
+                                            style: kSubtitleStyleBlack,
+                                            softWrap: true,
+                                            overflow: TextOverflow.clip,
+                                            textAlign: TextAlign.justify,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(height: 12.0),
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(width: 10.0),
+                                        FaIcon(FontAwesomeIcons.users,
+                                            color: AppTheme.themeVino,
+                                            size: 30.0),
+                                        SizedBox(width: 10.0),
+                                        Expanded(
+                                          child: AutoSizeText(
+                                            'Comparte la aplicación con tus amig@s, familiares y personas para que podamos llegar a más familias bolvianas.',
+                                            style: kSubtitleStyleBlack,
+                                            softWrap: true,
+                                            overflow: TextOverflow.clip,
+                                            textAlign: TextAlign.justify,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    // SizedBox(height: 12.0),
+                                    // Row(
+                                    //   children: <Widget>[
+                                    //     SizedBox(width: 10.0),
+                                    //     FaIcon(FontAwesomeIcons.diagnoses,
+                                    //         color: AppTheme.themeVino,
+                                    //         size: 35.0),
+                                    //     SizedBox(width: 10.0),
+                                    //     Expanded(
+                                    //       child: AutoSizeText(
+                                    //         'COnisderar que el trabajo de la gente es de voluntariado en funcion........',
+                                    //         style: kSubtitleStyleBlack,
+                                    //         softWrap: true,
+                                    //         overflow: TextOverflow.clip,
+                                    //         textAlign: TextAlign.justify,
+                                    //       ),
+                                    //     ),
+                                    //   ],
+                                    // ),
                                   ],
                                 ),
-                                SizedBox(height: 12.0),
-                                Row(
-                                  children: <Widget>[
-                                    SizedBox(width: 10.0),
-                                    FaIcon(FontAwesomeIcons.listUl,
-                                        color: AppTheme.themeVino, size: 30.0),
-                                    SizedBox(width: 10.0),
-                                    AutoSizeText(
-                                      'Brindar información real y veridica \n a las personas con las que te \ncomuniques a través de la APP \nSomosUnoBolivia.',
-                                      style: kSubtitleStyleBlack,
-                                      maxLines: 4,
-                                      minFontSize: 16.0,
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.justify,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(height: 12.0),
-                                Row(
-                                  children: <Widget>[
-                                    SizedBox(width: 10.0),
-                                    FaIcon(FontAwesomeIcons.users,
-                                        color: AppTheme.themeVino, size: 30.0),
-                                    SizedBox(width: 10.0),
-                                    AutoSizeText(
-                                      'Comparte la aplicación con tus \namig@s, familiares y personas\n para que podamos llegar a mas\n familias bolvianas.',
-                                      style: kSubtitleStyleBlack,
-                                      maxLines: 4,
-                                      minFontSize: 16.0,
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.justify,
-                                    ),
-                                  ],
-                                ),
-                               
-                              ],
-                            ),
-                          ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],

@@ -47,18 +47,17 @@ class _ListEventModuleState extends State<ListEventModule> {
               FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
             ),
           ),
-           Padding(
-               padding: const EdgeInsets.all(18.0),
-               child: AutoSizeText(
-                  'Nota. Si desea eliminar un registro deslize el dedo a la (<<---) izquierda o a la derecha (--->>).',
-                  style: kSubTitleCardStyle,
-                  maxLines: 2,
-                  minFontSize: 14.0,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.justify,
-                  
-                ),
-             ),
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: AutoSizeText(
+              'Nota. Si desea eliminar un registro deslize el dedo a la (<<---) izquierda o a la derecha (--->>).',
+              style: kSubTitleCardStyle,
+              maxLines: 2,
+              minFontSize: 14.0,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.justify,
+            ),
+          ),
           divider(),
           futureItemsEntity(context),
           copyRigth(),
@@ -75,16 +74,16 @@ class _ListEventModuleState extends State<ListEventModule> {
             urlGetEvento + prefs.idInsitucion + '/${prefs.idPersonal}',
             primaryKeyGetEvento),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-           if (snapshot.hasData) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-              return Center(child: CircularProgressIndicator());
-              break;
-            default:
-              //mostramos los datos
-              return listItemsEntity(context, snapshot);
-          }
-           } else {
+          if (snapshot.hasData) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return Center(child: CircularProgressIndicator());
+                break;
+              default:
+                //mostramos los datos
+                return listItemsEntity(context, snapshot);
+            }
+          } else {
             return Center(child: CircularProgressIndicator());
           }
         });
@@ -125,6 +124,21 @@ class _ListEventModuleState extends State<ListEventModule> {
     );
   }
 
+  _submit(int item) async {
+    await generic
+        .delete('$urlDeleteEvento${item.toString()}/${prefs.userId}')
+        .then((respuesta) {
+      result = respuesta["TIPO_RESPUESTA"];
+      //print('resultado:$result');
+
+      if (result != null || result != '-1')
+        Scaffold.of(context).showSnackBar(messageOk("Se elimino el registro."));
+      else
+        Scaffold.of(context).showSnackBar(
+            messageNOk("Se  produjo un error. Vuelva a intentarlo."));
+    });
+  }
+
   Widget listEntity(BuildContext context, Evento entityItem) {
     final item = entityItem.idcovEvento;
 
@@ -140,19 +154,8 @@ class _ListEventModuleState extends State<ListEventModule> {
       ),
       onDismissed: (value) {
         setState(() {
-          final dataMap = generic
-              .delete('$urlDeleteEvento${item.toString()}/${prefs.userId}');
-
-          dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-          //print('resultado:$result');
+          _submit(item);
         });
-
-        if (result != null || result != '-1')
-          Scaffold.of(context)
-              .showSnackBar(messageOk("Se elimino el registro."));
-        else
-          Scaffold.of(context).showSnackBar(
-              messageNOk("Se  produjo un error. Vuelva a intentarlo."));
       },
 
       child: Row(
@@ -186,24 +189,22 @@ class _ListEventModuleState extends State<ListEventModule> {
                       color: AppTheme.themeVino,
                       size: 15,
                     ),
-                   Text(
-                        'Objetivo:',
-                        style: kSubTitleCardStyle,
-                        softWrap: true,
-                        overflow: TextOverflow.clip,
-                      ), 
+                    Text(
+                      'Objetivo:',
+                      style: kSubTitleCardStyle,
+                      softWrap: true,
+                      overflow: TextOverflow.clip,
+                    ),
                   ],
                 ),
-
-                 AutoSizeText(
-                      entityItem.eveObjetivo,
-                      style: kSubTitleCardStyle,
-                      maxLines: 4,
-                      minFontSize: 15.0,
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.justify,
-                    ),
-
+                AutoSizeText(
+                  entityItem.eveObjetivo,
+                  style: kSubTitleCardStyle,
+                  maxLines: 4,
+                  minFontSize: 15.0,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.justify,
+                ),
                 Row(
                   children: <Widget>[
                     Icon(
@@ -213,18 +214,14 @@ class _ListEventModuleState extends State<ListEventModule> {
                     ),
                     Text('Lugar:'),
                     Expanded(
-                      child: 
-                      
-                       generaHTTP_ICON(
-                          entityItem.eveUbicacion,
-                          FaIcon(
-                            FontAwesomeIcons.facebook,
-                            size: 25,
-                            color: AppTheme.themeVino,
-                          ),
+                      child: generaHTTP_ICON(
+                        entityItem.eveUbicacion,
+                        FaIcon(
+                          FontAwesomeIcons.facebook,
+                          size: 25,
+                          color: AppTheme.themeVino,
                         ),
-                      
-                    
+                      ),
                     ),
                   ],
                 ),

@@ -61,7 +61,9 @@ class _ListCitizenHelpModuleState extends State<ListCitizenHelpModule> {
   Widget futureItemsEntity(BuildContext context) {
     return FutureBuilder(
         future: generic.getAll(
-            new RegistroAmigo(), urlGetDevuelveAyuda+'/'+ prefs.correoElectronico , primaryKeyGetAyudaAmigo),
+            new RegistroAmigo(),
+            urlGetDevuelveAyuda + '/' + prefs.correoElectronico,
+            primaryKeyGetAyudaAmigo),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             switch (snapshot.connectionState) {
@@ -128,19 +130,8 @@ class _ListCitizenHelpModuleState extends State<ListCitizenHelpModule> {
       ),
       onDismissed: (value) {
         setState(() {
-          final dataMap = generic.add(new RegistroAmigo(),
-              '$urlDeleteAyudaAmigo${item.toString()}/${prefs.userId}');
-
-          dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
-          //print('resultado:$result');
+           _submit(item);          //print('resultado:$result');
         });
-
-        if (result != null || result != '-1')
-          Scaffold.of(context)
-              .showSnackBar(messageOk("Se elimino el registro."));
-        else
-          Scaffold.of(context).showSnackBar(
-              messageNOk("Se  produjo un error. Vuelva a intentarlo."));
       },
 
       child: Row(
@@ -243,6 +234,22 @@ class _ListCitizenHelpModuleState extends State<ListCitizenHelpModule> {
     );
   }
 
+
+ _submit(int item) async
+ {
+    await generic.add(new RegistroAmigo(),
+              '$urlDeleteAyudaAmigo${item.toString()}/${prefs.userId}').then((respuesta) {
+            result = respuesta["TIPO_RESPUESTA"];
+
+            if (result != null || result != '-1')
+              Scaffold.of(context)
+                  .showSnackBar(messageOk("Se eliminó el registro."));
+            else
+              Scaffold.of(context).showSnackBar(
+                  messageNOk("Se produjo un error. Vuelva a intentarlo."));
+          });
+
+ }
   Container iconEntity(RegistroAmigo entityItem) {
     return Container(
         child: Column(

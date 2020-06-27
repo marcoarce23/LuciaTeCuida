@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
@@ -63,17 +62,17 @@ class _ContactAppModuleState extends State<ContactAppModule> {
                         color: AppTheme.themeVino),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: AutoSizeText(
-                    'Importante. Selecciona el departamento para que puedas conocer a las personas que pueden guiarte sobre la Apliación u otros temas e inquietudes',
-                    style: kSubTitleCardStyle,
-                    maxLines: 3,
-                    minFontSize: 14.0,
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.justify,
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.all(18.0),
+                //   child: AutoSizeText(
+                //     'Importante. Selecciona el departamento para que puedas conocer a las personas que pueden guiarte sobre la Apliación u otros temas e inquietudes',
+                //     style: kSubTitleCardStyle,
+                //     maxLines: 3,
+                //     minFontSize: 14.0,
+                //     overflow: TextOverflow.ellipsis,
+                //     textAlign: TextAlign.justify,
+                //   ),
+                // ),
                 //_crearDepartamento(),
                 divider(),
                 futureItemsEntity(context),
