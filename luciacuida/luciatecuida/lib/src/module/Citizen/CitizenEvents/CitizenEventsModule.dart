@@ -311,6 +311,8 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
                 primaryKeyGetListaInstituciones),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
+                InstitucionesItems item=snapshot.data[0];
+                valorOrganizacion=item.idInstitucion;
                 return Row(
                   children: <Widget>[
                     SizedBox(width: 35.0),
