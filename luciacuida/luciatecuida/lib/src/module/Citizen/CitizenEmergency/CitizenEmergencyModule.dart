@@ -27,7 +27,8 @@ class _CitizenEmergencyModuleState extends State<CitizenEmergencyModule> {
     PageCovid(),
     PageMedicmanetos(),
     PageBonos(),
-    PageAyudaAmigo()
+    PageAyudaAmigo(), 
+    PagePlasma()
   ];
 
   void _onItemTapped(int index) {
@@ -64,6 +65,16 @@ class _CitizenEmergencyModuleState extends State<CitizenEmergencyModule> {
               backgroundColor: AppTheme.themeVino,
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
+                  icon: Icon(Icons.ac_unit, size: 24),
+                  title: Text('Covid', style: TextStyle(fontSize: 12)),
+                ),
+
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.book, size: 24),
+                  title: Text('Plasma', style: TextStyle(fontSize: 12)),
+                ),
+
+                BottomNavigationBarItem(
                   icon: Icon(
                     Icons.local_hospital,
                     size: 24,
@@ -74,22 +85,19 @@ class _CitizenEmergencyModuleState extends State<CitizenEmergencyModule> {
                   ),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.report, size: 24),
-                  title: Text('Covid', style: TextStyle(fontSize: 12)),
+                  icon: Icon(Icons.face, size: 24),
+                  title: Text('Ayuda Amigo', style: TextStyle(fontSize: 12)),
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.add_shopping_cart, size: 24),
-                  title: Text('Medicamentos y abastecimientos',
+                  title: Text('Medicamentos-abastecimientos',
                       style: TextStyle(fontSize: 12)),
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.transfer_within_a_station, size: 24),
                   title: Text('Bonos', style: TextStyle(fontSize: 12)),
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.face, size: 24),
-                  title: Text('Ayuda Amigo', style: TextStyle(fontSize: 12)),
-                ),
+                
               ],
               currentIndex: page,
               unselectedItemColor: Colors.black87,
@@ -514,6 +522,350 @@ class _PageCovidState extends State<PageCovid> {
         future: Generic().getAll(
             new SolicitudAyuda(),
             urlGetListaSolicitudesAyudas + '/65'+'/'+ prefs.idDepartamento.toString(),
+            primaryKeyListaSolicitudesAyudas),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+              return Center(child: CircularProgressIndicator());
+              break;
+            default:
+              //mostramos los datos
+              return buildItemSolcitud(context, snapshot);
+          }
+        });
+  }
+
+  Widget buildItemSolcitud(BuildContext context, AsyncSnapshot snapshot) {
+    return Container(
+      child: ListView.builder(
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          physics: ClampingScrollPhysics(),
+          itemCount: snapshot.data.length,
+          itemBuilder: (context, index) {
+            SolicitudAyuda item = snapshot.data[index];
+            return itemSolicitud(context, item);
+          }),
+    );
+  }
+
+  Widget itemSolicitud(BuildContext context, SolicitudAyuda solicitudAyuda) {
+    DateTime tempDate =
+        new DateFormat("dd/MM/yyyy").parse(solicitudAyuda.fecha);
+    Color colorCuadro;
+    String detallePrioridad;
+    if (solicitudAyuda.idaPrioridad == 68) {
+      colorCuadro = AppTheme.themeColorRojo;
+      detallePrioridad = "Muy alta";
+    } else if (solicitudAyuda.idaPrioridad == 69) {
+      colorCuadro = AppTheme.themeColorNaranja;
+      detallePrioridad = "Alta";
+    } else {
+      colorCuadro = AppTheme.themeAmarillo;
+      detallePrioridad = "Media";
+    }
+    return contenidoAtencionSolicitudes(
+        colorCuadro, detallePrioridad, tempDate, solicitudAyuda, context);
+  }
+
+  // _submitCovidConcluido(
+  //     BuildContext context, SolicitudAyuda solicitudAyuda) async {
+  //   registrarAyuda.idaBotonPanico = solicitudAyuda.idaBotonPanico;
+  //   registrarAyuda.idaPersonal = int.parse(prefs.idPersonal);
+  //   registrarAyuda.fecha =
+  //       DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now());
+  //   registrarAyuda.idaEstado = 79; // en concluido
+  //   registrarAyuda.usuario = prefs.correoElectronico;
+
+  //   final dataMap = generic.add(registrarAyuda, urlAddSolicitudAyud);
+  //   var result;
+  //   await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+  //   if (result == "0") {
+  //     setState(() {
+  //       Scaffold.of(context)
+  //           .showSnackBar(messageOk("Se concluyo la solicitud"));
+  //     });
+  //   } else {
+  //     Scaffold.of(context)
+  //         .showSnackBar(messageNOk("Ocurrio un error inseperado"));
+  //   }
+
+  //   //print('resultado:$result');
+  // }
+
+  _submitCovidAtender(
+      BuildContext context, SolicitudAyuda solicitudAyuda) async {
+    registrarAyuda.idaBotonPanico = solicitudAyuda.idaBotonPanico;
+    registrarAyuda.idaPersonal = int.parse(prefs.idPersonal);
+    registrarAyuda.fecha =
+        DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now());
+    registrarAyuda.idaEstado = 78; // en cursoF
+    registrarAyuda.usuario = prefs.correoElectronico;
+
+    final dataMap = generic.add(registrarAyuda, urlAddSolicitudAyud);
+    var result;
+    await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+    if (result == "0") {
+      setState(() {
+        Scaffold.of(context)
+            .showSnackBar(messageOk("Se puso en atención su solicitud"));
+      });
+    } else {
+      Scaffold.of(context)
+          .showSnackBar(messageNOk("Ocurrio un error inseperado"));
+    }
+
+    //print('resultado:$result');
+  }
+
+  Widget contenidoAtencionSolicitudes(
+      Color colorCuadro,
+      String detallePrioridad,
+      DateTime tempDate,
+      SolicitudAyuda solicitudAyuda,
+      BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(1.0),
+      child: Column(
+        children: <Widget>[
+          Container(
+            decoration: new BoxDecoration(boxShadow: [
+              new BoxShadow(
+                color: Colors.black12,
+                blurRadius: 30.0,
+              ),
+            ]),
+            child: Card(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    leading: Column(
+                      children: <Widget>[
+                        FaIcon(
+                          FontAwesomeIcons.eye,
+                          color: colorCuadro,
+                          size: 30,
+                        ),
+                        Text(
+                          detallePrioridad,
+                          style: TextStyle(
+                              fontSize: 12, fontWeight: FontWeight.w800),
+                        ),
+                      ],
+                    ),
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              new DateFormat("dd/MM/yyyy").format(tempDate),
+                              style: TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              solicitudAyuda.hora,
+                              style: TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "Detalle:",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                          ),
+                        ),
+                        RichText(
+                          overflow: TextOverflow.clip,
+                          text: TextSpan(
+                            text: solicitudAyuda.detalle,
+                            style: TextStyle(fontSize: 14, color: Colors.black),
+                          ),
+                        ),
+                        Row(
+                          children: <Widget>[
+                            InkWell(
+                              child: FaIcon(
+                                FontAwesomeIcons.phoneVolume,
+                                size: 25,
+                                color: AppTheme.themeVino,
+                              ),
+                              onTap: () {
+                                callNumber(solicitudAyuda.telefono);
+                              },
+                            ),
+                            SizedBox(
+                              width: 25,
+                            ),
+                            InkWell(
+                              child: FaIcon(
+                                FontAwesomeIcons.comment,
+                                size: 25,
+                                color: AppTheme.themeVino,
+                              ),
+                              onTap: () {
+                                sendSMS(solicitudAyuda.telefono);
+                              },
+                            ),
+                            SizedBox(
+                              width: 25,
+                            ),
+                            InkWell(
+                              child: FaIcon(
+                                FontAwesomeIcons.whatsapp,
+                                size: 25,
+                                color: AppTheme.themeVino,
+                              ),
+                              onTap: () {
+                                callWhatsAppText(solicitudAyuda.telefono,
+                                    'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *SomosUnoBolivia*.');
+                              },
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    trailing: InkWell(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          FaIcon(
+                            FontAwesomeIcons.checkCircle,
+                            color: AppTheme.themeColorVerde,
+                            size: 25,
+                          ),
+                          Text(
+                            "Atender",
+                          )
+                        ],
+                      ),
+                      onTap: () {
+                        _submitCovidAtender(context, solicitudAyuda);
+                      },
+                    ),
+                  ),
+                  ButtonBar(
+                    alignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          //contenidoCabecera(context, tempDate, solicitudAyuda),
+          //contenidoFinal(context, solicitudAyuda),
+        ],
+      ),
+    );
+  }
+}
+
+class PagePlasma extends StatefulWidget {
+  @override
+  _PagePlasmaState createState() => _PagePlasmaState();
+}
+
+class _PagePlasmaState extends State<PagePlasma> {
+  final generic = new Generic();
+  final prefs = new PreferensUser();
+  String _notificacion = '';
+  RegistrarAyuda registrarAyuda = new RegistrarAyuda();
+
+  @override
+  Widget build(BuildContext context) {
+    final _valor = ModalRoute.of(context).settings.arguments;
+    if (_valor != null) _notificacion = _valor;
+
+    return SingleChildScrollView(
+      child: Container(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              contenedorTitulo(
+                context,
+                40.0,
+                "Solicitud Plasma".toUpperCase(),
+                FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
+              ),
+              AutoSizeText(
+                'Estamos en el Departamento de : ${obtenerDepartamento(prefs.idDepartamento)} ',
+                style: kSubTitleCardStyle,
+                maxLines: 2,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
+              Opacity(
+                  opacity: _notificacion.length > 1 ? 1.0 : 0.0,
+                  child: Text('Atención: Ayuda urgente activada.')),
+              Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                      padding: EdgeInsets.only(right: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          FlatButton(
+                            color: AppTheme.themeVino,
+                            textColor: Colors.white,
+                            disabledColor: Colors.grey,
+                            disabledTextColor: Colors.black,
+                            splashColor: Colors.white,
+                            onPressed: () {
+                              openWeb('http://mapacovid19.ruta88.net/');
+                            },
+                            child: Text("Mapa de solicitudes"),
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          FlatButton(
+                            color: AppTheme.themeVino,
+                            textColor: Colors.white,
+                            disabledColor: Colors.grey,
+                            disabledTextColor: Colors.black,
+                            splashColor: Colors.greenAccent,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CitizenAlertEmergency(
+                                        "-1", prefs.idPersonal)),
+                              );
+                            },
+                            child: Text("Mis atenciones"),
+                          ),
+                        ],
+                      ))),
+              futureCovid(context),
+            ],
+          ),
+        ),
+      ),
+    );
+    //backgroundColor: colorCuadro,
+  }
+
+  Widget futureCovid(BuildContext context) {
+    return FutureBuilder(
+        future: Generic().getAll(
+            new SolicitudAyuda(),
+            urlGetListaSolicitudesAyudas + '/102'+'/'+ prefs.idDepartamento.toString(),
             primaryKeyListaSolicitudesAyudas),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {

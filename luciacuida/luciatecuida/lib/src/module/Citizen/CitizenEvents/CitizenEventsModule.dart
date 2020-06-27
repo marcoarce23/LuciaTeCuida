@@ -23,7 +23,7 @@ class CitizenEventsModule extends StatefulWidget {
 }
 
 class _CitizenEventsModuleState extends State<CitizenEventsModule> {
-  int valorOrganizacion;
+  int valorOrganizacion =-1;
   int valorTipoEspecialidad = 11;
   String _notificacion = '';
 
@@ -314,7 +314,7 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 InstitucionesItems item = snapshot.data[0];
-                valorOrganizacion = item.idInstitucion;
+           //     valorOrganizacion = item.idInstitucion;
                 return Row(
                   children: <Widget>[
                     SizedBox(width: 35.0),
@@ -382,6 +382,10 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
         value: item.idInstitucion.toString(),
       ));
     }
+    listaE.add(DropdownMenuItem(
+        child: Text('<Seleccionar registro>'),
+        value: '-1',
+      ));
     return listaE;
   }
 }

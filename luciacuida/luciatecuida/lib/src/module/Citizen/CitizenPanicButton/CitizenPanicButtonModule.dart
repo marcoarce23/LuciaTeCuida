@@ -196,6 +196,9 @@ class _ButtonPanic extends State<ButtonPanic> {
                             ),
                           ],
                         ),
+
+                         
+
                         Row(
                           children: <Widget>[
                             Text('Consulta Médica',
@@ -226,6 +229,38 @@ class _ButtonPanic extends State<ButtonPanic> {
                             ),
                           ],
                         ),
+
+                         Row(
+                          children: <Widget>[
+                            Text('Solicitud de Plasma',
+                                style: TextStyle(fontSize: 12)),
+                            Radio(
+                              value: 102,
+                              groupValue: _group,
+                              onChanged: (T) {
+                                //print(T);
+                                _selectedRadio = T;
+                                setState(() {
+                                  _group = T;
+                                });
+                              },
+                            ),
+                            // Text('Dioxido de Cloro',
+                            //     style: TextStyle(fontSize: 12)),
+                            // Radio(
+                            //   value: 66,
+                            //   groupValue: _group,
+                            //   onChanged: (T) {
+                            //     //print(T);
+                            //     _selectedRadio = T;
+                            //     setState(() {
+                            //       _group = T;
+                            //     });
+                            //   },
+                            // ),
+                          ],
+                        ),
+
                         divider(),
                         Align(
                           alignment: Alignment.topLeft,
