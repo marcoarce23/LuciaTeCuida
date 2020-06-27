@@ -23,7 +23,7 @@ class CitizenEventsModule extends StatefulWidget {
 }
 
 class _CitizenEventsModuleState extends State<CitizenEventsModule> {
-  int valorOrganizacion ;
+  int valorOrganizacion;
   int valorTipoEspecialidad = 11;
   String _notificacion = '';
 
@@ -124,7 +124,6 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
               return Center(child: CircularProgressIndicator());
               break;
             default:
-              //mostramos los datos
               return buildEvento(context, snapshot);
           }
         });
@@ -139,7 +138,9 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
           itemCount: snapshot.data.length,
           itemBuilder: (context, index) {
             EventosItem item = snapshot.data[index];
-            return noticia(item);
+            if (item.idInstitucion == valorOrganizacion) {
+              return noticia(item);
+            }
           }),
     );
   }
@@ -301,9 +302,7 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
   }
 
   Widget _crearOrganizacion() {
-    print(urlGetListaInstituciones +
-                    '/' +
-                    prefs.idDepartamento.toString());
+    print(urlGetListaInstituciones + '/' + prefs.idDepartamento.toString());
     return Center(
         child: FutureBuilder(
             future: generic.getAll(
@@ -314,8 +313,8 @@ class _CitizenEventsModuleState extends State<CitizenEventsModule> {
                 primaryKeyGetListaInstituciones),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
-                InstitucionesItems item=snapshot.data[0];
-                valorOrganizacion=item.idInstitucion;
+                InstitucionesItems item = snapshot.data[0];
+                valorOrganizacion = item.idInstitucion;
                 return Row(
                   children: <Widget>[
                     SizedBox(width: 35.0),
