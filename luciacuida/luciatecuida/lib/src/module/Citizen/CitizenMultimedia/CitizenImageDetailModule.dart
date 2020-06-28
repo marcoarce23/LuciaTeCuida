@@ -39,40 +39,58 @@ class _CitizenImageDetailModuleState extends State<CitizenImageDetailModule> {
         title: Text("DETALLE MULTIMEDIA", style: kTitleAppBar),
       ),
       body: SingleChildScrollView(
-              child: Column(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Center(
-              child: Container(
-                  child: FadeInImage.assetNetwork(
-                placeholder: "assets/loading/loadingImage.gif",
-                placeholderScale: 0.5,
-                image: widget.multimediaImagen.mulEnlace,
-                fit: BoxFit.cover,
-                height:350,
-              )),
-            ),
-            SizedBox(height: 20,),
+            Container(
+                child: FadeInImage.assetNetwork(
+              placeholder: "assets/loading/loadingImage.gif",
+              placeholderScale: 0.5,
+              image: widget.multimediaImagen.mulEnlace,
+              fit: BoxFit.scaleDown,
+              height: 350,
+            )),
+         
             Container(
               margin: EdgeInsets.only(left: 10),
               child: Row(
                 children: <Widget>[
                   Text(
                     "Titulo:".toUpperCase(),
-                    style: TextStyle(fontWeight: FontWeight.w700,color:  AppTheme.themeVino),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700, color: AppTheme.themeVino),
                   ),
-                  Text(widget.multimediaImagen.mulTitulo, style: kSubTitleCardStyle,),
                 ],
               ),
             ),
-              Container(
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Row(
+                children: <Widget>[
+                  AutoSizeText(
+                    widget.multimediaImagen.mulTitulo,
+                    style: kSubTitleCardStyle,
+                    maxLines: 5,
+                    minFontSize: 15.0,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.justify,
+                  ),
+                ],
+              ),
+            ),
+            Container(
               margin: EdgeInsets.only(left: 10),
               child: Row(
                 children: <Widget>[
                   Text(
                     "Tipo material:".toUpperCase(),
-                    style: TextStyle(fontWeight: FontWeight.w700,color:  AppTheme.themeVino),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700, color: AppTheme.themeVino),
                   ),
-                  Text(widget.multimediaImagen.mulTipoMaterial, style: kSubTitleCardStyle,),
+                  Text(
+                    widget.multimediaImagen.mulTipoMaterial,
+                    style: kSubTitleCardStyle,
+                  ),
                 ],
               ),
             ),
@@ -82,36 +100,29 @@ class _CitizenImageDetailModuleState extends State<CitizenImageDetailModule> {
                 children: <Widget>[
                   Text(
                     "Descripción:".toUpperCase(),
-                    style: TextStyle(fontWeight: FontWeight.w700,color:  AppTheme.themeVino),
+                    style: TextStyle(
+                        fontWeight: FontWeight.w700, color: AppTheme.themeVino),
                   ),
-               
-                  
                 ],
               ),
-),
-               Padding(
-                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                 child: AutoSizeText(
-                        widget.multimediaImagen.mulResumen,
-                        style: kSubTitleCardStyle,
-                        maxLines: 3,
-                        minFontSize: 15.0,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.justify,
-                      ),
-               ),
-
-copyRigth(),
-            
-          
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: AutoSizeText(
+                widget.multimediaImagen.mulResumen,
+                style: kSubTitleCardStyle,
+                maxLines: 5,
+                minFontSize: 15.0,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.justify,
+              ),
+            ),
+            copyRigth(),
           ],
         ),
-        
       ),
       drawer: DrawerCitizen(),
-floatingActionButton: generaFloatButtonMultimedia(context),        
-
-
+      floatingActionButton: generaFloatButtonMultimedia(context),
     );
   }
 }

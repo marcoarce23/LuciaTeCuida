@@ -114,7 +114,7 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
 
   Widget cabeceraInstitucion(double screenHeigh, double screenwidth) {
     return Container(
-      height: 340,
+      height: 480,
       child: Column(
         children: <Widget>[
           Row(
@@ -340,6 +340,7 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
             FaIcon(FontAwesomeIcons.clock, color: AppTheme.themeVino),
           ),
           futureCuerpoHorario(context),
+          
         ],
       ),
     );
