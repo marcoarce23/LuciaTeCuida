@@ -23,12 +23,12 @@ class _CitizenEmergencyModuleState extends State<CitizenEmergencyModule> {
   final prefs = new PreferensUser();
   int page = 0;
   final List<Widget> optionPage = [
-    PageMedicina(),
     PageCovid(),
+    PagePlasma(),
+    PageMedicina(),
+    PageAyudaAmigo(), 
     PageMedicmanetos(),
     PageBonos(),
-    PageAyudaAmigo(), 
-    PagePlasma()
   ];
 
   void _onItemTapped(int index) {
