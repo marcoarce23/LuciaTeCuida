@@ -64,6 +64,7 @@ dependencies:
   multilevel_drawer: ^1.0.2
   file_picker: ^1.9.0+1
   auto_size_text: ^2.1.0
+  getflutter: ^1.0.9
 
 dev_dependencies:
   flutter_test:

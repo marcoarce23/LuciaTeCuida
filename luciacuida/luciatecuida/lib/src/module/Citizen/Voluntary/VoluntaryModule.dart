@@ -44,7 +44,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
 
   int _group = 1;
   int estado = 0;
-  int _selectedRadio = 1;
+  int _selectedRadio = 0;
   bool _save = false;
   bool esCovid = false;
   bool readOnly = false;
@@ -55,7 +55,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
   var result;
   int valorExpedido = 60;
   int valorTipoEspecialidad = 11;
-   bool bandera = false;
+  bool bandera = false;
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final generic = new Generic();
@@ -77,10 +77,10 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
     if (entityData != null) {
       entity = entityData;
 
-       if(bandera ==false)
-      {
-        imagen= entity.foto;
+      if (bandera == false) {
+        imagen = entity.foto;
         _selectedRadio = entity.idaSexo;
+       // _group = entity.idaSexo;
         _valorId = entity.idcovPersonal;
         valorTipoEspecialidad = entity.idaTipopersonal;
         valorExpedido = entity.idaExtension;
@@ -175,7 +175,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
   Widget _crearCampos() {
     token = InputNumberField(
         FaIcon(FontAwesomeIcons.barcode, color: AppTheme.themeVino),
-        'Ingrese solo números para el token:',
+        '(*) Ingrese solo números para el token:',
         '0000',
         'Ej: 023431',
         true,
@@ -183,7 +183,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
 
     nombre = InputTextField(
         FaIcon(FontAwesomeIcons.userFriends, color: AppTheme.themeVino),
-        'Nombre completo voluntario:',
+        '(*) Nombre completo voluntario:',
         entity.perNombrepersonal,
         'Ingrese nombre completo',
         true);
@@ -195,7 +195,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
         false);
     telefono = InputPhoneField(
         FaIcon(FontAwesomeIcons.mobileAlt, color: AppTheme.themeVino),
-        'Telefono de referencia',
+        '(*) Telefono de referencia',
         entity.perTelefono,
         'Ingrese teléfono',
         true,
@@ -208,10 +208,10 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
         false);
     email = InputEmailField(
         FaIcon(FontAwesomeIcons.envelopeOpen, color: AppTheme.themeVino),
-        'Correo Electronico:',
+        '(*) Correo Electronico:',
         entity.perCorreo,
-        'Ej: correo@gmail.com',
         'Ingrese su correo electronico',
+        'Ej: juanperez@gmail.com',
         false);
     facebook = InputUrlField(
         FaIcon(FontAwesomeIcons.facebook, color: AppTheme.themeVino),
@@ -236,6 +236,11 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
       duration: Duration(milliseconds: 250),
       child: Column(
         children: <Widget>[
+          Text(
+            '(*) Campos obligatorios. ',
+            style: kCamposTitleStyle,
+            textAlign: TextAlign.left,
+          ),
           SizedBox(height: 10),
           // tipoEntidad,
           token,
@@ -339,8 +344,6 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
             }));
   }
 
-
-
   List<DropdownMenuItem<String>> getDropDown(AsyncSnapshot snapshot) {
     List<DropdownMenuItem<String>> lista = new List();
 
@@ -373,9 +376,9 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
                       items: getDropDown(snapshot),
                       onChanged: (value) {
                         setState(() {
-                             valorTipoEspecialidad = int.parse(value);
-                             print(valorTipoEspecialidad);
-                             bandera = true;
+                          valorTipoEspecialidad = int.parse(value);
+                          print(valorTipoEspecialidad);
+                          bandera = true;
                         });
                       },
                     ),
@@ -424,7 +427,7 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
 
     entity.foto = imagen;
     entity.idaEstado = 81;
-   
+
     if (!formKey.currentState.validate()) return;
 
     formKey.currentState.save();
@@ -436,10 +439,10 @@ class _VoluntaryModuleState extends State<VoluntaryModule> {
     //print('prefs.userId : ${prefs.userId}');
     entity.idcovPersonal = _valorId;
 
-    if(token.objectValue.length > 6 ) 
-        _token = int.parse(token.objectValue.substring(0, 6));
+    if (token.objectValue.length > 6)
+      _token = int.parse(token.objectValue.substring(0, 6));
     else
-        _token = int.parse(token.objectValue);
+      _token = int.parse(token.objectValue);
 
     entity.idcovInstitucion = _token;
     entity.idcovLogin = int.parse(prefs.userId);

@@ -95,6 +95,13 @@ final kSigssTitleStyle = TextStyle(
   height: 1.5,
 );
 
+final kCamposTitleStyle = TextStyle(
+  color: Colors.red,
+  fontFamily: 'CM Sans Serif',
+  fontSize: 13.0,
+  height: 1.5,
+);
+
 final kTitleStyle = TextStyle(
   color: Colors.black54,
   fontFamily: 'CM Sans Serif',

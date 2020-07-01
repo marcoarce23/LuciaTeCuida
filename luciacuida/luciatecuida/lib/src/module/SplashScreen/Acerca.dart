@@ -7,6 +7,8 @@ import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:page_transition/page_transition.dart';
 
+import 'package:getflutter/getflutter.dart';
+
 class AcercaModule extends StatefulWidget {
   static final String routeName = 'acerca';
 

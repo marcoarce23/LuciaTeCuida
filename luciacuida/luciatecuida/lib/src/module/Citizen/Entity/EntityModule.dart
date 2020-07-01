@@ -48,7 +48,7 @@ class _EntityModuleState extends State<EntityModule> {
   int valorInstitucion = 3;
   int valorDepartamento = 60;
   int _valorId = 0;
-    int estado = 0;
+  int estado = 0;
   bool bandera = false;
   bool esSucursal = false;
 
@@ -77,16 +77,17 @@ class _EntityModuleState extends State<EntityModule> {
       entity = entityData;
       _valorId = entityData.idInstitucion;
 
-      if(bandera ==false)
-      {
-            valorInstitucion = entity.tipoInstitucion;
-            valorDepartamento = entity.ubicacion;
-            imagen = entity.foto;
-          
-            if (entity.esSucursal != 0) esSucursal = true;
-            else esSucursal = false;
+      if (bandera == false) {
+        valorInstitucion = entity.tipoInstitucion;
+        valorDepartamento = entity.ubicacion;
+        imagen = entity.foto;
+
+        if (entity.esSucursal != 0)
+          esSucursal = true;
+        else
+          esSucursal = false;
       }
- }
+    }
 
     return Scaffold(
       key: scaffoldKey,
@@ -154,28 +155,30 @@ class _EntityModuleState extends State<EntityModule> {
   Widget _crearCampos() {
     nombre = InputTextField(
         FaIcon(FontAwesomeIcons.city, color: AppTheme.themeVino),
-        'Nombre de la institución:',
+        '(*) Nombre de la institución:',
         entity.nombreInstitucion,
-        'Ingrese el nombre',
+        '(*) Ingrese el nombre',
         true);
     token = InputPhoneField(
         FaIcon(FontAwesomeIcons.creditCard, color: AppTheme.themeVino),
-        'Ingrese el número de token:',
+        '(*) Ingrese el número de token:',
         entity.token,
         'Ej: 214213 - solo números',
-        true, 6);
+        true,
+        6);
     direccion = InputMultilineField(
         FaIcon(FontAwesomeIcons.dotCircle, color: AppTheme.themeVino),
-        'Dirección/ubicacion:',
+        '(*) Dirección/ubicacion:',
         entity.direccion,
-        'Ingrese su dirección/ubicación',
+        '(*) Ingrese su dirección/ubicación',
         true);
     telefono = InputPhoneField(
         FaIcon(FontAwesomeIcons.mobileAlt, color: AppTheme.themeVino),
-        'Telefono de referencia',
+        '(*) Telefono de referencia',
         entity.telefono,
         'Ingrese el número de referencia',
-        true, 10);
+        true,
+        10);
     informacion = InputMultilineField(
         FaIcon(FontAwesomeIcons.listAlt, color: AppTheme.themeVino),
         'Información complementaria:',
@@ -208,14 +211,19 @@ class _EntityModuleState extends State<EntityModule> {
         false);
     email = InputEmailField(
         FaIcon(FontAwesomeIcons.mailBulk, color: AppTheme.themeVino),
-        'Correo Electronico:',
+        '(*) Correo Electronico:',
         entity.perCorreoElectronico,
         'Ingrese el correo electrónico',
-        'Ingrese su correo electronico',
+        'Ej: juanperez@gmail.com',
         false);
 
     return Column(
       children: <Widget>[
+        Text(
+          '(*) Campos obligatorios. ',
+          style: kCamposTitleStyle,
+          textAlign: TextAlign.left,
+        ),
         _crearTipoInstitucion(),
         _crearDpto(),
         _crearSucursal('Es sucursal'),
@@ -267,7 +275,6 @@ class _EntityModuleState extends State<EntityModule> {
   }
 
   Widget _crearDpto() {
-
     return Center(
         child: FutureBuilder(
             future: generic.getAll(new GetClasificador(),
@@ -288,7 +295,6 @@ class _EntityModuleState extends State<EntityModule> {
                         setState(() {
                           valorDepartamento = int.parse(value);
                           bandera = true;
- 
                         });
                       },
                     ),
@@ -314,7 +320,6 @@ class _EntityModuleState extends State<EntityModule> {
   }
 
   Widget _crearTipoInstitucion() {
-
     return Center(
         child: FutureBuilder(
             future: generic.getAll(new GetClasificador(),
@@ -335,7 +340,6 @@ class _EntityModuleState extends State<EntityModule> {
                         setState(() {
                           valorInstitucion = int.parse(value);
                           bandera = true;
- 
                         });
                       },
                     ),
@@ -425,12 +429,11 @@ class _EntityModuleState extends State<EntityModule> {
     await dataMap.then((respuesta) {
       result = respuesta["TIPO_RESPUESTA"];
       //print('resultado de la oepracio:$result');
-    
 
       if (result != "-1" || result != "-2") {
         prefs.idCreacionInsitucion = int.parse(result);
         prefs.idInsitucion = result;
-        
+
         Navigator.of(context).push(CupertinoPageRoute(
             builder: (BuildContext context) => InformationEntityModule()));
       }
@@ -443,10 +446,11 @@ class _EntityModuleState extends State<EntityModule> {
             .showSnackBar(messageNOk("Error, El TOKEN esta siendo utilizado"));
       }
 
-      setState(() {  _save = false; });
+      setState(() {
+        _save = false;
+      });
     });
   }
-
 
   _seleccionarFoto() async => _procesarImagen(ImageSource.gallery);
   _tomarFoto() async => _procesarImagen(ImageSource.camera);

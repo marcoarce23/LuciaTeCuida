@@ -6,64 +6,52 @@ import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/Util/Validator.dart' as validator;
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 
-inputDecoration(String hint, String text, Icon icon, bool valida){
- InputDecoration(
-
-  fillColor: Colors.white,
-  filled : true,
-  enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.white, width: 2.0)
-  ),
-
-    focusedBorder : OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.orange, width:2.0)
-    ),
-);
+inputDecoration(String hint, String text, Icon icon, bool valida) {
+  InputDecoration(
+    fillColor: Colors.white,
+    filled: true,
+    enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.white, width: 2.0)),
+    focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.orange, width: 2.0)),
+  );
 }
 
-Widget getWidget2(String objectValue,
-  final String text,
-  final FaIcon icon,
-  final String hint,
-  final bool valida) {
-//print('objectValueXXXXXXXXXXXXXXX   $objectValue');  
+Widget getWidget2(String objectValue, final String text, final FaIcon icon,
+    final String hint, final bool valida) {
+//print('objectValueXXXXXXXXXXXXXXX   $objectValue');
 
-return Padding(
-      padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
-      child: TextFormField(
-        initialValue: objectValue,
-        enableInteractiveSelection: true,
-        enableSuggestions: true,
-        keyboardType: TextInputType.multiline,
-        maxLines: 5,
-        minLines: 3,
-        autocorrect: true,
-        autovalidate: false,
-        maxLength: 140,
-        toolbarOptions: ToolbarOptions(copy: true, cut:true, paste: true, selectAll: true),
-       
-        decoration: InputDecoration(
-          focusColor: Colors.orange,
-          hintText: hint,
-          labelText: text,
-          icon: icon,
-     //     contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
+  return Padding(
+    padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
+    child: TextFormField(
+      initialValue: objectValue,
+      enableInteractiveSelection: true,
+      enableSuggestions: true,
+      keyboardType: TextInputType.multiline,
+      maxLines: 5,
+      minLines: 3,
+      autocorrect: true,
+      autovalidate: false,
+      maxLength: 140,
+      toolbarOptions:
+          ToolbarOptions(copy: true, cut: true, paste: true, selectAll: true),
+      decoration: InputDecoration(
+        focusColor: Colors.orange,
+        hintText: hint,
+        labelText: text,
+        icon: icon,
+        //     contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
 //
-        ),
-        onChanged: (value) {
-         
-                      
-                      objectValue = value;
-                },
-                  validator: (value) => validator.validateTextfieldEmpty(value, valida),
-                  onSaved: (value) => objectValue = value,
-                ),
-              );
-  }
-            
-          
-         
-  
+      ),
+      onChanged: (value) {
+        objectValue = value;
+      },
+      validator: (value) => validator.validateTextfieldEmpty(value, valida),
+      onSaved: (value) => objectValue = value,
+    ),
+  );
+}
+
 class InputTextField extends StatefulWidget {
   String objectValue;
   final String text;
@@ -71,7 +59,8 @@ class InputTextField extends StatefulWidget {
   final String hint;
   final bool valida;
 
-   InputTextField(this.icon, this.text, this.objectValue, this.hint, this.valida);
+  InputTextField(
+      this.icon, this.text, this.objectValue, this.hint, this.valida);
 
   @override
   _InputTextFieldState createState() => _InputTextFieldState();
@@ -86,10 +75,10 @@ class _InputTextFieldState extends State<InputTextField> {
   }
 
   Widget getWidget() {
-   return Padding(
+    return Padding(
       padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
       child: TextFormField(
-       // 
+        //
         initialValue: widget.objectValue,
         textCapitalization: TextCapitalization.sentences,
         enableSuggestions: true,
@@ -97,33 +86,35 @@ class _InputTextFieldState extends State<InputTextField> {
         autocorrect: true,
         autovalidate: false,
         cursorColor: AppTheme.themeVino,
-        toolbarOptions: ToolbarOptions(copy: true, cut:true, paste: true, selectAll: true),
+        toolbarOptions:
+            ToolbarOptions(copy: true, cut: true, paste: true, selectAll: true),
         keyboardType: TextInputType.text,
-     //   controller: controller,
-          decoration: InputDecoration(
+        //   controller: controller,
+        decoration: InputDecoration(
           focusColor: Colors.blue,
-           hintText: widget.hint,
-           labelText: widget.text,
-           icon: widget.icon,
-   
-   hoverColor:AppTheme.themeVino,
-//errorText: 'XXXXX',
-           fillColor: AppTheme.themeVino,
- 
-  // enabledBorder: OutlineInputBorder(
-  //   borderSide: BorderSide(color: Colors.orange, width: 1.0)
-  // ),
+          hintText: widget.hint,
+          labelText: widget.text,
+          icon: widget.icon,
 
-    // focusedBorder : OutlineInputBorder(
-    //     borderSide: BorderSide(color: Colors.orange,)
-    // ),
+          hoverColor: AppTheme.themeVino,
+//errorText: 'XXXXX',
+          fillColor: AppTheme.themeVino,
+
+          // enabledBorder: OutlineInputBorder(
+          //   borderSide: BorderSide(color: Colors.orange, width: 1.0)
+          // ),
+
+          // focusedBorder : OutlineInputBorder(
+          //     borderSide: BorderSide(color: Colors.orange,)
+          // ),
         ),
         onChanged: (value) {
           setState(() {
             widget.objectValue = value;
           });
         },
-        validator: (value) => validator.validateTextfieldEmpty(value, widget.valida),
+        validator: (value) =>
+            validator.validateTextfieldEmpty(value, widget.valida),
         onSaved: (value) => widget.objectValue = value,
       ),
     );
@@ -137,7 +128,8 @@ class InputTextPassword extends StatefulWidget {
   final String hint;
   final bool valida;
 
-  InputTextPassword(this.icon, this.text, this.objectValue, this.hint, this.valida);
+  InputTextPassword(
+      this.icon, this.text, this.objectValue, this.hint, this.valida);
 
   @override
   _InputTextPasswordState createState() => _InputTextPasswordState();
@@ -157,14 +149,16 @@ class _InputTextPasswordState extends State<InputTextPassword> {
         keyboardType: TextInputType.visiblePassword,
         obscureText: true,
         maxLength: 10,
-        toolbarOptions: ToolbarOptions(copy: true, cut:true, paste: true, selectAll: true),
+        toolbarOptions:
+            ToolbarOptions(copy: true, cut: true, paste: true, selectAll: true),
         decoration: InputDecoration(
           focusColor: Colors.blue,
           hintText: widget.hint,
           labelText: widget.text,
           icon: widget.icon,
         ),
-        validator: (value) => validator.validateTextfieldLength(value, 6, widget.valida),
+        validator: (value) =>
+            validator.validateTextfieldLength(value, 6, widget.valida),
         onSaved: (value) => widget.objectValue = value,
       ),
     );
@@ -179,8 +173,8 @@ class InputEmailField extends StatefulWidget {
   final String helperText;
   final bool valida;
 
-  InputEmailField(
-      this.icon, this.text, this.objectValue, this.hint, this.helperText, this.valida);
+  InputEmailField(this.icon, this.text, this.objectValue, this.hint,
+      this.helperText, this.valida);
 
   @override
   _InputEmailFielddState createState() => _InputEmailFielddState();
@@ -202,7 +196,8 @@ class _InputEmailFielddState extends State<InputEmailField> {
         autocorrect: true,
         autovalidate: false,
         maxLength: 40,
-        toolbarOptions: ToolbarOptions(copy: true, cut:true, paste: true, selectAll: true),
+        toolbarOptions:
+            ToolbarOptions(copy: true, cut: true, paste: true, selectAll: true),
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           focusColor: Colors.blue,
@@ -217,7 +212,8 @@ class _InputEmailFielddState extends State<InputEmailField> {
             widget.objectValue = value;
           });
         },
-        validator: (value) => validator.validateTextfieldEmpty(value, widget.valida),
+        validator: (value) =>
+            validator.validateTextfieldEmpty(value, widget.valida),
         onSaved: (value) => widget.objectValue = value,
       ),
     );
@@ -232,7 +228,8 @@ class InputPhoneField extends StatefulWidget {
   final bool valida;
   final int tamanio;
 
-  InputPhoneField(this.icon, this.text, this.objectValue, this.hint, this.valida, this.tamanio);
+  InputPhoneField(this.icon, this.text, this.objectValue, this.hint,
+      this.valida, this.tamanio);
 
   @override
   _InputPhoneFieldState createState() => _InputPhoneFieldState();
@@ -254,7 +251,8 @@ class _InputPhoneFieldState extends State<InputPhoneField> {
         autocorrect: true,
         autovalidate: false,
         maxLength: widget.tamanio,
-        toolbarOptions: ToolbarOptions(copy: true, cut:true, paste: true, selectAll: true),
+        toolbarOptions:
+            ToolbarOptions(copy: true, cut: true, paste: true, selectAll: true),
         keyboardType: TextInputType.phone,
         decoration: InputDecoration(
           focusColor: Colors.blue,
@@ -267,7 +265,8 @@ class _InputPhoneFieldState extends State<InputPhoneField> {
             widget.objectValue = value;
           });
         },
-        validator: (value) => validator.validateTextfieldEmpty(value, widget.valida),
+        validator: (value) =>
+            validator.validateTextfieldEmpty(value, widget.valida),
         onSaved: (value) => widget.objectValue = value,
       ),
     );
@@ -305,7 +304,8 @@ class _InputUrlState extends State<InputUrlField> {
         maxLength: 140,
         maxLines: 2,
         minLines: 2,
-        toolbarOptions: ToolbarOptions(copy: true, cut:true, paste: true, selectAll: true),
+        toolbarOptions:
+            ToolbarOptions(copy: true, cut: true, paste: true, selectAll: true),
         keyboardType: TextInputType.url,
         decoration: InputDecoration(
           focusColor: Colors.blue,
@@ -318,7 +318,8 @@ class _InputUrlState extends State<InputUrlField> {
             widget.objectValue = value;
           });
         },
-        validator: (value) => validator.validateTextfieldEmpty(value, widget.valida),
+        validator: (value) =>
+            validator.validateTextfieldEmpty(value, widget.valida),
         onSaved: (value) => widget.objectValue = value,
       ),
     );
@@ -333,7 +334,8 @@ class InputNumberField extends StatefulWidget {
   final bool valida;
   final bool readOnly;
 
-  InputNumberField(this.icon, this.text, this.objectValue, this.hint, this.valida, this.readOnly);
+  InputNumberField(this.icon, this.text, this.objectValue, this.hint,
+      this.valida, this.readOnly);
 
   @override
   _InputNumberFieldState createState() => _InputNumberFieldState();
@@ -356,7 +358,8 @@ class _InputNumberFieldState extends State<InputNumberField> {
         autovalidate: true,
         maxLength: 6,
         readOnly: widget.readOnly,
-        toolbarOptions: ToolbarOptions(copy: true, cut:true, paste: true, selectAll: true),
+        toolbarOptions:
+            ToolbarOptions(copy: true, cut: true, paste: true, selectAll: true),
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           focusColor: Colors.blue,
@@ -369,7 +372,8 @@ class _InputNumberFieldState extends State<InputNumberField> {
             widget.objectValue = value;
           });
         },
-        validator: (value) => validator.validateTextfieldEmpty(value, widget.valida),
+        validator: (value) =>
+            validator.validateTextfieldEmpty(value, widget.valida),
         onSaved: (value) => widget.objectValue = value,
       ),
     );
@@ -383,7 +387,8 @@ class InputMultilineField extends StatefulWidget {
   final String hint;
   final bool valida;
 
-  InputMultilineField(this.icon, this.text, this.objectValue, this.hint, this.valida);
+  InputMultilineField(
+      this.icon, this.text, this.objectValue, this.hint, this.valida);
 
   @override
   _InputMultilineFieldState createState() => _InputMultilineFieldState();
@@ -408,24 +413,24 @@ class _InputMultilineFieldState extends State<InputMultilineField> {
         minLines: 3,
         autocorrect: true,
         autovalidate: false,
-        maxLength: 140,
-        toolbarOptions: ToolbarOptions(copy: true, cut:true, paste: true, selectAll: true),
-       
+        maxLength: 300,
+        toolbarOptions:
+            ToolbarOptions(copy: true, cut: true, paste: true, selectAll: true),
         decoration: InputDecoration(
           focusColor: Colors.orange,
           hintText: widget.hint,
           labelText: widget.text,
           icon: widget.icon,
-     //     contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
+          //     contentPadding: new EdgeInsets.symmetric(vertical: 25.0, horizontal: 10.0),
 //
         ),
         onChanged: (value) {
           setState(() {
-
             widget.objectValue = value;
           });
         },
-        validator: (value) => validator.validateTextfieldEmpty(value, widget.valida),
+        validator: (value) =>
+            validator.validateTextfieldEmpty(value, widget.valida),
         onSaved: (value) => widget.objectValue = value,
       ),
     );
@@ -532,9 +537,9 @@ class _InputDropDownState extends State<InputDropDown> {
   final generic = new Generic();
   String valor;
 
-@override
+  @override
   void initState() {
-     valor= widget.objectValue;
+    valor = widget.objectValue;
     super.initState();
   }
 
@@ -550,7 +555,7 @@ class _InputDropDownState extends State<InputDropDown> {
       GetClasificador item = snapshot.data[i];
       lista.add(DropdownMenuItem(
         child: Text(item.nombre),
-        value: item.id.toString(), 
+        value: item.id.toString(),
       ));
     }
     return lista;
@@ -559,7 +564,8 @@ class _InputDropDownState extends State<InputDropDown> {
   Widget getWidget() {
     return Center(
         child: FutureBuilder(
-            future: generic.getAll(new GetClasificador(), widget.values, primaryKeyGetClasifidor),
+            future: generic.getAll(
+                new GetClasificador(), widget.values, primaryKeyGetClasifidor),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return Row(
@@ -574,7 +580,7 @@ class _InputDropDownState extends State<InputDropDown> {
                       onChanged: (value) {
                         setState(() {
                           valor = value;
-                          widget.objectValue = value; 
+                          widget.objectValue = value;
                           //print('valor combo ingresado widget.objectValue: ${widget.objectValue} y valueeee: $value');
                         });
                       },
