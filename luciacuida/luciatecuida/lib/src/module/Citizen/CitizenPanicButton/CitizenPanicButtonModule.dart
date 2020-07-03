@@ -51,14 +51,17 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
           body: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                AutoSizeText(
-                'Se notificará a voluntarios del Departamento de : ${obtenerDepartamento(prefs.idDepartamento)} ',
-                style: kSubTitleCardStyle,
-                maxLines: 2,
-                minFontSize: 15.0,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.justify,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: AutoSizeText(
+                  'Se notificará a voluntarios del Departamento de : ${obtenerDepartamento(prefs.idDepartamento)} ',
+                  style: kSubTitleCardStyle,
+                  maxLines: 2,
+                  minFontSize: 15.0,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.justify,
               ),
+                ),
                 ButtonPanic(
                   titulo: "CONSULTA",
                 ),

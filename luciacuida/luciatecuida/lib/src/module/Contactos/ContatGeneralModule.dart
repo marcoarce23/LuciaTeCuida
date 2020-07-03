@@ -308,7 +308,7 @@ class _ContactGeneralModuleState extends State<ContactGeneralModule> {
       children: <Widget>[
         ImageOvalNetwork(
             imageNetworkUrl:
-                'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg',
+                entityItem.foto,
             sizeImage: Size.fromWidth(50)),
 
       ],

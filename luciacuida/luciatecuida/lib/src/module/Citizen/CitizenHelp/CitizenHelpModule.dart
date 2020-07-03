@@ -55,7 +55,7 @@ class _HelpFriendAllModuleState extends State<HelpFriendAllModule> {
         toolbarOpacity: 0.7,
         iconTheme: IconThemeData(color: AppTheme.themeVino, size: 12),
         elevation: 0,
-        title: Text( "AYUDA A UN PERSONA",  style: kTitleAppBar),
+        title: Text("AYUDA A UN PERSONA", style: kTitleAppBar),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
@@ -67,7 +67,7 @@ class _HelpFriendAllModuleState extends State<HelpFriendAllModule> {
       ),
       drawer: DrawerCitizen(),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white, 
+        backgroundColor: Colors.white,
         items: [
           BottomNavigationBarItem(
               icon: FaIcon(
@@ -105,7 +105,7 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
   InputDropDown tipoAyuda;
 
   bool _save = false;
-    int valorTipoAyuda = 50;
+  int valorTipoAyuda = 50;
   String _opcionSeleccionadaPrioridad = '';
   var result;
   var list;
@@ -125,7 +125,6 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
     super.initState();
   }
 
- 
   @override
   Widget build(BuildContext context) {
     final RegistroAmigo registroAmigoData =
@@ -160,7 +159,7 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
               children: <Widget>[
                 // imagenProfesional(),
                 // SizedBox(width: 15.0),
-             //   cabeceraInformativa(),
+                //   cabeceraInformativa(),
               ],
             ),
             divider(),
@@ -170,7 +169,8 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
     );
   }
 
-  ImageOvalNetwork imagenProfesional() => ImageOvalNetwork( imageNetworkUrl: prefs.avatarImagen, sizeImage: Size.fromWidth(45));
+  ImageOvalNetwork imagenProfesional() => ImageOvalNetwork(
+      imageNetworkUrl: prefs.avatarImagen, sizeImage: Size.fromWidth(45));
 
   Column crearIconoProfesional(icon, title) {
     return Column(
@@ -203,7 +203,7 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
         key: formKey,
         child: Column(
           children: <Widget>[
-          //  informacionProfesional(context),
+            //  informacionProfesional(context),
             contenedorTitulo(
               context,
               40.0,
@@ -212,14 +212,14 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
             ),
             SizedBox(height: 7.0),
 
-  AutoSizeText(
-                'Estamos en el Departamento de : ${obtenerDepartamento(prefs.idDepartamento)} ',
-                style: kSubTitleCardStyle,
-                maxLines: 2,
-                minFontSize: 15.0,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.justify,
-              ),
+            AutoSizeText(
+              'Estamos en el Departamento de : ${obtenerDepartamento(prefs.idDepartamento)} ',
+              style: kSubTitleCardStyle,
+              maxLines: 2,
+              minFontSize: 15.0,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.justify,
+            ),
 
             SizedBox(height: 7.0),
 
@@ -238,56 +238,61 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
 
   Widget _crearCampos(BuildContext context) {
     nombre = InputTextField(
-        FaIcon(FontAwesomeIcons.userInjured,
-            color: AppTheme.themeVino),
-        'Persona a ayudar',
+        FaIcon(FontAwesomeIcons.userInjured, color: AppTheme.themeVino),
+        '(*) Persona a ayudar',
         registroAmigo.regPersona,
         'Ingrese el nombre de la persona',
         true);
     telefono = InputPhoneField(
-        FaIcon(FontAwesomeIcons.viber,
-            color: AppTheme.themeVino),
-        'Telefono de referencia',
+        FaIcon(FontAwesomeIcons.viber, color: AppTheme.themeVino),
+        '(*) Telefono de referencia',
         registroAmigo.regTelefono,
         'Registre un numero telefónico de referencia',
-        true, 10);
+        true,
+        10);
     ubicacion = InputMultilineField(
         FaIcon(FontAwesomeIcons.home, color: AppTheme.themeVino),
-        'Donde la encuentro',
+        '(*) Donde la encuentro',
         registroAmigo.regUbicacion,
         'Lugar donde se encuentra la persona a ayudar',
         true);
 
     return Column(
       children: <Widget>[
+        Text(
+          '(*) Campos obligatorios. ',
+          style: kCamposTitleStyle,
+          textAlign: TextAlign.left,
+        ),
         nombre,
         telefono,
         ubicacion,
-       _crearTipoAyuda(),
+        _crearTipoAyuda(),
         _crearTipoPrioridad(),
         divider(),
         _crearBoton(resource.save),
       ],
     );
   }
-List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
+
+  List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
     List<DropdownMenuItem<String>> lista = new List();
 
     for (var i = 0; i < snapshot.data.length; i++) {
       GetClasificador item = snapshot.data[i];
       lista.add(DropdownMenuItem(
         child: Text(item.nombre),
-        value: item.id.toString(), 
+        value: item.id.toString(),
       ));
     }
     return lista;
   }
 
   Widget _crearTipoAyuda() {
-
     return Center(
         child: FutureBuilder(
-            future: generic.getAll(new GetClasificador(), urlGetClasificador + '47', primaryKeyGetClasifidor),
+            future: generic.getAll(new GetClasificador(),
+                urlGetClasificador + '47', primaryKeyGetClasifidor),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.hasData) {
                 return Row(
@@ -296,13 +301,14 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
                     Text('Tipo de ayuda:'),
                     SizedBox(width: 15.0),
                     DropdownButton(
-                      icon: FaIcon(FontAwesomeIcons.userMd, color: AppTheme.themeVino),
+                      icon: FaIcon(FontAwesomeIcons.userMd,
+                          color: AppTheme.themeVino),
                       value: valorTipoAyuda.toString(),
                       items: getDropDownAyuda(snapshot),
                       onChanged: (value) {
                         setState(() {
-                           valorTipoAyuda = int.parse(value); 
-          
+                          valorTipoAyuda = int.parse(value);
+
                           //print('valor combo ingresado ENTITY MEDICINA: $valorTipoAyuda y valueeee: $value');
                         });
                       },
@@ -323,8 +329,7 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
         SizedBox(width: 15.0),
         DropdownButton(
           value: _opcionSeleccionadaPrioridad,
-          icon: FaIcon(FontAwesomeIcons.sort,
-              color: AppTheme.themeVino),
+          icon: FaIcon(FontAwesomeIcons.sort, color: AppTheme.themeVino),
           items: getOpcionesPrioridad(),
           onChanged: (opt) {
             setState(() {
@@ -356,8 +361,6 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
   }
 
   _submit() async {
-
-   
     LatLng latLng;
     latLng = await getLocation().then((onvalue) => latLng = onvalue);
 
@@ -385,13 +388,14 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
     if (result == "0") {
       scaffoldKey.currentState
           .showSnackBar(messageOk("Se registro correctamente."));
-     
-      enviarNotificaciones(urlGetToken+'4/${prefs.idInsitucion}', 
-                            'ayudaPersona',
-                             'ayudaPersona', 
-                             nombre.objectValue, 
-                             'Teléfono de contacto',
-                            telefono.objectValue); 
+
+      enviarNotificaciones(
+          urlGetToken + '4/${prefs.idInsitucion}',
+          'ayudaPersona',
+          'ayudaPersona',
+          nombre.objectValue,
+          'Teléfono de contacto',
+          telefono.objectValue);
     } else
       scaffoldKey.currentState
           .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
@@ -401,7 +405,7 @@ List<DropdownMenuItem<String>> getDropDownAyuda(AsyncSnapshot snapshot) {
     });
   }
 
-   List<DropdownMenuItem<String>> getOpcionesPrioridad() {
+  List<DropdownMenuItem<String>> getOpcionesPrioridad() {
     List<DropdownMenuItem<String>> lista = new List();
 
     _tipoPrioridad.forEach((tipoPrioridad) {

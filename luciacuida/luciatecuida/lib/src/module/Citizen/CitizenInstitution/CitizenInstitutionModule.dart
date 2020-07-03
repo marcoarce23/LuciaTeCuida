@@ -27,7 +27,6 @@ class CitizenInstitutionModule extends StatefulWidget {
 class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
   final generic = new Generic();
   final prefs = new PreferensUser();
-  
 
   @override
   void initState() {
@@ -91,7 +90,8 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
           //cuerpoProfesionales()
         ]),
       ),
-       drawer: DrawerCitizen(),
+      drawer: DrawerCitizen(),
+      floatingActionButton: generaFloatbuttonHome(context),
     );
   }
 
@@ -311,7 +311,7 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
                                   width: 30,
                                   height: 30,
                                   child: Image.asset(
-                                    'assets/image/homepage.png',
+                                    "assets/homepage.png",
                                     fit: BoxFit.cover,
                                   )),
                               onTap: () => Navigator.of(context).push(
@@ -340,7 +340,6 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
             FaIcon(FontAwesomeIcons.clock, color: AppTheme.themeVino),
           ),
           futureCuerpoHorario(context),
-          
         ],
       ),
     );
@@ -354,7 +353,8 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
             context,
             MaterialPageRoute(
                 builder: (context) => FoundAllVoluntaryModule(
-                      profesional: profesional, departamento: widget.institutionItem.idUbicacion  ,
+                      profesional: profesional,
+                      departamento: widget.institutionItem.idUbicacion,
                     )),
           );
         },
@@ -544,7 +544,7 @@ class _CitizenInstitutionModuleState extends State<CitizenInstitutionModule> {
         itemBuilder: (context, index) {
           HorarioInstitucion listaHorrio = snapshot.data[index];
           return Padding(
-            padding: const EdgeInsets.only(left: 20.0,top: 5),
+            padding: const EdgeInsets.only(left: 20.0, top: 5),
             child: Text(
               listaHorrio.horario,
               style: kSubTitleCardStyle,

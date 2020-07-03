@@ -22,6 +22,7 @@ import 'package:luciatecuida/src/module/Citizen/Voluntary/FoundVoluntaryModule.d
 import 'package:luciatecuida/src/module/Citizen/Voluntary/InformationVoluntary.dart';
 import 'package:luciatecuida/src/module/Contactos/ContactAppModule.dart';
 import 'package:luciatecuida/src/module/Contactos/ContatGeneralModule.dart';
+import 'package:luciatecuida/src/module/Plasma/PlasmaModule.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 import 'package:luciatecuida/src/module/SplashScreen/Acerca.dart';
 import 'package:luciatecuida/src/module/SplashScreen/IntroScreenModule.dart';
@@ -95,7 +96,7 @@ class _HomePageModuleState extends State<HomePageModule> {
                 _crearExpedido(),
                 _botonesRedondeados(),
                 Text(
-                  'versión 1.0.4',
+                  'versión 1.0.5',
                   textAlign: TextAlign.left,
                 ),
               ],
@@ -277,13 +278,14 @@ class _HomePageModuleState extends State<HomePageModule> {
             ""),
         _crearBotonRedondeado(
             Colors.deepPurple,
-            FaIcon(FontAwesomeIcons.viber, color: Colors.white, size: 40.0),
-            'Números de urgencia',
+            FaIcon(FontAwesomeIcons.pumpMedical, color: Colors.white, size: 40.0),
+            'Banco Plasma',
             '5',
             15.0,
-            ContactGeneralModule(),
+            PlasmaAllModule(),
             0,
             ""),
+
         _crearBotonRedondeado(
             Colors.orangeAccent,
             FaIcon(FontAwesomeIcons.laptopMedical,
@@ -294,15 +296,7 @@ class _HomePageModuleState extends State<HomePageModule> {
             HomePageModule(),
             1,
             "https://omi.app/covid-19/welcome"),
-        _crearBotonRedondeado(
-            Colors.cyan,
-            FaIcon(FontAwesomeIcons.tty, color: Colors.white, size: 38.0),
-            'Violencia IntraFamiliar',
-            '6',
-            14.0,
-            ContactGeneralModule(),
-            0,
-            ""),
+
         _crearBotonRedondeado(
             Colors.green,
             FaIcon(FontAwesomeIcons.school, color: Colors.white, size: 35.0),
@@ -312,15 +306,36 @@ class _HomePageModuleState extends State<HomePageModule> {
             CitizenListInstitucionModule(),
             0,
             ""),
+
         _crearBotonRedondeado(
-            Colors.indigoAccent,
-            FaIcon(FontAwesomeIcons.users, color: Colors.white, size: 35.0),
-            'Voluntarios',
-            '4',
-            16.0,
-            FoundVoluntaryModule(),
+            Colors.deepPurple,
+            FaIcon(FontAwesomeIcons.viber, color: Colors.white, size: 40.0),
+            'Números de urgencia',
+            '5',
+            15.0,
+            ContactGeneralModule(),
             0,
             ""),
+
+        _crearBotonRedondeado(
+            Colors.cyan,
+            FaIcon(FontAwesomeIcons.tty, color: Colors.white, size: 38.0),
+            'Violencia IntraFamiliar',
+            '6',
+            14.0,
+            ContactGeneralModule(),
+            0,
+            ""),
+
+        // _crearBotonRedondeado(
+        //     Colors.indigoAccent,
+        //     FaIcon(FontAwesomeIcons.users, color: Colors.white, size: 35.0),
+        //     'Voluntarios',
+        //     '4',
+        //     16.0,
+        //     FoundVoluntaryModule(),
+        //     0,
+        //     ""),
       ]);
     } else {
       return Wrap(children: <Widget>[
@@ -406,11 +421,10 @@ class _HomePageModuleState extends State<HomePageModule> {
 
 class DrawerCitizen extends StatelessWidget {
   final prefs = new PreferensUser();
-  
+
   @override
   Widget build(BuildContext context) {
-
-     if (prefs.idPersonal == '-2') {
+    if (prefs.idPersonal == '-2') {
       return Drawer(
           child: ListView(
         children: <Widget>[
@@ -452,14 +466,12 @@ class DrawerCitizen extends StatelessWidget {
               ],
             )),
           ),
-         
           CustomListTile(
               Icons.add_to_home_screen,
               '   Acerca de la aplicación',
               () => Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => AcercaModule()),
+                    MaterialPageRoute(builder: (context) => AcercaModule()),
                   )),
           CustomListTile(Icons.exit_to_app, '    Cerrar Sesión', () {
             Navigator.push(
@@ -551,7 +563,6 @@ class DrawerCitizen extends StatelessWidget {
                     MaterialPageRoute(
                         builder: (context) => MultimediaAllModule()),
                   )),
-
           CustomListTile(
               Icons.person_add,
               '    Registrate como voluntario',
@@ -565,15 +576,14 @@ class DrawerCitizen extends StatelessWidget {
               '    Comparte la aplicación',
               () => sharedText(
                   'Comparte la App - SomosUnoBolivia',
-                  '🔺*SomosUnoBolivia*🔺 \n Una aplicación de voluntarios que apoyan a personas que requieren apoyo en COVID-19, médicina en general.\n💬Atención *GRATUITA* personalizada de manera virtual. \n 📲 Puede descargar la app desde: https://play.google.com/store/apps/details?id=bo.SomosUnoBolivia',
+                  '🔺*SomosUnoBolivia*🔺 \n Una aplicación de voluntarios que apoyan a personas que requieren apoyo en COVID-19, médicina en general.\n💬Atención *GRATUITA VIRTUAL* personalizada de manera virtual y gratuita. \n 📲 Puede descargar la app desde: https://play.google.com/store/apps/details?id=bo.SomosUnoBolivia',
                   'text/html')),
           CustomListTile(
               Icons.add_to_home_screen,
               '   Acerca de la aplicación',
               () => Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => AcercaModule()),
+                    MaterialPageRoute(builder: (context) => AcercaModule()),
                   )),
           CustomListTile(Icons.exit_to_app, '    Cerrar Sesión', () {
             Navigator.push(
@@ -641,7 +651,7 @@ class DrawerCitizen extends StatelessWidget {
               '    Comparte la aplicación',
               () => sharedText(
                   'Comparte la App - SomosUnoBolivia',
-                  '🔺*SomosUnoBolivia*🔺 \n Una aplicación de voluntarios que apoyan a personas que requieren apoyo en COVID-19, médicina en general.\n💬Atención *GRATUITA* personalizada de manera virtual. \n 📲 Puede descargar la app desde: https://play.google.com/store/apps/details?id=bo.SomosUnoBolivia',
+                  '🔺*SomosUnoBolivia*🔺 \n Una aplicación de voluntarios que apoyan a personas que requieren apoyo en COVID-19, médicina en general.\n💬Atención *GRATUITA VIRTUAL* personalizada de manera gratuita y virtual. \n 📲 Puede descargar la app desde: https://play.google.com/store/apps/details?id=bo.SomosUnoBolivia',
                   'text/html')),
           CustomListTile(
               Icons.phone_android,

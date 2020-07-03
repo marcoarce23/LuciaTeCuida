@@ -683,6 +683,72 @@ class RegistroAmigo extends Entity {
       };
 }
 
+
+class BancoPlasma extends Entity {
+  int idCovBancoPlasma;
+  String nombrePersona;
+  String telefono;
+  int edad;
+  String direccion;
+  int esRecuperado;
+  int idaTipoSangre;
+  int idaTipoFactor;
+  int departamento;
+  String usuario;
+  String foto;
+  double latitud;
+  double longitud;
+
+
+  BancoPlasma(
+      {this.idCovBancoPlasma = 0,
+      this.nombrePersona,
+      this.telefono,
+      this.edad,
+      this.direccion,
+      this.esRecuperado,
+      this.idaTipoSangre,
+      this.idaTipoFactor,
+ this.departamento,
+      this.latitud,
+      this.longitud,
+     this.foto,
+      this.usuario});
+
+  fromJson(Map<String, dynamic> json) => new BancoPlasma(
+        idCovBancoPlasma: json["IDCOV_BANCOPLASMA"],
+        nombrePersona: json["NOMBRE_PERSONA"],
+        telefono: json["TELEFONO"],
+        edad: json["EDAD"],
+        direccion: json["DIRECCION"],
+        esRecuperado: json["RECUPERADO"],
+        idaTipoSangre: json["TIPO_SANGRE"],
+        idaTipoFactor: json["TIPO_FACTOR"],
+        departamento: json["DEPARTAMENTO"],
+        latitud: json["LATITUD"],
+        longitud: json["LONGITUD"],
+        usuario: json["USUARIO"],
+        foto: json["FOTO"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "IDCOV_BANCOPLASMA": idCovBancoPlasma,
+        "NOMBRE_PERSONA": nombrePersona,
+        "TELEFONO": telefono,
+        "EDAD": edad,
+        "DIRECCION": direccion,
+        "RECUPERADO": esRecuperado,
+"TIPO_SANGRE": idaTipoSangre,
+"TIPO_FACTOR": idaTipoFactor,
+        "DEPARTAMENTO": departamento,
+        "LATITUD": latitud,
+        "LONGITUD": longitud,
+
+        "USUARIO": usuario,
+        "FOTO": foto
+      };
+}
+
 class BotonPanico extends Entity {
   int idcovBotonpanico;
   int idaCatalogo;

@@ -12,6 +12,7 @@ import 'package:luciatecuida/src/Model/Generic.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenEmergency/CitizenEmergencyModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenEvents/CitizenEventsModule.dart';
+import 'package:luciatecuida/src/module/Citizen/CitizenInstitution/CitizenInstitutionModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenMultimedia/CitizenMultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/InformationEntity.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/InformationVoluntary.dart';
@@ -178,6 +179,8 @@ Widget generaFloatbuttonHome(BuildContext context) {
     backgroundColor: AppTheme.themeVino,
   );
 }
+
+
 
 Widget generaHTTP_TEXT(String cadena, String text) {
   if (cadena.contains("http") ||

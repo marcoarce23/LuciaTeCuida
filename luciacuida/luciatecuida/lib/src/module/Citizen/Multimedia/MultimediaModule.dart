@@ -263,31 +263,36 @@ class _MultimediaModuleState extends State<MultimediaModule> {
   Widget _crearCampos() {
     titulo = InputMultilineField(
         FaIcon(FontAwesomeIcons.chalkboardTeacher, color: AppTheme.themeVino),
-        'Nombre del material',
+        '(*) Nombre del material',
         entity.mulTitulo,
         'Ingrese el nombre del material',
         true);
     resumen = InputMultilineField(
         FaIcon(FontAwesomeIcons.clipboardList, color: AppTheme.themeVino),
-        'Resumen sobre material',
+        '(*) Resumen sobre material',
         entity.mulResumen,
         'Registre resumen sobre el matarial',
         true);
 
     especialidad = InputDropDown(
         FaIcon(FontAwesomeIcons.userMd, color: AppTheme.themeVino),
-        'Especialidad:',
+        '(*) Especialidad:',
         entity.idaCategoria.toString(),
         urlGetClasificador + '10');
 
     tipoMaterial = InputDropDown(
         FaIcon(FontAwesomeIcons.userMd, color: AppTheme.themeVino),
-        'Tipo Material:',
+        '(*) Tipo Material:',
         '74',
         urlGetClasificador + '73');
 
     return Column(
       children: <Widget>[
+        Text(
+          '(*) Campos obligatorios. ',
+          style: kCamposTitleStyle,
+          textAlign: TextAlign.left,
+        ),
         //  tipoMaterial,
         _crearMaterial(),
 
@@ -397,7 +402,7 @@ class _MultimediaModuleState extends State<MultimediaModule> {
     DateTime picked = await showDatePicker(
         context: context,
         initialDate: new DateTime.now(),
-        firstDate: new DateTime(2020, 4),
+        firstDate: new DateTime(2020, 6),
         lastDate: new DateTime(2025, 12),
         locale: Locale('es', 'ES'));
 
@@ -413,8 +418,8 @@ class _MultimediaModuleState extends State<MultimediaModule> {
   _selectDateFin(BuildContext context) async {
     DateTime picked = await showDatePicker(
         context: context,
-        initialDate: new DateTime.now(),
-        firstDate: new DateTime(2020, 4),
+        initialDate: new DateTime(2020, 12), //new DateTime.now(),
+        firstDate: new DateTime(2020, 6),
         lastDate: new DateTime(2025, 12),
         locale: Locale('es', 'ES'));
 
@@ -437,8 +442,8 @@ class _MultimediaModuleState extends State<MultimediaModule> {
             // border: OutlineInputBorder(
             //   borderRadius: BorderRadius.circular(20.0)
             // ),
-            hintText: 'Fecha inicio del material',
-            labelText: 'Fecha inicio del material',
+            hintText: '(*) Fecha inicio del material',
+            labelText: '(*) Fecha inicio del material',
             //    suffixIcon: Icon(Icons.perm_contact_calendar),
             icon: FaIcon(FontAwesomeIcons.calendarAlt,
                 color: AppTheme.themeVino)),
@@ -460,8 +465,8 @@ class _MultimediaModuleState extends State<MultimediaModule> {
             // border: OutlineInputBorder(
             //   borderRadius: BorderRadius.circular(20.0)
             // ),
-            hintText: 'Fecha fin del material',
-            labelText: 'Fecha fin del material',
+            hintText: '(*) Fecha fin del material',
+            labelText: '(*) Fecha fin del material',
             //    suffixIcon: Icon(Icons.perm_contact_calendar),
             icon: FaIcon(FontAwesomeIcons.calendarAlt,
                 color: AppTheme.themeVino)),
@@ -493,9 +498,6 @@ class _MultimediaModuleState extends State<MultimediaModule> {
   }
 
   _submit() async {
-
-
-    
     if (!formKey.currentState.validate()) return;
 
     formKey.currentState.save();

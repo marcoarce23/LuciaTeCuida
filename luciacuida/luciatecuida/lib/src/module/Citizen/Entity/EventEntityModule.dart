@@ -219,37 +219,42 @@ class _EventEntityModuleState extends State<EventEntityModule> {
   Widget _crearCampos() {
     titulo = InputTextField(
         FaIcon(FontAwesomeIcons.fileMedical, color: AppTheme.themeVino),
-        'Nombre del evento:',
+        '(*) Nombre del evento:',
         entity.eveTitulo,
         'Nombre del Evento',
         true);
     objetivo = InputMultilineField(
         FaIcon(FontAwesomeIcons.idBadge, color: AppTheme.themeVino),
-        'Objetivo:',
+        '(*) Objetivo:',
         entity.eveObjetivo,
         'Objetivo del evento',
         true);
     dirigidoA = InputMultilineField(
         FaIcon(FontAwesomeIcons.handshake, color: AppTheme.themeVino),
-        'Dirigido A:',
+        '(*) Dirigido A:',
         entity.eveDirigidoA,
         'Dirigido A',
         true);
     expositor = InputTextField(
         FaIcon(FontAwesomeIcons.male, color: AppTheme.themeVino),
-        'Expositor:',
+        '(*) Expositor:',
         entity.eveExpositor,
         'Expositor/Disertante',
         true);
     ubicacion = InputMultilineField(
         FaIcon(FontAwesomeIcons.mapMarkedAlt, color: AppTheme.themeVino),
-        'Ubicacion/enlace digital:',
+        '(*) Ubicacion/enlace digital:',
         entity.eveUbicacion,
         'Ubicacion/enlace digital',
         true);
 
     return Column(
       children: <Widget>[
+        Text(
+          '(*) Campos obligatorios. ',
+          style: kCamposTitleStyle,
+          textAlign: TextAlign.left,
+        ),
         titulo,
         objetivo,
         dirigidoA,
