@@ -186,7 +186,7 @@ class _PlasmaModuleState extends State<PlasmaModule> {
               ),
             ),
 
-       //     SizedBox(height: 7.0),
+            //     SizedBox(height: 7.0),
 
             Container(
               width: size.width * 0.96,
@@ -219,8 +219,6 @@ class _PlasmaModuleState extends State<PlasmaModule> {
             //   textAlign: TextAlign.justify,
             // ),
 
-           
-
             Container(
               width: size.width * 0.93,
               margin: EdgeInsets.symmetric(vertical: 0.0),
@@ -244,7 +242,7 @@ class _PlasmaModuleState extends State<PlasmaModule> {
     edad = InputTextField(
         FaIcon(FontAwesomeIcons.male, color: AppTheme.themeVino),
         '(*) Edad de la persona',
-        bancoPlasma.edad.toString(),
+        bancoPlasma.edad == null ? '0' : bancoPlasma.edad.toString(),
         'Registre la edad',
         true);
     telefono = InputPhoneField(
@@ -268,30 +266,30 @@ class _PlasmaModuleState extends State<PlasmaModule> {
           style: kCamposTitleStyle,
           textAlign: TextAlign.left,
         ),
-         Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14.0),
-              child: AutoSizeText(
-                '- Nota: No puede ser donante si usted tiene: (Hepatitis, VIH, Tuberculósis, chagas).',
-                style: knoteTitleCardStyle,
-                maxLines: 3,
-                minFontSize: 13.0,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.justify,
-              ),
-            ),
-            SizedBox(height: 5.0),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14.0),
-              child: AutoSizeText(
-                '- Nota: No puede ser donante si usted tiene enfernedad de base: (Diabétes, Presion alta, Cardiopatias).',
-                style: knoteTitleCardStyle,
-                maxLines: 3,
-                minFontSize: 13.0,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.justify,
-              ),
-            ),
-            SizedBox(height: 7.0),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14.0),
+          child: AutoSizeText(
+            '- Nota: No puede ser donante si usted tiene: (Hepatitis, VIH, Tuberculósis, chagas).',
+            style: knoteTitleCardStyle,
+            maxLines: 3,
+            minFontSize: 13.0,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.justify,
+          ),
+        ),
+        SizedBox(height: 5.0),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14.0),
+          child: AutoSizeText(
+            '- Nota: No puede ser donante si usted tiene enfernedad de base: (Diabétes, Presion alta, Cardiopatias).',
+            style: knoteTitleCardStyle,
+            maxLines: 3,
+            minFontSize: 13.0,
+            overflow: TextOverflow.ellipsis,
+            textAlign: TextAlign.justify,
+          ),
+        ),
+        SizedBox(height: 7.0),
         nombre,
         edad,
         telefono,
@@ -416,6 +414,7 @@ class _PlasmaModuleState extends State<PlasmaModule> {
   }
 
   _submit() async {
+    bancoPlasma.foto = imagen;
     LatLng latLng;
     latLng = await getLocation().then((onvalue) => latLng = onvalue);
 
@@ -426,37 +425,47 @@ class _PlasmaModuleState extends State<PlasmaModule> {
       _save = true;
     });
 
+    if (esRecuperado)
+      bancoPlasma.esRecuperado = 1;
+    else
+      bancoPlasma.esRecuperado = 0;
+
     bancoPlasma.idCovBancoPlasma = 0;
     bancoPlasma.nombrePersona = nombre.objectValue;
+    bancoPlasma.edad = int.parse(edad.objectValue);
     bancoPlasma.telefono = telefono.objectValue;
     bancoPlasma.direccion = ubicacion.objectValue;
     bancoPlasma.idaTipoSangre = valorTipoSangre;
     bancoPlasma.idaTipoFactor = valorTipoFactor;
-    bancoPlasma.latitud = latLng.latitude;
-    bancoPlasma.longitud = latLng.longitude;
     bancoPlasma.departamento = prefs.idDepartamento;
     bancoPlasma.usuario = prefs.correoElectronico;
+    bancoPlasma.latitud = latLng.latitude;
+    bancoPlasma.longitud = latLng.longitude;
+    print('valor plasma: $bancoPlasma');
 
-    final dataMap = generic.add(bancoPlasma, urlAddVoluntary);
-    await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+    final dataMap = generic.add(bancoPlasma, urlAddPlasma);
+    print('valor plasma: $dataMap');
+    await dataMap.then((respuesta) {
+      result = respuesta["TIPO_RESPUESTA"];
 
-    if (result == "0") {
-      scaffoldKey.currentState
-          .showSnackBar(messageOk("Se registro correctamente."));
+      if (result == "0") {
+        scaffoldKey.currentState
+            .showSnackBar(messageOk("Se registro correctamente."));
 
-      // enviarNotificaciones(
-      //     urlGetToken + '4/${prefs.idInsitucion}',
-      //     'ayudaPersona',
-      //     'ayudaPersona',
-      //     nombre.objectValue,
-      //     'Teléfono de contacto',
-      //     telefono.objectValue);
-    } else
-      scaffoldKey.currentState
-          .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
+        // enviarNotificaciones(
+        //     urlGetToken + '4/${prefs.idInsitucion}',
+        //     'ayudaPersona',
+        //     'ayudaPersona',
+        //     nombre.objectValue,
+        //     'Teléfono de contacto',
+        //     telefono.objectValue);
+      } else
+        scaffoldKey.currentState
+            .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
 
-    setState(() {
-      _save = false;
+      setState(() {
+        _save = false;
+      });
     });
   }
 

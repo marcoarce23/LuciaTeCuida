@@ -383,7 +383,8 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
     registroAmigo.usuario = prefs.correoElectronico;
 
     final dataMap = generic.add(registroAmigo, urlAddVoluntary);
-    await dataMap.then((respuesta) => result = respuesta["TIPO_RESPUESTA"]);
+    await dataMap.then((respuesta) 
+    { result = respuesta["TIPO_RESPUESTA"];
 
     if (result == "0") {
       scaffoldKey.currentState
@@ -402,6 +403,7 @@ class _CitizenHelpModuleState extends State<CitizenHelpModule> {
 
     setState(() {
       _save = false;
+    });
     });
   }
 

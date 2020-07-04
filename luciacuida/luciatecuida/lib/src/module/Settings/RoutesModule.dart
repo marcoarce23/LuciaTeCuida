@@ -48,6 +48,9 @@ final String primaryKeyGetEmergency  =    '_DevuelveEmergencyResult';
 final String urlGetToken             =    'http://covid19.ruta88.net/COVID/Login/srvLogin.svc/DevuelveTokens/';
 final String primaryKeyGetToken      =    '_DevuelveTokenResult';
 
+final String primaryKeyGetPlasma =    '_DevuelvePlasmaResult';
+String urlGetPlasma            =    'http://covid19.ruta88.net/COVID/BotonPanico/srvBotonPanico.svc/DevuelvePlasma/';
+
 // METODO POST  MAV
 final String urlAddVoluntary         =    'http://covid19.ruta88.net/COVID/AyudaAmigo/srvAyudaAmigo.svc/AyudaAmigo';
 final String urlAddSignIn            =    'http://covid19.ruta88.net/COVID/Login/srvLogin.svc/login_signin1';
@@ -59,6 +62,7 @@ final String urlAddAtencion          =    'http://covid19.ruta88.net/COVID/Atenc
 final String urlAddAtencionInstitucion=   'http://covid19.ruta88.net/COVID/Atencion/srvAtencion.svc/AtencionInstitucion';
 final String urlAddTokenImei         =    'http://covid19.ruta88.net/COVID/Login/srvLogin.svc/RegistrarDispositivo';
 final String urlAprobar              =    'http://covid19.ruta88.net/COVID/Personal/srvPersonal.svc/EstadoPersonal/';
+final String urlAddPlasma        =    'http://covid19.ruta88.net/COVID/BotonPanico/srvBotonPanico.svc/BancoSangre';
 
 // METODO POST COAV
 final String urlAddBotonPanico              =   'http://covid19.ruta88.net/COVID/BotonPanico/srvBotonPanico.svc/BotonAyuda';
@@ -71,6 +75,7 @@ final String urlDeleteVoluntario     =    'http://covid19.ruta88.net/COVID/Perso
 final String urlDeleteInstitucion    =    'http://covid19.ruta88.net/COVID/Institucion/srvInstitucion.svc/EliminarInstitucion/';
 final String urlDeleteEvento         =    'http://covid19.ruta88.net/COVID/Evento/srvEvento.svc/EliminarEvento/';
 final String urlDeleteMultimedia     =    'http://covid19.ruta88.net/COVID/Multimedia/srvMultimedia.svc/EliminarMultimedia/';
+final String urlDeletePlasma     =    'http://covid19.ruta88.net/COVID/BotonPanico/srvBotonPanico.svc/EliminarBancoSangre/';
 //////          CHRISS           //////
 
 // METODOS GET    COAV

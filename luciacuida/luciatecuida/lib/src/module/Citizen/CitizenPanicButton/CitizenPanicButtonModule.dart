@@ -54,13 +54,13 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: AutoSizeText(
-                  'Se notificará a voluntarios del Departamento de : ${obtenerDepartamento(prefs.idDepartamento)} ',
-                  style: kSubTitleCardStyle,
-                  maxLines: 2,
-                  minFontSize: 15.0,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.justify,
-              ),
+                    'Se notificará a voluntarios del Departamento de : ${obtenerDepartamento(prefs.idDepartamento)} ',
+                    style: kSubTitleCardStyle,
+                    maxLines: 2,
+                    minFontSize: 15.0,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.justify,
+                  ),
                 ),
                 ButtonPanic(
                   titulo: "CONSULTA",
@@ -134,7 +134,7 @@ class _ButtonPanic extends State<ButtonPanic> {
 
     ///72 Solicitud enviada
     botonPanico.idaEstadoSolicitud = 72;
-    botonPanico.departamento= prefs.idDepartamento;
+    botonPanico.departamento = prefs.idDepartamento;
 
     var textStyle = TextStyle(
         fontSize: 16.5, fontWeight: FontWeight.w900, color: AppTheme.themeVino);
@@ -199,9 +199,6 @@ class _ButtonPanic extends State<ButtonPanic> {
                             ),
                           ],
                         ),
-
-                         
-
                         Row(
                           children: <Widget>[
                             Text('Consulta Médica',
@@ -232,10 +229,9 @@ class _ButtonPanic extends State<ButtonPanic> {
                             ),
                           ],
                         ),
-
-                         Row(
+                        Row(
                           children: <Widget>[
-                            Text('Solicitud de Plasma',
+                            Text('Solicitud de PLASMA',
                                 style: TextStyle(fontSize: 12)),
                             Radio(
                               value: 102,
@@ -263,7 +259,6 @@ class _ButtonPanic extends State<ButtonPanic> {
                             // ),
                           ],
                         ),
-
                         divider(),
                         Align(
                           alignment: Alignment.topLeft,
@@ -340,9 +335,9 @@ class _ButtonPanic extends State<ButtonPanic> {
                             focusColor: Colors.blue,
                             labelStyle:
                                 TextStyle(fontSize: 14, color: Colors.black),
-                            labelText: "Ingrese sus síntomas y/o ayuda:",
+                            labelText: "Ingrese sus síntomas y/o ayuda",
                             border: InputBorder.none,
-                            hintText: 'Ingrese su inquietud',
+                            hintText: 'Ingrese su solicutud y nombre completo',
                             hintStyle:
                                 TextStyle(fontSize: 14, color: Colors.black),
                           ),
@@ -415,7 +410,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                               },
                               child: Row(
                                 children: <Widget>[
-                                     FaIcon(
+                                  FaIcon(
                                     FontAwesomeIcons.history,
                                     size: 25,
                                     color: Colors.white,

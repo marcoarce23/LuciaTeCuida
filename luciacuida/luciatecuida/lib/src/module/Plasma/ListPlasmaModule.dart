@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:luciatecuida/src/Model/Entity.dart';
@@ -9,9 +10,8 @@ import 'package:luciatecuida/src/Widget/GeneralWidget.dart';
 import 'package:luciatecuida/src/Widget/Message/Message.dart';
 import 'package:luciatecuida/src/module/Settings/RoutesModule.dart';
 
-
 class ListPlasmaModule extends StatefulWidget {
-  static final String routeName = 'ListaCiudadanoAyuda';
+  static final String routeName = 'ListaPlasma';
   ListPlasmaModule({Key key}) : super(key: key);
 
   @override
@@ -19,7 +19,7 @@ class ListPlasmaModule extends StatefulWidget {
 }
 
 class _ListPlasmaModuleState extends State<ListPlasmaModule> {
-final generic = new Generic();
+  final generic = new Generic();
   final prefs = new PreferensUser();
   var result;
 
@@ -65,8 +65,8 @@ final generic = new Generic();
     return FutureBuilder(
         future: generic.getAll(
             new BancoPlasma(),
-            urlGetDevuelveAyuda + '/' + prefs.correoElectronico,
-            primaryKeyGetAyudaAmigo),
+            urlGetPlasma + prefs.idDepartamento.toString(),
+            primaryKeyGetPlasma),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasData) {
             switch (snapshot.connectionState) {
@@ -133,7 +133,7 @@ final generic = new Generic();
       ),
       onDismissed: (value) {
         setState(() {
-           _submit(item);          //print('resultado:$result');
+          _submit(item); //print('resultado:$result');
         });
       },
 
@@ -149,7 +149,7 @@ final generic = new Generic();
                     child: Row(
                       children: <Widget>[
                         Icon(
-                          Icons.gamepad,
+                          Icons.account_box,
                           color: AppTheme.themeVino,
                           size: 15,
                         ),
@@ -174,6 +174,25 @@ final generic = new Generic();
                 //         style: kSubTitleCardStyle)
                 //   ],
                 // ),
+                Container(
+                    child: Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.accessibility_new,
+                      color: AppTheme.themeVino,
+                      size: 15,
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Edad: ${entityItem.edad}',
+                        style: kSubTitleCardStyle,
+                        softWrap: true,
+                        overflow: TextOverflow.clip,
+                      ),
+                    ),
+                  ],
+                )),
+
                 Container(
                     child: Row(
                   children: <Widget>[
@@ -220,7 +239,7 @@ final generic = new Generic();
                       ),
                       Expanded(
                         child: Text(
-                          'Ubicació:  ${entityItem.direccion}',
+                          'Dirección:',
                           style: kSubTitleCardStyle,
                           softWrap: true,
                           overflow: TextOverflow.clip,
@@ -229,6 +248,52 @@ final generic = new Generic();
                     ],
                   ),
                 ),
+
+                AutoSizeText(
+                  entityItem.direccion,
+                  style: kSubTitleCardStyle,
+                  maxLines: 2,
+                  minFontSize: 15.0,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.justify,
+                ),
+                // Container(
+                //     child: Row(
+                //   children: <Widget>[
+                //     Icon(
+                //       Icons.phone_android,
+                //       color: AppTheme.themeVino,
+                //       size: 15,
+                //     ),
+                //     Expanded(
+                //       child: Text(
+                //         'Tipo Sangre: ${entityItem.tipoSangre}',
+                //         style: kSubTitleCardStyle,
+                //         softWrap: true,
+                //         overflow: TextOverflow.clip,
+                //       ),
+                //     ),
+                //   ],
+                // )),
+
+                // Container(
+                //     child: Row(
+                //   children: <Widget>[
+                //     Icon(
+                //       Icons.phone_android,
+                //       color: AppTheme.themeVino,
+                //       size: 15,
+                //     ),
+                //     Expanded(
+                //       child: Text(
+                //         'Tipo Factor: ${entityItem.tipoFactor}',
+                //         style: kSubTitleCardStyle,
+                //         softWrap: true,
+                //         overflow: TextOverflow.clip,
+                //       ),
+                //     ),
+                //   ],
+                // )),
               ],
             ),
           ),
@@ -237,35 +302,33 @@ final generic = new Generic();
     );
   }
 
+  _submit(int item) async {
+    await generic
+        .add(new BancoPlasma(),
+            '$urlDeletePlasma${item.toString()}/${prefs.correoElectronico}')
+        .then((respuesta) {
+      result = respuesta["TIPO_RESPUESTA"];
 
- _submit(int item) async
- {
-    await generic.add(new BancoPlasma(),
-              '$urlDeleteAyudaAmigo${item.toString()}/${prefs.userId}').then((respuesta) {
-            result = respuesta["TIPO_RESPUESTA"];
+      if (result != null || result != '-1')
+        Scaffold.of(context).showSnackBar(messageOk("Se eliminó el registro."));
+      else
+        Scaffold.of(context).showSnackBar(
+            messageNOk("Se produjo un error. Vuelva a intentarlo."));
+    });
+  }
 
-            if (result != null || result != '-1')
-              Scaffold.of(context)
-                  .showSnackBar(messageOk("Se eliminó el registro."));
-            else
-              Scaffold.of(context).showSnackBar(
-                  messageNOk("Se produjo un error. Vuelva a intentarlo."));
-          });
-
- }
   Container iconEntity(BancoPlasma entityItem) {
+    print('fotooo: ${entityItem.foto}');
     return Container(
         child: Column(
       children: <Widget>[
         ImageOvalNetwork(
-            imageNetworkUrl:
-                'http://res.cloudinary.com/propia/image/upload/v1592167496/djsbl74vjdwtso6zrst7.jpg',
-            sizeImage: Size.fromWidth(40)),
+            imageNetworkUrl: entityItem.foto, sizeImage: Size.fromWidth(40)),
         SizedBox(
           height: 1.5,
         ),
         Text(
-          '${entityItem.idaTipoSangre}',
+          '${entityItem.tipoSangre} - ${entityItem.tipoFactor}',
           style: TextStyle(
               fontSize: 12, color: Colors.black87, fontWeight: FontWeight.w400),
         ),

@@ -278,7 +278,8 @@ class _HomePageModuleState extends State<HomePageModule> {
             ""),
         _crearBotonRedondeado(
             Colors.deepPurple,
-            FaIcon(FontAwesomeIcons.pumpMedical, color: Colors.white, size: 40.0),
+            FaIcon(FontAwesomeIcons.pumpMedical,
+                color: Colors.white, size: 40.0),
             'Banco Plasma',
             '5',
             15.0,
@@ -576,7 +577,7 @@ class DrawerCitizen extends StatelessWidget {
               '    Comparte la aplicación',
               () => sharedText(
                   'Comparte la App - SomosUnoBolivia',
-                  '🔺*SomosUnoBolivia*🔺 \n Una aplicación de voluntarios que apoyan a personas que requieren apoyo en COVID-19, médicina en general.\n💬Atención *GRATUITA VIRTUAL* personalizada de manera virtual y gratuita. \n 📲 Puede descargar la app desde: https://play.google.com/store/apps/details?id=bo.SomosUnoBolivia',
+                  '🔺*SomosUnoBolivia*🔺 \n Una aplicación de voluntarios que apoyan a personas que requieren apoyo en COVID-19, médicina en general.\n💬Atención *GRATUITA Y VIRTUAL* personalizada de manera virtual y gratuita. \n 📲 Puede descargar la app desde: https://play.google.com/store/apps/details?id=bo.SomosUnoBolivia',
                   'text/html')),
           CustomListTile(
               Icons.add_to_home_screen,
@@ -651,7 +652,7 @@ class DrawerCitizen extends StatelessWidget {
               '    Comparte la aplicación',
               () => sharedText(
                   'Comparte la App - SomosUnoBolivia',
-                  '🔺*SomosUnoBolivia*🔺 \n Una aplicación de voluntarios que apoyan a personas que requieren apoyo en COVID-19, médicina en general.\n💬Atención *GRATUITA VIRTUAL* personalizada de manera gratuita y virtual. \n 📲 Puede descargar la app desde: https://play.google.com/store/apps/details?id=bo.SomosUnoBolivia',
+                  '🔺*SomosUnoBolivia*🔺 \n Una aplicación de voluntarios que apoyan a personas que requieren apoyo en COVID-19, médicina en general.\n💬Atención *GRATUITA Y VIRTUAL* personalizada de manera gratuita y virtual. \n 📲 Puede descargar la app desde: https://play.google.com/store/apps/details?id=bo.SomosUnoBolivia',
                   'text/html')),
           CustomListTile(
               Icons.phone_android,

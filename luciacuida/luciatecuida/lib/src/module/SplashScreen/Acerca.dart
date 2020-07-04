@@ -7,7 +7,6 @@ import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/module/HomePage/HomePageModule.dart';
 import 'package:page_transition/page_transition.dart';
 
-import 'package:getflutter/getflutter.dart';
 
 class AcercaModule extends StatefulWidget {
   static final String routeName = 'acerca';
@@ -18,7 +17,7 @@ class AcercaModule extends StatefulWidget {
 
 class _AcercaModuleState extends State<AcercaModule> {
   final prefs = new PreferensUser();
-  final int _numPages = 4;
+  final int _numPages = 3;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
 
@@ -68,7 +67,6 @@ class _AcercaModuleState extends State<AcercaModule> {
               ],
             ),
           ),
-
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 20.0),
             child: Column(
@@ -94,8 +92,6 @@ class _AcercaModuleState extends State<AcercaModule> {
                     ),
                   ),
                 ),
-
-
                 Container(
                   height: 500.0,
                   child: PageView(
@@ -122,15 +118,15 @@ class _AcercaModuleState extends State<AcercaModule> {
                                   width: 150.0,
                                 ),
                               ),
-                               AutoSizeText(
-                'SomosUnoBolivia, es una APP social para los voluntarios.',
-                style: kTitleStyleBlack,
-                maxLines: 2,
-                minFontSize: 15.0,
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.center,
-              ),
-                            
+                              AutoSizeText(
+                                'SomosUnoBolivia, es una APP social para los voluntarios.',
+                                style: kTitleStyleBlack,
+                                maxLines: 2,
+                                minFontSize: 15.0,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                              ),
+
                               SizedBox(height: 15.0),
                               //    Expanded(
                               Column(
@@ -145,7 +141,7 @@ class _AcercaModuleState extends State<AcercaModule> {
                                       SizedBox(width: 11.0),
                                       Expanded(
                                         child: AutoSizeText(
-                                          'Para todas las personas que requieren de una ayuda médica gratuita.',
+                                          'Para todas las personas que requieren de una ayuda médica gratuita y virtual.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
                                           overflow: TextOverflow.clip,
@@ -164,7 +160,7 @@ class _AcercaModuleState extends State<AcercaModule> {
                                       SizedBox(width: 11.0),
                                       Expanded(
                                         child: AutoSizeText(
-                                          'Una alternativa para recibir asistencia telefónica, on-line o audiovisual.',
+                                          'Una alternativa para recibir asistencia telefónica, on-line o audiovisual gratuita y virtual.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
                                           overflow: TextOverflow.clip,
@@ -199,8 +195,6 @@ class _AcercaModuleState extends State<AcercaModule> {
                           ),
                         ),
                       ),
-
-                      
                       Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Flexible(
@@ -235,7 +229,7 @@ class _AcercaModuleState extends State<AcercaModule> {
                                       SizedBox(width: 10.0),
                                       Expanded(
                                         child: AutoSizeText(
-                                          'Grupo de personas que de forma voluntaria y dedicación brindan apoyo a las personas que estan buscando ayuda.',
+                                          'Grupo de personas que de forma voluntaria y dedicación brindan apoyo a las personas que estan buscando ayuda gratuita y virtual.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
                                           overflow: TextOverflow.clip,
@@ -254,7 +248,7 @@ class _AcercaModuleState extends State<AcercaModule> {
                                       SizedBox(width: 13.0),
                                       Expanded(
                                         child: AutoSizeText(
-                                          'Grupo de personas interesadas en bridnarte material de apoyo y eventos para tu aprendizaje.',
+                                          'Grupo de personas que te brindan apoyo gratuito y virtual e interesad@s en brindarte material de apoyo y eventos para tu aprendizaje.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
                                           overflow: TextOverflow.clip,
@@ -282,7 +276,6 @@ class _AcercaModuleState extends State<AcercaModule> {
                                       ),
                                     ],
                                   ),
-                                  
                                 ],
                               ),
                               // ),
@@ -290,7 +283,6 @@ class _AcercaModuleState extends State<AcercaModule> {
                           ),
                         ),
                       ),
-
                       Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Flexible(
@@ -402,22 +394,9 @@ class _AcercaModuleState extends State<AcercaModule> {
                           ),
                         ),
                       ),
-
-
-
-
-
-
-
-
-
-
                     ],
                   ),
                 ),
-
-
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: _buildPageIndicator(),
@@ -456,15 +435,11 @@ class _AcercaModuleState extends State<AcercaModule> {
                         ),
                       )
                     : Text(''),
-
-
               ],
             ),
           ),
         ),
       ),
-
-      
       bottomSheet: _currentPage == _numPages - 1
           ? Container(
               height: 50.0,

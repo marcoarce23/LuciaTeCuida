@@ -140,7 +140,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                       SizedBox(width: 11.0),
                                       Expanded(
                                         child: AutoSizeText(
-                                          'Para todas las personas que requieren de una ayuda médica gratuita.',
+                                          'Para todas las personas que requieren de una ayuda médica gratuita y virtual.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
                                           overflow: TextOverflow.clip,
@@ -159,7 +159,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                       SizedBox(width: 11.0),
                                       Expanded(
                                         child: AutoSizeText(
-                                          'Una alternativa para recibir asistencia telefónica, on-line o audiovisual.',
+                                          'Una alternativa para recibir asistencia telefónica, on-line o audiovisual gratuita y virtual.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
                                           overflow: TextOverflow.clip,
@@ -228,7 +228,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                       SizedBox(width: 10.0),
                                       Expanded(
                                         child: AutoSizeText(
-                                          'Grupo de personas que de forma voluntaria y dedicación brindan apoyo a las personas que estan buscando ayuda.',
+                                          'Grupo de personas que de forma voluntaria y dedicación brindan apoyo a las personas que estan buscando ayuda gratuita y virtual.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
                                           overflow: TextOverflow.clip,
@@ -247,7 +247,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                       SizedBox(width: 13.0),
                                       Expanded(
                                         child: AutoSizeText(
-                                          'Grupo de personas interesadas en bridnarte material de apoyo y eventos para tu aprendizaje.',
+                                          'Grupo de personas que te brindan apoyo gratuito y virtual e interesad@s en brindarte material de apoyo y eventos para tu aprendizaje.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
                                           overflow: TextOverflow.clip,

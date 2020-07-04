@@ -34,9 +34,9 @@ class Generic {
 
   Future<Map<String, dynamic>> add(Entity objeto, String urlService) async {
     String _body = json.encode(objeto.toJson());
-    //print('body: $_body');
+   // print('body: $_body');
     final url = urlService;
-    //print('url: $url');
+  //  print('url: $url');
     final response = await http.post(url,
         headers: {"Content-Type": "application/json"}, body: _body);
 
@@ -75,9 +75,9 @@ class Generic {
     String sJSON =
         '{"to": "$token","notification": {"title": "Lucia Te Cuida", "body": "$body"}, "data":{"data": "$data"}}';
     String _body = sJSON;
-    //print('body: $_body');
+   // print('body: $_body');
     final url = 'https://fcm.googleapis.com/fcm/send';
-    //print('url: $url');
+  //  print('url: $url');
     final response = await http.post(url,
         headers: {
           "Authorization":

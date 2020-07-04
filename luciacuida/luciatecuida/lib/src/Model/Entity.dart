@@ -683,7 +683,6 @@ class RegistroAmigo extends Entity {
       };
 }
 
-
 class BancoPlasma extends Entity {
   int idCovBancoPlasma;
   String nombrePersona;
@@ -698,7 +697,8 @@ class BancoPlasma extends Entity {
   String foto;
   double latitud;
   double longitud;
-
+  String tipoSangre;
+  String tipoFactor;
 
   BancoPlasma(
       {this.idCovBancoPlasma = 0,
@@ -709,11 +709,13 @@ class BancoPlasma extends Entity {
       this.esRecuperado,
       this.idaTipoSangre,
       this.idaTipoFactor,
- this.departamento,
+      this.departamento,
       this.latitud,
       this.longitud,
-     this.foto,
-      this.usuario});
+      this.foto,
+      this.usuario,
+      this.tipoSangre,
+      this.tipoFactor});
 
   fromJson(Map<String, dynamic> json) => new BancoPlasma(
         idCovBancoPlasma: json["IDCOV_BANCOPLASMA"],
@@ -722,13 +724,16 @@ class BancoPlasma extends Entity {
         edad: json["EDAD"],
         direccion: json["DIRECCION"],
         esRecuperado: json["RECUPERADO"],
-        idaTipoSangre: json["TIPO_SANGRE"],
-        idaTipoFactor: json["TIPO_FACTOR"],
+        idaTipoSangre: json["IDA_TIPOSANGRE"],
+        idaTipoFactor: json["IDA_FACTOR"],
         departamento: json["DEPARTAMENTO"],
         latitud: json["LATITUD"],
         longitud: json["LONGITUD"],
-        usuario: json["USUARIO"],
+        usuario: json["USUARIOCREACION"],
         foto: json["FOTO"],
+        tipoSangre: json["TIPO_SANGRE"],
+        tipoFactor: json["TIPO_FACTOR"],
+
       );
 
   Map<String, dynamic> toJson() => {
@@ -738,14 +743,15 @@ class BancoPlasma extends Entity {
         "EDAD": edad,
         "DIRECCION": direccion,
         "RECUPERADO": esRecuperado,
-"TIPO_SANGRE": idaTipoSangre,
-"TIPO_FACTOR": idaTipoFactor,
+        "IDA_TIPOSANGRE": idaTipoSangre,
+        "IDA_FACTOR": idaTipoFactor,
         "DEPARTAMENTO": departamento,
         "LATITUD": latitud,
         "LONGITUD": longitud,
-
-        "USUARIO": usuario,
-        "FOTO": foto
+        "USUARIOCREACION": usuario,
+        "FOTO": foto,
+        "TIPO_SANGRE": tipoSangre,
+        "TIPO_FACTOR": tipoFactor,
       };
 }
 
@@ -788,8 +794,6 @@ class BotonPanico extends Entity {
       botCordenadalon: json["BOT_CORDENADALON"],
       botFecha: json["BOT_FECHA"],
       departamento: json["DEPARTAMENTO"],
-
-
       idaEstadoSolicitud: json["IDA_ESTADOSOLICITUD"],
       botTelefono: json["BOT_TELEFONO"],
       usuario: json["USUARIO"]);
@@ -805,8 +809,6 @@ class BotonPanico extends Entity {
         "BOT_FECHA": botFecha,
         "IDA_ESTADOSOLICITUD": idaEstadoSolicitud,
         "DEPARTAMENTO": departamento,
-
-
         "BOT_TELEFONO": botTelefono,
         "USUARIO": usuario
       };
@@ -836,7 +838,7 @@ class LoginSigIn extends Entity {
   String idUsuario;
   String idInstitucion;
   String nombrePersona;
-   int idCreacionInstitucion;
+  int idCreacionInstitucion;
   String nombreCreacionInstitucion;
   String correo;
   String nombreInstitucion;
@@ -869,10 +871,8 @@ class LoginSigIn extends Entity {
         idInstitucion: json["ID_INSTITUCION"],
         nombrePersona: json["NOMBRE_PERSONA"],
         nombreInstitucion: json["NOMBRE_INSTITUCION"],
-
         idCreacionInstitucion: json["ID_INSTITUCION_CREACION"],
         nombreCreacionInstitucion: json["NOMBRE_INSTITUCION_CREACION"],
-
         correo: json["CORREO"],
         usuario: json["USUARIO"],
         password: json["PASSWORD"],
@@ -897,7 +897,7 @@ class LoginSigIn extends Entity {
         "PRIMERA_VEZ": primeraVez,
         "IDCOV_PERSONAL": idPersonal,
         "ID_INSTITUCION_CREACION": idCreacionInstitucion,
-        "NOMBRE_INSTITUCION_CREACION" : nombreCreacionInstitucion,
+        "NOMBRE_INSTITUCION_CREACION": nombreCreacionInstitucion,
       };
 }
 
@@ -1261,7 +1261,7 @@ class InstitucionesItems extends Entity {
   String correo;
   String informacionComplementaria;
   String telefono;
-   int idUbicacion;
+  int idUbicacion;
 
   InstitucionesItems(
       {this.idInstitucion,
@@ -1549,9 +1549,7 @@ class SolicitudAyuda extends Entity {
       idaBotonPanico: json["IDCOV_BOTONPANICO"],
       nombreCatalogo: json["NOMBRE_CATALOGO"],
       detalle: json["BOT_DETALLE"],
-
-   hora: json["HORA"],
-
+      hora: json["HORA"],
       fechaAtencion: json["FECHA_ATENCION"],
       nombrePersonalAtendio: json["PER_NOMBREPERSONAL"],
       nombreInstitucionAtencion: json["INS_NOMBREINSTITUCION"],
@@ -1568,10 +1566,7 @@ class SolicitudAyuda extends Entity {
         "IDCOV_BOTONPANICO": idaBotonPanico,
         "BOT_CORDENADALON": longitud,
         "FECHA_ATENCION": fechaAtencion,
-
-"HORA": hora,
-
-
+        "HORA": hora,
         "PER_NOMBREPERSONAL": nombrePersonalAtendio,
         "INS_NOMBREINSTITUCION": nombreInstitucionAtencion,
         "NOMBRE_CATALOGO": nombreCatalogo,

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -47,46 +46,45 @@ void main() async {
 //   );
 }
 
-
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
+  final GlobalKey<NavigatorState> navigatorKey =
+      new GlobalKey<NavigatorState>();
   final prefs = new PreferensUser();
   String token;
 
   @override
   void initState() {
     super.initState();
-    
+
     final pushProvider = new PushNotificationProvider();
     pushProvider.initNotifications();
     pushProvider.mensajes.listen((data) {
-         //print('Argumento del Push: $data');
+      //print('Argumento del Push: $data');
 
-         if(data == 'ayudaPersona')
-             navigatorKey.currentState.pushNamed('CiudadanoEmergencia', arguments: data );
-
-        else if(data == 'Voluntario')
-             navigatorKey.currentState.pushNamed('EncuentraVoluntario', arguments: data );
-        
-         else if(data == 'organizacion')
-             navigatorKey.currentState.pushNamed('ListaInstituciones', arguments: data );
-        
-         else if(data == 'emergencia')
-             navigatorKey.currentState.pushNamed('CiudadanoEmergencia', arguments: data );
-        
-         else if(data == 'eventos')
-             navigatorKey.currentState.pushNamed('CiudadanoEventos', arguments: data );
-        
-         else if(data == 'multimedia')
-             navigatorKey.currentState.pushNamed('CiudadanoMultimedia', arguments: data );
-
-      }
-    );
+      if (data == 'ayudaPersona')
+        navigatorKey.currentState
+            .pushNamed('CiudadanoEmergencia', arguments: data);
+      else if (data == 'Voluntario')
+        navigatorKey.currentState
+            .pushNamed('EncuentraVoluntario', arguments: data);
+      else if (data == 'organizacion')
+        navigatorKey.currentState
+            .pushNamed('ListaInstituciones', arguments: data);
+      else if (data == 'emergencia')
+        navigatorKey.currentState
+            .pushNamed('CiudadanoEmergencia', arguments: data);
+      else if (data == 'eventos')
+        navigatorKey.currentState
+            .pushNamed('CiudadanoEventos', arguments: data);
+      else if (data == 'multimedia')
+        navigatorKey.currentState
+            .pushNamed('CiudadanoMultimedia', arguments: data);
+    });
   }
 
   @override
@@ -104,7 +102,7 @@ class _MyAppState extends State<MyApp> {
       ),
 
       //MULTILENGUAGE
-      
+
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -114,13 +112,12 @@ class _MyAppState extends State<MyApp> {
         const Locale('es', 'ES'), // Hebrew
       ],
 
+      // initialRoute: prefs.ultimaPagina,
+      //  home: new FilePickerDemo(),//MapAdressModule(),
+      home: new IntroScreenModule(), //FilePickerDemo(),
 
-     // initialRoute: prefs.ultimaPagina,
-    //  home: new FilePickerDemo(),//MapAdressModule(),
-        home: new SplashScreenModule(),//FilePickerDemo(),
-
-        routes: <String, WidgetBuilder>{
-          'Splash': (BuildContext context) => new SplashScreenModule(),
+      routes: <String, WidgetBuilder>{
+        'Splash': (BuildContext context) => new SplashScreenModule(),
         'notificaciones': (BuildContext context) => new NotificacionesModule(),
         'login': (BuildContext context) => new SignUpModule(),
         'forget': (BuildContext context) => new ForgetPassword(),
@@ -129,15 +126,14 @@ class _MyAppState extends State<MyApp> {
         'home': (BuildContext context) => new HomePageModule(),
         'mapAtencion': (BuildContext context) => new MapAdressModule(),
 
-        'voluntarioAll' : (BuildContext context) => new VoluntaryAllModule(),
+        'voluntarioAll': (BuildContext context) => new VoluntaryAllModule(),
 
-        
         'lisVoluntary': (BuildContext context) => new ListVoluntaryModule(),
         'ListEventVoluntary': (BuildContext context) => new ListEventModule(),
         'eventVoluntary': (BuildContext context) => EventModule(),
         'atentionVoluntary': (BuildContext context) => AtentionModule(),
         'multimedia': (BuildContext context) => MultimediaModule(),
-       
+
         'AtentionEntity': (BuildContext context) => AtentionEntityModule(),
         'entidad': (BuildContext context) => new EntityModule(),
         'entidadGeneral': (BuildContext context) => new EntityAllModule(),
@@ -145,70 +141,43 @@ class _MyAppState extends State<MyApp> {
         'eventEntity': (BuildContext context) => new ListEntityModule(),
         'eventoEntidad': (BuildContext context) => new EventEntityModule(),
 
+        'helpCitizen': (BuildContext context) => new CitizenHelpModule(),
+        "ListaCiudadanoAyuda": (BuildContext context) =>
+            new ListCitizenHelpModule(),
+        'voluntary': (BuildContext context) => new VoluntaryModule(),
+        'listMultimedia': (BuildContext context) => ListMultimediaModule(),
 
-'helpCitizen': (BuildContext context) => new  CitizenHelpModule(),
-"ListaCiudadanoAyuda": (BuildContext context) =>     new ListCitizenHelpModule(),
-'voluntary': (BuildContext context) => new VoluntaryModule(),
- 'listMultimedia': (BuildContext context) => ListMultimediaModule(),
-
-
-      //  "CiudadanoAlertaEmergencia":(BuildContext context)=> new  CitizenAlertEmergency(),
-        "CiudadanoEmergencia": (BuildContext context) =>     new CitizenEmergencyModule(),
+        //  "CiudadanoAlertaEmergencia":(BuildContext context)=> new  CitizenAlertEmergency(),
+        "CiudadanoEmergencia": (BuildContext context) =>
+            new CitizenEmergencyModule(),
         "CiudadanoEventos": (BuildContext context) => new CitizenEventsModule(),
         //"CiudadanoEventosDetalle":(BuildContext context)=> new CitizenEventsDetailModule(),
-        
+
         //"CiudadanoInstitucion":(BuildContext context)=> new CitizenInstitutionModule(),
-        "ListaInstituciones": (BuildContext context) =>     new CitizenListInstitucionModule(),
+        "ListaInstituciones": (BuildContext context) =>
+            new CitizenListInstitucionModule(),
         //"ImagenDetalle":(BuildContext context)=> new CitizenImageDetailModule(),
-        "CiudadanoMultimedia": (BuildContext context) =>    new CitizenMultimediaModule(),
-        "CiudadanoBotonPanico": (BuildContext context) =>   new CitizenPanicButtonModule(),
-        "ListaCiudadanoPanico": (BuildContext context) =>   new ListCitizenPanic(),
+        "CiudadanoMultimedia": (BuildContext context) =>
+            new CitizenMultimediaModule(),
+        "CiudadanoBotonPanico": (BuildContext context) =>
+            new CitizenPanicButtonModule(),
+        "ListaCiudadanoPanico": (BuildContext context) =>
+            new ListCitizenPanic(),
         //"EncontrarTodosLosVoluntariosPorGrupo":(BuildContext context)=> new FoundAllVoluntaryGroupModule(),
         //"EncontrarTodosLosVoluntarios":(BuildContext context)=> new FoundAllVoluntaryModule(),
-        "EncuentraVoluntario": (BuildContext context) => new FoundVoluntaryModule(),
+        "EncuentraVoluntario": (BuildContext context) =>
+            new FoundVoluntaryModule(),
       },
     );
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      // routes: <String, WidgetBuilder>{
-      //   'Splash': (BuildContext context) => new SplashScreenModule(),
-      //   'citizen': (BuildContext context) => new CitizenModule(),
-      //   'login': (BuildContext context) => new SignUpModule(),
-      //   'forgetPassword': (BuildContext context) => new ForgetPassword(),
-      //   'registerLogin': (BuildContext context) => new AgreeLoginModule(),
-      //   'sliderShowModule': (BuildContext context) => new SliderShowModule(),
-      //   'mensaje': (BuildContext context) => new MensajePage(),
-      // },
+// routes: <String, WidgetBuilder>{
+//   'Splash': (BuildContext context) => new SplashScreenModule(),
+//   'citizen': (BuildContext context) => new CitizenModule(),
+//   'login': (BuildContext context) => new SignUpModule(),
+//   'forgetPassword': (BuildContext context) => new ForgetPassword(),
+//   'registerLogin': (BuildContext context) => new AgreeLoginModule(),
+//   'sliderShowModule': (BuildContext context) => new SliderShowModule(),
+//   'mensaje': (BuildContext context) => new MensajePage(),
+// },
