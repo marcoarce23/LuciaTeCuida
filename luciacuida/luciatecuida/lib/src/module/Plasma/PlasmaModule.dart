@@ -195,7 +195,7 @@ class _PlasmaModuleState extends State<PlasmaModule> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: <Widget>[
-                  Text('CARGA FOTO DE LA PERSONA',
+                  Text('CARGA FOTO DE LA PRUEBA',
                       style: TextStyle(
                         color: AppTheme.themeVino,
                         fontSize: 16.0,
@@ -307,7 +307,7 @@ class _PlasmaModuleState extends State<PlasmaModule> {
     return SwitchListTile(
       value: esRecuperado,
       title: Text(text),
-      subtitle: Text('Habilitar opción si es persona recuperada.'),
+      subtitle: Text('Si cuenta con su segunda prueba habilitar la opción.'),
       activeColor: AppTheme.themeVino,
       onChanged: (value) => setState(() {
         esRecuperado = value;

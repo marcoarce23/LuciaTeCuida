@@ -25,10 +25,10 @@ class _CitizenEmergencyModuleState extends State<CitizenEmergencyModule> {
   final List<Widget> optionPage = [
     PageCovid(),
     PagePlasma(),
+    PageOxigeno(),
+    PageAyudaAmigo(),
     PageMedicina(),
-    PageAyudaAmigo(), 
     PageMedicmanetos(),
-    PageBonos(),
   ];
 
   void _onItemTapped(int index) {
@@ -68,15 +68,21 @@ class _CitizenEmergencyModuleState extends State<CitizenEmergencyModule> {
                   icon: Icon(Icons.ac_unit, size: 24),
                   title: Text('Covid', style: TextStyle(fontSize: 12)),
                 ),
-
                 BottomNavigationBarItem(
                   icon: Icon(Icons.book, size: 24),
                   title: Text('Plasma', style: TextStyle(fontSize: 12)),
                 ),
-
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.camera_roll, size: 24),
+                  title: Text('Oxigeno', style: TextStyle(fontSize: 12)),
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.face, size: 24),
+                  title: Text('Ayuda Amigo', style: TextStyle(fontSize: 12)),
+                ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.local_hospital,
+                    Icons.person_add,
                     size: 24,
                   ),
                   title: Text(
@@ -85,19 +91,9 @@ class _CitizenEmergencyModuleState extends State<CitizenEmergencyModule> {
                   ),
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.face, size: 24),
-                  title: Text('Ayuda Amigo', style: TextStyle(fontSize: 12)),
+                  icon: Icon(Icons.library_add, size: 24),
+                  title: Text('Lab.-Medicamen', style: TextStyle(fontSize: 12)),
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.add_shopping_cart, size: 24),
-                  title: Text('Medicamentos-abastecimientos',
-                      style: TextStyle(fontSize: 12)),
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.transfer_within_a_station, size: 24),
-                  title: Text('Bonos', style: TextStyle(fontSize: 12)),
-                ),
-                
               ],
               currentIndex: page,
               unselectedItemColor: Colors.black87,
@@ -200,7 +196,10 @@ class _PageMedicinaState extends State<PageMedicina> {
     return FutureBuilder(
         future: Generic().getAll(
             new SolicitudAyuda(),
-            urlGetListaSolicitudesAyudas + '/64'+'/'+ prefs.idDepartamento.toString() ,
+            urlGetListaSolicitudesAyudas +
+                '/64' +
+                '/' +
+                prefs.idDepartamento.toString(),
             primaryKeyListaSolicitudesAyudas),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
@@ -521,7 +520,10 @@ class _PageCovidState extends State<PageCovid> {
     return FutureBuilder(
         future: Generic().getAll(
             new SolicitudAyuda(),
-            urlGetListaSolicitudesAyudas + '/65'+'/'+ prefs.idDepartamento.toString(),
+            urlGetListaSolicitudesAyudas +
+                '/65' +
+                '/' +
+                prefs.idDepartamento.toString(),
             primaryKeyListaSolicitudesAyudas),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
@@ -865,7 +867,10 @@ class _PagePlasmaState extends State<PagePlasma> {
     return FutureBuilder(
         future: Generic().getAll(
             new SolicitudAyuda(),
-            urlGetListaSolicitudesAyudas + '/102'+'/'+ prefs.idDepartamento.toString(),
+            urlGetListaSolicitudesAyudas +
+                '/102' +
+                '/' +
+                prefs.idDepartamento.toString(),
             primaryKeyListaSolicitudesAyudas),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
@@ -1209,7 +1214,10 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
     return FutureBuilder(
         future: Generic().getAll(
             new SolicitudAyuda(),
-            urlGetListaSolicitudesAyudas + '/66'+'/'+ prefs.idDepartamento.toString(),
+            urlGetListaSolicitudesAyudas +
+                '/66' +
+                '/' +
+                prefs.idDepartamento.toString(),
             primaryKeyListaSolicitudesAyudas),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
@@ -1459,12 +1467,12 @@ class _PageMedicmanetosState extends State<PageMedicmanetos> {
   }
 }
 
-class PageBonos extends StatefulWidget {
+class PageOxigeno extends StatefulWidget {
   @override
-  _PageBonosState createState() => _PageBonosState();
+  _PageOxigenoState createState() => _PageOxigenoState();
 }
 
-class _PageBonosState extends State<PageBonos> {
+class _PageOxigenoState extends State<PageOxigeno> {
   final generic = new Generic();
   final prefs = new PreferensUser();
   String _notificacion = '';
@@ -1485,7 +1493,7 @@ class _PageBonosState extends State<PageBonos> {
               contenedorTitulo(
                 context,
                 40.0,
-                "Bonos y otros servicios".toUpperCase(),
+                "Oxigeno".toUpperCase(),
                 FaIcon(FontAwesomeIcons.photoVideo, color: AppTheme.themeVino),
               ),
               AutoSizeText(
@@ -1551,7 +1559,10 @@ class _PageBonosState extends State<PageBonos> {
     return FutureBuilder(
         future: Generic().getAll(
             new SolicitudAyuda(),
-            urlGetListaSolicitudesAyudas + '/77'+'/'+ prefs.idDepartamento.toString(),
+            urlGetListaSolicitudesAyudas +
+                '/77' +
+                '/' +
+                prefs.idDepartamento.toString(),
             primaryKeyListaSolicitudesAyudas),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
@@ -1896,7 +1907,10 @@ class _PageAyudaAmigoState extends State<PageAyudaAmigo> {
     return FutureBuilder(
         future: Generic().getAll(
             new SolicitudAyuda(),
-            urlGetListaSolicitudesAyudas + '/-1'+'/'+ prefs.idDepartamento.toString(),
+            urlGetListaSolicitudesAyudas +
+                '/-1' +
+                '/' +
+                prefs.idDepartamento.toString(),
             primaryKeyListaSolicitudesAyudas),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {

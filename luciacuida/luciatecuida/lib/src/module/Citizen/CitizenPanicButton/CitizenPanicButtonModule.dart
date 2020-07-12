@@ -184,7 +184,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                                 });
                               },
                             ),
-                            Text('Medicamentos-Víveres',
+                            Text('Medicamento/Laborat.',
                                 style: TextStyle(fontSize: 12)),
                             Radio(
                               value: 66,
@@ -214,7 +214,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                                 });
                               },
                             ),
-                            Text('Bonos - otros servicios',
+                            Text('Solicitud de Oxigeno',
                                 style: TextStyle(fontSize: 12)),
                             Radio(
                               value: 77,
@@ -231,7 +231,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                         ),
                         Row(
                           children: <Widget>[
-                            Text('Solicitud de PLASMA',
+                            Text('Solicitud PLASMA',
                                 style: TextStyle(fontSize: 12)),
                             Radio(
                               value: 102,
@@ -337,7 +337,7 @@ class _ButtonPanic extends State<ButtonPanic> {
                                 TextStyle(fontSize: 14, color: Colors.black),
                             labelText: "Ingrese sus síntomas y/o ayuda",
                             border: InputBorder.none,
-                            hintText: 'Ingrese su solicutud y nombre completo',
+                            hintText: 'Ingrese su solicitud y nombre completo',
                             hintStyle:
                                 TextStyle(fontSize: 14, color: Colors.black),
                           ),

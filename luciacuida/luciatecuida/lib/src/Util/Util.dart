@@ -12,7 +12,6 @@ import 'package:luciatecuida/src/Model/Generic.dart';
 import 'package:luciatecuida/src/Theme/ThemeModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenEmergency/CitizenEmergencyModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenEvents/CitizenEventsModule.dart';
-import 'package:luciatecuida/src/module/Citizen/CitizenInstitution/CitizenInstitutionModule.dart';
 import 'package:luciatecuida/src/module/Citizen/CitizenMultimedia/CitizenMultimediaModule.dart';
 import 'package:luciatecuida/src/module/Citizen/Entity/InformationEntity.dart';
 import 'package:luciatecuida/src/module/Citizen/Voluntary/InformationVoluntary.dart';

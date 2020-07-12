@@ -73,7 +73,7 @@ class Generic {
   Future<Map<String, dynamic>> sebnFCM(
       String token, String body, String data) async {
     String sJSON =
-        '{"to": "$token","notification": {"title": "Lucia Te Cuida", "body": "$body"}, "data":{"data": "$data"}}';
+        '{"to": "$token","notification": {"title": "SomosUnoBolivia", "body": "$body"}, "data":{"data": "$data"}}';
     String _body = sJSON;
    // print('body: $_body');
     final url = 'https://fcm.googleapis.com/fcm/send';

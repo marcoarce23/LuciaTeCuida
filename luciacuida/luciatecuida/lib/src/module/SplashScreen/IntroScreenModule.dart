@@ -104,31 +104,29 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Center(
-                                child: Image(
-                                  image: AssetImage(
-                                    'assets/image/onboarding0.png',
-                                  ),
-                                  height: 150.0,
-                                  width: 150.0,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Center(
+                              child: Image(
+                                image: AssetImage(
+                                  'assets/image/onboarding0.png',
                                 ),
+                                height: 150.0,
+                                width: 150.0,
                               ),
-                              AutoSizeText(
-                                'SomosUnoBolivia, es una APP social para los voluntarios.',
-                                style: kTitleStyleBlack,
-                                maxLines: 2,
-                                minFontSize: 15.0,
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.center,
-                              ),
-
-                              SizedBox(height: 15.0),
-                              //    Expanded(
-                              Column(
+                            ),
+                            SizedBox(height: 15.0),
+                            Text(
+                              'SomosUnoBolivia, es una APP social para los voluntarios.',
+                              style: kTitleStyleBlack,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(height: 15.0),
+                            Flexible(
+                              child: Column(
                                 children: <Widget>[
                                   Row(
                                     children: <Widget>[
@@ -139,7 +137,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                           size: 35.0),
                                       SizedBox(width: 11.0),
                                       Expanded(
-                                        child: AutoSizeText(
+                                        child: Text(
                                           'Para todas las personas que requieren de una ayuda médica gratuita y virtual.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
@@ -158,7 +156,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                           size: 35.0),
                                       SizedBox(width: 11.0),
                                       Expanded(
-                                        child: AutoSizeText(
+                                        child: Text(
                                           'Una alternativa para recibir asistencia telefónica, on-line o audiovisual gratuita y virtual.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
@@ -177,7 +175,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                           size: 35.0),
                                       SizedBox(width: 10.0),
                                       Expanded(
-                                        child: AutoSizeText(
+                                        child: Text(
                                           'Es un lugar donde podras encontrar material multimedia y eventos del voluntariado para tu aprendizaje.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
@@ -189,35 +187,33 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                   ),
                                 ],
                               ),
-                              //  ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(20.0),
-                        child: Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Center(
-                                child: Image(
-                                  image: AssetImage(
-                                    'assets/image/onboarding2.png',
-                                  ),
-                                  height: 150.0,
-                                  width: 150.0,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Center(
+                              child: Image(
+                                image: AssetImage(
+                                  'assets/image/onboarding2.png',
                                 ),
+                                height: 150.0,
+                                width: 150.0,
                               ),
-                              SizedBox(height: 10.0),
-                              AutoSizeText(
-                                'QUIENES FORMAN PARTE ?',
-                                style: kTitleStyleBlack,
-                                textAlign: TextAlign.center,
-                              ),
-                              SizedBox(height: 13.0),
-                              //    Expanded(
-                              Column(
+                            ),
+                            SizedBox(height: 10.0),
+                            Text(
+                              'QUIENES FORMAN PARTE ?',
+                              style: kTitleStyleBlack,
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(height: 13.0),
+                            Flexible(
+                              child: Column(
                                 children: <Widget>[
                                   Row(
                                     children: <Widget>[
@@ -227,7 +223,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                           size: 35.0),
                                       SizedBox(width: 10.0),
                                       Expanded(
-                                        child: AutoSizeText(
+                                        child: Text(
                                           'Grupo de personas que de forma voluntaria y dedicación brindan apoyo a las personas que estan buscando ayuda gratuita y virtual.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
@@ -246,7 +242,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                           size: 35.0),
                                       SizedBox(width: 13.0),
                                       Expanded(
-                                        child: AutoSizeText(
+                                        child: Text(
                                           'Grupo de personas que te brindan apoyo gratuito y virtual e interesad@s en brindarte material de apoyo y eventos para tu aprendizaje.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
@@ -265,7 +261,7 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                           size: 35.0),
                                       SizedBox(width: 10.0),
                                       Expanded(
-                                        child: AutoSizeText(
+                                        child: Text(
                                           'Grupo de ciudadanos bolivianos que convecidos con nuestro trabajo podemos hacer a diferencia en tu vida.',
                                           style: kSubtitleStyleBlack,
                                           softWrap: true,
@@ -277,120 +273,98 @@ class _IntroScreenModuleState extends State<IntroScreenModule> {
                                   ),
                                 ],
                               ),
-                              // ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(20.0),
-                        child: Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Center(
-                                child: Image(
-                                  image: AssetImage(
-                                    'assets/image/onboarding1.png',
-                                  ),
-                                  height: 150.0,
-                                  width: 150.0,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Center(
+                              child: Image(
+                                image: AssetImage(
+                                  'assets/image/onboarding1.png',
                                 ),
+                                height: 150.0,
+                                width: 150.0,
                               ),
-                              SizedBox(height: 5.0),
-                              Column(
+                            ),
+                            SizedBox(height: 5.0),
+                            Column(
+                              children: <Widget>[
+                                Text(
+                                  'SOLO TE RECOMENDAMOS.',
+                                  style: kTitleStyleBlack,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 12.0),
+                            Flexible(
+                              child: Column(
                                 children: <Widget>[
-                                  AutoSizeText(
-                                    'SOLO TE RECOMENDAMOS.',
-                                    style: kTitleStyleBlack,
-                                    textAlign: TextAlign.center,
+                                  Row(
+                                    children: <Widget>[
+                                      SizedBox(width: 10.0),
+                                      FaIcon(FontAwesomeIcons.firstAid,
+                                          color: AppTheme.themeVino,
+                                          size: 30.0),
+                                      SizedBox(width: 10.0),
+                                      Expanded(
+                                        child: Text(
+                                          'Hacer buen uso de la aplicación, en tu tiempo y cuando lo necesites.',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 12.0),
+                                  Row(
+                                    children: <Widget>[
+                                      SizedBox(width: 10.0),
+                                      FaIcon(FontAwesomeIcons.listUl,
+                                          color: AppTheme.themeVino,
+                                          size: 30.0),
+                                      SizedBox(width: 10.0),
+                                      Expanded(
+                                        child: Text(
+                                          'Brindar información real y veridica a las personas con las que te comuniques a través de la APP SomosUnoBolivia.',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 12.0),
+                                  Row(
+                                    children: <Widget>[
+                                      SizedBox(width: 10.0),
+                                      FaIcon(FontAwesomeIcons.users,
+                                          color: AppTheme.themeVino,
+                                          size: 30.0),
+                                      SizedBox(width: 10.0),
+                                      Expanded(
+                                        child: Text(
+                                          'Comparte la aplicación con tus amig@s, familiares y personas para que podamos llegar a más familias bolvianas.',
+                                          style: kSubtitleStyleBlack,
+                                          softWrap: true,
+                                          overflow: TextOverflow.clip,
+                                          textAlign: TextAlign.justify,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 12.0),
-                              Expanded(
-                                child: Column(
-                                  children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        SizedBox(width: 10.0),
-                                        FaIcon(FontAwesomeIcons.firstAid,
-                                            color: AppTheme.themeVino,
-                                            size: 30.0),
-                                        SizedBox(width: 10.0),
-                                        Expanded(
-                                          child: AutoSizeText(
-                                            'Hacer buen uso de la aplicación, en tu tiempo y cuando lo necesites.',
-                                            style: kSubtitleStyleBlack,
-                                            softWrap: true,
-                                            overflow: TextOverflow.clip,
-                                            textAlign: TextAlign.justify,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(height: 12.0),
-                                    Row(
-                                      children: <Widget>[
-                                        SizedBox(width: 10.0),
-                                        FaIcon(FontAwesomeIcons.listUl,
-                                            color: AppTheme.themeVino,
-                                            size: 30.0),
-                                        SizedBox(width: 10.0),
-                                        Expanded(
-                                          child: AutoSizeText(
-                                            'Brindar información real y veridica a las personas con las que te comuniques a través de la APP SomosUnoBolivia.',
-                                            style: kSubtitleStyleBlack,
-                                            softWrap: true,
-                                            overflow: TextOverflow.clip,
-                                            textAlign: TextAlign.justify,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(height: 12.0),
-                                    Row(
-                                      children: <Widget>[
-                                        SizedBox(width: 10.0),
-                                        FaIcon(FontAwesomeIcons.users,
-                                            color: AppTheme.themeVino,
-                                            size: 30.0),
-                                        SizedBox(width: 10.0),
-                                        Expanded(
-                                          child: AutoSizeText(
-                                            'Comparte la aplicación con tus amig@s, familiares y personas para que podamos llegar a más familias bolvianas.',
-                                            style: kSubtitleStyleBlack,
-                                            softWrap: true,
-                                            overflow: TextOverflow.clip,
-                                            textAlign: TextAlign.justify,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    // SizedBox(height: 12.0),
-                                    // Row(
-                                    //   children: <Widget>[
-                                    //     SizedBox(width: 10.0),
-                                    //     FaIcon(FontAwesomeIcons.diagnoses,
-                                    //         color: AppTheme.themeVino,
-                                    //         size: 35.0),
-                                    //     SizedBox(width: 10.0),
-                                    //     Expanded(
-                                    //       child: AutoSizeText(
-                                    //         'COnisderar que el trabajo de la gente es de voluntariado en funcion........',
-                                    //         style: kSubtitleStyleBlack,
-                                    //         softWrap: true,
-                                    //         overflow: TextOverflow.clip,
-                                    //         textAlign: TextAlign.justify,
-                                    //       ),
-                                    //     ),
-                                    //   ],
-                                    // ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ],

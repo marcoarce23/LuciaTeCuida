@@ -96,7 +96,7 @@ class _HomePageModuleState extends State<HomePageModule> {
                 _crearExpedido(),
                 _botonesRedondeados(),
                 Text(
-                  'versión 1.0.5',
+                  'versión 1.0.7',
                   textAlign: TextAlign.left,
                 ),
               ],
@@ -584,7 +584,8 @@ class DrawerCitizen extends StatelessWidget {
               '   Acerca de la aplicación',
               () => Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => AcercaModule()),
+                    MaterialPageRoute(
+                        builder: (context) => IntroScreenModule()),
                   )),
           CustomListTile(Icons.exit_to_app, '    Cerrar Sesión', () {
             Navigator.push(

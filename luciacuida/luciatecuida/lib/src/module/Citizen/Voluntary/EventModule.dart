@@ -99,7 +99,7 @@ class EventModule extends StatefulWidget {
 }
 
 class _EventModuleState extends State<EventModule> {
-  bool _save = false;
+  bool _guardando = false;
   String _fecha = '';
   TimeOfDay _time;
   var result;
@@ -369,7 +369,7 @@ class _EventModuleState extends State<EventModule> {
           style: kSubtitleStyle,
         ),
         icon: FaIcon(FontAwesomeIcons.checkCircle, color: Colors.white),
-        onPressed: (_save) ? null : _submit,
+        onPressed: (_guardando) ? null : _submit,
       ),
     );
   }
@@ -381,7 +381,7 @@ class _EventModuleState extends State<EventModule> {
 
     formKey.currentState.save();
     setState(() {
-      _save = true;
+      _guardando = true;
     });
 
     entity.idcovEvento = 0;
@@ -418,9 +418,7 @@ class _EventModuleState extends State<EventModule> {
       scaffoldKey.currentState
           .showSnackBar(messageNOk("Error, vuelta a intentarlo"));
 
-    setState(() {
-      _save = false;
-    });
+    setState(() {_guardando = false; });
     });
   }
 

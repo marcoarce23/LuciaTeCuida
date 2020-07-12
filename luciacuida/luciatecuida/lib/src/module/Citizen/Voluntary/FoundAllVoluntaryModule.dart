@@ -172,7 +172,7 @@ class _FoundAllVoluntaryModuleState extends State<FoundAllVoluntaryModule> {
                       size: 15,
                     ),
                     Text(
-                      "Horaios",
+                      "Horarios",
                       style: kTitleCardStyle,
                     ),
                   ],
