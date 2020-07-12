@@ -33,8 +33,12 @@ class PushNotificationProvider {
 
       String argumento = 'no-data';
       if (Platform.isAndroid) {
-        argumento =  info['notification']['body'] ?? 'no-data'; 
-        //print('aaaaaa: ${ info['data']['ayudaPersona']}');
+
+print(info['data']);
+print(info['data']['ayuda']);
+
+
+        argumento = info['data']['ayuda'] ?? 'no-data';
       } else {
         argumento = info['ayudaPersona'] ?? 'no-data-ios';
       }
