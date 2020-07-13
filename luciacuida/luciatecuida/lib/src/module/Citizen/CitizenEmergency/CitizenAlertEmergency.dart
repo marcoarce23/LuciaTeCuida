@@ -229,8 +229,6 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
                               fontSize: 14,
                             ),
                           ),
-
-
                           Row(
                             children: <Widget>[
                               SizedBox(
@@ -238,7 +236,8 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
                               ),
                               Expanded(
                                 child: Text(
-                                                   (solicitudAyuda.nombrePersonalAtendio.length <=
+                                  (solicitudAyuda
+                                              .nombrePersonalAtendio.length <=
                                           0)
                                       ? "En curso de atención"
                                       : solicitudAyuda.nombrePersonalAtendio,
@@ -250,11 +249,6 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
                               ),
                             ],
                           ),
-
-
-
-
-
                           Text(
                             "Institución:",
                             style: TextStyle(
@@ -302,6 +296,51 @@ class _CitizenAlertEmergencyState extends State<CitizenAlertEmergency> {
                                   color: Colors.black,
                                   fontSize: 14,
                                 ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            "Datos del solicitante:",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w800,
+                              color: Colors.black,
+                              fontSize: 14,
+                            ),
+                          ),
+                          Wrap(
+                            children: <Widget>[
+                              InkWell(
+                                child: FaIcon(
+                                  FontAwesomeIcons.phoneVolume,
+                                  color: AppTheme.themeVino,
+                                  size: 25,
+                                ),
+                                onTap: () {
+                                  callNumber(solicitudAyuda.telefono);
+                                },
+                              ),
+                              SizedBox(width: 20.0),
+                              InkWell(
+                                child: FaIcon(
+                                  FontAwesomeIcons.comment,
+                                  color: AppTheme.themeVino,
+                                  size: 25,
+                                ),
+                                onTap: () {
+                                  sendSMS(solicitudAyuda.telefono);
+                                },
+                              ),
+                              SizedBox(width: 20.0),
+                              InkWell(
+                                child: FaIcon(
+                                  FontAwesomeIcons.whatsapp,
+                                  color: AppTheme.themeVino,
+                                  size: 25,
+                                ),
+                                onTap: () {
+                                  callWhatsAppText(solicitudAyuda.telefono,
+                                      'Estimado soy ${prefs.correoElectronico}, deseo consultarle o ponerme en contacto con ud. \nEnviado desde la aplicación *SomosUnoBolivia*.');
+                                },
                               ),
                             ],
                           ),
