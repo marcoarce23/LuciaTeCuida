@@ -289,6 +289,9 @@ class _PlasmaModuleState extends State<PlasmaModule> {
             textAlign: TextAlign.justify,
           ),
         ),
+
+         
+
         SizedBox(height: 7.0),
         nombre,
         edad,
@@ -299,6 +302,29 @@ class _PlasmaModuleState extends State<PlasmaModule> {
         _crearTipoFactor(),
         divider(),
         _crearBoton(resource.save),
+        Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                  child: AutoSizeText(
+                      'Nota: Para ponerse en contacto con el grupo de whatsapp de donantes de plasma presiona en:',
+                      style: knoteTitleCardStyle,
+                      maxLines: 3,
+                    minFontSize: 13.0,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.justify,
+                      ),
+                ),
+
+                FlatButton(
+                  color: Colors.green,
+                  textColor: Colors.white,
+                  disabledColor: Colors.grey,
+                  disabledTextColor: Colors.black,
+                  splashColor: Colors.white,
+                  onPressed: () {
+                    openWeb('https://chat.whatsapp.com/GULRUC5BCdF7zwenMxLnDy');
+                  },
+                  child: Text("WhatsApp Donantes"),
+                ),
       ],
     );
   }

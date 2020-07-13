@@ -95,9 +95,32 @@ class _HomePageModuleState extends State<HomePageModule> {
                 ),
                 _crearExpedido(),
                 _botonesRedondeados(),
+                // divider(),
                 Text(
-                  'versión 1.0.7',
+                  'versión 1.0.8',
                   textAlign: TextAlign.left,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                  child: AutoSizeText(
+                    'Nota: Para ponerse en contacto con el grupo de whatsapp de donantes de plasma presiona en:',
+                    style: knoteTitleCardStyle,
+                    maxLines: 3,
+                    minFontSize: 13.0,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.justify,
+                  ),
+                ),
+                FlatButton(
+                  color: Colors.green,
+                  textColor: Colors.white,
+                  disabledColor: Colors.grey,
+                  disabledTextColor: Colors.black,
+                  splashColor: Colors.white,
+                  onPressed: () {
+                    openWeb('https://chat.whatsapp.com/GULRUC5BCdF7zwenMxLnDy');
+                  },
+                  child: Text("WhatsApp Donantes"),
                 ),
               ],
             ),
@@ -152,9 +175,9 @@ class _HomePageModuleState extends State<HomePageModule> {
         padding: const EdgeInsets.symmetric(horizontal: 14.0),
         child: AutoSizeText(
           'Ud. esta brindando atención en el Departamento de ${obtenerDepartamento(prefs.idDepartamento)}. Si desea cambiar seleccione nuevamente.',
-          style: kSubTitleCardStyle,
+          style: knoteTitleCardStyle,
           maxLines: 3,
-          minFontSize: 15.0,
+          minFontSize: 13.0,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.justify,
         ),
@@ -164,9 +187,9 @@ class _HomePageModuleState extends State<HomePageModule> {
         padding: const EdgeInsets.symmetric(horizontal: 14.0),
         child: AutoSizeText(
           'Si desea brindar ayuda o recibirla seleccione el departamento.',
-          style: kSubTitleCardStyle,
+          style: knoteTitleCardStyle,
           maxLines: 2,
-          minFontSize: 15.0,
+          minFontSize: 13.0,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.justify,
         ),
@@ -190,7 +213,7 @@ class _HomePageModuleState extends State<HomePageModule> {
                         SizedBox(width: 10.0),
                         Text(
                           'Departamentos habilitados:',
-                          style: kSigssTitleStyle,
+                          style: knoteTitleCardStyle,
                         ),
                         DropdownButton(
                           icon: FaIcon(FontAwesomeIcons.angleDown,
@@ -207,6 +230,7 @@ class _HomePageModuleState extends State<HomePageModule> {
                         ),
                       ],
                     ),
+
                     // SizedBox(width: 15.0),
                   ],
                 );
@@ -385,7 +409,7 @@ class _HomePageModuleState extends State<HomePageModule> {
           child: Container(
             height: 87.0,
             width: 160,
-            margin: EdgeInsets.all(9.0),
+            margin: EdgeInsets.all(5.0),
             decoration: BoxDecoration(
                 gradient: LinearGradient(
               begin: Alignment.topCenter,

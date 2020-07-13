@@ -54,24 +54,17 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: AutoSizeText(
-                    'Se notificará a voluntarios del Departamento de : ${obtenerDepartamento(prefs.idDepartamento)} ',
-                    style: kSubTitleCardStyle,
-                    maxLines: 2,
-                    minFontSize: 15.0,
+                    'Para ponerse en contacto con el grupo de whatsapp de donantes de plasma presiona en:',
+                    style: knoteTitleCardStyle,
+                    maxLines: 3,
+                    minFontSize: 13.0,
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.justify,
                   ),
                 ),
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  child: Text(
-                      'Para ponerse en contacto con el grupo de whatsapp de donantes de plasma presiona en el icono',
-                      style: kSubTitleCardStyle),
-                ),
-
                 FlatButton(
-                  color: AppTheme.themeVino,
+                  color: Colors.green,
                   textColor: Colors.white,
                   disabledColor: Colors.grey,
                   disabledTextColor: Colors.black,
@@ -79,7 +72,7 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
                   onPressed: () {
                     openWeb('https://chat.whatsapp.com/GULRUC5BCdF7zwenMxLnDy');
                   },
-                  child: Text("Whatsapp donantes"),
+                  child: Text("WhatsApp Donantes"),
                 ),
 
                 ButtonPanic(
