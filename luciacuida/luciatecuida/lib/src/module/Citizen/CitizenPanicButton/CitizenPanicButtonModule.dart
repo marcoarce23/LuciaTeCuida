@@ -62,6 +62,26 @@ class _CitizenPanicButtonModuleState extends State<CitizenPanicButtonModule> {
                     textAlign: TextAlign.justify,
                   ),
                 ),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: Text(
+                      'Para ponerse en contacto con el grupo de whatsapp de donantes de plasma presiona en el icono',
+                      style: kSubTitleCardStyle),
+                ),
+
+                FlatButton(
+                  color: AppTheme.themeVino,
+                  textColor: Colors.white,
+                  disabledColor: Colors.grey,
+                  disabledTextColor: Colors.black,
+                  splashColor: Colors.white,
+                  onPressed: () {
+                    openWeb('https://chat.whatsapp.com/GULRUC5BCdF7zwenMxLnDy');
+                  },
+                  child: Text("Whatsapp donantes"),
+                ),
+
                 ButtonPanic(
                   titulo: "CONSULTA",
                 ),
